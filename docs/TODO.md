@@ -466,3 +466,39 @@ active combined offer ("Limited Time Offer: Earn a $250 Statement Credit and the
   `full_text` was ever wrong, so no changelog entry for those — correctly, nothing user-visible changed for them
   before this fix).
 - `npx tsc --noEmit` clean, 306 TS tests (unaffected), 404 Python tests (403 + 3 new), production build succeeds.
+
+## Copy pass: Cheat Sheet link and the whole Methodology page (2026-09-22)
+Owner-directed wording changes, all content, no behavior change:
+- Cheat Sheet: "For a list based on your actual card history and rules," -> "For a personalized list based on your
+  actual card history," (`CheatSheetPage.tsx`).
+- Methodology page (`MethodologyPage.tsx`), all owner's exact wording except one obvious typo fix ("Ink cards user
+  a stricter..." -> "use"):
+  - "cards that lead there" -> "cards whose points end up in that program".
+  - The net-value paragraph rewritten in the owner's own words (still says the same thing: bonus minus first-year
+    fee, doesn't touch later-year fee changes, net is what ranks by default).
+  - The "shorter than this site asks about" days-level-rules paragraph replaced with a simpler two-example version
+    (Amex 2/90, Citi 1/8), same trailing link to Frequent Miler's rules guide kept.
+  - Chase 5/24 bullet reworded to "reported to your personal credit report" framing and reordered ("this threshold
+    is applied before the five card rule").
+  - "Only Capital One and Discover business cards" -> "Only Discover and certain Capital One business cards"
+    (accuracy: not every Capital One business card reports to personal credit).
+  - Amex family-rule bullet's NLL explanation reworded; new dedicated bullet added right after it explicitly
+    naming Amex's separate once-per-lifetime ("lifetime language") rule and how it relates to the family rule.
+  - "family" -> "family rule" in the Capital One Venture bullet.
+  - The Ultimate Rewards transfer example expanded with a concrete redemption example (United/Hyatt).
+  - "Known simplifications": the public-offers bullet expanded into a fuller explanation of what kinds of better
+    offers exist (invitation, logged-in, referral, affiliate-linked) and a prompt to verify independently.
+  - Credits section restructured from one paragraph into four bullets, the flowchart-attribution sentence
+    reworded, and a new bullet added linking uscreditcardguide.com for offer-history research.
+- Left open, per the owner's own request rather than guessed at: the "Each points currency uses one cents-per-point
+  value, regardless of how you'd actually redeem it" simplification bullet. What it's actually trying to say: the
+  engine values a card's currency (e.g. Amex Membership Rewards) at one single cents-per-point figure for every
+  card that earns it, even though in reality the *same* points are worth more or less depending on how they're
+  redeemed (e.g. a transfer to a premium cabin flight vs. a mediocre hotel redemption vs. cashing out at a flat
+  rate) — Frequent Miler's RRV figure is already a blended "reasonable" estimate across realistic redemptions, and
+  the site doesn't try to model "your specific redemption plan is worth more/less than that." Flagged back to the
+  owner to confirm whether that reading is right and whether the sentence should be reworded to say so more
+  plainly, rather than guessing at new wording unprompted.
+- `npx tsc --noEmit` clean, 306 TS tests, 404 Python tests (both unaffected — pure JSX text changes), production
+  build succeeds. Verified live: every changed paragraph and bullet checked against the owner's exact requested
+  text via the rendered page (including the collapsed "eligibility rules" section, expanded to confirm).

@@ -30,8 +30,8 @@ export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder }: Props) 
       <h2>Signup Offer Cheat Sheet</h2>
       <p>
         A quick reference, not a personalized recommendation: each column assumes you have never had any of these
-        cards and can meet any minimum spend, and only splits on 5/24 status and reward type. For a list based on
-        your actual card history and rules,{" "}
+        cards and can meet any minimum spend, and only splits on 5/24 status and reward type. For a personalized
+        list based on your actual card history,{" "}
         <button type="button" className="linklike" onClick={onGoToFinder}>use the Card Finder</button>.
       </p>
 
