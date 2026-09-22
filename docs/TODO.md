@@ -355,3 +355,28 @@ stay, prefix them with "ex." so they read as examples, not values to delete.
   typed and the 6-month field's placeholder updates live to double it. 3 new/updated tests in
   `householdFilters.test.ts` covering the null case for every field. `npx tsc --noEmit` clean, 303 TS tests
   (301 + 2 new), 401 Python tests (unaffected), production build succeeds.
+
+## Fixed a severe bug: the NLL warning was invisible for single-player households (2026-09-22)
+Owner report: holding an Amex Platinum and having previously had an Amex Gold, both cards showed up in the results
+with no mention of needing a targeted "no lifetime language" (NLL) offer — including Gold, which should be
+family-blocked by holding Platinum alone, even with no prior Gold history at all.
+
+Root-caused by actually reproducing it rather than guessing: wrote a real-catalog test first (`recommend.test.ts`)
+with a single-player profile holding `amex-platinum` and no `amex-gold` history at all, and confirmed the *engine*
+already computed `viaNllOnly: true` correctly for both cards (`nllBlock.ts`'s lifetime and family logic, and the
+underlying `data/cards.json` family/tier/`onceInLifetime` data, were all already right). The bug was entirely in
+the UI: `CardItem.tsx`'s only NLL-related markup lived inside `{!single && ... && <div className="who">}` — so
+for the overwhelmingly common single-player case, the entire block, NLL annotation included, was skipped, no
+matter what the engine had already correctly flagged. A real, severe bug: churning has real financial/eligibility
+consequences, and this was silently hiding exactly the information someone needs before applying.
+- Decoupled the NLL warning from the player-name line entirely, and gave it real visual weight instead of a small
+  parenthetical: a new `.nllnote` warning box (same treatment as the existing "as high as" ceiling warning),
+  shown whenever any non-backup player on that entry needs NLL — single-player or multi-player, and (for
+  multi-player) wording that adapts to whether it's everyone listed or only some of them by name.
+- 1 new test (`recommend: real data`, `recommend.test.ts`) using the real catalog, confirming both the
+  currently-held-card case (Platinum) and the family-rule-with-no-prior-history case (Gold) are flagged, run with
+  `perPlayer: Infinity` since the default top-5 cutoff can otherwise hide a card from a synthetic test profile's
+  view before this even gets checked.
+- Verified live end to end, reproducing the owner's exact scenario (single player, Platinum held, Gold never
+  held): the results page now shows a clear, prominent warning box on the Platinum entry the moment it renders.
+  `npx tsc --noEmit` clean, 304 TS tests (303 + 1 new), 401 Python tests (unaffected), production build succeeds.

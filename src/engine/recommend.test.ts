@@ -279,6 +279,22 @@ describe("recommend: real data", () => {
     for (const e of r.ranked) expect(real.catalog.find((c) => c.id === e.cardId)!.kind).toBe("personal");
   });
 
+  it("flags a currently-held Amex card and a family-blocked Amex card as viaNllOnly (owner report, 2026-09-22)", () => {
+    // Holds Platinum now; never had Gold. Gold should still be family-blocked purely by holding the higher tier.
+    const holder = person("Solo", {}, { "amex-platinum": { current: 1, approved: {} } });
+    const r = recommend(
+      profile([holder], { maxAnnualFee: 900000, spend3Months: 8000000, spend6Months: 16000000 }),
+      real,
+      { perPlayer: Number.POSITIVE_INFINITY },
+    );
+    const platinum = r.ranked.find((e) => e.cardId === "amex-platinum");
+    const gold = r.ranked.find((e) => e.cardId === "amex-gold");
+    expect(platinum, "amex-platinum should still be listed, just flagged").toBeDefined();
+    expect(platinum!.players[0]!.viaNllOnly).toBe(true);
+    expect(gold, "amex-gold should still be listed, just flagged").toBeDefined();
+    expect(gold!.players[0]!.viaNllOnly).toBe(true);
+  });
+
   it("is valid for two players, one with cards and one shut down by Chase", () => {
     const p1 = person("P1", {}, { "chase-sapphire-preferred": { current: 1, approved: { m12to24: 1 } } });
     const p2 = person("P2", { shutdownIssuers: ["chase"], wantsUnder524: true });

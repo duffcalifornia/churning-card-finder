@@ -23,6 +23,7 @@ export function CardItem({ entry, single, rankBy, rank }: { entry: ResultEntry; 
   const backups = entry.players.filter((p) => p.backup).map((p) => p.name);
   const main = entry.players.filter((p) => !p.backup);
   const isBackup = backups.length > 0;
+  const nllPlayers = main.filter((p) => p.viaNllOnly).map((p) => p.name);
   return (
     <li className={isBackup ? "resultcard backup" : "resultcard"}>
       {rank !== undefined && <div className="rankbadge" aria-hidden="true">{rank}</div>}
@@ -37,6 +38,16 @@ export function CardItem({ entry, single, rankBy, rank }: { entry: ResultEntry; 
           )}
         </div>
         {!single && main.length > 0 && <div className="who">{joinNames(main.map(playerLabel))}</div>}
+        {nllPlayers.length > 0 && (
+          <div className="nllnote">
+            <WarningIcon />
+            {single
+              ? 'This is normally a once-per-lifetime bonus, and the player already has or has had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn it again.'
+              : nllPlayers.length === main.length
+                ? 'This is normally a once-per-lifetime bonus, and everyone listed already has or has had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn it again.'
+                : `This is normally a once-per-lifetime bonus, and ${joinNames(nllPlayers)} already ${nllPlayers.length === 1 ? "has" : "have"} or had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn it again.`}
+          </div>
+        )}
         <div className="bonus">{describeBonus(card, engineData.currencies, engineData.programs).join(" + ")}</div>
         <div className="values">
           <span className={rankBy === "raw" ? "value ranked" : "value"}>Bonus value {money(entry.bonusValue)}</span>
