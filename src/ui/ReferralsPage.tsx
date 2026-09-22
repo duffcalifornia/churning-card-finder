@@ -29,6 +29,11 @@ export function ReferralsPage() {
         has no effect on the rankings shown anywhere else on the site — the Cheat Sheet and Card Finder have no
         knowledge that this page exists.
       </p>
+      <p>
+        All that I ask is that if you do apply using one of these links and get approved, please submit a
+        suggestion with a subject of "Referral" and let me know which link you used in the comments. This helps
+        me know when to take links down and helps with my own record keeping.
+      </p>
       {REFERRAL_LINKS.length === 0 ? (
         <p className="note">No referral links added yet.</p>
       ) : (

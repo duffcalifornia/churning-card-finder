@@ -664,3 +664,10 @@ in a `<span className="footerlinks">` (kept the class so `.footerlinks a`'s exis
 `styles.css` still applies — nothing there needed to change). Verified live: `footer.querySelectorAll('p').length`
 is now `1`; desktop (1200px) footer height dropped from ~84px to ~61px; mobile (375px, expanded) still wraps
 sensibly across multiple lines. `npx tsc --noEmit` clean, 306 TS tests pass, production build succeeds.
+
+## Referrals page: ask people to self-report which link they used (2026-09-22)
+Owner will add real referral links later; for now, added a paragraph to `ReferralsPage.tsx` right after the
+existing "no effect on the rankings" paragraph, asking anyone who applies through a referral link and gets
+approved to submit a Suggestion with subject "Referral" naming which link they used, for the owner's own
+tracking and to know when to retire a link. Verified live via the rendered page. `npx tsc --noEmit` clean, 306 TS
+tests pass, production build succeeds.
