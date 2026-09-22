@@ -179,6 +179,14 @@ footer p { margin: 4px 0; }
   .footer-toggle { display: inline-flex; align-self: flex-end; align-items: center; background: none; border: none; color: var(--muted); font: inherit; font-size: 0.78rem; text-decoration: underline; padding: 2px 0; cursor: pointer; }
   .footer-fixed.collapsed .footer-body { display: none; }
 }
+/* Desktop has no collapse toggle to fall back on, so the fixed footer's own footprint is trimmed instead: a
+   smaller (but still comfortably legible, well above WCAG's contrast floor regardless of size) type size plus
+   tighter padding and paragraph spacing. */
+@media (min-width: 701px) {
+  footer { font-size: 0.8rem; }
+  .footer-fixed { padding-top: 8px; padding-bottom: 8px; }
+  footer p { margin: 3px 0; }
+}
 .footerlinks a { color: var(--muted); }
 
 .changelog h2 { margin-top: 28px; }

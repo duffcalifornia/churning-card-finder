@@ -641,3 +641,18 @@ collapsed flag still set from the mobile test, proving desktop always ignores it
 "desktop" preset here is ~655px, narrower than the site's 700px breakpoint, so it shows the mobile hamburger nav
 too — verification used an explicit 1200px width to test real desktop behavior instead.) `npx tsc --noEmit`
 clean, 306 TS tests pass, production build succeeds.
+
+## Shrunk the desktop footer's vertical footprint (2026-09-22)
+Owner asked whether the desktop footer's font size could shrink to save space while staying accessible. WCAG's
+contrast requirement (4.5:1 for normal text) doesn't loosen or tighten with font size — it's a color-pair
+property — and the footer's existing colors already clear it with real margin (~6.1:1 light mode, ~7.5:1 dark,
+both computed from the actual token hex values), so a smaller size doesn't put compliance at risk; WCAG also has
+no hard minimum pixel size, leaning on page zoom (already supported here via `rem` units) instead. The practical
+floor is legibility, not a rule — general guidance is not to go much below ~12px for body text. Added a
+`@media (min-width: 701px)` block in `styles.css`: `footer` font-size 0.85rem → 0.8rem (13.6px → 12.8px),
+`.footer-fixed` top/bottom padding 10px → 8px, `footer p` margin 4px → 3px. Scoped to desktop only (the same
+701px+ range where the mobile collapse toggle is hidden) — mobile keeps its original 13.6px and already has the
+collapse toggle to solve the space problem there. Verified live: desktop (explicit 1200px width) computed
+`font-size` is `12.8px` and footer height dropped to ~84px; mobile (375px) computed `font-size` is still
+`13.6px`, confirming the media-query scoping. `npx tsc --noEmit` clean, 306 TS tests pass, production build
+succeeds.
