@@ -98,17 +98,23 @@ describe("setCardCount", () => {
     const p = setCardCount(defaultProfile(1), 0, "amex-gold", "m12to24", 1);
     expect(cards(p)["amex-gold"]).toEqual({ current: 0, approved: { m12to24: 1 } });
   });
-  it("raising the current count bumps the newest window when the approvals do not cover it", () => {
+  it("raising the current count never touches any approval window (owner, 2026-09-22)", () => {
     let p = setCardCount(defaultProfile(1), 0, "amex-gold", "gt48", 1);
     p = setCardCount(p, 0, "amex-gold", "current", 3);
     expect(cards(p)["amex-gold"]!.current).toBe(3);
-    expect(cards(p)["amex-gold"]!.approved).toEqual({ gt48: 1, lt12: 2 });
+    expect(cards(p)["amex-gold"]!.approved).toEqual({ gt48: 1 }); // no auto-filled lt12
   });
-  it("lowering the approvals below the current count lowers the current count", () => {
+  it("lowering an approval window never touches current or any other window (owner, 2026-09-22)", () => {
     let p = setCardCount(defaultProfile(1), 0, "amex-gold", "lt12", 2);
     p = setCardCount(p, 0, "amex-gold", "current", 2);
     p = setCardCount(p, 0, "amex-gold", "lt12", 1);
-    expect(cards(p)["amex-gold"]!.current).toBe(1);
+    expect(cards(p)["amex-gold"]!.current).toBe(2); // unchanged, even though it now exceeds total approved
+    expect(cards(p)["amex-gold"]!.approved).toEqual({ lt12: 1 });
+  });
+  it("setting one approval window never touches a different one", () => {
+    let p = setCardCount(defaultProfile(1), 0, "amex-gold", "current", 1);
+    p = setCardCount(p, 0, "amex-gold", "gt48", 1);
+    expect(cards(p)["amex-gold"]).toEqual({ current: 1, approved: { gt48: 1 } }); // no phantom lt12
   });
   it("never lets a count go negative or fractional", () => {
     const p = setCardCount(setCardCount(defaultProfile(1), 0, "amex-gold", "lt12", -3), 0, "amex-gold", "m12to24", 1.9);
@@ -194,7 +200,7 @@ describe("historyCardsByIssuer", () => {
 
   it("has a section for each issuer the design lists", () => {
     expect(ISSUER_SECTIONS.map((s) => s.id)).toEqual([
-      "chase", "amex", "boa", "citi", "usbank", "wellsfargo", "bilt", "barclays", "capone", "discover", "fnbo", "synchrony", "td",
+      "chase", "amex", "boa", "citi", "usbank", "wellsfargo", "bilt", "barclays", "capone", "discover", "fnbo",
     ]);
   });
   it("lists cards that can be recommended", () => {

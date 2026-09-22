@@ -2,7 +2,11 @@ import type { Card, CardHistoryEntry, MarriottMatrix, OtherPersonalCards, Player
 
 export const MAX_PLAYERS = 6;
 
-/** Issuer sections of the card history step, in the order the design lists them (docs/questionnaire-design.md). */
+/** Issuer sections of the card history step, in the order the design lists them (docs/questionnaire-design.md).
+ * Synchrony and TD Bank deliberately have no section (owner, 2026-09-22): the catalog has no specific cards for
+ * either, so a dedicated section would only ever show the free-entry "other cards" line anyway, with nothing to
+ * distinguish it from just using the generic "Other issuers not listed" section already at the bottom of the
+ * step. If either issuer ever gets real tracked cards, give it a section back then. */
 export const ISSUER_SECTIONS = [
   { id: "chase", name: "Chase" },
   { id: "amex", name: "American Express" },
@@ -15,8 +19,6 @@ export const ISSUER_SECTIONS = [
   { id: "capone", name: "Capital One" },
   { id: "discover", name: "Discover" },
   { id: "fnbo", name: "FNBO" },
-  { id: "synchrony", name: "Synchrony" },
-  { id: "td", name: "TD Bank" },
 ] as const;
 
 // Amex-issued cards sold through a brokerage's own pages (schwab, morganstanley); shown under Amex, matching how
@@ -72,8 +74,6 @@ export function setPlayerCount(profile: Profile, count: number): Profile {
   return { ...profile, players };
 }
 
-const sum = (a: CardHistoryEntry["approved"]): number => (a?.lt12 ?? 0) + (a?.m12to24 ?? 0) + (a?.m24to48 ?? 0) + (a?.gt48 ?? 0);
-
 /** Drops zero counts, and the entry itself when nothing is left. Returns undefined for an empty entry. */
 function tidy(entry: CardHistoryEntry): CardHistoryEntry | undefined {
   const approved = Object.fromEntries(Object.entries(entry.approved ?? {}).filter(([, v]) => v > 0));
@@ -93,22 +93,20 @@ function withEntry(profile: Profile, index: number, cardId: string, entry: CardH
 }
 
 /**
- * Sets one count for a card. Keeps the invariant that the copies currently held never exceed the copies approved:
- * raising `current` raises the newest window if needed, and lowering the approvals lowers `current` if needed.
+ * Sets one count for a card: `current` (copies held now) or one approval window. Each field is independent
+ * (owner, 2026-09-22) — setting one never changes `current` or any other window's value. An earlier version
+ * tried to keep "current can't exceed total approved" as an invariant by auto-filling or clamping other fields,
+ * which meant entering "hold now" silently wrote a 1 into "approved under 12 months ago", and correcting the
+ * real approval window afterward left that guessed value behind instead of replacing it. The engine itself never
+ * assumed that invariant either (computeDerived reads `current` and each `approved` window as independent
+ * facts), so there was nothing downstream relying on it.
  */
 export function setCardCount(profile: Profile, index: number, cardId: string, field: CountField, value: number): Profile {
   const v = whole(value);
   const existing = profile.players[index]?.history.cards?.[cardId];
   const entry: CardHistoryEntry = { ...existing, current: existing?.current ?? 0, approved: { ...(existing?.approved ?? {}) } };
-  if (field === "current") {
-    entry.current = v;
-    const total = sum(entry.approved);
-    if (v > total) entry.approved = { ...entry.approved, lt12: (entry.approved?.lt12 ?? 0) + (v - total) };
-  } else {
-    entry.approved = { ...entry.approved, [field]: v };
-    const total = sum(entry.approved);
-    if ((entry.current ?? 0) > total) entry.current = total;
-  }
+  if (field === "current") entry.current = v;
+  else entry.approved = { ...entry.approved, [field]: v };
   return withEntry(profile, index, cardId, tidy(entry));
 }
 

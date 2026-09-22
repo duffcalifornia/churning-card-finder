@@ -80,7 +80,7 @@
   "cardHistoryEntry": {
    "type": "object",
    "additionalProperties": false,
-   "description": "History for one catalog card. Invariant: current is at most the sum of the approval counts.",
+   "description": "History for one catalog card. current and each approval window are entered independently (owner, 2026-09-22) and are not required to be consistent with each other; the engine reads both as separate facts.",
    "properties": {
     "current": {
      "type": "integer",

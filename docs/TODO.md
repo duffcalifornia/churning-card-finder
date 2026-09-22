@@ -240,3 +240,27 @@ becoming waived the first year) changed, which still moves that card's net value
   both lines. 1 new integration test confirming a fee-only run does NOT produce a bonus-offer line.
 - `scripts/README.md` and the `refresh-offers.yml` header comment updated to describe all three rules together.
 - Full suite: 401 Python tests (298 TS unaffected, this is Python-only), all green.
+
+## Card history: independent counts, dropped Synchrony/TD sections (2026-09-22)
+Two real usability bugs the owner hit actually using the Card Finder:
+- **Auto-linked counts.** `setCardCount` used to try to keep "current (held now) is at most the sum of the approval
+  windows" as an invariant: raising "hold now" above the approved total silently wrote the difference into
+  "approved under 12 months ago", and lowering an approval window below the current held count silently lowered
+  "hold now" too. In practice this meant entering "I hold 1 of this card" auto-guessed "approved under 12 months
+  ago", and correcting that guess afterward (e.g. entering the real, older approval window) left the wrong guess
+  sitting in `lt12` instead of being replaced. Fixed by removing all cross-field logic: `current` and each of the
+  four approval windows are now set completely independently, full stop — confirmed the engine (`computeDerived`)
+  never assumed that invariant either, it already read both as separate facts, so this was a pure UI/data-entry
+  bug with no engine-side fix needed. Rewrote the two tests in `profile.test.ts` that had pinned the old behavior
+  (TDD: new tests written first, asserting no cross-field effect, then the implementation changed to match); added
+  a third test for the reverse direction. `data/schema/profile.schema.json`'s `cardHistoryEntry` description no
+  longer claims the old (now false) invariant.
+- **Synchrony and TD Bank sections removed** from the Card History step (`ISSUER_SECTIONS` in `profile.ts`):
+  neither has any specific tracked cards in the catalog, so their section only ever showed the free-entry "other
+  cards" line anyway — no different from just using "Other issuers not listed" at the bottom of the step. Kept
+  both issuer ids valid in the schema (`profile.schema.json`'s `issuerId` enum, `card.schema.json`'s issuer enum)
+  for backward compatibility with anything already stored and in case either gets real cards later; only the
+  History step's own UI section list changed.
+- Verified live: entering "hold now" no longer auto-fills any approval window; entering an approval window (even
+  after "hold now" was already set) never touches any other window or `current`. Full suite green: 299 TS tests
+  (298 + 1 new), 401 Python tests (unaffected, Python-side wasn't touched), production build succeeds.
