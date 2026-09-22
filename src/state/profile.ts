@@ -19,6 +19,16 @@ export const ISSUER_SECTIONS = [
   { id: "td", name: "TD Bank" },
 ] as const;
 
+// Amex-issued cards sold through a brokerage's own pages (schwab, morganstanley); shown under Amex, matching how
+// historyCardsByIssuer already folds them into the Amex section of the card-history step.
+const ISSUER_DISPLAY_FALLBACK: Record<string, string> = { schwab: "amex", morganstanley: "amex" };
+
+/** A short display name for a card's issuer id (e.g. "capone" -> "Capital One"), for issuer badges in result lists. */
+export function issuerLabel(issuer: string): string {
+  const id = ISSUER_DISPLAY_FALLBACK[issuer] ?? issuer;
+  return ISSUER_SECTIONS.find((s) => s.id === id)?.name ?? issuer;
+}
+
 export type CountField = "current" | "lt12" | "m12to24" | "m24to48" | "gt48";
 export type MarriottFlag = "closedWithin30Days" | "approvedWithin90Days";
 

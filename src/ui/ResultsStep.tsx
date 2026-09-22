@@ -62,7 +62,7 @@ export function ResultsStep({ profile, rankBy, onRankByChange }: Props) {
         <p>No cards match your answers. Try raising the annual fee or spending amounts, or allowing more reward types.</p>
       ) : (
         <ol className="results">
-          {results.ranked.map((entry) => <CardItem key={entry.cardId} entry={entry} single={single} rankBy={rankBy} />)}
+          {results.ranked.map((entry, i) => <CardItem key={entry.cardId} entry={entry} single={single} rankBy={rankBy} rank={i + 1} />)}
         </ol>
       )}
 
@@ -75,7 +75,15 @@ export function ResultsStep({ profile, rankBy, onRankByChange }: Props) {
             or not any of these offers are worth applying for a personal card for.
           </p>
           <ol className="results">
-            {b.cards.map((entry) => <CardItem key={entry.cardId} entry={{ ...entry, players: entry.players.map((p) => ({ ...p, backup: false })) }} single rankBy={rankBy} />)}
+            {b.cards.map((entry, i) => (
+              <CardItem
+                key={entry.cardId}
+                entry={{ ...entry, players: entry.players.map((p) => ({ ...p, backup: false })) }}
+                single
+                rankBy={rankBy}
+                rank={i + 1}
+              />
+            ))}
           </ol>
         </div>
       ))}

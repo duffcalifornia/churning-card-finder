@@ -1,3 +1,5 @@
+import { CompassIcon, ListIcon } from "./icons";
+
 interface Props {
   onGoToCheatSheet: () => void;
   onGoToFinder: () => void;
@@ -14,6 +16,7 @@ export function HomePage({ onGoToCheatSheet, onGoToFinder }: Props) {
 
       <div className="homecards">
         <div className="homecard">
+          <div className="homecard-icon"><ListIcon /></div>
           <h3>Signup Offer Cheat Sheet</h3>
           <p>
             A fast reference: four lists, split by 5/24 status and reward type, each showing every eligible card
@@ -23,6 +26,7 @@ export function HomePage({ onGoToCheatSheet, onGoToFinder }: Props) {
           <button type="button" className="primary" onClick={onGoToCheatSheet}>Open the Cheat Sheet</button>
         </div>
         <div className="homecard">
+          <div className="homecard-icon"><CompassIcon /></div>
           <h3>Card Finder</h3>
           <p>
             Tell it your (or your household's) real card history, spending, and preferences, and it works out

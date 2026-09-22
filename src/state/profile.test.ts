@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import Ajv2020 from "ajv/dist/2020";
 import {
-  ISSUER_SECTIONS, clearHistory, defaultProfile, historyCardsByIssuer, parseStoredProfile, setCardCount, setMarriottFlag,
-  setOtherCount, setPlayerCount, setProgramChoice,
+  ISSUER_SECTIONS, clearHistory, defaultProfile, historyCardsByIssuer, issuerLabel, parseStoredProfile, setCardCount,
+  setMarriottFlag, setOtherCount, setPlayerCount, setProgramChoice,
 } from "./profile";
 import type { Card, MarriottMatrix } from "../engine/types";
 import cardsJson from "../../data/cards.json";
@@ -13,6 +13,19 @@ const catalog = cardsJson as unknown as Card[];
 const matrix = matrixJson as unknown as MarriottMatrix;
 const validate = new Ajv2020({ strict: false }).compile(profileSchema);
 const cards = (p: ReturnType<typeof defaultProfile>, i = 0) => p.players[i]!.history.cards ?? {};
+
+describe("issuerLabel", () => {
+  it("maps every real issuer id in the catalog to a real display name", () => {
+    for (const c of catalog) {
+      expect(issuerLabel(c.issuer)).not.toBe("");
+      // schwab/morganstanley (Amex-issued brokerage cards) fold into the Amex badge, matching the history step
+      if (c.issuer === "schwab" || c.issuer === "morganstanley") expect(issuerLabel(c.issuer)).toBe("American Express");
+    }
+  });
+  it("falls back to the raw id for something not in ISSUER_SECTIONS", () => {
+    expect(issuerLabel("made-up-issuer")).toBe("made-up-issuer");
+  });
+});
 
 describe("defaultProfile", () => {
   it("has the requested number of players, named Player 1, Player 2, ...", () => {

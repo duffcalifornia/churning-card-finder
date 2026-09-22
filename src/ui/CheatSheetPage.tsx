@@ -54,7 +54,7 @@ export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder }: Props) 
               <p className="note">No eligible cards for this combination.</p>
             ) : (
               <ol className="results">
-                {entries.map((entry) => <CardItem key={entry.cardId} entry={entry} single rankBy={rankBy} />)}
+                {entries.map((entry, i) => <CardItem key={entry.cardId} entry={entry} single rankBy={rankBy} rank={i + 1} />)}
               </ol>
             )}
           </div>
