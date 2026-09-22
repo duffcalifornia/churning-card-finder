@@ -155,5 +155,69 @@ class WriteCacheFilesPreservesOrder(unittest.TestCase):
         self.assertEqual(json.load(open(self.mod.WAIVED_PATH)), sorted(waived))
 
 
+class MainWritesTheChangelogTests(unittest.TestCase):
+    """A full run of main() (with the network call itself stubbed out) writes one changelog line for whichever
+    cards' offer text actually changed — the owner's rule (2026-09-22) for consistent, automated entries."""
+
+    def setUp(self):
+        import importlib
+        import os
+        import tempfile
+
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+        import refresh_offers
+        importlib.reload(refresh_offers)
+        self.mod = refresh_offers
+        self.tmp = {}
+        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH"):
+            f = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
+            f.write(b"{}")
+            f.close()
+            self.tmp[attr] = (getattr(refresh_offers, attr), f.name)
+            setattr(refresh_offers, attr, f.name)
+        f = tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False)
+        f.write("What changed. Newest first.\n\n## 2026-09-20\n- An older entry.\n")
+        f.close()
+        self.tmp["CHANGELOG_PATH"] = (refresh_offers.CHANGELOG_PATH, f.name)
+        refresh_offers.CHANGELOG_PATH = f.name
+
+        # LAST_KNOWN_OFFERS is read at import time from the real cache file; override it directly so the diff
+        # has a known "before" to compare the stubbed run's "after" against.
+        self._orig_last_known = refresh_offers.LAST_KNOWN_OFFERS
+        refresh_offers.LAST_KNOWN_OFFERS = {"chase-sapphire-preferred": {"seen": "2026-01-01", "text": "60,000 points"}}
+
+        # Real card ids so select_cards()/CARDS lookups still work; only chase-sapphire-preferred's offer will
+        # actually change, so it is the only one that should appear in the changelog line.
+        offer = Offer(text="75,000 points", method="after_amount")
+        stub_result = found("chase-sapphire-preferred", offer=offer)
+        self._orig_run = refresh_offers.run
+        refresh_offers.run = lambda *a, **k: [stub_result]
+        self._orig_subprocess = refresh_offers.subprocess.run
+        refresh_offers.subprocess.run = lambda *a, **k: None  # skip the real parse_offers.py/build_cards.py rebuild
+
+    def tearDown(self):
+        import os
+
+        for attr, (orig, tmp_path) in self.tmp.items():
+            setattr(self.mod, attr, orig)
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+        self.mod.LAST_KNOWN_OFFERS = self._orig_last_known
+        self.mod.run = self._orig_run
+        self.mod.subprocess.run = self._orig_subprocess
+
+    def test_the_one_card_whose_offer_changed_is_named_in_a_new_changelog_entry(self):
+        import datetime
+
+        exit_code = self.mod.main(["--card", "chase-sapphire-preferred", "--no-render"])
+        self.assertEqual(exit_code, 0)
+
+        changelog = open(self.mod.CHANGELOG_PATH).read()
+        today = datetime.date.today().isoformat()
+        self.assertIn(f"## {today}", changelog)
+        self.assertIn("Updated the bonus offer for the following card(s): Chase Sapphire Preferred.", changelog)
+        self.assertIn("## 2026-09-20\n- An older entry.", changelog)  # the old section survives untouched
+
+
 if __name__ == "__main__":
     unittest.main()

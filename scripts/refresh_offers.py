@@ -31,6 +31,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
+from cardfinder.changelog import offer_change_entry, prepend_changelog_entry  # noqa: E402
 from cardfinder.cli import exit_code, format_report, run, select_cards, split_paused  # noqa: E402
 from cardfinder.fetchers import CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
 from cardfinder.refresh import merge_last_known  # noqa: E402
@@ -39,6 +40,7 @@ from cardfinder.registry import CARDS, ISSUERS, LAST_KNOWN_FEE_WAIVED, LAST_KNOW
 OFFERS_PATH = os.path.join(HERE, "cardfinder", "last_known_offers.json")
 FEES_PATH = os.path.join(HERE, "cardfinder", "last_known_fees.json")
 WAIVED_PATH = os.path.join(HERE, "cardfinder", "last_known_fee_waived.json")
+CHANGELOG_PATH = os.path.join(ROOT, "CHANGELOG.md")
 
 
 def _write_cache_files(offers, fees, waived):
@@ -98,6 +100,14 @@ def main(argv=None):
     today = datetime.date.today().isoformat()
     new_offers, new_fees, new_waived = merge_last_known(results, LAST_KNOWN_OFFERS, LAST_KNOWN_FEES, LAST_KNOWN_FEE_WAIVED, today)
     _write_cache_files(new_offers, new_fees, new_waived)
+
+    # Site owner's rule (2026-09-22): every offer change gets logged this one consistent way, since these will
+    # be the most common changelog entries by far once the site is past its initial development phase.
+    card_names = {c.id: c.names[0] for c in CARDS}
+    entry = offer_change_entry(LAST_KNOWN_OFFERS, new_offers, card_names)
+    if entry:
+        prepend_changelog_entry(CHANGELOG_PATH, today, entry)
+        print(f"Changelog: {entry}")
     print(f"Wrote {OFFERS_PATH}, {FEES_PATH}, {WAIVED_PATH}")
 
     # Rebuild the data the site actually reads, as real separate processes (not `import parse_offers` in this

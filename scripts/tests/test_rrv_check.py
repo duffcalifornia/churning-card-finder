@@ -123,5 +123,102 @@ class StateFileRoundTrip(unittest.TestCase):
         self.assertIsNone(self.check_rrv.load_state())
 
 
+class AckWritesTheChangelogTests(unittest.TestCase):
+    """--ack, on a genuinely changed page, diffs data/valuations.json against the last-acked snapshot and adds
+    one changelog line for whichever programs' values actually moved — the owner's rule (2026-09-22)."""
+
+    NEW_HTML = (
+        '<html><head><script type="application/ld+json">{"@type":"Article","dateModified":"2026-09-23"}</script>'
+        "</head><body>" + ("<table><tr><td>British Airways Executive Club Avios</td><td>1.2 cents</td></tr></table>" * 15) + "</body></html>"
+    )
+
+    def setUp(self):
+        import importlib
+        import json
+        import os
+        import tempfile
+
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+        import check_rrv
+        importlib.reload(check_rrv)
+        self.check_rrv = check_rrv
+
+        def _mktemp():
+            f = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False)
+            f.close()
+            os.unlink(f.name)
+            return f.name
+
+        self._orig = {
+            "STATE_PATH": check_rrv.STATE_PATH,
+            "VALUES_SNAPSHOT_PATH": check_rrv.VALUES_SNAPSHOT_PATH,
+            "VALUATIONS_PATH": check_rrv.VALUATIONS_PATH,
+            "CHANGELOG_PATH": check_rrv.CHANGELOG_PATH,
+        }
+        check_rrv.STATE_PATH = _mktemp()
+        check_rrv.VALUES_SNAPSHOT_PATH = _mktemp()
+        check_rrv.VALUATIONS_PATH = _mktemp()
+        check_rrv.CHANGELOG_PATH = _mktemp()
+
+        # An old baseline that will look "changed" against NEW_HTML's dateModified/table text.
+        with open(check_rrv.STATE_PATH, "w") as f:
+            json.dump({"date_modified": "2026-09-01", "values_hash": "old-hash", "value_count": 999,
+                       "checked_on": "2026-09-01", "first_saved_on": "2026-09-01"}, f)
+        with open(check_rrv.VALUES_SNAPSHOT_PATH, "w") as f:
+            json.dump({"avios": 1.1, "cash": 1}, f)
+        with open(check_rrv.VALUATIONS_PATH, "w") as f:
+            json.dump({"values": {"avios": 1.2, "cash": 1}}, f)  # avios moved 1.1 -> 1.2; cash unchanged
+        with open(check_rrv.CHANGELOG_PATH, "w") as f:
+            f.write("What changed. Newest first.\n\n## 2026-09-20\n- An older entry.\n")
+
+        class FakeHttpFetcher:
+            def __init__(_self, *a, **k):
+                pass
+
+            def fetch(_self, url):
+                from cardfinder.models import Page
+                return Page(url=url, html=AckWritesTheChangelogTests.NEW_HTML)
+
+        self._orig_fetcher = check_rrv.HttpFetcher
+        check_rrv.HttpFetcher = FakeHttpFetcher
+
+    def tearDown(self):
+        import os
+
+        for name, value in self._orig.items():
+            path = getattr(self.check_rrv, name)
+            setattr(self.check_rrv, name, value)
+            if os.path.exists(path):
+                os.unlink(path)
+        self.check_rrv.HttpFetcher = self._orig_fetcher
+
+    def test_ack_on_a_changed_page_logs_only_the_programs_that_actually_moved(self):
+        import datetime
+        import json
+
+        exit_code = self.check_rrv.main(["--ack"])
+        self.assertEqual(exit_code, 0)
+
+        changelog = open(self.check_rrv.CHANGELOG_PATH).read()
+        today = datetime.date.today().isoformat()
+        self.assertIn(f"## {today}", changelog)
+        self.assertIn("Updated the rankings to reflect changes to the value of Avios.", changelog)
+        self.assertIn("## 2026-09-20\n- An older entry.", changelog)  # the old section is preserved, not overwritten
+
+        snapshot = json.load(open(self.check_rrv.VALUES_SNAPSHOT_PATH))
+        self.assertEqual(snapshot, {"avios": 1.2, "cash": 1})  # snapshot now matches valuations.json for next time
+
+    def test_ack_when_nothing_in_valuations_json_actually_changed_logs_nothing(self):
+        import json
+
+        with open(self.check_rrv.VALUATIONS_PATH, "w") as f:
+            json.dump({"values": {"avios": 1.1, "cash": 1}}, f)  # matches the snapshot exactly
+
+        self.check_rrv.main(["--ack"])
+
+        changelog = open(self.check_rrv.CHANGELOG_PATH).read()
+        self.assertNotIn("Updated the rankings", changelog)
+
+
 if __name__ == "__main__":
     unittest.main()

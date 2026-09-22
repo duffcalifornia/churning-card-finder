@@ -189,3 +189,40 @@ Follow-up to the visual refresh pass: owner felt the site still read as generic/
 - Site-level nav (`nav[aria-label="Site"] .steps`/`.step`) restyled to underlined tabs on desktop (`@media (min-width: 701px)`): no fill, no border-radius, a 2px accent underline on the current tab. Deliberately scoped to desktop only — the mobile hamburger dropdown keeps the filled-pill treatment (an underline reads poorly in a vertical list), and the wizard's own step sub-nav (`nav[aria-label="Steps"]`, a different element) is untouched either way since the new rule only targets `nav[aria-label="Site"]`.
 - Removed the icon circles next to the two Home page cards (`HomePage.tsx`); `ListIcon`/`CompassIcon` deleted from `src/ui/icons.tsx` since nothing else used them (the fee/clock/warning icons on result cards are untouched).
 - Verified live at desktop (1280px) and mobile (375px), dark and light: font actually applies (`document.fonts.check`), home cards have no icons, desktop nav is underlined with the wizard sub-nav and mobile dropdown both confirmed still using pills. `npx tsc --noEmit` clean, 298 TS tests, 372 Python tests, production build succeeds (111.2 kB gzip JS, 2.72 kB gzip CSS — the font itself loads from Google's CDN, not our bundle).
+
+## Automated, consistent changelog entries for offer and valuation changes (2026-09-22)
+Site owner's rule: once the site is past its initial development phase, the daily offer refresh and RRV valuation
+updates will be by far the most common changelog entries, so they need one fixed phrasing each, always, rather than
+a one-off sentence per run:
+- Offer changes: "Updated the bonus offer for the following card(s): [cards]."
+- Valuation changes: "Updated the rankings to reflect changes to the value of [points programs]."
+
+New `scripts/cardfinder/changelog.py` (test-first, 19 tests in `test_changelog.py`): pure functions —
+`offer_change_entry`/`valuation_change_entry` (diff old vs new, `None` if nothing changed), `format_list` (Oxford
+comma: "A", "A and B", "A, B, and C"), `currency_label` (a real display name for a valuations.json id, e.g.
+`hilton-honors` -> "Hilton Honors"; ~35 known ones in `_KNOWN_CURRENCY_NAMES`, unmapped ids fall back to
+title-casing rather than guessing or blocking — add a real name there if one shows up wrong), and
+`prepend_changelog_entry` (adds a bullet under today's `## YYYY-MM-DD` heading in CHANGELOG.md, creating it at the
+top if today doesn't have one yet, or appending to it if a second entry lands the same day).
+
+Wired into the two places these changes actually happen:
+- `scripts/refresh_offers.py`: after merging a run's results, diffs the old vs new `last_known_offers.json` text
+  per card; any real change (including a card's first-ever successful read) gets logged with its real display
+  name (`Card.names[0]` from the registry, not its id). 1 new integration test (`MainWritesTheChangelogTests` in
+  `test_refresh.py`) runs `main()` end to end with the network call stubbed out, confirming the actual wiring, not
+  just the pure diff function.
+- `scripts/check_rrv.py --ack`: rrv_check.py itself only ever knew "the RRV *page* changed," never which
+  currencies' values moved — it hashes the whole table, it doesn't parse individual numbers. So the changelog
+  writing hooks into `--ack` instead, the existing moment where a human (owner or Claude) has already edited
+  `data/valuations.json` by hand and is confirming the page's new state as the baseline: `--ack` now diffs the
+  current `values` dict against a new snapshot file (`scripts/cardfinder/last_known_values.json`, seeded now with
+  today's real values) and logs whichever currencies actually differ. 2 new integration tests
+  (`AckWritesTheChangelogTests` in `test_rrv_check.py`), including one confirming a no-op ack (page looked
+  different but the values didn't actually move) logs nothing.
+- Both `.github/workflows/refresh-offers.yml` and `.github/workflows/check-rrv.yml` now include `CHANGELOG.md` (and
+  `last_known_values.json` for the RRV workflow) in their "commit if changed" file lists, so an automated entry
+  actually ships with the data change that produced it, in the same commit.
+
+Deliberately out of scope, not invented beyond what the owner specified: a fee-only change (bonus text identical,
+annual fee different) has no changelog rule of its own and is not currently logged automatically — flagged in case
+a third consistent phrasing is wanted for that case too.

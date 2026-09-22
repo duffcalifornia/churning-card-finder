@@ -8,6 +8,12 @@ name: Check Frequent Miler RRVs
 # scheduled workflow reaches whoever watches this repo — no extra secrets or services needed. It keeps failing every
 # day until someone compares the change to data/valuations.json and re-runs this workflow by hand with "ack" set to
 # true, which accepts the current page as the new baseline.
+#
+# "ack" also diffs data/valuations.json's cents-per-point values against scripts/cardfinder/last_known_values.json
+# (a snapshot as of the last ack) and, for whichever points programs actually moved, adds one line to CHANGELOG.md:
+# "Updated the rankings to reflect changes to the value of X." (site owner's rule, 2026-09-22, for consistent
+# changelog entries). This only fires from a real, already-made edit to valuations.json — the check itself never
+# parses or guesses values from the RRV page, only whether the page looks different at all.
 
 on:
   schedule:
@@ -46,10 +52,11 @@ jobs:
 
       - name: Commit the updated baseline, if it changed
         run: |
-          if ! git diff --quiet -- scripts/cardfinder/rrv_check_state.json; then
+          files="scripts/cardfinder/rrv_check_state.json scripts/cardfinder/last_known_values.json CHANGELOG.md"
+          if ! git diff --quiet -- $files; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add scripts/cardfinder/rrv_check_state.json
+            git add $files
             git commit -m "check_rrv: update saved baseline"
             git push
           fi

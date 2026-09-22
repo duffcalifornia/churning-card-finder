@@ -63,6 +63,12 @@ Exit codes, meant for a daily cron job: `0` nothing needs attention, `1` the pag
 `data/valuations.json` by hand, then rerun with `--ack` to accept the new baseline), `2` the page could not be read
 (never reported as "unchanged"). See the script's own `--help` for a sample crontab line.
 
+`--ack` also diffs `data/valuations.json`'s current values against `cardfinder/last_known_values.json` (a snapshot
+of them as of the last ack) and, for whichever points programs actually changed cents-per-point, adds one line to
+`CHANGELOG.md`: "Updated the rankings to reflect changes to the value of X." (site owner's rule, 2026-09-22). This
+only fires from a real edit you already made to `valuations.json` before running `--ack` — the check itself never
+parses or guesses values off the RRV page, only whether the page looks different at all.
+
 ## Refreshing offers automatically
 `scripts/refresh_offers.py` is what actually keeps the site's data current: it runs the same checker as
 `card_offers.py`, folds successful reads into `cardfinder/last_known_offers.json`, `last_known_fees.json` and
@@ -70,6 +76,10 @@ Exit codes, meant for a daily cron job: `0` nothing needs attention, `1` the pag
 separate processes — see the comment in the script for why an in-process rebuild silently used stale data the
 first time this was built). A card that could not be read this run keeps its last known value; nothing is
 guessed. Amex is skipped by default, same as `card_offers.py`.
+
+Any card whose offer text actually changed this run gets one line in `CHANGELOG.md`: "Updated the bonus offer for
+the following card(s): X." (site owner's rule, 2026-09-22, for consistent changelog entries once the site is past
+its initial development phase). A run where nothing changed adds nothing.
 
 ```
 python3 scripts/refresh_offers.py                       # full run, all non-paused issuers, writes and rebuilds

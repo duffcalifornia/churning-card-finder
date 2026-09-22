@@ -5,6 +5,10 @@ name: Refresh card offers
 # data/parsed-offers.json and data/cards.json (what the live site actually reads) from them. See
 # scripts/README.md and the script's own docstring for what it does and does not touch.
 #
+# Any card whose offer text actually changed this run gets one line in CHANGELOG.md: "Updated the bonus offer
+# for the following card(s): X." (site owner's rule, 2026-09-22, for consistent changelog entries once the site
+# is past its initial development phase). A run where nothing changed adds nothing.
+#
 # Amex stays excluded (paused=... in scripts/cardfinder/registry.py) even here, unless run by hand with
 # "include_paused" set to true. That flag should only ever be used after confirming the earlier block has
 # actually cleared, not from this schedule.
@@ -110,7 +114,7 @@ jobs:
       - name: Commit the refreshed data, if anything changed
         if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0'
         run: |
-          files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json"
+          files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json CHANGELOG.md"
           if ! git diff --quiet -- $files; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
