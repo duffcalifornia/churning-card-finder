@@ -1,0 +1,196 @@
+{
+  "source": "https://frequentmiler.com/marriott-card-eligible/",
+  "sourceUpdated": "2026-05-14",
+  "checkedOn": "2026-09-21",
+  "confirmedByOwner": true,
+  "notes": "Marriott cards are issued by both Chase and Amex, hence the cross-issuer restrictions. All Chase Marriott cards are subject to 5/24; Amex Marriott cards are not. The Amex family rule applies to personal Amex Marriott cards.",
+  "rules": {
+    "OK": {
+      "description": "No restriction."
+    },
+    "30": {
+      "description": "No welcome bonus if you held the prior card within the past 30 days.",
+      "heldWithinDays": 30
+    },
+    "24": {
+      "description": "Not approved if you currently hold the prior card, or received its welcome bonus in the past 24 months.",
+      "blockedIfHeld": true,
+      "bonusWithinMonths": 24
+    },
+    "90+24": {
+      "description": "No bonus if approved for the prior card within 90 days, or received a welcome or upgrade bonus in the past 24 months.",
+      "approvedWithinDays": 90,
+      "bonusWithinMonths": 24
+    },
+    "30+90+24": {
+      "description": "All of: held within 30 days, approved within 90 days, welcome or upgrade bonus within 24 months.",
+      "heldWithinDays": 30,
+      "approvedWithinDays": 90,
+      "bonusWithinMonths": 24
+    },
+    "EVER": {
+      "description": "No welcome bonus if you have ever had the prior card (the system seems to forget after about 5 to 7 years).",
+      "ever": true
+    }
+  },
+  "cards": [
+    {
+      "id": "chase-ritz-carlton",
+      "name": "Chase Ritz-Carlton",
+      "canBeWanted": false
+    },
+    {
+      "id": "chase-marriott-bonvoy-45",
+      "name": "Chase Bonvoy ($45)",
+      "canBeWanted": false
+    },
+    {
+      "id": "chase-marriott-premier",
+      "name": "Chase Bonvoy Premier",
+      "canBeWanted": false
+    },
+    {
+      "id": "chase-marriott-bold",
+      "name": "Chase Bonvoy Bold",
+      "canBeWanted": true
+    },
+    {
+      "id": "chase-marriott-boundless",
+      "name": "Chase Bonvoy Boundless",
+      "canBeWanted": true
+    },
+    {
+      "id": "chase-marriott-bountiful",
+      "name": "Chase Bonvoy Bountiful",
+      "canBeWanted": true
+    },
+    {
+      "id": "chase-marriott-business-45",
+      "name": "Chase Bonvoy Business ($45)",
+      "canBeWanted": false
+    },
+    {
+      "id": "chase-marriott-premier-plus-business",
+      "name": "Chase Bonvoy Premier Plus Business",
+      "canBeWanted": false
+    },
+    {
+      "id": "amex-marriott-bonvoy",
+      "name": "Amex Bonvoy (consumer)",
+      "canBeWanted": false
+    },
+    {
+      "id": "amex-marriott-business",
+      "name": "Amex Bonvoy Business",
+      "canBeWanted": true
+    },
+    {
+      "id": "amex-marriott-bevy",
+      "name": "Amex Bonvoy Bevy",
+      "canBeWanted": true
+    },
+    {
+      "id": "amex-marriott-brilliant",
+      "name": "Amex Bonvoy Brilliant",
+      "canBeWanted": true
+    }
+  ],
+  "matrix": {
+    "chase-ritz-carlton": {
+      "chase-marriott-bold": "OK",
+      "chase-marriott-boundless": "OK",
+      "chase-marriott-bountiful": "OK",
+      "amex-marriott-business": "OK",
+      "amex-marriott-brilliant": "30",
+      "amex-marriott-bevy": "30"
+    },
+    "chase-marriott-bonvoy-45": {
+      "chase-marriott-bold": "OK",
+      "chase-marriott-boundless": "OK",
+      "chase-marriott-bountiful": "OK",
+      "amex-marriott-business": "OK",
+      "amex-marriott-brilliant": "OK",
+      "amex-marriott-bevy": "30"
+    },
+    "chase-marriott-premier": {
+      "chase-marriott-bold": "24",
+      "chase-marriott-boundless": "24",
+      "chase-marriott-bountiful": "OK",
+      "amex-marriott-business": "OK",
+      "amex-marriott-brilliant": "OK",
+      "amex-marriott-bevy": "30"
+    },
+    "chase-marriott-bold": {
+      "chase-marriott-bold": "24",
+      "chase-marriott-boundless": "24",
+      "chase-marriott-bountiful": "OK",
+      "amex-marriott-business": "90+24",
+      "amex-marriott-brilliant": "90+24",
+      "amex-marriott-bevy": "30+90+24"
+    },
+    "chase-marriott-boundless": {
+      "chase-marriott-bold": "24",
+      "chase-marriott-boundless": "24",
+      "chase-marriott-bountiful": "OK",
+      "amex-marriott-business": "90+24",
+      "amex-marriott-brilliant": "90+24",
+      "amex-marriott-bevy": "30+90+24"
+    },
+    "chase-marriott-bountiful": {
+      "chase-marriott-bold": "OK",
+      "chase-marriott-boundless": "OK",
+      "chase-marriott-bountiful": "24",
+      "amex-marriott-business": "90+24",
+      "amex-marriott-brilliant": "90+24",
+      "amex-marriott-bevy": "30+90+24"
+    },
+    "chase-marriott-business-45": {
+      "chase-marriott-bold": "OK",
+      "chase-marriott-boundless": "OK",
+      "chase-marriott-bountiful": "OK",
+      "amex-marriott-business": "30",
+      "amex-marriott-brilliant": "OK",
+      "amex-marriott-bevy": "30"
+    },
+    "chase-marriott-premier-plus-business": {
+      "chase-marriott-bold": "OK",
+      "chase-marriott-boundless": "OK",
+      "chase-marriott-bountiful": "OK",
+      "amex-marriott-business": "30",
+      "amex-marriott-brilliant": "OK",
+      "amex-marriott-bevy": "30"
+    },
+    "amex-marriott-bonvoy": {
+      "chase-marriott-bold": "30",
+      "chase-marriott-boundless": "30",
+      "chase-marriott-bountiful": "30+90+24",
+      "amex-marriott-business": "OK",
+      "amex-marriott-brilliant": "OK",
+      "amex-marriott-bevy": "OK"
+    },
+    "amex-marriott-business": {
+      "chase-marriott-bold": "90+24",
+      "chase-marriott-boundless": "90+24",
+      "chase-marriott-bountiful": "30+90+24",
+      "amex-marriott-business": "EVER",
+      "amex-marriott-brilliant": "OK",
+      "amex-marriott-bevy": "OK"
+    },
+    "amex-marriott-bevy": {
+      "chase-marriott-bold": "90+24",
+      "chase-marriott-boundless": "90+24",
+      "chase-marriott-bountiful": "30+90+24",
+      "amex-marriott-business": "OK",
+      "amex-marriott-brilliant": "OK",
+      "amex-marriott-bevy": "EVER"
+    },
+    "amex-marriott-brilliant": {
+      "chase-marriott-bold": "90+24",
+      "chase-marriott-boundless": "90+24",
+      "chase-marriott-bountiful": "30+90+24",
+      "amex-marriott-business": "OK",
+      "amex-marriott-brilliant": "EVER",
+      "amex-marriott-bevy": "EVER"
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "profile.schema.json",
+ "title": "Profile",
+ "description": "Everything the user enters. Stored only in the browser (localStorage, plus optional export/import). Derived values (X/24, Amex card counts, 'ever had') are computed by the engine, never stored. Draft.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "version",
+  "players",
+  "household"
+ ],
+ "properties": {
+  "version": {
+   "type": "integer",
+   "const": 1
+  },
+  "players": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 6,
+   "items": {
+    "$ref": "#/$defs/player"
+   }
+  },
+  "household": {
+   "$ref": "#/$defs/household"
+  }
+ },
+ "$defs": {
+  "issuerId": {
+   "type": "string",
+   "enum": [
+    "chase",
+    "amex",
+    "boa",
+    "citi",
+    "usbank",
+    "wellsfargo",
+    "bilt",
+    "barclays",
+    "capone",
+    "discover",
+    "fnbo",
+    "synchrony",
+    "td"
+   ]
+  },
+  "approvalCounts": {
+   "type": "object",
+   "additionalProperties": false,
+   "description": "How many copies of the card were approved in each window. The four windows do not overlap.",
+   "properties": {
+    "lt12": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 0,
+     "description": "Approved less than 12 months ago."
+    },
+    "m12to24": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 0,
+     "description": "Approved 12 to 24 months ago."
+    },
+    "m24to48": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 0,
+     "description": "Approved 24 to 48 months ago."
+    },
+    "gt48": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 0,
+     "description": "Approved more than 48 months ago."
+    }
+   }
+  },
+  "cardHistoryEntry": {
+   "type": "object",
+   "additionalProperties": false,
+   "description": "History for one catalog card. Invariant: current is at most the sum of the approval counts.",
+   "properties": {
+    "current": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 0,
+     "description": "Copies currently held (open)."
+    },
+    "approved": {
+     "$ref": "#/$defs/approvalCounts"
+    },
+    "marriott": {
+     "type": "object",
+     "additionalProperties": false,
+     "description": "Only for Marriott cards. The two windows shorter than the count buckets, for the Marriott eligibility matrix (the 24-month bonus test uses the bonus-date counts).",
+     "properties": {
+      "closedWithin30Days": {
+       "type": "boolean",
+       "default": false
+      },
+      "approvedWithin90Days": {
+       "type": "boolean",
+       "default": false
+      }
+     }
+    }
+   }
+  },
+  "otherPersonalCards": {
+   "type": "object",
+   "additionalProperties": false,
+   "description": "Free-form counts for personal cards not named in the catalog. Only the last 24 months matter.",
+   "properties": {
+    "lt12": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 0
+    },
+    "m12to24": {
+     "type": "integer",
+     "minimum": 0,
+     "default": 0
+    }
+   }
+  },
+  "player": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "name",
+    "history",
+    "shutdownIssuers",
+    "bannedFromAA",
+    "openToBusinessCards",
+    "wantsUnder524"
+   ],
+   "properties": {
+    "name": {
+     "type": "string",
+     "maxLength": 40,
+     "description": "Display label, for example 'Player 1'."
+    },
+    "history": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "cards": {
+       "type": "object",
+       "description": "Map of catalog card id to history entry. Cards not listed mean none. For Southwest and Marriott cards the approval counts mean the date the bonus was received; for every other card, the approval date.",
+       "additionalProperties": {
+        "$ref": "#/$defs/cardHistoryEntry"
+       }
+      },
+      "otherPersonalByIssuer": {
+       "type": "object",
+       "description": "'Other [issuer] personal cards' lines inside each listed issuer section.",
+       "propertyNames": {
+        "$ref": "#/$defs/issuerId"
+       },
+       "additionalProperties": {
+        "$ref": "#/$defs/otherPersonalCards"
+       }
+      },
+      "otherIssuersPersonal": {
+       "$ref": "#/$defs/otherPersonalCards"
+      }
+     }
+    },
+    "shutdownIssuers": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "enum": [
+       "chase",
+       "amex",
+       "citi",
+       "wellsfargo",
+       "barclays",
+       "capone",
+       "discover",
+       "boa",
+       "usbank"
+      ]
+     },
+     "uniqueItems": true,
+     "description": "Issuers that have shut this player down. Empty means none. Cards from these issuers are removed for this player."
+    },
+    "bannedFromAA": {
+     "type": "boolean"
+    },
+    "openToBusinessCards": {
+     "type": "boolean"
+    },
+    "wantsUnder524": {
+     "type": "boolean",
+     "description": "Interested in getting under 5/24 (if over) or staying under 5/24 (if under)."
+    },
+    "hasBoaDepositAccount": {
+     "type": "boolean",
+     "default": false,
+     "description": "Has an open Bank of America deposit account (BoA credit-card count limit: more than 6 in 12 months with one, more than 2 without)."
+    },
+    "hasAmexBusinessChecking": {
+     "type": "boolean",
+     "default": false,
+     "description": "Has an Amex Business Checking account in their own name. Asked only if the player holds a Business Platinum. With one, Amex points cash out well."
+    },
+    "willingToFormLlcForInk": {
+     "type": "boolean",
+     "default": false,
+     "description": "Lives in a low-fee LLC state and is willing to form an LLC (with its own EIN, for a real business) to get around Chase's Ink lifetime limit. Asked only if an Ink card's bonus is otherwise blocked by that limit. A yes lifts the lifetime block for every Ink card (docs/rule-audit.md K7)."
+    }
+   }
+  },
+  "household": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "maxAnnualFee",
+    "spend3Months",
+    "spend6Months",
+    "supplementalSpend3Months",
+    "bonusTypes",
+    "excludedPrograms"
+   ],
+   "properties": {
+    "maxAnnualFee": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "minimum": 0,
+     "description": "Highest annual fee accepted on a single card in its first year: a card whose first-year fee is waived counts as $0. Null (left blank) means no limit."
+    },
+    "spend3Months": {
+     "type": "number",
+     "minimum": 0,
+     "description": "Spend if all day-to-day non-housing expenses went on one card for 3 months."
+    },
+    "spend6Months": {
+     "type": "number",
+     "minimum": 0
+    },
+    "supplementalSpend3Months": {
+     "type": "number",
+     "minimum": 0
+    },
+    "bonusTypes": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "enum": [
+       "cashback",
+       "hotel",
+       "airline"
+      ]
+     },
+     "uniqueItems": true
+    },
+    "excludedPrograms": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "description": "A program id or group from programs.json, or 'cashback'."
+     },
+     "uniqueItems": true
+    },
+    "targetPrograms": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "description": "A program id or group from programs.json."
+     },
+     "uniqueItems": true,
+     "description": "Optional. Programs the household is planning a specific redemption in. Cards that lead to them are ranked above the rest."
+    }
+   }
+  }
+ }
+}

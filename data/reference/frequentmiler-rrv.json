@@ -1,0 +1,101 @@
+{
+ "source": "https://frequentmiler.com/reasonable-redemption-values-rrvs/",
+ "publisher": "Frequent Miler",
+ "retrievedOn": "2026-09-20",
+ "note": "Reference only. These are Frequent Miler's published Reasonable Redemption Values, read through a summarizing fetch tool (verify against the page). The site's own valuations are set by the site owner in data/valuations.json. Individual values on the page carry their own dates (12/16/24 to 7/23/26).",
+ "centsPerPoint": {
+  "transferable": {
+   "chase-ultimate-rewards": 1.5,
+   "amex-membership-rewards": 1.5,
+   "bilt": 1.55,
+   "citi-thankyou": 1.5,
+   "capital-one-miles": 1.45,
+   "rove": 1.4,
+   "wells-fargo-rewards": 1.4
+  },
+  "airline": {
+   "air-canada-aeroplan": 1.4,
+   "american-aadvantage": 1.4,
+   "atmos-rewards": 1.5,
+   "air-france-klm-flying-blue": 1.3,
+   "avianca-lifemiles": 1.3,
+   "british-airways-avios": 1.1,
+   "cathay-pacific-asia-miles": 1.1,
+   "delta-skymiles": 1.1,
+   "frontier-bonus-miles": 1.0,
+   "jetblue-trueblue": 1.3,
+   "korean-skypass": 1.3,
+   "miles-and-more-lufthansa": 1.3,
+   "qantas-frequent-flyer": 1.3,
+   "southwest-rapid-rewards": 1.3,
+   "united-mileageplus": 1.3,
+   "virgin-atlantic-flying-club": 1.5
+  },
+  "hotel": {
+   "all-accor": "2.0 euro cents (US$ value varies)",
+   "best-western-rewards": 0.61,
+   "choice-privileges": 0.75,
+   "hilton-honors": 0.35,
+   "ihg-one-rewards": 0.59,
+   "leading-hotels-leaders-club": "about 8.0 (variable)",
+   "marriott-bonvoy": 0.73,
+   "one-key": 0.9,
+   "preferred-hotels-i-prefer": 0.5,
+   "sonesta-travel-pass": 1.06,
+   "world-of-hyatt": 1.5,
+   "wyndham-rewards": 0.67
+  },
+  "other": {
+   "amtrak-guest-rewards": 2.56,
+   "arrival-plus": 1.0,
+   "cnb-rewards": 1.11,
+   "flexperks": 1.5,
+   "merrill-plus": 1.44,
+   "penfed-premium-travel": 0.85,
+   "uber-cash": 0.9,
+   "most-other-bank-points": 1.0
+  }
+ },
+ "freeNightCertificatesUsd": {
+  "hilton": {
+   "usd": 521,
+   "basis": "175K points x 0.35c x 0.85"
+  },
+  "hyatt-cat-1-4": {
+   "usd": 240,
+   "basis": "20K x 1.5c x 0.8"
+  },
+  "hyatt-cat-1-7": {
+   "usd": 420,
+   "basis": "35K x 1.5c x 0.8"
+  },
+  "hyatt-ultimate-6-month": {
+   "usd": 578,
+   "basis": "55K x 1.5c x 0.7"
+  },
+  "ihg-40k": {
+   "usd": 201,
+   "basis": "40K x 0.59c x 0.85"
+  },
+  "ihg-60k": {
+   "usd": 248,
+   "basis": "60K x 0.59c x 0.7"
+  },
+  "marriott-35k": {
+   "usd": 192,
+   "basis": "35K x 0.73c x 0.75"
+  },
+  "marriott-40k": {
+   "usd": 219,
+   "basis": "40K x 0.73c x 0.75"
+  },
+  "marriott-50k": {
+   "usd": 274,
+   "basis": "50K x 0.73c x 0.75"
+  },
+  "marriott-85k": {
+   "usd": 465,
+   "basis": "85K x 0.73c x 0.75"
+  }
+ }
+}

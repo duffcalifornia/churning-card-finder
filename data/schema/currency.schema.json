@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "currency.schema.json",
+  "title": "Points currency and transfer rules",
+  "description": "One points currency (Chase Ultimate Rewards, Amex Membership Rewards, Capital One, Citi ThankYou, Bilt, Wells Fargo Rewards) with its transfer partners and quirks. Source: docs/transfer-matrix.md. Draft.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "partners",
+    "householdPooling"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "partners": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "id from programs.json"
+      },
+      "uniqueItems": true
+    },
+    "cashBackRedemption": {
+      "type": "string",
+      "enum": [
+        "good",
+        "poor",
+        "none"
+      ],
+      "description": "Whether cash back is a reasonable redemption. Amex MR is 'poor' unless the player holds one of the special cards described in the transfer matrix."
+    },
+    "householdPooling": {
+      "type": "boolean",
+      "description": "True if points can be moved between household members (Chase UR, Capital One). Governs whether another player's unlocking card counts."
+    },
+    "unlockerCards": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "card id"
+      },
+      "description": "Holding any of these unlocks transfers to partners. Empty if the currency has no unlocker."
+    },
+    "quirks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verifiedOn": {
+      "type": "string",
+      "format": "date"
+    },
+    "cashBackQualifiers": {
+      "type": "array",
+      "description": "For a currency whose cash-out is 'poor': combinations that make it a good cash back redemption for a player. Each needs every listed card held now (in the player's own name), plus the named account if any. A card that is itself listed qualifies for its own bonus, except that an account requirement must already be met.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cards"
+        ],
+        "properties": {
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            },
+            "minItems": 1
+          },
+          "account": {
+            "type": "string",
+            "enum": [
+              "amexBusinessChecking"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

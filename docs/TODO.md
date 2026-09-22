@@ -1,0 +1,107 @@
+# Revisit later
+
+## Amex (paused 2026-09-20)
+**Why:** after heavy automated use (well over 100 requests in one session, many through a headless browser), Amex
+started returning "Loading Error" pages and now refuses this IP address; the site owner cannot load americanexpress.com
+in a normal browser either. Reported by the owner, not verified by us.
+
+**Do not** request any Amex page until the owner confirms they can load americanexpress.com normally again.
+
+**When revisiting:**
+1. Confirm with the owner that the block has cleared.
+2. Run in small batches, one at a time, with a long delay, and stop at the first error page:
+   `python3 scripts/card_offers.py --issuer amex --include-paused --card platinum --delay 8`
+3. Budget: about 25 pages in total, spread over days, not one sitting.
+4. Do not use the browser pane or a headless browser more than necessary.
+
+**What is stale until then:** every Amex offer in `docs/amex-offers-snapshot.md` and `cardfinder/last_known_offers.json`
+(read 2026-09-20 before the block). Amex offers are personalized; "as high as" figures are ceilings; the Marriott Bevy and
+Brilliant offers ended 9/30/26 and should be treated as expired until a live read confirms them.
+
+**Ideas that do not work (tested 2026-09-20):**
+- Terms and offer-details pages: the real ones sit under `/apply/`, which robots.txt disallows; the one non-`/apply/`
+  terms page returns an error placeholder.
+- The card pages' plain HTML: offer figures are filled in by scripts, and raw data holds stale marketing numbers.
+
+## Other open items
+- Confirm with the owner: which cards with no offer really have none (Bank of America Royal ONE, Royal ONE Plus, BankAmericard,
+  secured and business secured cards; U.S. Bank Smartly, Shield, Business Shield, Amazon Business, secured cards).
+- Cards the owner thinks are still missing ("there may be more").
+
+## Offer parser: open items (2026-09-20)
+- Struck-through "old new" pairs: the parser uses the second number and flags the row. Confirmed for the two Chase business cards;
+  still an assumption for the three Delta business cards and Wells Fargo Choice Privileges.
+- Wells Fargo Attune and Business Elite: pages never found. Their offers are recorded as *unknown*, not "none". Need a URL or "discontinued".
+- Chase Freedom Flex/Unlimited and Ink Cash/Unlimited advertise cash but pay Ultimate Rewards; the parser reports the cash figure and the catalog
+  step must convert it (`displayedAsCash`).
+- Amex offers are from before the block and are ceilings ("as high as") in several cases.
+
+## Valuation and currency items (2026-09-20)
+- Cards that cannot be value-ranked until you give a value: Barclays Breeze, Carnival, Emirates Skywards (two cards); BoA Allways Rewards
+  (Allegiant) and Norwegian Cruise Line. Frequent Miler has no value for those currencies.
+- Assumed, not yet confirmed: Hilton "Free Night Reward" is valued at Frequent Miler's Hilton certificate ($521); the Marriott Business free night
+  at the 50K Marriott certificate ($274).
+- Assumed for Wells Fargo Rewards (not stated): cash-back redemption available, no household pooling. Bilt is kept for completeness only.
+- BoA and U.S. Bank points are valued at Frequent Miler's "most other bank points" rate, 1.0 cent (`default-bank-points`).
+
+## Resolved (2026-09-20, from the site owner)
+- Amex Blue Cash Everyday, Delta SkyMiles Blue, Hilton Honors (personal): $0 annual fee.
+- U.S. Bank Split Card: discontinued. FlexPerks Gold: never existed.
+- U.S. Bank Business Altitude Connect: $0 the first year, then $95. Business Altitude Power: $195, not waived.
+- U.S. Bank Business Leverage: the bonus is worth $600 as a deposit to a U.S. Bank account. Altitude Connect and Go share the same bonus.
+- Chase World of Hyatt (2026-09-20): resolved. The 70,000 offer is the Hyatt *Business* card; /travel-credit-cards/world-of-hyatt is a brand landing page for both cards.
+
+## Marriott matrix
+- Done 2026-09-21: `data/marriott-matrix.json` (schema `data/schema/marriott-matrix.schema.json`), from https://frequentmiler.com/marriott-card-eligible/ (updated 2026-05-14). Matches Section H cell for cell; owner confirmed. Engine still needs the lookup (needs an optional "bonus received" month per Marriott card in the history input).
+
+## Amex refresh (2026-09-21)
+- Re-read 24 Amex cards from their public product pages in three batches of 5 to 7 (15 second delay, 5 minute gap between batches, one card per run, stopping at the first error page). No error pages in the batches. An earlier all-at-once run got error pages after 8 cards, so keep this pace.
+- Skipped by design: Cash Magnet and Everyday Preferred (discontinued), both Amazon Business cards (no live page).
+- `parse_offers.py` marks a paused issuer's offers stale only if they were read before 2026-09-21 (`stale_since`). Amex stays paused for crawling: use `--include-paused`, and go slowly.
+- Still open: the three Delta Business struck-through pairs (90k / 100k / 200k, second number assumed current; flagged for review in `data/parsed-offers.json`). Delta Gold and Delta Platinum also show a limited-time general statement credit ($250, $300; offer ends 11/4/2026), counted as cash.
+
+## Card catalog (data/cards.json, built 2026-09-21)
+- Built by `python3 scripts/build_cards.py` from the registry, parsed offers, currencies, Section J and K rules and the Marriott matrix. Tests in `scripts/tests/test_catalog.py` (the file on disk must match a fresh build).
+- 170 cards: 121 value-ranked, 9 unranked (the six without a valuation, plus the three Discover cashback-match cards), 40 history-only (no welcome offer, or named only by a rule).
+- Amex charge card list confirmed by the owner 2026-09-21. `firstYearFeeWaived` is set on 10 cards (Amex, Citi AA, US Bank, United Explorer); the owner confirmed on 2026-09-21 that these are the only cards with a waived first year, so the rest are correctly false.
+- Amex "as high as" ceilings rank at their ceiling value (owner accepted, 2026-09-21); the results add one non-ceiling backup card per ceiling card shown (see questionnaire-design.md and engine-contract.md). The Ranking Methodology page must say ceilings are maximums.
+- `rank` (flowchart list positions) is not filled: Section C is waiting on the owner's current-card research.
+
+## Engine status (2026-09-21)
+- Built and tested (TypeScript, `npm test`): computeDerived, unlockStatus, hardExclusion (four rule groups), nllBlock, netValue, recommend. 201 tests.
+- recommend uses value ranking alone. Top 5 per player, NLL cards inline, one backup per "as high as" card (best-ranked card below the cutoff that is not a ceiling and not NLL-only), combined across players and ranked by value (a shared card at the highest value any player gets from it), Best Personal Cards (top 3) for players who want to stay under 5/24 at 4/24 or more.
+- Not modelled, banner only: rules with windows shorter than the buckets (Amex 2/90 and 1/5, Chase 2/30, Citi 8/65, BoA 2/3/4). Authorized users are ignored entirely.
+- Open: flowchart-list ranking (Section C research), the questionnaire UI, results page, Ranking Methodology page, changelog, suggest-a-change function.
+- To confirm with the owner: a player who wants both travel and cash back with no unlocker still sees the lesser UR cards as cash back cards (built that way, confirmed 2026-09-21). Aeroplan's extra tier is counted for every shown card, as designed.
+
+## Site (Vite + React + TypeScript, started 2026-09-21)
+- Run with `npm run dev` (port 5173); `npm run build` makes a static site in `dist/` (about 89 kB gzipped JS). Tests: `npm test` (230) and the Python suite.
+- Built: player count, card history (issuer sections, counts per window, Marriott extras, live X/24 and Amex counters, "no cards" shortcut, "other cards" lines), about-you questions (shutdowns, AA ban, business, under 5/24, BoA deposit account, Amex business checking only if a Business Platinum is held), household questions, results (banner, credit blurb, combined list, backups, "up to" note, Best Personal Cards, Bilt blurb). Answers persist in localStorage only.
+- Not yet built: Ranking Methodology page, changelog page, suggest-a-change form and its serverless function, "more info" per card, print/share of results, a shareable link, accessibility audit, mobile visual pass, hosting choice.
+- Preview: added a "churning-card-finder" entry to ~/.claude/launch.json (the preview tool reads that file).
+
+## Spending step and history layout changes (2026-09-21)
+- Blank annual fee = no limit (null). The fee limit counts a waived first-year fee as $0 (owner correction, 2026-09-21); ranking uses the first-year fee too (owner, 2026-09-21).
+- New "programs to target" list; engine ranks targeted cards first (src/engine/targets.ts). Excluding and targeting are mutually exclusive.
+- History table: "Hold now", "Approved ..." headings, open issuer pinned with sticky headings.
+- A browser that already has a saved profile keeps its old values; "Start over" resets. New visitors start with a blank fee limit, $3,000 / $6,000 spend and $0 extra.
+- Phone pass (375px) done 2026-09-21: the history table becomes a labelled row per card; no page scrolls sideways. Not yet checked: tablet width, keyboard-only use, screen reader.
+- Results page (2026-09-21): each card shows its welcome bonus (`src/ui/bonusText.ts`), bonus value and net value; a rank-by toggle (net default, raw) drives `recommend(..., { rankBy })`. Catalog now stores `welcomeBonus.freeNights`.
+- Second-tier bonus offers phrased like the issuer's own wording ("Get A after spending B in C months, then get an additional X after spending Y more in Z months"), owner correction 2026-09-21. Parser also now recognizes the "if you spend a total of $X within Y, earn Z" phrasing (`_SECOND_TIER_TOTAL` in scripts/cardfinder/parse.py), and marks that tier's spend as cumulative from account opening (not additional) via a note on the Tier, though nothing reads that note yet.
+
+## Ink LLC workaround question (2026-09-22)
+- New per-player yes/no, shown only if the player has ever held an Ink card: "You've had a Chase Ink business card before... would you be willing to form an LLC to apply again: AZ, CO, HI, IA, ID, MI, MN, MO, MS, MT, NM, OH, PA, WI, or UT?" (`Player.willingToFormLlcForInk`, `src/ui/QuestionsStep.tsx`).
+- A yes lifts Chase's Ink lifetime block (hardExclusion.ts) for every Ink card for that player, not just the one they held. It does not affect Sapphire/Sapphire Business or Citi Strata lifetime rules, or any other rule. Engine only stores the single boolean (residency and willingness folded into one answer); it does not ask which state.
+- Verified with engine unit tests (bonusEligibility.test.ts) in both directions, and in the browser that the question appears/disappears correctly and the answer persists. The specific card didn't rank high enough to appear in the demo's visible list in this manual check, which is expected (not a defect) given synthetic test-run parameters.
+
+## RRV watcher (2026-09-22)
+- `scripts/check_rrv.py` + `scripts/cardfinder/rrv_check.py` (test-first, 14 tests): checks Frequent Miler's RRV page once per run via `dateModified` (JSON-LD) and a hash of the page's table text; either differing is "changed". State in `scripts/cardfinder/rrv_check_state.json` (gitignored-worthy, but currently just a plain file like the other `last_known_*.json` state files). Baseline saved 2026-09-21 from the live page (dateModified 2026-09-02).
+- Exit codes for cron: 0 fine, 1 changed (needs a manual compare against data/valuations.json, then `--ack`), 2 page unreadable (never silently treated as unchanged).
+- Not yet done: actually scheduling it daily. Options: a real crontab entry on the owner's machine (sample line in the script's docstring), or Claude Code's own Scheduled Tasks feature if the owner wants Claude to run and report it instead.
+
+## Methodology page and RRV automation (2026-09-22)
+- `src/ui/MethodologyPage.tsx`, reachable at `#methodology` (plain hash routing in App.tsx, no router dependency added; linked from the footer of every wizard step). Structure: plain-language summary, how a bonus is valued, what's checked/not checked, a collapsed `<details>` "eligibility rules this site does check" (owner: keep it collapsed so newcomers can skip it), known simplifications, a "data freshness" line, credits.
+- "Data freshness" shows two dates: the oldest `verifiedOn` among cards actually shown in the ranking (`oldestVerifiedOn` in `src/ui/staleness.ts`, honest-worst-case rather than newest), and `valuations.json`'s own `verifiedOn` for point values. `Card.verifiedOn` and `Valuations.verifiedOn` added to `src/engine/types.ts`.
+- `.github/workflows/check-rrv.yml`: runs `scripts/check_rrv.py` daily via GitHub Actions once the repo is on GitHub; commits the baseline on success, fails the job (GitHub's own notification) when the page changed or was unreadable. `workflow_dispatch` with an `ack` input re-runs it with `--ack`.
+- Deliberately did NOT set up automation for the issuer offer checker (`card_offers.py`): Amex is still paused after the earlier IP block, and this project's whole practice has been manual, slow, owner-approved runs. Automating that into an unattended daily job would risk repeating the block. Flagged to the owner; not done without an explicit yes.
+- Not yet done: this repo is not a git repository yet, so the workflow file is scaffolding only — it needs `git init`, a GitHub remote, and a push before it actually runs. 8 tests added for staleness.ts (formatDate, oldestVerifiedOn); MethodologyPage itself has no component test yet (content-only, checked by hand in the browser).

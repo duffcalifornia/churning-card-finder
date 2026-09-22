@@ -1,0 +1,3187 @@
+[
+ {
+  "cardId": "chase-freedom-flex",
+  "name": "Chase Freedom Flex",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $200 bonus after you spend $500 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "advertised as $200 cash back but paid as ultimate-rewards points"
+   ],
+   "displayedAsCash": 200.0,
+   "currency": "ultimate-rewards"
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-freedom-rise",
+  "name": "Chase Freedom Rise",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-freedom-unlimited",
+  "name": "Chase Freedom Unlimited",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $200 bonus after you spend $500 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "advertised as $200 cash back but paid as ultimate-rewards points"
+   ],
+   "displayedAsCash": 200.0,
+   "currency": "ultimate-rewards"
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-sapphire-preferred",
+  "name": "Chase Sapphire Preferred",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 points after you spend $5,000 in purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-sapphire-reserve",
+  "name": "Chase Sapphire Reserve",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 100,000 points after you spend $6,000 in purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 100000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-united-explorer",
+  "name": "United Explorer Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 50,000 bonus miles after you spend $3,000 on purchases in the first 3 months your account is open",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-united-gateway",
+  "name": "United Gateway Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 30,000 bonus miles after you spend $1,000 on purchases in the first 3 months your account is open",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 30000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-united-quest",
+  "name": "United Quest Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 60,000 bonus miles + 500 PQP after you spend $4,000 on purchases in the first 3 months your account is open",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 60000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-united-club-infinite",
+  "name": "United Club Infinite Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 80,000 bonus miles after you spend $5,000 on purchases in the first 3 months your account is open",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 80000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-marriott-bold",
+  "name": "Marriott Bonvoy Bold Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 45,000 Bonus Points after spending $1,000 on eligible purchases within 3 months of account opening with the Marriott Bonvoy Bold \u00ae Credit Card",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 45000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-marriott-bountiful",
+  "name": "Marriott Bonvoy Bountiful Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 85,000 Bonus Points after you spend $4,000 in purchases in your first 3 months from your account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 85000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-marriott-boundless",
+  "name": "Marriott Bonvoy Boundless Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 3 Free Night Awards after spending $3,000 on eligible purchases within 3 months of account opening with the Marriott Bonvoy Boundless \u00ae Credit Card",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": null,
+   "freeNightAwards": 3,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-ihg-premier",
+  "name": "IHG One Rewards Premier Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 140,000 Bonus Points after you spend $3,000 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 140000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-ihg-traveler",
+  "name": "IHG One Rewards Traveler Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 80,000 Bonus Points after you spend $2,000 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 80000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 2000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-world-of-hyatt",
+  "name": "World of Hyatt Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn up to 60,000 Bonus Points 30,000 Bonus Points after you spend $3,000 on purchases in your first 3 months of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 30000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "counted the first part only (the rest depends on further bonus spending)"
+   ],
+   "displayedAsCash": null
+  },
+  "reviewedByOwner": true,
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-southwest-plus",
+  "name": "Southwest Rapid Rewards Plus Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 50,000 bonus points after you spend $1,000 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-southwest-premier",
+  "name": "Southwest Rapid Rewards Premier Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 55,000 bonus points after you spend $1,500 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 55000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-southwest-priority",
+  "name": "Southwest Rapid Rewards Priority Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 60,000 bonus points after you spend $2,000 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 60000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 2000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-aeroplan",
+  "name": "Air Canada Aeroplan Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 bonus points after you spend $4,000 on purchases in the first 3 months your account is open",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [
+    {
+     "points": 40000.0,
+     "cashBack": null,
+     "minSpend": 20000.0,
+     "windowMonths": 12,
+     "note": ""
+    }
+   ],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-british-airways",
+  "name": "British Airways Visa Signature Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 Avios after you spend $5,000 on purchases within the first 3 months of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-aer-lingus",
+  "name": "Aer Lingus Visa Signature Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 Avios after you spend $5,000 on purchases within the first 3 months of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-iberia",
+  "name": "Iberia Visa Signature Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 Avios after you spend $5,000 on purchases within the first 3 months of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-disney-visa",
+  "name": "Disney Visa Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $100 Disney Gift Card eGift to use today upon approval + earn a $50 statement credit after you spend $500 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 150.0,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-disney-premier",
+  "name": "Disney Premier Visa Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $200 Disney Gift Card eGift to use today upon approval + earn a $100 statement credit after you spend $500 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 300.0,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-disney-inspire",
+  "name": "Disney Inspire Visa Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $300 Disney Gift Card eGift to use today upon approval + earn a $200 statement credit after you spend $1,000 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 500.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-amazon-prime",
+  "name": "Prime Visa Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "get a $150 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 150.0,
+   "freeNightAwards": 0,
+   "minSpend": null,
+   "windowMonths": null,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "awarded on approval, no spend requirement"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-amazon-visa",
+  "name": "Amazon Visa Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $50 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 50.0,
+   "freeNightAwards": 0,
+   "minSpend": null,
+   "windowMonths": null,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "awarded on approval, no spend requirement"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-slate",
+  "name": "Chase Slate Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-slate-edge",
+  "name": "Chase Slate Edge Credit Card",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-doordash",
+  "name": "DoorDash Rewards Mastercard",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-instacart",
+  "name": "Instacart Mastercard",
+  "issuer": "chase",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $50 Instacart credit automatically upon approval",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 50.0,
+   "freeNightAwards": 0,
+   "minSpend": null,
+   "windowMonths": null,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "awarded on approval, no spend requirement"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-sapphire-reserve-business",
+  "name": "Sapphire Reserve for Business",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 150,000 strike through 200,000 points after you spend $30,000 on purchases in your first 6 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 200000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 30000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "struck-through pair (old and new figures); used the second, 200,000; please check"
+   ],
+   "displayedAsCash": null
+  },
+  "reviewedByOwner": true,
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-ink-unlimited",
+  "name": "Ink Business Unlimited Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn $750 cash back after you spend $6,000 on purchases in the first 3 months after account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "advertised as $750 cash back but paid as ultimate-rewards points"
+   ],
+   "displayedAsCash": 750.0,
+   "currency": "ultimate-rewards"
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-ink-premier",
+  "name": "Ink Business Premier Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn $1,000 bonus cash back after you spend $10,000 on purchases in your first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 1000.0,
+   "freeNightAwards": 0,
+   "minSpend": 10000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-ink-cash",
+  "name": "Ink Business Cash Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn $750 cash back after you spend $6,000 on purchases in the first 3 months after account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "advertised as $750 cash back but paid as ultimate-rewards points"
+   ],
+   "displayedAsCash": 750.0,
+   "currency": "ultimate-rewards"
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-ink-preferred",
+  "name": "Ink Business Preferred Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 100,000 bonus points after you spend $8,000 on purchases in the first 3 months after account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 100000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 8000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-united-business",
+  "name": "United Business Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 100,000 bonus miles + 2,000 PQP after you spend $5,000 on purchases in the first 3 months your account is open",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 100000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-united-club-business",
+  "name": "United Club Business Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 100,000 bonus miles + 2,000 PQP after you spend $5,000 on purchases in the first 3 months your account is open",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 100000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-ihg-premier-business",
+  "name": "IHG One Rewards Premier Business Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 140,000 Bonus Points after spending $4,000 in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 140000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-southwest-premier-business",
+  "name": "Southwest Rapid Rewards Premier Business Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 60,000 Strike through 80,000 points after you spend $3,000 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 80000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "struck-through pair (old and new figures); used the second, 80,000; please check"
+   ],
+   "displayedAsCash": null
+  },
+  "reviewedByOwner": true,
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-gold",
+  "name": "American Express Gold Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "AS HIGH AS 100,000 Membership Rewards \u00ae points after you spend $8,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 100000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 8000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-platinum",
+  "name": "Platinum Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "AS HIGH AS 175,000 Membership Rewards \u00ae points after you spend $12,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 175000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 12000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-blue-cash-everyday",
+  "name": "Blue Cash Everyday Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "AS HIGH AS $200 Cash Back 1 after you spend $2,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 2000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-blue-cash-preferred",
+  "name": "Blue Cash Preferred Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "AS HIGH AS $300 Cash Back 1 after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 300.0,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-delta-blue",
+  "name": "Delta SkyMiles Blue American Express Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 10,000 Bonus Miles after you spend $1,000 on eligible purchases on your new Card within your first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 10000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-delta-gold",
+  "name": "Delta SkyMiles Gold American Express Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "As High As 80,000 Bonus Miles after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 80000.0,
+   "cashBack": 250.0,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-delta-platinum",
+  "name": "Delta SkyMiles Platinum American Express Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "As High As 90,000 Bonus Miles after you spend $4,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 90000.0,
+   "cashBack": 300.0,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-delta-reserve",
+  "name": "Delta SkyMiles Reserve American Express Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "50,000 Bonus Miles after you spend $10,000 in purchases on your new Card in the first 6 months",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 10000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-hilton-honors",
+  "name": "Hilton Honors American Express Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 70,000 Hilton Honors Bonus Points + A Free Night Reward after you spend $2,000 in purchases on the Hilton Honors American Express Card in the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 70000.0,
+   "cashBack": null,
+   "freeNightAwards": 1,
+   "minSpend": 2000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-hilton-surpass",
+  "name": "Hilton Honors American Express Surpass Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 130,000 Hilton Honors Bonus Points + A Free Night Reward after you spend $3,000 in purchases on the Hilton Honors American Express Surpass \u00ae Card in the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 130000.0,
+   "cashBack": null,
+   "freeNightAwards": 1,
+   "minSpend": 3000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-hilton-aspire",
+  "name": "Hilton Honors American Express Aspire Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 200,000 Hilton Honors Bonus Points with the Hilton Honors American Express Aspire Card after you spend $6,000 in purchases on the Card within your first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 200000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-marriott-bevy",
+  "name": "Marriott Bonvoy Bevy American Express Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 125,000 Marriott Bonvoy \u00ae Bonus Points Plus A $150 Statement Credit after you use your new Card to make $5,000 in purchases within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 125000.0,
+   "cashBack": 150.0,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-marriott-brilliant",
+  "name": "Marriott Bonvoy Brilliant American Express Card",
+  "issuer": "amex",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 150,000 Marriott Bonvoy \u00ae Bonus Points Plus A $250 Statement Credit after you use your new Card to make $6,000 in purchases within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 150000.0,
+   "cashBack": 250.0,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-business-gold",
+  "name": "American Express Business Gold Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "AS HIGH AS 200,000 Membership Rewards \u00ae Points after you spend $15,000 in purchases on your new Card within the first 3 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 200000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 15000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-business-platinum",
+  "name": "Business Platinum Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "AS HIGH AS 300,000 Membership Rewards \u00ae Points after you spend $20,000 in eligible purchases on your new Card within the first 3 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 300000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 20000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-business-green",
+  "name": "Business Green Rewards Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 15,000 Membership Rewards \u00ae points after you spend $3,000 on eligible purchases on the Card within your first 3 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 15000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-blue-business-plus",
+  "name": "Blue Business Plus Credit Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 15,000 Membership Rewards \u00ae Points after you spend $3,000 in purchases on your Card in your first 3 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 15000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-blue-business-cash",
+  "name": "Blue Business Cash Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $250 Statement Credit after you spend $3,000 in purchases on your Card in your first 3 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 250.0,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-graphite",
+  "name": "Graphite Business Cash Unlimited Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn $1,500 Cash Back in the form of Reward Dollars after you spend $50,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 1500.0,
+   "freeNightAwards": 0,
+   "minSpend": 50000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-hilton-business",
+  "name": "Hilton Honors American Express Business Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 150,000 Hilton Honors Bonus Points and a Free Night Reward after you spend $8,000 on eligible purchases on your Card within your first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 150000.0,
+   "cashBack": null,
+   "freeNightAwards": 1,
+   "minSpend": 8000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-delta-gold-business",
+  "name": "Delta SkyMiles Gold Business American Express Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 60,000 90,000 Bonus Miles after you spend $6,000 in purchases on your new Card in your first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 90000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "struck-through pair (old and new figures); used the second, 90,000; please check"
+   ],
+   "displayedAsCash": null
+  },
+  "reviewedByOwner": true,
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-delta-platinum-business",
+  "name": "Delta SkyMiles Platinum Business American Express Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 70,000 100,000 Bonus Miles after you spend $8,000 in purchases on your new Card in your first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 100000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 8000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "struck-through pair (old and new figures); used the second, 100,000; please check"
+   ],
+   "displayedAsCash": null
+  },
+  "reviewedByOwner": true,
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-delta-reserve-business",
+  "name": "Delta SkyMiles Reserve Business Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 80,000 200,000 Bonus Miles after you spend $20,000 in purchases on your new Card in your first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 200000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 20000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "struck-through pair (old and new figures); used the second, 200,000; please check"
+   ],
+   "displayedAsCash": null
+  },
+  "reviewedByOwner": true,
+  "needsReview": false
+ },
+ {
+  "cardId": "amex-marriott-business",
+  "name": "Marriott Bonvoy Business Credit Card",
+  "issuer": "amex",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 100,000 Marriott Bonvoy \u00ae Bonus Points and 1 Free Night Award after you spend $8,000 in purchases on the Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 100000.0,
+   "cashBack": null,
+   "freeNightAwards": 1,
+   "minSpend": 8000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-strata-premier",
+  "name": "Citi Strata Premier Card",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 60,000 bonus points after spending $4,000 in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 60000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-strata-elite",
+  "name": "Citi Strata Elite Card",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 bonus points after spending $6,000 in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-strata",
+  "name": "Citi Strata Card",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 20,000 bonus points after spending $1,000 in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-double-cash",
+  "name": "Citi Double Cash Card",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn $200 cash back bonus after spending $1,500 on purchases in the first 6 months of account opening $0 Annual Fee",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 1500.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-aadvantage-platinum-select",
+  "name": "Citi AAdvantage Platinum Select World Elite Mastercard",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 50,000 AAdvantage \u00ae bonus miles after $2,500 in purchases in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 2500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-aadvantage-executive",
+  "name": "Citi AAdvantage Executive World Elite Mastercard",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 125,000 AAdvantage \u00ae bonus miles after $15,000 in purchases in the first 5 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 125000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 15000.0,
+   "windowMonths": 5,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-aadvantage-globe",
+  "name": "Citi AAdvantage Globe Mastercard",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 60,000 AAdvantage \u00ae bonus miles after $4,000 in purchases in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 60000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-aadvantage-mileup",
+  "name": "AAdvantage MileUp Card",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 15,000 AAdvantage \u00ae bonus miles after $500 in purchases in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 15000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "citi-aadvantage-business",
+  "name": "Citi AAdvantage Business World Elite Mastercard",
+  "issuer": "citi",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 65,000 AAdvantage \u00ae bonus miles For your business after $4,000 in purchases within the first 4 months of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 65000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 4,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-venture-x",
+  "name": "Venture X Rewards",
+  "issuer": "capone",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 bonus miles once you spend $4,000 on purchases within the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-venture",
+  "name": "Venture Rewards Travel Card",
+  "issuer": "capone",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "earn 75,000 bonus miles once you spend $4,000 on purchases within the first 3 months from account opening \u2013 that\u2019s more than $1,000 in travel value",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-ventureone",
+  "name": "VentureOne Rewards",
+  "issuer": "capone",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 20,000 bonus miles once you spend $500 on purchases within the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-quicksilver",
+  "name": "Quicksilver Cash Rewards",
+  "issuer": "capone",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn $200 as a one-time cash bonus once you spend $500 within 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-savor",
+  "name": "Savor Rewards",
+  "issuer": "capone",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a one-time $200 cash bonus once you spend $500 on purchases within the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-spark-cash-plus",
+  "name": "Spark Cash Plus",
+  "issuer": "capone",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $2,000 cash bonus when you spend $30,000 in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 2000.0,
+   "freeNightAwards": 0,
+   "minSpend": 30000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-spark-cash",
+  "name": "Spark Cash Select",
+  "issuer": "capone",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $1,000 cash bonus and a $250 travel credit when you spend $10,000 in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 1250.0,
+   "freeNightAwards": 0,
+   "minSpend": 10000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "capone-venture-x-business",
+  "name": "Venture X Business",
+  "issuer": "capone",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 150,000 bonus miles when you spend $30,000 in the first 3 months, which is equal to $1,500 in travel",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 150000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 30000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "wellsfargo-active-cash",
+  "name": "Wells Fargo Active Cash Card",
+  "issuer": "wellsfargo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $100 cash rewards bonus when you spend $500 in purchases in the first 3 months 1 Plus, earn unlimited 2% cash rewards on purchases 2 $0 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 100.0,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "wellsfargo-autograph",
+  "name": "Wells Fargo Autograph Visa Card",
+  "issuer": "wellsfargo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 20,000 bonus points when you spend $1,000 in purchases in the first 3 months 1 Plus, earn 3X points for many ways to keep life in motion",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "wellsfargo-autograph-journey",
+  "name": "Wells Fargo Autograph Journey Visa Card",
+  "issuer": "wellsfargo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 - that\u2019s $600 toward your next trip $95 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 60000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "wellsfargo-reflect",
+  "name": "Wells Fargo Reflect Visa Card",
+  "issuer": "wellsfargo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "wellsfargo-choice-privileges",
+  "name": "Wells Fargo Choice Privileges Mastercard",
+  "issuer": "wellsfargo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "EARN 40,000 old bonus 60,000 new bonus BONUS POINTS when you spend $1,000 in purchases in the first 3 months 1 - enough to redeem for up to 7 reward nights at select Choice Hotels\u00ae properties",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 60000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "struck-through pair (old and new figures); used the second, 60,000; please check"
+   ],
+   "displayedAsCash": null
+  },
+  "reviewedByOwner": true,
+  "needsReview": false
+ },
+ {
+  "cardId": "wellsfargo-signify-business",
+  "name": "Wells Fargo Signify Business Cash Card",
+  "issuer": "wellsfargo",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "earn a $500 cash rewards bonus when you spend $5,000 in purchases for your business in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 500.0,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-customized-cash",
+  "name": "Bank of America Customized Cash Rewards Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "$200 cash rewards bonus after making at least $1,000 in purchases in the first 90 days of your account opening Double your choice category cash back Choose which category y",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-unlimited-cash",
+  "name": "Bank of America Unlimited Cash Rewards Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "$250 cash rewards bonus after making at least $1,000 in purchases in the first 90 days of your account opening No annual fee \u2020 Enjoy no annual fee while earning unlimited c",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 250.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-travel-rewards",
+  "name": "Bank of America Travel Rewards Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "You will qualify for 25,000 bonus points if you use your new credit card account to make any combination of purchase transactions totaling at least $1,000 (excluding any fees) that post to your account within 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 25000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-premium-rewards",
+  "name": "Bank of America Premium Rewards Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn Redeem 60,000 online bonus points after you make at least $4,000 in purchases in the first 90 days of account opening 2 points per $1 spent on travel purchases 2 points per $1 spent on dining purchases 1",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 60000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-premium-rewards-elite",
+  "name": "Bank of America Premium Rewards Elite Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn Redeem 75,000 bonus points after you make at least $5,000 in purchases in the first 90 days of account opening Earn unlimited 2 points for every $1 spent on travel and dining purchases Earn unlimited 1",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-alaska",
+  "name": "Atmos Rewards Ascent Visa Signature Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get 50,000 bonus points and a $99 Companion Fare (plus taxes and fees from $23) with this offer. To qualify, spend $1,500 or more on purchases within the first 90 days of opening your account",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "also includes a companion fare, certificate or award (not valued)"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-business-unlimited-cash",
+  "name": "Business Advantage Unlimited Cash Rewards Mastercard",
+  "issuer": "boa",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 500.0,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-business-customized-cash",
+  "name": "Business Advantage Customized Cash Rewards Mastercard",
+  "issuer": "boa",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 500.0,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-business-travel-rewards",
+  "name": "Business Advantage Travel Rewards World Mastercard",
+  "issuer": "boa",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 50,000 online bonus points after you make at least $5,000 in purchases in the first 90 days of your account opening, which can be redeemed for a $500 statement credit towards travel or dining purchases",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-alaska-business",
+  "name": "Alaska Airlines Visa Business Credit Card",
+  "issuer": "boa",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get 70,000 bonus points and a $99 Companion Fare (plus taxes and fees from $23) after you make $4,000 or more in purchases within the first 90 days of opening your account",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 70000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "also includes a companion fare, certificate or award (not valued)"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-altitude-connect",
+  "name": "U.S. Bank Altitude Connect Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 20,000 bonus points. 1 Just spend $1,000 in Net Purchases in the first 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-altitude-go",
+  "name": "U.S. Bank Altitude Go Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 20,000 bonus points. 1 Just spend $1,000 in Net Purchases in the first 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-cash-plus",
+  "name": "U.S. Bank Cash+ Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get a $200 bonus For a limited time, earn a $200 rewards bonus after you spend $1,000 in eligible purchases within the first 90 days of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "a repeated amount was merged into one"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-smartly",
+  "name": "U.S. Bank Smartly Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-shield",
+  "name": "U.S. Bank Shield Visa Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-business-altitude-connect",
+  "name": "U.S. Bank Business Altitude Connect Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "One-time 75,000 bonus points will be awarded if eligible Net Purchases totaling $6,000 or more are made to the Account Owner\u2019s Card within 180 days from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-triple-cash",
+  "name": "U.S. Bank Triple Cash Rewards Visa Business Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "One-time $750 cash back will be awarded if eligible Net Purchases totaling $6,000 or more are made to the Account Owner's Card within 180 days from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 750.0,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-business-leverage",
+  "name": "Business Leverage Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn up to $600 in rewards 5 when you spend $6,000 in eligible purchases on the Account Owner's card within the first 120 days of opening your account",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 600.0,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 4,
+   "additionalTiers": [],
+   "ceiling": true,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "fnbo-getaway",
+  "name": "Getaway Credit Card",
+  "issuer": "fnbo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "fnbo-evergreen",
+  "name": "Evergreen Credit Card",
+  "issuer": "fnbo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "fnbo-greenselect",
+  "name": "GreenSelect Credit Card",
+  "issuer": "fnbo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "fnbo-visa-secured",
+  "name": "Visa Secured Card",
+  "issuer": "fnbo",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "fnbo-evergreen-business",
+  "name": "Evergreen Business Edition Credit Card",
+  "issuer": "fnbo",
+  "cardKind": "business",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-jetblue",
+  "name": "JetBlue Card",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 10,000 bonus points after spending $1,000 on purchases in the first 90 days 2 3X points on eligible JetBlue purchases 2 2X points at restaurants and eligible grocery stores 2 1X points on all other purchases 2 Benefits Mosaic status faster Earn toward",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 10000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-jetblue-plus",
+  "name": "JetBlue Plus Card",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 70,000 bonus points after spending $1,000 on purchases and paying the annual fee in full, both within the first 90 days 2 6X points on eligible JetBlue purchases 2 2X points at restaurants and eligible grocery stores 2 1X points on all other purchases",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 70000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-jetblue-premier",
+  "name": "JetBlue Premier Card",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 90,000 bonus points after spending $5,000 on purchases and paying the annual fee in full, both within the first 90 days 2 6X points on eligible JetBlue purchases 2 2X points at restaurants and eligible grocery stores 2 1X points on all other purchases",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 90000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-wyndham-earner",
+  "name": "Wyndham Rewards Earner Card",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 30,000 bonus points after spending $1,000 on qualifying purchases in the first 90 days and also earn 45,000 bonus points after spending $500 at Hotels by Wyndham in the first 180 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 30000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [
+    {
+     "points": 45000.0,
+     "cashBack": null,
+     "minSpend": 500.0,
+     "windowMonths": 6,
+     "note": "the spend must be at a specific merchant"
+    }
+   ],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-wyndham-earner-plus",
+  "name": "Wyndham Rewards Earner Plus Card",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 45,000 bonus points after spending $1,000 on qualifying purchases in the first 90 days and also earn 55,000 bonus points after spending $500 at Hotels by Wyndham in the first 180 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 45000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [
+    {
+     "points": 55000.0,
+     "cashBack": null,
+     "minSpend": 500.0,
+     "windowMonths": 6,
+     "note": "the spend must be at a specific merchant"
+    }
+   ],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-wyndham-earner-premier",
+  "name": "Wyndham Rewards Earner Premier Card",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 90,000 bonus points after spending $6,000 on qualifying purchases and paying the annual fee in full, both within the first 120 days, and also earn 30,000 bonus points after spending $750 at Hotels by Wyndham in the first 180 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 90000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 6000.0,
+   "windowMonths": 4,
+   "additionalTiers": [
+    {
+     "points": 30000.0,
+     "cashBack": null,
+     "minSpend": 750.0,
+     "windowMonths": 6,
+     "note": "the spend must be at a specific merchant"
+    }
+   ],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-wyndham-earner-business",
+  "name": "Wyndham Rewards Earner Business Card",
+  "issuer": "barclays",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 45,000 bonus points after spending $3,000 on qualifying purchases in the first 90 days and also earn 55,000 bonus points after spending $500 at Hotels by Wyndham in the first 180 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 45000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [
+    {
+     "points": 55000.0,
+     "cashBack": null,
+     "minSpend": 500.0,
+     "windowMonths": 6,
+     "note": "the spend must be at a specific merchant"
+    }
+   ],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-frontier",
+  "name": "Frontier Airlines World Mastercard",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 50,000 Travel Miles after spending $500 on purchases and paying the annual fee in full, both within the first 90 days of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-breeze",
+  "name": "Breeze Airways Card",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 30,000 bonus BreezePoints \u2013 that\u2019s a $300 value, plus Breezy 1 benefits, after spending $1,000 on purchase within the first 90 days Benefit details 2X on eligible grocery store and restaurant purchases, including Breeze Airways inflight food and beverages made with your Card Account",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 30000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-emirates-premium",
+  "name": "Emirates Skywards Premium World Elite Mastercard",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "earn 70,000 bonus Skywards Miles after spending $3,000 on purchases in the first 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 70000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-emirates-rewards",
+  "name": "Emirates Skywards Rewards World Elite Mastercard",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "earn 40,000 bonus Skywards Miles after spending $3,000 on purchases in the first 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 40000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-lufthansa",
+  "name": "Lufthansa Miles & More World Elite Mastercard",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 70,000 miles after you spend $4,000 in purchases and pay the annual fee in full, both within the first 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 70000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-aarp",
+  "name": "AARP Essential Rewards Mastercard",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $100 Cash Back Bonus after spending $500 on purchases in the first 90 days of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 100.0,
+   "freeNightAwards": 0,
+   "minSpend": 500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "barclays-carnival",
+  "name": "Carnival Rewards Mastercard",
+  "issuer": "barclays",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 20,000 points after spending $1,000 on purchases in the first 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "discover-it-cash-back",
+  "name": "Discover it Cash Back Credit Card",
+  "issuer": "discover",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "match all the cash back you earn at the end of your first year after you open your new Discover it Cash Back Card",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "match",
+   "points": null,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": null,
+   "windowMonths": null,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "first-year match of what is earned; no fixed bonus amount"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "discover-it-chrome",
+  "name": "Discover it Chrome Gas & Restaurants Credit Card",
+  "issuer": "discover",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "match all the cash back you\u2019ve earned at the end of your first year",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "match",
+   "points": null,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": null,
+   "windowMonths": null,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "first-year match of what is earned; no fixed bonus amount"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "discover-it-miles",
+  "name": "Discover it Miles Credit Card",
+  "issuer": "discover",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "match all the miles you\u2019ve earned at the end of your first year",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "match",
+   "points": null,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": null,
+   "windowMonths": null,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "first-year match of what is earned; no fixed bonus amount"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "discover-it-student-cash-back",
+  "name": "Discover it Student Cash Back Credit Card",
+  "issuer": "discover",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $100 statement credit when you spend $300 in the first 3 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 100.0,
+   "freeNightAwards": 0,
+   "minSpend": 300.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "discover-it-student-chrome",
+  "name": "Discover it Student Chrome Credit Card",
+  "issuer": "discover",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "discover-it-secured",
+  "name": "Discover it Secured Cash Back Credit Card",
+  "issuer": "discover",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-atmos-summit",
+  "name": "Atmos Rewards Summit Visa Infinite Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 70,000 bonus points and a 25,000-point Global Companion Award after spending $3,000 or more on purchases within the first 90 days of opening your account",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 70000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "also includes a companion fare, certificate or award (not valued)"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-air-france-klm",
+  "name": "Air France KLM Visa Signature Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "50,000 Bonus Miles + 100 Experience Points (XP) after you make $2,000 or more in purchases within the first 90 days of your account opening Low $89 annual fee \u2020 and no foreign transaction fees \u2020 Review rates and fees \u2020 See if you prequalify Apply Now for Air France-KLM credit card",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 2000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-allways-rewards",
+  "name": "Allways Rewards Visa Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 30,000 Bonus Points \u2013 equal to $300 off a future Allegiant trip when you redeem points, after you make $1,500 or more in purchases within the first 90 days of account opening Easy to earn, easy to redeem No blackout dates, no destination restrictions, and no minimum points redemption Priority Boarding Complimentary prior",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 30000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1500.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-royal-one",
+  "name": "Royal ONE Visa Signature Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-royal-one-plus",
+  "name": "Royal ONE Plus Visa Signature Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-norwegian-cruise",
+  "name": "Norwegian Cruise Line World Mastercard",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Get 20,000 bonus points after you make $1,000 or more in purchases in the first 90 days of account opening \u2013 which can be redeemed for $200 off your next Norwegian cruise Achieve more with BofA Rewards\u2122 Enrich your experience as a Bank of America customer wi",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 20000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-komen",
+  "name": "Susan G. Komen Customized Cash Rewards Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "$200 cash rewards bonus after making at least $1,000 in purchases in the first 90 days of your account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-bankamericard",
+  "name": "BankAmericard Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-student-customized-cash",
+  "name": "Customized Cash Rewards Credit Card for Students",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "$200 cash rewards bonus after making at least $1,000 in purchases in the first 90 days of your account opening No annual fee \u2020 Enjoy no annual fee while choosing how you ea",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-student-unlimited-cash",
+  "name": "Unlimited Cash Rewards Credit Card for Students",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "$250 cash rewards bonus after making at least $1,000 in purchases in the first 90 days of your account opening No annual fee \u2020 Enjoy no annual fee while earning unlimited c",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 250.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-student-travel-rewards",
+  "name": "Travel Rewards Credit Card for Students",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "You will qualify for 25,000 bonus points if you use your new credit card account to make any combination of purchase transactions totaling at least $1,000 (excluding any fees) that post to your account within 90 days",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 25000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-student-bankamericard",
+  "name": "BankAmericard Credit Card for Students",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-customized-cash-secured",
+  "name": "Customized Cash Rewards Secured Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-unlimited-cash-secured",
+  "name": "Unlimited Cash Rewards Secured Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-travel-rewards-secured",
+  "name": "Travel Rewards Visa Secured Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-bankamericard-secured",
+  "name": "BankAmericard Secured Credit Card",
+  "issuer": "boa",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-business-platinum-plus",
+  "name": "Platinum Plus Mastercard Business Credit Card",
+  "issuer": "boa",
+  "cardKind": "business",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "boa-business-unlimited-cash-secured",
+  "name": "Unlimited Cash Rewards Secured Business Credit Card",
+  "issuer": "boa",
+  "cardKind": "business",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-business-altitude-power",
+  "name": "Business Altitude Power Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 75,000 bonus points 3 Up to a $750 value 1 after spending $10,000 on the Account Owner's card in the first 120 days of opening your account",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 75000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 10000.0,
+   "windowMonths": 4,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-business-shield",
+  "name": "Business Shield Visa Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-amazon-business",
+  "name": "Amazon Business Credit Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-cash-plus-secured",
+  "name": "Cash+ Secured Visa Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-altitude-go-secured",
+  "name": "Altitude Go Secured Visa Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-secured-visa",
+  "name": "Secured Visa Card",
+  "issuer": "usbank",
+  "cardKind": "personal",
+  "hasWelcomeOffer": false,
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-world-of-hyatt-business",
+  "name": "World of Hyatt Business Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 70,000 Bonus Points after you spend $7,000 on purchases in the first 3 months of account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 70000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 7000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "chase-southwest-performance-business",
+  "name": "Southwest Rapid Rewards Performance Business Credit Card",
+  "issuer": "chase",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 80,000 points after you spend $5,000 on purchases in the first 3 months from account opening",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 80000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "schwab-platinum",
+  "name": "Platinum Card from American Express Exclusively for Charles Schwab",
+  "issuer": "schwab",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "earn 80,000 Membership Rewards \u00ae points after spending $12,000 in purchases on your Platinum Card \u00ae from American Express Exclusively for Charles Schwab in your first 6 months of Card Membership",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 80000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 12000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "morganstanley-blue-cash-preferred",
+  "name": "Morgan Stanley Blue Cash Preferred American Express Card",
+  "issuer": "morganstanley",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn $250 Cash back 1 after you spend $3,000 in purchases on your new Card in your first 6 months",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 250.0,
+   "freeNightAwards": 0,
+   "minSpend": 3000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "morganstanley-platinum",
+  "name": "Morgan Stanley Platinum American Express Card",
+  "issuer": "morganstanley",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 80,000 Membership Rewards\u00ae points after you spend $12,000 on purchases on your new Card in your first 6 months of Card membership",
+  "seenOn": "2026-09-20",
+  "parsed": {
+   "kind": "standard",
+   "points": 80000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 12000.0,
+   "windowMonths": 6,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ }
+]

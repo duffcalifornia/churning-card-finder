@@ -1,0 +1,218 @@
+[
+ {
+  "id": "ultimate-rewards",
+  "name": "Chase Ultimate Rewards",
+  "partners": [
+   "avios",
+   "aeroplan",
+   "air-france-klm-flying-blue",
+   "finnair-plus",
+   "world-of-hyatt",
+   "ihg-one-rewards",
+   "jetblue-trueblue",
+   "marriott-bonvoy",
+   "singapore-krisflyer",
+   "southwest-rapid-rewards",
+   "united-mileageplus",
+   "virgin-atlantic-flying-club",
+   "wyndham-rewards"
+  ],
+  "cashBackRedemption": "good",
+  "householdPooling": true,
+  "unlockerCards": [
+   "chase-sapphire-preferred",
+   "chase-sapphire-reserve",
+   "chase-sapphire-reserve-business",
+   "chase-ink-preferred"
+  ],
+  "quirks": [
+   "Points can be transferred between household members.",
+   "At least one household member must hold a Sapphire Preferred, Sapphire Reserve, Business Sapphire Reserve or Ink Preferred to transfer to any partner.",
+   "Cash redemption is 1.0 cent; travel is valued at 1.5 cents."
+  ],
+  "verifiedOn": "2026-09-20"
+ },
+ {
+  "id": "amex-membership-rewards",
+  "name": "Amex Membership Rewards",
+  "partners": [
+   "avios",
+   "aeromexico-club-premier",
+   "aeroplan",
+   "air-france-klm-flying-blue",
+   "ana-mileage-club",
+   "avianca-lifemiles",
+   "cathay-pacific-asia-miles",
+   "choice-privileges",
+   "delta-skymiles",
+   "emirates-skywards",
+   "finnair-plus",
+   "hilton-honors",
+   "jetblue-trueblue",
+   "leading-hotels-leaders-club",
+   "marriott-bonvoy",
+   "qantas-frequent-flyer",
+   "singapore-krisflyer",
+   "virgin-atlantic-flying-club"
+  ],
+  "cashBackRedemption": "poor",
+  "householdPooling": false,
+  "unlockerCards": [],
+  "quirks": [
+   "Points cannot be transferred between household members.",
+   "Redeeming for cash back is only optimal with a Morgan Stanley Platinum, a Schwab Platinum, or a Business Platinum plus a business checking account.",
+   "Cash-out is only a good value for a player who currently holds a Schwab Platinum in their own name, or holds a Business Platinum and an Amex Business Checking account, both in their own name (no household pooling)."
+  ],
+  "verifiedOn": "2026-09-20",
+  "cashBackQualifiers": [
+   {
+    "cards": [
+     "schwab-platinum"
+    ]
+   },
+   {
+    "cards": [
+     "amex-business-platinum"
+    ],
+    "account": "amexBusinessChecking"
+   }
+  ]
+ },
+ {
+  "id": "capital-one-miles",
+  "name": "Capital One Rewards",
+  "partners": [
+   "avios",
+   "aeromexico-club-premier",
+   "aeroplan",
+   "air-france-klm-flying-blue",
+   "all-accor",
+   "avianca-lifemiles",
+   "cathay-pacific-asia-miles",
+   "choice-privileges",
+   "emirates-skywards",
+   "etihad-guest",
+   "eva-air-infinity-mileagelands",
+   "finnair-plus",
+   "jal-mileage-bank",
+   "jetblue-trueblue",
+   "preferred-hotels-i-prefer",
+   "qantas-frequent-flyer",
+   "singapore-krisflyer",
+   "tap-air-portugal",
+   "turkish-miles-and-smiles",
+   "virgin-atlantic-flying-club",
+   "wyndham-rewards"
+  ],
+  "cashBackRedemption": "good",
+  "householdPooling": true,
+  "unlockerCards": [
+   "capone-venture-x",
+   "capone-venture",
+   "capone-ventureone",
+   "capone-venture-x-business"
+  ],
+  "quirks": [
+   "Rewards from cash back cards can be converted to miles.",
+   "Points can be transferred to any cardholder.",
+   "A card that earns miles is needed to transfer to partners.",
+   "Cash-out value is 1.0 cent (site owner)."
+  ],
+  "verifiedOn": "2026-09-20"
+ },
+ {
+  "id": "citi-thankyou",
+  "name": "Citi ThankYou Rewards",
+  "partners": [
+   "avios",
+   "air-france-klm-flying-blue",
+   "american-aadvantage",
+   "avianca-lifemiles",
+   "cathay-pacific-asia-miles",
+   "emirates-skywards",
+   "etihad-guest",
+   "eva-air-infinity-mileagelands",
+   "finnair-plus",
+   "jal-mileage-bank",
+   "jetblue-trueblue",
+   "malaysia-enrich",
+   "qantas-frequent-flyer",
+   "singapore-krisflyer",
+   "thai-royal-orchid-plus",
+   "turkish-miles-and-smiles",
+   "virgin-atlantic-flying-club",
+   "all-accor",
+   "choice-privileges",
+   "leading-hotels-leaders-club",
+   "preferred-hotels-i-prefer",
+   "wyndham-rewards"
+  ],
+  "cashBackRedemption": "good",
+  "householdPooling": false,
+  "unlockerCards": [
+   "citi-strata-premier",
+   "citi-strata-elite"
+  ],
+  "quirks": [
+   "A Strata Elite or Strata Premier is needed to transfer to partners.",
+   "Points cannot be transferred between household members.",
+   "Double Cash rewards can be transferred to rewards cards.",
+   "Cash-out value is 1.0 cent (site owner)."
+  ],
+  "verifiedOn": "2026-09-20"
+ },
+ {
+  "id": "wells-fargo-rewards",
+  "name": "Wells Fargo Rewards",
+  "partners": [
+   "avios",
+   "air-france-klm-flying-blue",
+   "cathay-pacific-asia-miles",
+   "jetblue-trueblue",
+   "virgin-atlantic-flying-club",
+   "choice-privileges",
+   "wyndham-rewards"
+  ],
+  "cashBackRedemption": "good",
+  "householdPooling": false,
+  "unlockerCards": [],
+  "quirks": [
+   "Cash back redemption and household pooling were not stated by the site owner; assumed."
+  ],
+  "verifiedOn": "2026-09-20"
+ },
+ {
+  "id": "bilt",
+  "name": "Bilt Rewards",
+  "partners": [
+   "all-accor",
+   "hilton-honors",
+   "world-of-hyatt",
+   "ihg-one-rewards",
+   "marriott-bonvoy",
+   "preferred-hotels-i-prefer",
+   "wyndham-rewards",
+   "avios",
+   "aeroplan",
+   "air-france-klm-flying-blue",
+   "atmos-rewards",
+   "avianca-lifemiles",
+   "cathay-pacific-asia-miles",
+   "etihad-guest",
+   "finnair-plus",
+   "jal-mileage-bank",
+   "southwest-rapid-rewards",
+   "tap-air-portugal",
+   "turkish-miles-and-smiles",
+   "united-mileageplus",
+   "virgin-atlantic-flying-club"
+  ],
+  "cashBackRedemption": "none",
+  "householdPooling": false,
+  "unlockerCards": [],
+  "quirks": [
+   "Bilt cards are never listed by the site (see docs/rule-audit.md Section I); kept for completeness."
+  ],
+  "verifiedOn": "2026-09-20"
+ }
+]

@@ -1,0 +1,59 @@
+name: Check Frequent Miler RRVs
+
+# Runs scripts/check_rrv.py once a day: one polite request to Frequent Miler's Reasonable Redemption Values page
+# (the source for data/valuations.json), compared against the saved baseline in
+# scripts/cardfinder/rrv_check_state.json. See scripts/README.md for what the check itself does.
+#
+# If the page changed (or could not be read), this job fails on purpose so GitHub's own notification for a failed
+# scheduled workflow reaches whoever watches this repo — no extra secrets or services needed. It keeps failing every
+# day until someone compares the change to data/valuations.json and re-runs this workflow by hand with "ack" set to
+# true, which accepts the current page as the new baseline.
+
+on:
+  schedule:
+    - cron: "17 13 * * *"   # once daily; an arbitrary time, not the top of the hour
+  workflow_dispatch:
+    inputs:
+      ack:
+        description: "Accept the current page as the new baseline (only after reviewing the change by hand)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # to commit the updated baseline file back to the repo
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"   # the script is standard library only, no requirements.txt needed
+
+      - name: Run the RRV check
+        id: check
+        run: |
+          set +e
+          if [ "${{ github.event.inputs.ack }}" = "true" ]; then
+            python3 scripts/check_rrv.py --ack
+          else
+            python3 scripts/check_rrv.py
+          fi
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the updated baseline, if it changed
+        run: |
+          if ! git diff --quiet -- scripts/cardfinder/rrv_check_state.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add scripts/cardfinder/rrv_check_state.json
+            git commit -m "check_rrv: update saved baseline"
+            git push
+          fi
+
+      - name: Fail the job if the page changed or could not be read
+        if: steps.check.outputs.exit_code != '0'
+        run: exit ${{ steps.check.outputs.exit_code }}

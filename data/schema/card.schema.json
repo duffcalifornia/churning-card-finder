@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "card.schema.json",
+  "title": "Card",
+  "description": "One card in the catalog. Used both for the card history input (every card a rule cares about) and for recommendations. Draft: field names may change while the engine is built.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "issuer",
+    "kind",
+    "reportsToPersonal",
+    "verifiedOn"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "issuer": {
+      "type": "string",
+      "enum": [
+        "chase",
+        "amex",
+        "boa",
+        "citi",
+        "usbank",
+        "wellsfargo",
+        "bilt",
+        "barclays",
+        "capone",
+        "discover",
+        "fnbo",
+        "schwab",
+        "morganstanley",
+        "synchrony",
+        "td",
+        "other"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "personal",
+        "business"
+      ]
+    },
+    "recommendable": {
+      "type": "boolean",
+      "default": true,
+      "description": "False for cards that only exist in the history list because they count toward a rule (for example 5/24) or are no longer offered."
+    },
+    "annualFee": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Raw annual fee in USD. Required unless the card is history-only (recommendable false)."
+    },
+    "firstYearFeeWaived": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if the first year's fee is waived. Displayed as 'Annual fee of $X, waived the first year'; ranking and the annual fee limit use the first-year fee, so a waived first year counts as $0."
+    },
+    "reportsToPersonal": {
+      "type": "boolean",
+      "description": "Whether the card appears on the personal credit report and counts toward X/24 style rules."
+    },
+    "chargeCard": {
+      "type": "boolean",
+      "default": false,
+      "description": "Amex charge cards count toward the 10 charge card limit, not the 5 credit card limit."
+    },
+    "currency": {
+      "type": "string",
+      "description": "id from currencies.json. Use 'cash' for plain cash back."
+    },
+    "coBrandedProgram": {
+      "type": "string",
+      "description": "id from programs.json for airline or hotel co-branded cards."
+    },
+    "bonusTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "cashback",
+          "hotel",
+          "airline",
+          "transferable"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "What the card earns, used for the 'bonus types wanted' filter. A transferable currency is listed as 'transferable'; the engine expands it to airline and hotel from the currency's partners."
+    },
+    "unlocksTransfers": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if holding this card unlocks transfers for its currency (for example Sapphire Preferred). See currencies.json."
+    },
+    "requiresAAAccess": {
+      "type": "boolean",
+      "default": false,
+      "description": "True for AAdvantage cards; hidden for players banned from AA."
+    },
+    "family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "tier"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Family id: Amex (mr-personal, cash, delta-personal, delta-business, hilton) or Capital One (venture)."
+        },
+        "tier": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "1 is lowest. Having ever had a higher tier blocks the bonus on lower tiers."
+        }
+      }
+    },
+    "bonusRules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "onceInLifetime": {
+          "type": "boolean",
+          "description": "Blocked if you have ever been approved for this exact card (approval-based, not bonus-based)."
+        },
+        "cooldownMonths": {
+          "type": "integer",
+          "enum": [
+            24,
+            48
+          ],
+          "description": "Months to wait: 24 (Chase, BoA, Southwest, IHG) or 48 (Citi, Capital One personal). Only these two lengths are allowed because the engine reads windows from the count buckets (under 12, 12 to 24, 24 to 48 months)."
+        },
+        "marriottMatrixKey": {
+          "type": "string",
+          "description": "Row and column key into the Marriott matrix (docs rule audit Section H)."
+        },
+        "lifetimeAlsoBlockedBy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "description": "Other cards whose past approval also blocks this bonus for life (Strata is blocked by Strata Student, Strata Premier by Citi Premier)."
+        },
+        "cooldownBasis": {
+          "type": "string",
+          "enum": [
+            "bonus",
+            "held"
+          ],
+          "default": "bonus",
+          "description": "'bonus': the clock runs from the date the bonus was received. 'held': from the last day you held the card (BoA)."
+        },
+        "cooldownFamily": {
+          "type": "string",
+          "description": "Cards sharing a family id share one clock and one holding test: holding any of them, or a bonus on any of them inside the window, blocks all of them (southwest-personal, ihg-personal)."
+        },
+        "blockedWhileHeld": {
+          "type": "boolean",
+          "description": "No bonus while you currently hold this card (the card family, if cooldownFamily is set)."
+        }
+      }
+    },
+    "typicalMinSpend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "months"
+      ],
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "months": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 6
+        }
+      },
+      "description": "Spend needed for the bonus. Omitted when the offer has no spend requirement (for example the Prime Visa gift card)."
+    },
+    "welcomeBonus": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Typical welcome bonus, used for value ranking: value = points x cents-per-point (valuations.json) + cashBack + otherValue. Net ranking value = that value minus annualFee.",
+      "properties": {
+        "points": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Points or miles in the card's own currency."
+        },
+        "cashBack": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Dollar value of statement credits or cash back paid as actual cash."
+        },
+        "displayedAsCash": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Dollar figure shown to users when the issuer advertises the bonus as cash back but actually awards points (for example Ink Business Cash: $750 shown, awarded as Ultimate Rewards). When set, put the points in `points` (and the card's `currency`), not in `cashBack`."
+        },
+        "otherValue": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Dollar value the maintainer assigns to other components, such as free night certificates."
+        },
+        "additionalTiers": {
+          "type": "array",
+          "description": "Extra bonus tiers (for example Aeroplan's second spend threshold). The engine adds them when the household's spending meets the first threshold.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "points": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "cashBack": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "minSpend": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "windowMonths": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "ceiling": {
+          "type": "boolean",
+          "description": "True when the issuer shows an 'as high as' ceiling (Amex) rather than a fixed offer. Many applicants get less; the methodology page says so."
+        },
+        "freeNights": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of free night certificates in the bonus, for display. Their dollar value is in otherValue."
+        }
+      }
+    },
+    "rank": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Position in each flowchart list (1 is best). Omit a list the card is not in. Kept alongside welcomeBonus while the flowchart-list ranking and the value ranking are compared; one will be dropped later.",
+      "properties": {
+        "chasePersonal": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "chaseBusiness": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nonChaseBusiness": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "travel": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cashback": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "sourceUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Issuer page the annual fee and minimum spend were checked against."
+    },
+    "verifiedOn": {
+      "type": "string",
+      "format": "date"
+    },
+    "unrankedReason": {
+      "type": "string",
+      "description": "Present when the card cannot be given a bonus value (its points have no valuation, or the offer has no fixed amount). The card is left out of the value ranking."
+    }
+  },
+  "if": {
+    "properties": {
+      "recommendable": {
+        "const": false
+      }
+    },
+    "required": [
+      "recommendable"
+    ]
+  },
+  "else": {
+    "required": [
+      "annualFee"
+    ]
+  }
+}

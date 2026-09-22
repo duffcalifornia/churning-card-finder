@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "players": [
+    {
+      "name": "Player 1",
+      "history": {
+        "cards": {
+          "example-chase-card": { "current": 1, "approved": { "lt12": 0, "m12to24": 1, "m24to48": 0, "gt48": 0 } },
+          "example-amex-card": { "current": 1, "approved": { "lt12": 1 } }
+        },
+        "otherPersonalByIssuer": { "chase": { "lt12": 1, "m12to24": 0 } },
+        "otherIssuersPersonal": { "lt12": 0, "m12to24": 1 }
+      },
+      "shutdownIssuers": [],
+      "bannedFromAA": false,
+      "openToBusinessCards": true,
+      "wantsUnder524": true
+    },
+    {
+      "name": "Player 2",
+      "history": { "cards": {} },
+      "shutdownIssuers": ["citi"],
+      "bannedFromAA": true,
+      "openToBusinessCards": false,
+      "wantsUnder524": false
+    }
+  ],
+  "household": {
+    "maxAnnualFee": 250,
+    "spend3Months": 6000,
+    "spend6Months": 12000,
+    "supplementalSpend3Months": 2000,
+    "bonusTypes": ["airline", "hotel"],
+    "excludedPrograms": ["cashback"]
+  }
+}

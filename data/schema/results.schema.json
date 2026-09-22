@@ -1,0 +1,166 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "results.schema.json",
+ "title": "Results",
+ "description": "What the engine returns and the results page renders. Draft.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "players",
+  "ranked",
+  "bestPersonal"
+ ],
+ "properties": {
+  "players": {
+   "type": "array",
+   "description": "Derived standing per player, shown as live counters and used by the UI.",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "name",
+     "x24",
+     "overFiveTwentyFour",
+     "amexCredit",
+     "amexCharge"
+    ],
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "x24": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "overFiveTwentyFour": {
+      "type": "boolean"
+     },
+     "amexCredit": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "amexCharge": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "chaseBusinessOpen": {
+      "type": "integer",
+      "minimum": 0
+     }
+    }
+   }
+  },
+  "ranked": {
+   "type": "array",
+   "description": "The main list in rank order. Each card lists the players who have it in their top N.",
+   "items": {
+    "$ref": "#/$defs/entry"
+   }
+  },
+  "bestPersonal": {
+   "type": "array",
+   "description": "The 'Best Personal Cards' section: for each player who wants to get or stay under 5/24 and is at 4/24 or above, their three highest ranked eligible personal cards.",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "player",
+     "cards"
+    ],
+    "properties": {
+     "player": {
+      "type": "string"
+     },
+     "cards": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+       "$ref": "#/$defs/entry"
+      }
+     }
+    }
+   }
+  }
+ },
+ "$defs": {
+  "entry": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "cardId",
+    "players",
+    "annualFee",
+    "bonusValue",
+    "netValue"
+   ],
+   "properties": {
+    "cardId": {
+     "type": "string"
+    },
+    "players": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "name"
+      ],
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "viaNllOnly": {
+        "type": "boolean",
+        "default": false,
+        "description": "Shown as '(via NLL only)' for this player."
+       },
+       "backup": {
+        "type": "boolean",
+        "default": false,
+        "description": "For this player the card is shown only as a backup for an 'as high as' offer that may come in lower."
+       }
+      }
+     }
+    },
+    "annualFee": {
+     "type": "number",
+     "minimum": 0
+    },
+    "firstYearFeeWaived": {
+     "type": "boolean",
+     "default": false
+    },
+    "minSpend": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "amount": {
+       "type": "number"
+      },
+      "months": {
+       "type": "integer"
+      }
+     }
+    },
+    "showBiltBlurb": {
+     "type": "boolean",
+     "default": false
+    },
+    "ceiling": {
+     "type": "boolean",
+     "default": false,
+     "description": "The welcome bonus shown is an 'as high as' ceiling (Amex); display as 'up to' with a note that the offer varies."
+    },
+    "bonusValue": {
+     "type": "number",
+     "description": "Dollar value of the welcome bonus (the highest any listed player gets from it)."
+    },
+    "netValue": {
+     "type": "number",
+     "description": "Bonus value minus the first-year annual fee (a waived first year is $0)."
+    }
+   }
+  }
+ }
+}

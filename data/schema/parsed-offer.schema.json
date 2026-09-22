@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "parsed-offer.schema.json",
+  "title": "Parsed welcome offer",
+  "description": "One tracked card's welcome offer as numbers, built by scripts/parse_offers.py from the offer text read on the issuer's page. Feeds card.schema.json's welcomeBonus and typicalMinSpend. Draft.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cardId",
+    "name",
+    "issuer",
+    "cardKind",
+    "hasWelcomeOffer",
+    "needsReview"
+  ],
+  "properties": {
+    "cardId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "issuer": {
+      "type": "string"
+    },
+    "cardKind": {
+      "type": "string",
+      "enum": [
+        "personal",
+        "business"
+      ]
+    },
+    "hasWelcomeOffer": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "false = the site owner confirmed the card has no welcome offer; null = unknown (its page was never read)."
+    },
+    "needsReview": {
+      "type": "boolean",
+      "description": "True when the parser was unsure (struck-through pair, missing spend or window, first part only, unparsed)."
+    },
+    "sourceText": {
+      "type": "string",
+      "description": "The offer sentence as read from the issuer's page."
+    },
+    "seenOn": {
+      "type": "string",
+      "format": "date"
+    },
+    "parsed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "points",
+        "cashBack",
+        "freeNightAwards",
+        "minSpend",
+        "windowMonths",
+        "additionalTiers",
+        "ceiling",
+        "notes"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "match",
+            "unparsed"
+          ],
+          "description": "match = a first-year match of earnings with no fixed amount."
+        },
+        "points": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Points or miles in the card's own currency; authorized-user bonuses and PQP excluded."
+        },
+        "cashBack": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Cash, gift cards and general statement credits at face value; credits tied to specific spending excluded."
+        },
+        "freeNightAwards": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Counted, not valued; the catalog assigns their value."
+        },
+        "minSpend": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "windowMonths": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "additionalTiers": {
+          "type": "array",
+          "description": "Extra bonuses for more spending. The engine includes them when the household's spending capacity meets the first threshold.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "points": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "cashBack": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "minSpend": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "windowMonths": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "ceiling": {
+          "type": "boolean",
+          "description": "\"As high as\" / \"up to\": a maximum, not what everyone gets."
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "currency": {
+          "type": "string",
+          "description": "Set when the offer is paid in a specific points currency (id from valuations/currencies)."
+        },
+        "displayedAsCash": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "The dollar figure the issuer advertises when the bonus is actually paid as points."
+        }
+      }
+    },
+    "reviewedByOwner": {
+      "type": "boolean",
+      "description": "The site owner checked this row."
+    },
+    "stale": {
+      "type": "boolean",
+      "description": "Read before the issuer was paused; may be out of date."
+    },
+    "staleReason": {
+      "type": "string"
+    }
+  }
+}

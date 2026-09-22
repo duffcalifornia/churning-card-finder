@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "marriott-matrix.schema.json",
+  "title": "Marriott card eligibility matrix",
+  "description": "Which prior Marriott card (Chase or Amex) restricts the welcome bonus of which wanted card. Rows are prior cards, columns wanted cards. Source: Frequent Miler. Draft.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source",
+    "sourceUpdated",
+    "checkedOn",
+    "rules",
+    "cards",
+    "matrix"
+  ],
+  "properties": {
+    "source": {
+      "type": "string"
+    },
+    "sourceUpdated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "checkedOn": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "confirmedByOwner": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "description"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "heldWithinDays": {
+            "type": "integer"
+          },
+          "approvedWithinDays": {
+            "type": "integer"
+          },
+          "bonusWithinMonths": {
+            "type": "integer"
+          },
+          "blockedIfHeld": {
+            "type": "boolean"
+          },
+          "ever": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "canBeWanted"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "canBeWanted": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "matrix": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

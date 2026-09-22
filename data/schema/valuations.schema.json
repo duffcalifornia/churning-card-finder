@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "valuations.schema.json",
+  "title": "Point valuations",
+  "description": "Cents per point for each currency or program, supplied and maintained by the site owner. Published on the Ranking Methodology page. Draft.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "values",
+    "freeNightCertificates",
+    "verifiedOn"
+  ],
+  "properties": {
+    "values": {
+      "type": "object",
+      "description": "Map of currency id (currencies.json) or program id (programs.json, for co-branded cards) to cents per point. 'cash' is fixed at 1. A value is either a single number, or for currencies with an unlocking card (Chase UR, Citi TYP, Capital One) an object with a 'withUnlocker' and a 'withoutUnlocker' number.",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "number",
+            "minimum": 0
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "withUnlocker",
+              "withoutUnlocker"
+            ],
+            "properties": {
+              "withUnlocker": {
+                "type": "number",
+                "minimum": 0
+              },
+              "withoutUnlocker": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "type": "object",
+      "description": "Optional explanation per id, shown on the Ranking Methodology page.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "verifiedOn": {
+      "type": "string",
+      "format": "date"
+    },
+    "freeNightCertificates": {
+      "type": "object",
+      "description": "Dollar value of one free night certificate by type, using Frequent Miler's discounted (fudge factor) values.",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    }
+  }
+}

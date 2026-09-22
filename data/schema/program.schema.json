@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "program.schema.json",
+  "title": "Loyalty program",
+  "description": "An airline or hotel program that points can be moved into, or that a co-branded card earns in. Co-branded currencies are treated as their own program. Draft.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "kind"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string" },
+    "kind": { "type": "string", "enum": ["airline", "hotel"] },
+    "group": {
+      "type": "string",
+      "description": "For grouped programs such as Avios (Aer Lingus, British Airways, Iberia, Qatar) so the exclusion question can list them once."
+    },
+    "excludableAsGroup": { "type": "boolean", "default": false }
+  }
+}

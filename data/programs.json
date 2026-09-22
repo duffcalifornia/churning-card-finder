@@ -1,0 +1,173 @@
+[
+ {
+  "id": "aeroplan",
+  "name": "Air Canada Aeroplan",
+  "kind": "airline"
+ },
+ {
+  "id": "air-france-klm-flying-blue",
+  "name": "Air France/KLM Flying Blue",
+  "kind": "airline"
+ },
+ {
+  "id": "american-aadvantage",
+  "name": "American Airlines AAdvantage",
+  "kind": "airline"
+ },
+ {
+  "id": "atmos-rewards",
+  "name": "Alaska Atmos Rewards",
+  "kind": "airline"
+ },
+ {
+  "id": "avios",
+  "name": "Avios (Aer Lingus, British Airways, Iberia, Qatar)",
+  "kind": "airline",
+  "group": "Avios"
+ },
+ {
+  "id": "avianca-lifemiles",
+  "name": "Avianca LifeMiles",
+  "kind": "airline"
+ },
+ {
+  "id": "cathay-pacific-asia-miles",
+  "name": "Cathay Pacific Asia Miles",
+  "kind": "airline"
+ },
+ {
+  "id": "delta-skymiles",
+  "name": "Delta SkyMiles",
+  "kind": "airline"
+ },
+ {
+  "id": "jetblue-trueblue",
+  "name": "JetBlue TrueBlue",
+  "kind": "airline"
+ },
+ {
+  "id": "southwest-rapid-rewards",
+  "name": "Southwest Rapid Rewards",
+  "kind": "airline"
+ },
+ {
+  "id": "united-mileageplus",
+  "name": "United MileagePlus",
+  "kind": "airline"
+ },
+ {
+  "id": "virgin-atlantic-flying-club",
+  "name": "Virgin Atlantic Flying Club",
+  "kind": "airline"
+ },
+ {
+  "id": "finnair-plus",
+  "name": "Finnair Plus",
+  "kind": "airline"
+ },
+ {
+  "id": "singapore-krisflyer",
+  "name": "Singapore Airlines KrisFlyer",
+  "kind": "airline"
+ },
+ {
+  "id": "aeromexico-club-premier",
+  "name": "Aeromexico Club Premier",
+  "kind": "airline"
+ },
+ {
+  "id": "ana-mileage-club",
+  "name": "ANA Mileage Club",
+  "kind": "airline"
+ },
+ {
+  "id": "emirates-skywards",
+  "name": "Emirates Skywards",
+  "kind": "airline"
+ },
+ {
+  "id": "etihad-guest",
+  "name": "Etihad Guest",
+  "kind": "airline"
+ },
+ {
+  "id": "eva-air-infinity-mileagelands",
+  "name": "EVA Air Infinity MileageLands",
+  "kind": "airline"
+ },
+ {
+  "id": "jal-mileage-bank",
+  "name": "JAL Mileage Bank",
+  "kind": "airline"
+ },
+ {
+  "id": "qantas-frequent-flyer",
+  "name": "Qantas Frequent Flyer",
+  "kind": "airline"
+ },
+ {
+  "id": "tap-air-portugal",
+  "name": "TAP Air Portugal Miles&Go",
+  "kind": "airline"
+ },
+ {
+  "id": "turkish-miles-and-smiles",
+  "name": "Turkish Airlines Miles&Smiles",
+  "kind": "airline"
+ },
+ {
+  "id": "malaysia-enrich",
+  "name": "Malaysia Airlines Enrich",
+  "kind": "airline"
+ },
+ {
+  "id": "thai-royal-orchid-plus",
+  "name": "Thai Airways Royal Orchid Plus",
+  "kind": "airline"
+ },
+ {
+  "id": "world-of-hyatt",
+  "name": "World of Hyatt",
+  "kind": "hotel"
+ },
+ {
+  "id": "ihg-one-rewards",
+  "name": "IHG One Rewards",
+  "kind": "hotel"
+ },
+ {
+  "id": "marriott-bonvoy",
+  "name": "Marriott Bonvoy",
+  "kind": "hotel"
+ },
+ {
+  "id": "wyndham-rewards",
+  "name": "Wyndham Rewards",
+  "kind": "hotel"
+ },
+ {
+  "id": "hilton-honors",
+  "name": "Hilton Honors",
+  "kind": "hotel"
+ },
+ {
+  "id": "choice-privileges",
+  "name": "Choice Privileges",
+  "kind": "hotel"
+ },
+ {
+  "id": "all-accor",
+  "name": "ALL Accor",
+  "kind": "hotel"
+ },
+ {
+  "id": "leading-hotels-leaders-club",
+  "name": "Leading Hotels of the World Leaders Club",
+  "kind": "hotel"
+ },
+ {
+  "id": "preferred-hotels-i-prefer",
+  "name": "Preferred Hotels & Resorts I Prefer",
+  "kind": "hotel"
+ }
+]
