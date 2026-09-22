@@ -12,6 +12,12 @@ export function HomePage({ onGoToCheatSheet, onGoToFinder }: Props) {
         you. Pick whichever fits what you need right now.
       </p>
 
+      <p className="note">
+        Most credit card sites push cards that make them money rather than what fits your needs. This site is
+        different: no affiliate links, no sponsored placement, nothing that affects which cards it recommends. It's
+        free, and it always will be.
+      </p>
+
       <div className="homecards">
         <div className="homecard">
           <h3>Signup Offer Cheat Sheet</h3>
