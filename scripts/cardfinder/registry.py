@@ -439,4 +439,11 @@ UNVALUED = {
     "barclays-emirates-rewards": "Emirates Skywards has no Frequent Miler value.",
     "boa-allways-rewards": "Allegiant Allways points have no Frequent Miler value.",
     "boa-norwegian-cruise": "Norwegian Cruise Line points have no Frequent Miler value.",
+    # 2026-09-22: the live page's offer text read as a truncated fragment ("20,000 points equivalent) when you spend
+    # ...", missing whatever came before the parenthetical) and needsReview is set. The card appears to be cash
+    # back (the fuller text mentions redeeming for cash, statement credit, ACH deposit, or a check, and "2% Cash
+    # Back" as its ongoing rate), with "points equivalent" likely just a comparison, not a real FNBO currency. Needs
+    # a person to check the actual page and either fix the extraction or confirm the true bonus.
+    "fnbo-evergreen": "The live offer read is garbled (a truncated sentence fragment); the true bonus is unclear.",
+    "fnbo-evergreen-business": "The live offer read is garbled (a truncated sentence fragment); the true bonus is unclear.",
 }

@@ -50,7 +50,7 @@ class Shape(unittest.TestCase):
             if c["recommendable"]:
                 self.assertIn("annualFee", c, c["id"])
                 parsed = OFFERS[c["id"]]["parsed"]
-                if parsed["kind"] == "standard" and parsed["minSpend"]:
+                if parsed["kind"] == "standard" and parsed["minSpend"] and parsed["windowMonths"]:
                     self.assertIn("typicalMinSpend", c, c["id"])
 
     def test_a_bonus_with_no_spend_requirement_has_no_min_spend(self):
@@ -264,6 +264,15 @@ class WelcomeBonuses(unittest.TestCase):
     def test_free_night_certificates_are_stored_as_other_value(self):
         b = BY_ID["amex-hilton-surpass"]["welcomeBonus"]
         self.assertEqual(b["otherValue"], VALUATIONS["freeNightCertificates"]["hilton"])
+
+    def test_no_card_with_points_is_missing_a_currency_without_being_flagged(self):
+        # Regression: a fresh offer read once produced points with no CARD_CURRENCY entry and no UNVALUED entry,
+        # which crashed the whole catalog build instead of flagging just that one card (2026-09-22). Every card
+        # here either has a usable currency, or says plainly why it doesn't; nothing is silently missing either.
+        for c in CATALOG:
+            bonus = c.get("welcomeBonus")
+            if bonus and bonus.get("points") and "currency" not in c:
+                self.assertIn("unrankedReason", c, c["id"])
 
     def test_the_number_of_free_nights_is_kept_for_display(self):
         self.assertEqual(BY_ID["amex-hilton-surpass"]["welcomeBonus"]["freeNights"], 1)

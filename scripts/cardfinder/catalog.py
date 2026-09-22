@@ -167,6 +167,11 @@ def build_catalog():
                 entry["unrankedReason"] = UNVALUED[card.id]
             elif parsed["kind"] != "standard":
                 entry["unrankedReason"] = "; ".join(parsed["notes"]) or "The offer has no fixed amount."
+            elif parsed.get("points") and card.id not in CARD_CURRENCY:
+                # A fresh read found points for a card with no known currency: never guess which one, and never let
+                # one card's gap take the whole build down (docs/TODO.md, 2026-09-22: this exact case crashed a
+                # scheduled run). Add the card to CARD_CURRENCY (a real currency) or UNVALUED (none exists yet).
+                entry["unrankedReason"] = f"No points currency is mapped for this card yet (CARD_CURRENCY is missing {card.id})."
             else:
                 currency = CARD_CURRENCY[card.id] if parsed.get("points") else "cash"
                 entry["currency"] = currency

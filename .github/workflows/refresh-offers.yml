@@ -9,13 +9,18 @@ name: Refresh card offers
 # "include_paused" set to true. That flag should only ever be used after confirming the earlier block has
 # actually cleared, not from this schedule.
 #
+# The rebuilt data is verified against the Python test suite before anything is committed (2026-09-22: a fresh
+# read once produced a card with points and no known currency, which crashed data/cards.json's build outright —
+# the test suite catches that as a clean failure instead of a corrupt commit). A test failure blocks the commit
+# entirely, even though one unreadable card does not: those are different kinds of problem.
+#
 # If a genuinely tracked card could not be read this run — which is also what an issuer's circuit breaker
-# tripping (a likely block) looks like — this job fails on purpose, the same notification pattern as the
-# RRV check workflow, AND posts a summary comment to the tracking issue
-# (https://github.com/duffcalifornia/churning-card-finder/issues/1): watching that issue is how GitHub emails
-# you the actual details, not just a "run failed" link. Nothing is posted on a clean run, on purpose — only
-# runs that did not pass are worth an email. Cards that did read successfully are still committed either
-# way: one bad card should not hold back 130 good reads.
+# tripping (a likely block) looks like — or the test suite fails against the rebuilt data, this job fails on
+# purpose, the same notification pattern as the RRV check workflow, AND posts a summary comment to the tracking
+# issue (https://github.com/duffcalifornia/churning-card-finder/issues/1): watching that issue is how GitHub
+# emails you the actual details, not just a "run failed" link. Nothing is posted on a clean run, on purpose —
+# only runs that did not pass are worth an email. Cards that did read successfully are still committed as long
+# as the tests pass: one bad card should not hold back 130 good reads, but a broken build should never ship.
 
 on:
   schedule:
@@ -66,24 +71,39 @@ jobs:
           python3 scripts/refresh_offers.py $args 2>&1 | tee refresh.log
           echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
 
+      - name: Run the test suite against the rebuilt data
+        id: verify
+        run: |
+          set +e
+          python3 -m unittest discover -s scripts/tests -t scripts 2>&1 | tee test.log
+          echo "test_exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
       - name: Post a summary comment, only if the run did not pass
-        if: steps.refresh.outputs.exit_code != '0'
+        if: (steps.refresh.outputs.exit_code != '0' || steps.verify.outputs.test_exit_code != '0') && github.event.inputs.dry_run != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           {
-            echo "Run did not pass (exit code ${{ steps.refresh.outputs.exit_code }}): a tracked card could not be read, or an issuer's circuit breaker tripped."
+            echo "Run did not pass."
             echo ""
-            echo '```'
-            grep -E '^\[NOT FOUND\]|Stopped after repeated error pages|flags:.*page_error|^Summary:' refresh.log || echo "(could not pull details from the log; see the full run)"
-            echo '```'
-            echo ""
+            if [ "${{ steps.refresh.outputs.exit_code }}" != "0" ]; then
+              echo "A tracked card could not be read (exit code ${{ steps.refresh.outputs.exit_code }}), or an issuer's circuit breaker tripped:"
+              echo '```'
+              grep -E '^\[NOT FOUND\]|Stopped after repeated error pages|flags:.*page_error|^Summary:' refresh.log || echo "(could not pull details from the log; see the full run)"
+              echo '```'
+            fi
+            if [ "${{ steps.verify.outputs.test_exit_code }}" != "0" ]; then
+              echo "The test suite failed against the rebuilt data — nothing was committed:"
+              echo '```'
+              grep -E '^(FAIL|ERROR): |^AssertionError' test.log || echo "(could not pull details from the log; see the full run)"
+              echo '```'
+            fi
             echo "[Full run log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           } > comment.md
           gh issue comment 1 --repo ${{ github.repository }} --body-file comment.md
 
       - name: Commit the refreshed data, if anything changed
-        if: github.event.inputs.dry_run != 'true'
+        if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0'
         run: |
           files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json"
           if ! git diff --quiet -- $files; then
@@ -94,6 +114,6 @@ jobs:
             git push
           fi
 
-      - name: Fail the job if a tracked card could not be read
-        if: steps.refresh.outputs.exit_code != '0'
-        run: exit ${{ steps.refresh.outputs.exit_code }}
+      - name: Fail the job if the run did not pass
+        if: steps.refresh.outputs.exit_code != '0' || steps.verify.outputs.test_exit_code != '0'
+        run: exit 1
