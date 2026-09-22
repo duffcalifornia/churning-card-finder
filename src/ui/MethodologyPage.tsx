@@ -101,7 +101,12 @@ export function MethodologyPage() {
           a site, referral offers, or through affiliate links (found on major credit card sites like The Points Guy). Please
           research these offers yourself to make sure you're applying for the best offer possible.
         </li>
-        <li>Each points currency uses one cents-per-point value, regardless of how you'd actually redeem it.</li>
+        <li>
+          Transferable points such as Ultimate Rewards and Membership Rewards can have different valuations depending on how
+          the points are redeemed. Since there are too many variables for this tool to accurately determine the value based on
+          how each individual person might use the points, they are instead given the flat valuation Frequent Miler provides.
+          The value you get from those points could be higher or lower than their assigned value.
+        </li>
         <li>Ranking uses the first-year annual fee only; a card's fee in later years is shown but not ranked on.</li>
         <li>Authorized-user accounts aren't counted anywhere, including toward Chase's 5/24.</li>
       </ul>

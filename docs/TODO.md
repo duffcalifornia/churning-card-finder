@@ -502,3 +502,15 @@ Owner-directed wording changes, all content, no behavior change:
 - `npx tsc --noEmit` clean, 306 TS tests, 404 Python tests (both unaffected — pure JSX text changes), production
   build succeeds. Verified live: every changed paragraph and bullet checked against the owner's exact requested
   text via the rendered page (including the collapsed "eligibility rules" section, expanded to confirm).
+
+## Reworded the points-valuation simplification bullet (2026-09-22)
+Resolved the open item from the previous copy pass. Owner's rewrite: "Transferrable points such as Ultimate
+Rewards and Membership Rewards can have different valuations depending on how the points are redeemed. Since
+there are too many variables that would allow this tool to accurately determine the value based on how each
+individual person might use the points, they are instead given the flat valuation Frequent Miler provides. The
+value you get from those points could be higher or lower than their assigned value." Applied with two small fixes
+flagged and made in the same pass: "Transferrable" -> "Transferable" (spelling), and "too many variables that
+would allow this tool to accurately determine the value" -> "too many variables for this tool to accurately
+determine the value" (the original read backward — the variables are what prevent precision, not what enable it).
+Content and meaning otherwise exactly as given. Verified live via the rendered page. `npx tsc --noEmit` clean,
+306 TS tests, 404 Python tests (both unaffected), production build succeeds.
