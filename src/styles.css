@@ -72,10 +72,9 @@ button { font: inherit; }
 .homecard p { flex: 1; margin: 0; color: var(--muted); font-size: 0.95rem; }
 .homecard .primary { align-self: flex-start; }
 
-.cheatsheet-mobile-select { display: none; margin: 12px 0; font-weight: 600; }
-.cheatsheet-mobile-select select { font: inherit; padding: 6px 8px; margin-left: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
-.cheatsheet-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; align-items: start; }
-.cheatsheet-column { border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-width: 0; }
+.cheatsheet-select { display: block; margin: 12px 0; font-weight: 600; }
+.cheatsheet-select select { font: inherit; padding: 6px 8px; margin-left: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
+.cheatsheet-column { border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-width: 0; margin-top: 16px; }
 .cheatsheet-column h3 { font-size: 1rem; }
 /* A permissive column (e.g. "5/24 or over, cash back") can list 70+ cards, since the cheat sheet shows every
    eligible one rather than a top few; without a cap the page becomes tens of thousands of pixels tall. The
@@ -175,10 +174,3 @@ footer p { margin: 4px 0; }
   .homecards { grid-template-columns: 1fr; }
 }
 
-/* The cheat sheet's four columns need more room per card than the 600px breakpoint above allows, so it collapses
-   to one column plus a dropdown earlier, at the site's own content width. */
-@media (max-width: 860px) {
-  .cheatsheet-mobile-select { display: block; }
-  .cheatsheet-grid { grid-template-columns: 1fr; }
-  .cheatsheet-column.mobile-hidden { display: none; }
-}

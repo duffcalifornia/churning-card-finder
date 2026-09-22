@@ -514,3 +514,24 @@ would allow this tool to accurately determine the value" -> "too many variables 
 determine the value" (the original read backward — the variables are what prevent precision, not what enable it).
 Content and meaning otherwise exactly as given. Verified live via the rendered page. `npx tsc --noEmit` clean,
 306 TS tests, 404 Python tests (both unaffected), production build succeeds.
+
+## Home page: no-affiliate-links trust blurb, and a smaller round of copy edits (2026-09-22)
+Reworded the tagline under the H1 to "A free, impartial, logic based tool for determining which credit card to
+apply for." Reworded the Card Finder privacy note on the home page. Added a trust statement above the "Two ways
+to use this site" subheader (owner drafted, Claude tightened the wording, owner picked the tightened version):
+"Most credit card sites push cards that make them money rather than what fits your needs. This site is different:
+no affiliate links, no sponsored placement, nothing that affects which cards it recommends. It's free, and it
+always will be." Initially placed lower on the page in the muted `.note` style; owner asked for it moved above
+the subheader in full-weight body text since it's one of the most important things the site says, so it now reads
+as plain body copy, not a footnote. Verified live via the rendered page after each change. `npx tsc --noEmit`
+clean throughout.
+
+## Cheat Sheet: dropped the four-column desktop grid in favor of one list at a time, at every width (2026-09-22)
+The four-column grid squeezed each list too narrow to read comfortably on desktop, since the column width was
+capped by the page's 860px text-reading max-width, not by actual screen space. Rather than widen the whole site
+for this one page, applied the existing mobile pattern (a dropdown picking one of the four 5/24-status x
+reward-type lists) unconditionally, removing the breakpoint that used to switch between the grid and the dropdown.
+`CheatSheetPage.tsx` now renders a single `.cheatsheet-column` chosen by the dropdown at all widths; removed
+`.cheatsheet-grid` and renamed `.cheatsheet-mobile-select`/`.mobile-hidden` since they're no longer mobile-only.
+Verified live via the rendered page at desktop width. `npx tsc --noEmit` clean, 306 TS tests pass, production
+build succeeds.
