@@ -229,12 +229,12 @@ export function App() {
         </button>
         <div className="footer-body">
           <p>
-            The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.
-          </p>
-          <p className="footerlinks">
-            If you want to support this project, you could use{" "}
-            <a href="#referrals">one of my referral links</a> or{" "}
-            <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>
+            The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.{" "}
+            <span className="footerlinks">
+              If you want to support this project, you could use{" "}
+              <a href="#referrals">one of my referral links</a> or{" "}
+              <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>
+            </span>
           </p>
         </div>
       </footer>

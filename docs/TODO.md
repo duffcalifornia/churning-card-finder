@@ -656,3 +656,11 @@ collapse toggle to solve the space problem there. Verified live: desktop (explic
 `font-size` is `12.8px` and footer height dropped to ~84px; mobile (375px) computed `font-size` is still
 `13.6px`, confirming the media-query scoping. `npx tsc --noEmit` clean, 306 TS tests pass, production build
 succeeds.
+
+## Merged the footer's two paragraphs into one (2026-09-22)
+Owner asked to remove the line break in the footer to save more vertical space. `App.tsx`: the disclaimer text
+and the "If you want to support this project..." links are now one `<p>` instead of two, with the links wrapped
+in a `<span className="footerlinks">` (kept the class so `.footerlinks a`'s existing muted-color override in
+`styles.css` still applies — nothing there needed to change). Verified live: `footer.querySelectorAll('p').length`
+is now `1`; desktop (1200px) footer height dropped from ~84px to ~61px; mobile (375px, expanded) still wraps
+sensibly across multiple lines. `npx tsc --noEmit` clean, 306 TS tests pass, production build succeeds.
