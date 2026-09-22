@@ -4,14 +4,14 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 
 | Card | Points | Cash | Free nights | Min spend | Months | Extra tiers | Ceiling | Notes |
 |---|---|---|---|---|---|---|---|---|
-| Chase Freedom Flex | 20,000 | - | - | $500 | 3 | - | - | advertised as $200 cash back but paid as ultimate-rewards points |
+| Chase Freedom Flex | 25,000 | - | - | $500 | 3 | - | - | advertised as $250 cash back but paid as ultimate-rewards points |
 | Chase Freedom Unlimited | 20,000 | - | - | $500 | 3 | - | - | advertised as $200 cash back but paid as ultimate-rewards points |
 | Chase Sapphire Preferred | 75,000 | - | - | $5,000 | 3 | - | - |  |
-| Chase Sapphire Reserve | 100,000 | - | - | $6,000 | 3 | - | - |  |
-| United Explorer Card | 50,000 | - | - | $3,000 | 3 | - | - |  |
-| United Gateway Card | 30,000 | - | - | $1,000 | 3 | - | - |  |
+| Chase Sapphire Reserve | 100,000 | - | - | $6,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
+| United Explorer Card | 50,000 | - | - | $3,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
+| United Gateway Card | 30,000 | - | - | $1,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
 | United Quest Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
-| United Club Infinite Card | 80,000 | - | - | $5,000 | 3 | - | - |  |
+| United Club Infinite Card | 80,000 | - | - | $5,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
 | Marriott Bonvoy Bold Credit Card | 45,000 | - | - | $1,000 | 3 | - | - |  |
 | Marriott Bonvoy Bountiful Credit Card | 85,000 | - | - | $4,000 | 3 | - | - |  |
 | Marriott Bonvoy Boundless Credit Card | - | - | 3 | $3,000 | 3 | - | - |  |
@@ -73,17 +73,17 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Citi AAdvantage Globe Mastercard | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | AAdvantage MileUp Card | 15,000 | - | - | $500 | 3 | - | - |  |
 | Citi AAdvantage Business World Elite Mastercard | 65,000 | - | - | $4,000 | 4 | - | - |  |
-| Venture X Rewards | 75,000 | - | - | $4,000 | 3 | - | - |  |
+| Venture X Rewards | 75,000 | $300 | - | $4,000 | 3 | - | - | a repeated amount was merged into one |
 | Venture Rewards Travel Card | 75,000 | - | - | $4,000 | 3 | - | - |  |
 | VentureOne Rewards | 20,000 | - | - | $500 | 3 | - | - |  |
 | Quicksilver Cash Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Savor Rewards | - | $200 | - | $500 | 3 | - | - |  |
-| Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - |  |
-| Spark Cash Select | - | $1,250 | - | $10,000 | 3 | - | - |  |
-| Venture X Business | 150,000 | - | - | $30,000 | 3 | - | - |  |
+| Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - | a repeated amount was merged into one |
+| Spark Cash Select | - | $1,000 | - | $10,000 | 3 | - | - |  |
+| Venture X Business | 150,000 | $300 | - | $30,000 | 3 | - | - | a repeated amount was merged into one |
 | Wells Fargo Active Cash Card | - | $100 | - | $500 | 3 | - | - |  |
-| Wells Fargo Autograph Visa Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
-| Wells Fargo Autograph Journey Visa Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
+| Wells Fargo Autograph Visa Card | 20,000 | $200 | - | $1,000 | 3 | - | - |  |
+| Wells Fargo Autograph Journey Visa Card | 60,000 | $50 | - | $4,000 | 3 | - | - |  |
 | Wells Fargo Choice Privileges Mastercard | 60,000 | - | - | $1,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 60,000; please check |
 | Wells Fargo Signify Business Cash Card | - | $500 | - | $5,000 | 3 | - | - |  |
 | Bank of America Customized Cash Rewards Credit Card | - | $200 | - | $1,000 | 3 | - | - |  |
@@ -102,14 +102,16 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | U.S. Bank Business Altitude Connect Visa Signature Card | 75,000 | - | - | $6,000 | 6 | - | - |  |
 | U.S. Bank Triple Cash Rewards Visa Business Card | - | $750 | - | $6,000 | 6 | - | - |  |
 | Business Leverage Visa Signature Card | - | $600 | - | $6,000 | 4 | - | yes |  |
+| Evergreen Credit Card | 20,000 | - | - | $1,000 | - | - | - | REVIEW: no time window found |
+| Evergreen Business Edition Credit Card | 20,000 | - | - | $3,000 | - | - | - | REVIEW: no time window found |
 | JetBlue Card | 10,000 | - | - | $1,000 | 3 | - | - |  |
 | JetBlue Plus Card | 70,000 | - | - | $1,000 | 3 | - | - |  |
-| JetBlue Premier Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
+| JetBlue Premier Card | 90,000 | $300 | - | $5,000 | 3 | - | yes |  |
 | Wyndham Rewards Earner Card | 30,000 | - | - | $1,000 | 3 | 45,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Plus Card | 45,000 | - | - | $1,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Premier Card | 90,000 | - | - | $6,000 | 4 | 30,000 pts after $750 in 6 mo | - |  |
 | Wyndham Rewards Earner Business Card | 45,000 | - | - | $3,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
-| Frontier Airlines World Mastercard | 50,000 | - | - | $500 | 3 | - | - |  |
+| Frontier Airlines World Mastercard | 50,000 | - | - | $500 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
 | Breeze Airways Card | 30,000 | - | - | $1,000 | 3 | - | - |  |
 | Emirates Skywards Premium World Elite Mastercard | 70,000 | - | - | $3,000 | 3 | - | - |  |
 | Emirates Skywards Rewards World Elite Mastercard | 40,000 | - | - | $3,000 | 3 | - | - |  |
@@ -119,7 +121,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Discover it Cash Back Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Chrome Gas & Restaurants Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Miles Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
-| Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - |  |
+| Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - | a repeated amount was merged into one |
 | Atmos Rewards Summit Visa Infinite Credit Card | 70,000 | - | - | $3,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
 | Air France KLM Visa Signature Credit Card | 50,000 | - | - | $2,000 | 3 | - | - |  |
 | Allways Rewards Visa Card | 30,000 | - | - | $1,500 | 3 | - | - |  |
@@ -135,9 +137,9 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Morgan Stanley Blue Cash Preferred American Express Card | - | $250 | - | $3,000 | 6 | - | - |  |
 | Morgan Stanley Platinum American Express Card | 80,000 | - | - | $12,000 | 6 | - | - |  |
 
-## Cards with no welcome offer, confirmed by the site owner (29)
+## Cards with no welcome offer, confirmed by the site owner (27)
 
-Chase Freedom Rise, Chase Slate Credit Card, Chase Slate Edge Credit Card, DoorDash Rewards Mastercard, Wells Fargo Reflect Visa Card, U.S. Bank Smartly Visa Signature Card, U.S. Bank Shield Visa Card, Getaway Credit Card, Evergreen Credit Card, GreenSelect Credit Card, Visa Secured Card, Evergreen Business Edition Credit Card, Discover it Student Chrome Credit Card, Discover it Secured Cash Back Credit Card, Royal ONE Visa Signature Credit Card, Royal ONE Plus Visa Signature Credit Card, BankAmericard Credit Card, BankAmericard Credit Card for Students, Customized Cash Rewards Secured Credit Card, Unlimited Cash Rewards Secured Credit Card, Travel Rewards Visa Secured Credit Card, BankAmericard Secured Credit Card, Platinum Plus Mastercard Business Credit Card, Unlimited Cash Rewards Secured Business Credit Card, Business Shield Visa Card, Amazon Business Credit Card, Cash+ Secured Visa Card, Altitude Go Secured Visa Card, Secured Visa Card
+Chase Freedom Rise, Chase Slate Credit Card, Chase Slate Edge Credit Card, DoorDash Rewards Mastercard, Wells Fargo Reflect Visa Card, U.S. Bank Smartly Visa Signature Card, U.S. Bank Shield Visa Card, Getaway Credit Card, GreenSelect Credit Card, Visa Secured Card, Discover it Student Chrome Credit Card, Discover it Secured Cash Back Credit Card, Royal ONE Visa Signature Credit Card, Royal ONE Plus Visa Signature Credit Card, BankAmericard Credit Card, BankAmericard Credit Card for Students, Customized Cash Rewards Secured Credit Card, Unlimited Cash Rewards Secured Credit Card, Travel Rewards Visa Secured Credit Card, BankAmericard Secured Credit Card, Platinum Plus Mastercard Business Credit Card, Unlimited Cash Rewards Secured Business Credit Card, Business Shield Visa Card, Amazon Business Credit Card, Cash+ Secured Visa Card, Altitude Go Secured Visa Card, Secured Visa Card
 
 ## Offer unknown: page never read (0)
 
