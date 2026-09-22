@@ -40,6 +40,17 @@ describe("spendCapacity", () => {
     expect(() => spendCapacity(h, 2)).toThrow(/window/);
     expect(() => spendCapacity(h, 12)).toThrow(/window/);
   });
+  it("assumes double the 3-month spend at 6 months when spend6Months was left blank (owner, 2026-09-22)", () => {
+    const blank6 = household({ spend3Months: 3000, spend6Months: 0, supplementalSpend3Months: 0 });
+    expect(spendCapacity(blank6, 6)).toBe(6000); // 2 x 3000, not the literal 0 stored
+    expect(spendCapacity(blank6, 3)).toBe(3000); // 3-month figure itself is untouched
+  });
+  it("an explicit, real spend6Months of 0 is never actually meaningful (spend only ever grows), so it is always treated as blank", () => {
+    // Deliberately not distinguished from "not entered": a lower real 6-month total than the 3-month total would
+    // be a nonsensical answer (spend does not shrink), so there is no legitimate case this reinterprets wrongly.
+    const h0 = household({ spend3Months: 5000, spend6Months: 0, supplementalSpend3Months: 0 });
+    expect(spendCapacity(h0, 6)).toBe(10000);
+  });
 });
 
 describe("hardExclusion: minimum spend", () => {

@@ -293,3 +293,39 @@ the state list on a third line by itself (no "or" before the last one, matching 
   a `\n` and `pre-line` only changes how newlines and existing whitespace runs are handled, not normal wrapping.
 - Verified live: the three lines render distinctly (confirmed via `get_page_text` and a screenshot), no change to
   any other yes/no question. `npx tsc --noEmit` clean, 299 TS tests, 401 Python tests, production build succeeds.
+
+## Fixed the Spending step's number fields; six-month spend falls back to double (2026-09-22)
+Two related owner reports: (1) the $3,000/$6,000/$0 starting figures were real pre-filled guesses, not
+suggestions; (2) trying to change either one, the box "forced a zero in it that couldn't be deleted until
+typing another digit" — a real controlled-input bug, not a misunderstanding.
+- **Root cause of the stuck-zero bug**: `Money`'s `onChange` committed straight to the parent on every keystroke,
+  including the transiently-empty state while clearing the box — for a non-`allowBlank` field that meant calling
+  `onChange(0)` the instant it went blank, so the very next render snapped a literal "0" back into the box before
+  the next keystroke could land. Fixed by giving `Money` its own local text state, only resynced from the parent
+  `value` when that value changed for a reason other than this input's own last edit (an external reset, e.g.
+  Start Over) — the standard fix for a controlled numeric input fighting the user's typing. Verified by dispatching
+  real input events one keystroke at a time (clear, then type "7","5","0" separately) and confirming the field
+  lands on exactly "750", not "0750" or stuck.
+- **Suggestions, not pre-filled defaults**: `defaultProfile()` now starts `spend3Months`/`spend6Months` at 0 (was
+  3000/6000); `Money` gained `hideZero` (displays a stored 0 as an empty box, reusing the same idea `Count.tsx`
+  already uses for card counts) and `placeholder` (custom suggestion text, e.g. "3000", instead of the fixed
+  "0"/"No limit"). The 6-month field's placeholder is now *dynamic* — double whatever is currently in the
+  3-month field (or "6000" if that's still blank) — so the box itself shows the real number the fallback below
+  would use. The last field (supplemental spend) deliberately keeps showing a literal starting "0", not blank
+  (owner: "every question but the last"), since $0 extra spend is already a normal, real answer for most people,
+  not a guess to be replaced — it only got the typing-bug fix, not the suggestion treatment.
+- **The three-month answer is the one that must be real** (owner: "otherwise the tool won't work") — no new
+  blocking validation was added (nothing currently gates the Next button on this step), but it now reads clearly
+  as required (a hint under the question) and starts genuinely blank rather than silently pre-filled with a
+  guessed 3000, so leaving it unanswered is obvious rather than quietly working with an arbitrary number.
+- **Six-month spend, left blank, is assumed to be double the three-month answer** — implemented as a real
+  computation in `spendCapacity()` (`householdFilters.ts`), not just a UI hint: a stored 0 for `spend6Months` is
+  treated as "not entered" and computed as `spend3Months * 2`. Safe to reuse 0 as the "unset" sentinel here (rather
+  than widening the type to `number | null` like `maxAnnualFee`) because a real 6-month total lower than the
+  3-month total is never a sensible answer — spend only accumulates over time, so there's no legitimate case where
+  a household's true answer is genuinely $0 once they've already spent something by month 3. 2 new tests
+  (`householdFilters.test.ts`), TDD (written and confirmed red before the fallback was added).
+- Verified live end to end: fresh profile shows blank suggestion-placeholder fields (except the last, which shows
+  "0"); clearing and retyping any field works cleanly; the 6-month placeholder updates live as the 3-month value
+  changes; "Start Over" correctly resets every field back to its blank/0 starting state. `npx tsc --noEmit` clean,
+  301 TS tests (299 + 2 new), 401 Python tests (unaffected), production build succeeds.

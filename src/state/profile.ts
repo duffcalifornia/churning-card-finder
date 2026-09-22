@@ -52,9 +52,12 @@ export function defaultProfile(players = 1): Profile {
   return {
     version: 1,
     players: Array.from({ length: players }, (_, i) => newPlayer(i + 1)),
-    // Starting points shown in the household questions; the user changes them. A blank annual fee means no limit.
+    // Every spending answer starts blank (0), shown as an empty box with a suggested figure as its placeholder,
+    // not a pre-filled guess (owner, 2026-09-22) — spend3Months is the one the household must actually answer
+    // for the tool to produce anything useful; spend6Months, left blank, is assumed to be double spend3Months
+    // (spendCapacity in householdFilters.ts). A blank annual fee means no limit.
     household: {
-      maxAnnualFee: null, spend3Months: 3000, spend6Months: 6000, supplementalSpend3Months: 0, bonusTypes: [],
+      maxAnnualFee: null, spend3Months: 0, spend6Months: 0, supplementalSpend3Months: 0, bonusTypes: [],
       excludedPrograms: [], targetPrograms: [],
     },
   };
