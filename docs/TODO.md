@@ -535,3 +535,15 @@ reward-type lists) unconditionally, removing the breakpoint that used to switch 
 `.cheatsheet-grid` and renamed `.cheatsheet-mobile-select`/`.mobile-hidden` since they're no longer mobile-only.
 Verified live via the rendered page at desktop width. `npx tsc --noEmit` clean, 306 TS tests pass, production
 build succeeds.
+
+## Replaced the native select indicator with a single down chevron (2026-09-22)
+Owner felt the browser's default select indicator (a stacked up/down stepper on most platforms) reads as
+"increment/decrement" rather than "opens a menu." Explored two side-by-side mockups in a Design canvas artifact
+first; owner approved the redesigned one. Added `--chevron` (a data-URI SVG, one variant per light/dark theme,
+matching `--muted`) to the CSS tokens, plus a shared `select { appearance: none; ...; background-image:
+var(--chevron); }` rule. Along the way, changed the two scoped select rules (`.field select`,
+`.cheatsheet-select select`) from the `background` shorthand to `background-color`, since the shorthand resets
+`background-image` to `none` and was silently overwriting the new chevron. Verified live: both real `<select>`
+elements on the site (Cheat Sheet's "View" and the People step's "Number of people") render the single chevron,
+confirmed via computed styles (`appearance: none`, `background-image` set, `padding-right: 28px`) and a
+screenshot. `npx tsc --noEmit` clean, 306 TS tests pass, production build succeeds.
