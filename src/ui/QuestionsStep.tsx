@@ -83,7 +83,7 @@ export function QuestionsStep({ profile, onChange }: Props) {
             )}
             {everHadInk && (
               <YesNo
-                label="You've had a Chase Ink business card before, which normally means you can't get that bonus again. You can get around this by applying through a newly formed LLC with its own EIN, but this only makes sense in a state where forming an LLC is free or cheap. If you live in one of these states, would you be willing to form an LLC to apply again: AZ, CO, HI, IA, ID, MI, MN, MO, MS, MT, NM, OH, PA, WI, or UT?"
+                label={"You've had a Chase Ink business card before, which normally means you can't get that bonus again. You can get around this by applying through a newly formed LLC with its own EIN, but this only makes sense in a state where forming an LLC is free or cheap.\nDo you live in one of the states in the below list, and if so, would you be willing to form an LLC in order to allow you to apply for a new Ink card?\nAZ, CO, HI, IA, ID, MI, MN, MO, MS, MT, NM, OH, PA, WI, UT"}
                 value={p.willingToFormLlcForInk ?? false}
                 onChange={(v) => update(i, { willingToFormLlcForInk: v })}
               />

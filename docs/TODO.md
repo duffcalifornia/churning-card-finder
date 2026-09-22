@@ -280,3 +280,16 @@ wrapped lines rendered outside the space the fieldset border accounted for.
 - Verified live: reproduced the original bug's exact question (gave the profile an Ink card via History, then
   viewed About You), confirmed the box now fully encloses all six lines. `npx tsc --noEmit` clean, 299 TS tests,
   401 Python tests (unaffected), production build succeeds.
+
+## Reworded the Ink LLC question for clarity (2026-09-22)
+Owner felt the question was oddly phrased for a yes/no (the yes/no ask was buried mid-paragraph, with the state
+list folded into the same sentence). Reworded per the owner's exact text: the context sentence now ends at
+"cheap.", followed on its own line by the actual yes/no question ("Do you live in one of the states in the below
+list, and if so, would you be willing to form an LLC in order to allow you to apply for a new Ink card?"), then
+the state list on a third line by itself (no "or" before the last one, matching the owner's exact list).
+- `YesNo`'s `label` string now has two `\n`s to mark the three lines; `.yesno-label` in `styles.css` gained
+  `white-space: pre-line` so those render as real line breaks (a `\n` in a plain HTML text node is otherwise
+  collapsed to a space) — safe for every other yes/no question on this step too, since none of the others contain
+  a `\n` and `pre-line` only changes how newlines and existing whitespace runs are handled, not normal wrapping.
+- Verified live: the three lines render distinctly (confirmed via `get_page_text` and a screenshot), no change to
+  any other yes/no question. `npx tsc --noEmit` clean, 299 TS tests, 401 Python tests, production build succeeds.
