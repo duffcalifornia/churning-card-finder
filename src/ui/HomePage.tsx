@@ -34,7 +34,7 @@ export function HomePage({ onGoToCheatSheet, onGoToFinder }: Props) {
       </div>
 
       <p className="note">
-        Your answers, if you use the Card Finder, stay in this browser only. Nothing is sent to a server. See the{" "}
+        If you use the Card Finder, your answers stay entirely in this browser - nothing is ever sent to a server. See the{" "}
         <a href="#methodology">Ranking Methodology</a> page for how cards are valued and which rules are checked.
       </p>
     </section>
