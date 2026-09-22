@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Profile } from "./engine/types";
 import type { RankBy } from "./engine/recommend";
 import { defaultProfile, parseStoredProfile } from "./state/profile";
@@ -79,6 +79,20 @@ export function App() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
+  // The footer stays fixed to the bottom of the viewport everywhere except the questionnaire steps of the Card
+  // Finder (People through Spending), which are already dense with inputs and need the space; it reappears once
+  // the results step generates a list.
+  const footerFixed = !(page === "finder" && step < WIZARD_STEPS.length - 1);
+  const footerRef = useRef<HTMLElement>(null);
+  const [footerHeight, setFooterHeight] = useState(0);
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setFooterHeight(el.getBoundingClientRect().height));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [footerFixed]);
+
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
@@ -144,7 +158,7 @@ export function App() {
         </nav>
       </header>
 
-      <div id="main-content">
+      <div id="main-content" style={footerFixed ? { paddingBottom: footerHeight + 16 } : undefined}>
         {page === "home" && <HomePage onGoToCheatSheet={() => goToPage("cheatsheet")} onGoToFinder={() => goToPage("finder")} />}
 
         {page === "cheatsheet" && <CheatSheetPage rankBy={rankBy} onRankByChange={setRankBy} onGoToFinder={() => goToPage("finder")} />}
@@ -186,7 +200,7 @@ export function App() {
         )}
       </div>
 
-      <footer>
+      <footer ref={footerRef} className={footerFixed ? "footer-fixed" : undefined}>
         <p>
           The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.
         </p>

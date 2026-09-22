@@ -600,3 +600,21 @@ per the owner's exact replacement text). Confirmed the footer was already render
 (outside all page-conditional blocks in `App.tsx`) — no code change was needed for "always visible on all
 pages"; verified live on both the home page and the Card Finder page. `npx tsc --noEmit` clean, 306 TS tests
 pass, production build succeeds.
+
+## Footer fixed to the viewport, except during the questionnaire steps (2026-09-22)
+Owner clarified: "always visible" meant pinned to the bottom of the viewport at all times, not just present
+somewhere on the page. Pushed back first — a permanently fixed footer costs real vertical space on the Card
+Finder's input-heavy questionnaire steps, which already scroll a lot and, on the issuer table, have their own
+sticky header inside a 70vh area. Owner agreed and settled on a middle ground: fixed everywhere except the
+questionnaire steps (People, Card history, About you, Spending), reappearing once the results step generates a
+list. `App.tsx`: `footerFixed = !(page === "finder" && step < WIZARD_STEPS.length - 1)`; the footer gets
+`className="footer-fixed"` and a `ref`; a `ResizeObserver` on that ref tracks its real rendered height (it wraps
+to 3 lines on mobile vs. 2 on desktop) into `footerHeight` state, which sets `#main-content`'s `paddingBottom` to
+`footerHeight + 16` only when fixed, so fixed-position footer never overlaps the last bit of page content.
+`styles.css`: `.footer-fixed` (`position: fixed; bottom: 0`, full viewport width, `var(--bg)` background) with
+its children capped to `main`'s own 860px content width so the text lines up. Verified live: footer is NOT fixed
+on Card Finder steps 1-4 (`footer.className === ""`), IS fixed on step 5 / Results
+(`footer.className === "footer-fixed"`) and on every other page; scrolled to the bottom of the home page and the
+mobile-width (375px, 3-line-wrapped footer) view and confirmed via `getBoundingClientRect()` that the footer's
+top edge sits below the last content element's bottom edge in both cases — no overlap. `npx tsc --noEmit` clean,
+306 TS tests pass, production build succeeds.

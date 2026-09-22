@@ -165,6 +165,11 @@ tr.extra label { display: block; }
 .bestpersonal .results { padding-top: 4px; }
 footer { margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
 footer p { margin: 4px 0; }
+/* Fixed to the bottom of the viewport on every page except the Card Finder's questionnaire steps (see App.tsx),
+   which are already dense with inputs and need the vertical space; the inner max-width/padding mirrors `main`'s
+   own so the content lines up, since the fixed footer itself spans the full viewport width. */
+.footer-fixed { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; margin-top: 0; padding: 10px 16px; background: var(--bg); max-width: none; }
+.footer-fixed > * { max-width: 860px; margin-left: auto; margin-right: auto; }
 .footerlinks a { color: var(--muted); }
 
 .changelog h2 { margin-top: 28px; }
