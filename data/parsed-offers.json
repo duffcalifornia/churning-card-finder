@@ -1612,15 +1612,13 @@
   "parsed": {
    "kind": "standard",
    "points": 75000.0,
-   "cashBack": 300.0,
+   "cashBack": null,
    "freeNightAwards": 0,
    "minSpend": 4000.0,
    "windowMonths": 3,
    "additionalTiers": [],
    "ceiling": false,
-   "notes": [
-    "a repeated amount was merged into one"
-   ],
+   "notes": [],
    "displayedAsCash": null
   },
   "needsReview": false
@@ -1770,15 +1768,13 @@
   "parsed": {
    "kind": "standard",
    "points": 150000.0,
-   "cashBack": 300.0,
+   "cashBack": null,
    "freeNightAwards": 0,
    "minSpend": 30000.0,
    "windowMonths": 3,
    "additionalTiers": [],
    "ceiling": false,
-   "notes": [
-    "a repeated amount was merged into one"
-   ],
+   "notes": [],
    "displayedAsCash": null
   },
   "needsReview": false
@@ -1833,12 +1829,12 @@
   "issuer": "wellsfargo",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 \u2013 that\u2019s $600 toward your next trip $95 Annual Fee Important credit terms Apply now Offers may differ from time to time and depend on the marketing channel",
+  "sourceText": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 \u2013 that\u2019s $600 toward your next trip $95 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel",
   "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 60000.0,
-   "cashBack": 50.0,
+   "cashBack": null,
    "freeNightAwards": 0,
    "minSpend": 4000.0,
    "windowMonths": 3,
@@ -2405,12 +2401,12 @@
   "parsed": {
    "kind": "standard",
    "points": 90000.0,
-   "cashBack": 300.0,
+   "cashBack": null,
    "freeNightAwards": 0,
    "minSpend": 5000.0,
    "windowMonths": 3,
    "additionalTiers": [],
-   "ceiling": true,
+   "ceiling": false,
    "notes": [],
    "displayedAsCash": null
   },

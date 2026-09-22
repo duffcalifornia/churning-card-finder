@@ -78,14 +78,30 @@ _ONGOING_BENEFIT = re.compile(
 _SECOND_TIER_LEAD = re.compile(r"^(?:Plus,?|Also,?|Then,?|And\s+also)\b", re.I)
 
 
+# A standalone digit acting as a footnote marker before a new topic or dollar figure — the same signal
+# extract_offer() already uses to trim the primary offer text at "... months 2 $95 Annual Fee". Without this,
+# a page with no asterisks at all (numbered footnotes instead, e.g. Barclays) kept its entire unrelated
+# "Benefits" section as full_text, which parse_offer then misread as part of the welcome bonus (real bug, caught
+# live 2026-09-22: Barclays JetBlue Premier's "up to $300 in statement credits" ongoing perk, several sentences
+# after the actual offer, was picked up as the welcome bonus's cash component and marked it a ceiling too).
+_FOOTNOTE_BOUNDARY = re.compile(r"\s*\*(?:\s|$)|\s+\d\s+(?=\$|\d+X\b|(?!Just\b)[A-Z])")
+
+
 def _following_text(tail):
-    """Text after an offer, up to a footnote asterisk, but reading on when a second tier follows the asterisk."""
-    parts = re.split(r"\s*\*(?:\s|$)", tail)
+    """Text after an offer, up to a footnote (an asterisk, or a numbered footnote marker), but reading on when a
+    second tier follows it. Also cut at the first sign of ongoing-benefit language ("every year", "account
+    anniversary", ...) wherever it falls, footnote or not — a recurring perk is never part of a one-time welcome
+    bonus, not even a genuine second tier (real bug, caught live 2026-09-22: Capital One Venture X's recurring
+    "$300 Annual Travel Credit... every year" was swept in as if it were part of the signup bonus)."""
+    parts = _FOOTNOTE_BOUNDARY.split(tail)
     kept = parts[0]
     for nxt in parts[1:]:
         if not _SECOND_TIER_LEAD.match(nxt.strip()):
             break
         kept += " " + nxt
+    benefit = _ONGOING_BENEFIT.search(kept)
+    if benefit:
+        kept = kept[:benefit.start()]
     return kept
 
 

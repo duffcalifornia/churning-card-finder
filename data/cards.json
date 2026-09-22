@@ -2032,8 +2032,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "points": 75000.0,
-   "cashBack": 300.0
+   "points": 75000.0
   },
   "typicalMinSpend": {
    "amount": 4000.0,
@@ -2226,8 +2225,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "points": 150000.0,
-   "cashBack": 300.0
+   "points": 150000.0
   },
   "typicalMinSpend": {
    "amount": 30000.0,
@@ -2296,8 +2294,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "points": 60000.0,
-   "cashBack": 50.0
+   "points": 60000.0
   },
   "typicalMinSpend": {
    "amount": 4000.0,
@@ -2894,9 +2891,7 @@
    "airline"
   ],
   "welcomeBonus": {
-   "points": 90000.0,
-   "cashBack": 300.0,
-   "ceiling": true
+   "points": 90000.0
   },
   "typicalMinSpend": {
    "amount": 5000.0,

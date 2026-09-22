@@ -426,3 +426,43 @@ completely.
   Platinum disappears from the results entirely (revealing the higher-value business cards underneath it), then
   back to "Yes" and confirmed it reappears with its NLL note. `npx tsc --noEmit` clean, 306 TS tests (304 + 2
   new), 401 Python tests (unaffected), production build succeeds.
+
+## Fixed real bugs in the offer extractor: unrelated ongoing perks read as the welcome bonus (2026-09-22)
+Owner report, with a Barclays screenshot as proof: the site showed JetBlue Premier's bonus as "up to 90,000 miles
++ $300 statement credit" with an "as high as" ceiling note, but Barclays' own page states a flat 90,000 points
+with no ceiling and no $300 mention at all in the signup offer.
+
+Root-caused, not guessed: traced the exact stored data (`scripts/cardfinder/last_known_offers.json`) and confirmed
+`full_text` (extended context captured after the offer sentence, meant only to catch a genuine second tier like
+"Plus, X after spending Y more") had swept in an entire unrelated "Benefits" section several sentences later —
+"TrueBlue Travel statement credits: Earn up to $300 in statement credits" is an ongoing cardholder perk, not part
+of the signup bonus. `parse_offer` then read that stray "$300" and "up to" as if they belonged to the welcome
+bonus. Two distinct gaps in `cardfinder/extract.py`'s `_following_text()`, both real, found by then auditing every
+other card's cached data for the same signature (before vs after `full_text` changing `cash_back`/`ceiling`) rather
+than assuming this was the only one:
+1. The tail-capture only recognized an asterisk as a footnote boundary; a page using plain numbered footnotes
+   (no asterisks at all, e.g. Barclays) kept its *entire* uncapped tail. Added a footnote-boundary pattern for a
+   standalone digit before a new topic or dollar figure (reusing the exact signal `extract_offer()` already used
+   to trim the *primary* offer text) — JetBlue Premier's case.
+2. Even with that, a footnote followed immediately by another *plain number* (not `$`/a capital letter) doesn't
+   match either boundary and still let ongoing-benefit language through — Capital One Venture X's "1 10,000 Miles
+   Anniversary Bonus ... every year, starting on your first anniversary" slipped past the footnote check entirely.
+   Added a second, independent cutoff: truncate at the first ongoing-benefit phrase ("every year", "account
+   anniversary", ...) found anywhere in the kept text, footnote or not — a recurring perk can never legitimately
+   be part of a one-time signup bonus, even a genuine multi-tier one.
+Auditing every cached card for "does full_text change cash_back or ceiling vs the short text" (offline, no
+network) found two more real cards with the same defect, not just the one reported: Venture X personal/business
+(a recurring "$300 Annual Travel Credit... every year") and Wells Fargo Autograph Journey Visa (a "Plus, a $50
+annual statement credit" recurring perk, incorrectly counted as $50 extra signup-bonus cash). Two more cards
+(Amex Delta Gold/Platinum) matched the same audit signal but were manually confirmed to be a genuine, currently
+active combined offer ("Limited Time Offer: Earn a $250 Statement Credit and the bonus miles...") — left untouched.
+- 3 new tests in `test_extract.py` (the exact JetBlue and Venture X repro cases, plus a check that a genuine
+  numbered-footnote-then-second-tier is still kept), TDD (written and confirmed red before the fix).
+- The code fix only affects *future* scrapes; the already-cached data for all 4 real cases needed a live re-fetch
+  to actually correct what the site shows today. Re-ran `refresh_offers.py --card <id>` for each (JetBlue Premier;
+  both Venture X cards together; Autograph Journey), confirmed each now reads back with no spurious cash/ceiling,
+  and let the pipeline's own changelog-writing (Autograph Journey's bonus text genuinely changed, so it got a
+  real entry; JetBlue's and Venture X's short `text` was already correct and unchanged, only the hidden
+  `full_text` was ever wrong, so no changelog entry for those — correctly, nothing user-visible changed for them
+  before this fix).
+- `npx tsc --noEmit` clean, 306 TS tests (unaffected), 404 Python tests (403 + 3 new), production build succeeds.

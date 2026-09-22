@@ -430,6 +430,39 @@ class OfferKeepsTheFollowingText(unittest.TestCase):
         self.assertNotIn("*", offer.full_text)
         self.assertNotIn("$2,000 value", offer.full_text)
 
+    def test_full_text_stops_at_a_numbered_footnote_with_no_asterisk_too(self):
+        """Barclays JetBlue Premier: the offer is immediately followed by a numbered (not asterisked) benefits
+        list ending in an unrelated "up to $300 in statement credits" ongoing perk, which parse_offer used to
+        misread as the welcome bonus's cash component, wrongly flagging the offer as a ceiling too (real bug,
+        caught live 2026-09-22: the site showed "+ $300 statement credit" and an "as high as" note Barclays'
+        own page never states for this card's signup bonus)."""
+        text = ("Earn 90,000 bonus points after spending $5,000 on purchases and paying the annual fee in full, "
+                "both within the first 90 days 2 Benefits Access to BlueHouse Complimentary access to BlueHouse "
+                "for cardmembers with eligible fares 2 Priority Pass Access to over 1,800 participating lounges "
+                "2 TrueBlue Travel statement credits Earn up to $300 in statement credits on eligible travel purchases.")
+        offer = extract_offer(text)
+        self.assertNotIn("$300", offer.full_text)
+        self.assertNotIn("statement credits", offer.full_text)
+
+    def test_a_genuine_second_tier_after_a_numbered_footnote_is_still_kept(self):
+        text = ("Earn 75,000 bonus points after you spend $4,000 on purchases in the first 3 months. 2 "
+                "Plus, 40,000 bonus points after you spend $20,000 on purchases in the first 12 months.")
+        offer = extract_offer(text)
+        self.assertIn("Plus, 40,000 bonus points after you spend $20,000", offer.full_text)
+
+    def test_full_text_stops_at_a_recurring_annual_benefit_even_with_no_footnote_boundary_before_it(self):
+        """Capital One Venture X: a numbered footnote ("1 10,000 Miles Anniversary Bonus...") isn't itself a
+        boundary our footnote pattern recognizes (a digit followed by another digit, not $ or a capital letter),
+        so the recurring "every year" language inside it needs its own cutoff (real bug, caught live 2026-09-22:
+        the $300 annual travel credit several sentences later was swept in as if part of the signup bonus)."""
+        text = ("Earn 75,000 bonus miles once you spend $4,000 on purchases within the first 3 months from account opening. "
+                "1 10,000 Miles Anniversary Bonus Get 10,000 bonus miles (equal to $100 towards travel) every year, starting on your first anniversary. "
+                "2 $300 Annual Travel Credit Receive a $300 annual credit for hotels, flights, vacation rentals and more through Capital One Travel . "
+                "3 $120 Global Entry or TSA Pre")
+        offer = extract_offer(text)
+        self.assertNotIn("every year", offer.full_text)
+        self.assertNotIn("$300", offer.full_text)
+
 
 class FromMainHeading(unittest.TestCase):
     def test_starts_at_the_h1_tag_skipping_title_and_navigation(self):

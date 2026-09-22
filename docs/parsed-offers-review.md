@@ -73,17 +73,17 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Citi AAdvantage Globe Mastercard | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | AAdvantage MileUp Card | 15,000 | - | - | $500 | 3 | - | - |  |
 | Citi AAdvantage Business World Elite Mastercard | 65,000 | - | - | $4,000 | 4 | - | - |  |
-| Venture X Rewards | 75,000 | $300 | - | $4,000 | 3 | - | - | a repeated amount was merged into one |
+| Venture X Rewards | 75,000 | - | - | $4,000 | 3 | - | - |  |
 | Venture Rewards Travel Card | 75,000 | - | - | $4,000 | 3 | - | - |  |
 | VentureOne Rewards | 20,000 | - | - | $500 | 3 | - | - |  |
 | Quicksilver Cash Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Savor Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - | a repeated amount was merged into one |
 | Spark Cash Select | - | $1,250 | - | $10,000 | 3 | - | - |  |
-| Venture X Business | 150,000 | $300 | - | $30,000 | 3 | - | - | a repeated amount was merged into one |
+| Venture X Business | 150,000 | - | - | $30,000 | 3 | - | - |  |
 | Wells Fargo Active Cash Card | - | $100 | - | $500 | 3 | - | - |  |
 | Wells Fargo Autograph Visa Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
-| Wells Fargo Autograph Journey Visa Card | 60,000 | $50 | - | $4,000 | 3 | - | - |  |
+| Wells Fargo Autograph Journey Visa Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | Wells Fargo Choice Privileges Mastercard | 60,000 | - | - | $1,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 60,000; please check |
 | Wells Fargo Signify Business Cash Card | - | $500 | - | $5,000 | 3 | - | - |  |
 | Bank of America Customized Cash Rewards Credit Card | - | $200 | - | $1,000 | 3 | - | - |  |
@@ -106,7 +106,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Evergreen Business Edition Credit Card | 20,000 | - | - | $3,000 | - | - | - | REVIEW: no time window found |
 | JetBlue Card | 10,000 | - | - | $1,000 | 3 | - | - |  |
 | JetBlue Plus Card | 70,000 | - | - | $1,000 | 3 | - | - |  |
-| JetBlue Premier Card | 90,000 | $300 | - | $5,000 | 3 | - | yes |  |
+| JetBlue Premier Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
 | Wyndham Rewards Earner Card | 30,000 | - | - | $1,000 | 3 | 45,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Plus Card | 45,000 | - | - | $1,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Premier Card | 90,000 | - | - | $6,000 | 4 | 30,000 pts after $750 in 6 mo | - |  |
