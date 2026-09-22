@@ -1,3 +1,13 @@
+/* Self-hosted (not Google Fonts): a variable font covering the whole weight range in one file, so no
+   third-party request is made on every page load. See docs/self-hosted-fonts.md for how to refresh it. */
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/public-sans-var.woff2") format("woff2");
+}
+
 :root {
   --bg: #ffffff; --fg: #1b1f24; --muted: #59636e; --line: #d0d7de; --accent: #0b5fff; --accent-fg: #ffffff;
   --warn-bg: #fff4e5; --warn-fg: #8a4b00; --soft: #f6f8fa; --ok: #1a7f37;

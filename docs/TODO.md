@@ -671,3 +671,24 @@ existing "no effect on the rankings" paragraph, asking anyone who applies throug
 approved to submit a Suggestion with subject "Referral" naming which link they used, for the owner's own
 tracking and to know when to retire a link. Verified live via the rendered page. `npx tsc --noEmit` clean, 306 TS
 tests pass, production build succeeds.
+
+## Self-hosted Public Sans, dropped the Google Fonts request (2026-09-22)
+Owner asked whether the site needs a privacy page before socializing it; the one concrete third-party data flow
+was the Google Fonts request every page load made (Google sees every visitor's IP to serve Public Sans) — asked
+whether a font swap could avoid that. Public Sans itself was fine to keep (open source, SIL license, no reason
+to change the already-approved look), so self-hosted it instead of switching fonts.
+Fetched Google's own variable-font build via the css2 API with a browser `User-Agent` (a plain/non-browser UA
+gets old per-weight static files instead — requesting all five weights together with a real UA returns one
+variable-font file covering the whole range): `docs/self-hosted-fonts.md` documents the exact command. Confirmed
+with `fontTools` that the downloaded file genuinely has an `fvar` table with a `wght` axis from 100–900, not just
+a renamed static weight. Saved it as `public/fonts/public-sans-var.woff2` (Latin subset only — the site is
+English-only, no need for the Vietnamese/Latin-Extended subsets Google also serves). Added one `@font-face`
+rule in `styles.css` (`font-weight: 100 900`, `src: url("/fonts/public-sans-var.woff2")`) and removed the three
+Google Fonts `<link>` tags (two `preconnect`, one stylesheet) from `index.html` — no other change needed since
+`font-family: "Public Sans", ...` in `body` already just references the family by name.
+Verified live: network requests now show `/fonts/public-sans-var.woff2` loading from the dev server, zero
+requests to `fonts.googleapis.com`/`fonts.gstatic.com`; `document.fonts` shows the family loaded with
+`weight: "100 900"` and `status: "loaded"`; screenshot confirms identical rendering (bold headings, normal body
+text) to before the swap. Production build confirms `dist/fonts/public-sans-var.woff2` is the only file there
+(the new `docs/self-hosted-fonts.md` intentionally lives outside `public/`, so it isn't shipped). `npx tsc
+--noEmit` clean, 306 TS tests pass, production build succeeds.
