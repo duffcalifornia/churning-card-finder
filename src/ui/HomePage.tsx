@@ -8,7 +8,7 @@ export function HomePage({ onGoToCheatSheet, onGoToFinder }: Props) {
     <section>
       <p>
         Most credit card sites push cards that make them money rather than what fits your needs. This site is
-        different: no affiliate links, no sponsored placement, nothing that affects which cards it recommends. It's
+        different: no affiliate links or sponsored placement influences the rankings you see in any way. It's
         free, and it always will be.
       </p>
 

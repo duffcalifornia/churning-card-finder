@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect x="2" y="7" width="28" height="18" rx="3" fill="#0b5fff"/>
+  <style>
+    .card { fill: #0b5fff; }
+    @media (prefers-color-scheme: dark) {
+      .card { fill: #4c8dff; }
+    }
+  </style>
+  <rect class="card" x="2" y="7" width="28" height="18" rx="3"/>
   <rect x="2" y="11" width="28" height="4" fill="#0d1117"/>
   <rect x="5" y="19" width="9" height="3" rx="1" fill="#ffffff"/>
 </svg>

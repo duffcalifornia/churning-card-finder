@@ -547,3 +547,42 @@ var(--chevron); }` rule. Along the way, changed the two scoped select rules (`.f
 elements on the site (Cheat Sheet's "View" and the People step's "Number of people") render the single chevron,
 confirmed via computed styles (`appearance: none`, `background-image` set, `padding-right: 28px`) and a
 screenshot. `npx tsc --noEmit` clean, 306 TS tests pass, production build succeeds.
+
+## Acted on the post-revision site audit (2026-09-22)
+Ran a review through a Design canvas artifact (senior-front-end-dev lens: phrasing, accessibility, "reads as
+AI-made" polish), then fixed everything the owner approved:
+- **Trust claim contradiction**: the home page said "no affiliate links," while the footer/Referrals page links
+  to real referral links. Reworded to the narrower, accurate claim: "no affiliate links or sponsored placement
+  influences the rankings you see in any way" (`HomePage.tsx`).
+- **Accessibility — backup badge**: `CardItem.tsx`'s "Backup for ___" explanation lived only in a `title`
+  attribute (invisible to keyboard/touch users). Replaced with an always-visible `.backupnote` line under the
+  card head; dropped the now-redundant `title` and its `cursor: help`.
+- **Accessibility — deprecated CSS**: `.issuer thead`'s mobile visually-hidden rule used the legacy
+  `clip: rect(0 0 0 0)`; swapped for `clip-path: inset(50%)` plus `white-space: nowrap`.
+- **Accessibility — skip link**: added a `.skip-link` ("Skip to content") as the first focusable element in
+  `App.tsx`, wrapped all per-page content in `<div id="main-content">` as its target. Visually hidden until
+  focused (`top: -40px` → `top: 0`).
+- **Stale metadata**: `index.html`'s `<meta name="description">`, `og:description`, and `twitter:description`
+  still quoted the pre-rewrite tagline ("...replaces the credit card recommendation flowchart"); updated to match
+  the current on-page tagline.
+- **Terminology consistency**: audited every "welcome bonus" / "bonus" / "signup offer" usage across the UI.
+  Outside the branded page name "Signup Offer Cheat Sheet" (a proper noun, used the same way everywhere), every
+  other instance already consistently says "welcome bonus" or "bonus" — nothing to change; did not rename the
+  branded page name just to force a fix.
+- **Missing `og:image`**: added `public/og-image.svg` (1200×630, built from the site's own brand tokens — no
+  design tool, no new dependency) plus `og:image`/`twitter:image` meta tags and bumped `twitter:card` to
+  `summary_large_image`. Honest caveat: Twitter/X's card validator has historically required a raster image
+  (PNG/JPG/GIF/WEBP) for `twitter:image` and may not render an SVG; Discord, Slack, Facebook, and iMessage do
+  support SVG previews. A raster fallback would need either a build-time renderer or a `@vercel/og` edge
+  function, neither of which exists in this repo yet — flagged rather than silently building it.
+- **Missing `theme-color`**: added light/dark `<meta name="theme-color">` tags using the site's existing
+  `--bg` values, so mobile browser chrome matches the active theme.
+- **Favicon didn't follow dark mode**: added an inline `prefers-color-scheme` media query inside
+  `public/favicon.svg`'s own `<style>` block, swapping the card fill between the light and dark `--accent`.
+- **Missing `robots.txt`**: added `public/robots.txt` (`User-agent: * / Allow: /`). No sitemap exists yet, so no
+  `Sitemap:` line was added.
+
+Verified live: skip link (`getComputedStyle` confirms `top: -40px` at rest), `#main-content` target exists, all
+new/changed meta tag values read back correctly, `/og-image.svg` and `/robots.txt` serve and render correctly
+(screenshotted), `dist/` build copies `og-image.svg`, `robots.txt`, and the updated `favicon.svg`. `npx tsc
+--noEmit` clean, 306 TS tests pass, production build succeeds.

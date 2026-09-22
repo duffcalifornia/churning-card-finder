@@ -32,11 +32,12 @@ export function CardItem({ entry, single, rankBy, rank }: { entry: ResultEntry; 
           <span className="cardname">{card.name}</span>
           <span className="badge issuer">{issuerLabel(card.issuer)}</span>
           {isBackup && (
-            <span className="badge backuptag" title="In case the offer you get is lower than the maximum shown">
+            <span className="badge backuptag">
               Backup for {joinNames(backups)}
             </span>
           )}
         </div>
+        {isBackup && <div className="backupnote">In case the offer you get is lower than the maximum shown.</div>}
         {!single && main.length > 0 && <div className="who">{joinNames(main.map(playerLabel))}</div>}
         {nllPlayers.length > 0 && (
           <div className="nllnote">

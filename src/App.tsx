@@ -113,6 +113,8 @@ export function App() {
 
   return (
     <main>
+      <a href="#main-content" className="skip-link">Skip to content</a>
+
       <header>
         <h1>Which credit card should I get?</h1>
         <p className="tagline">A free, impartial, logic based tool for determining which credit card to apply for.</p>
@@ -142,45 +144,47 @@ export function App() {
         </nav>
       </header>
 
-      {page === "home" && <HomePage onGoToCheatSheet={() => goToPage("cheatsheet")} onGoToFinder={() => goToPage("finder")} />}
+      <div id="main-content">
+        {page === "home" && <HomePage onGoToCheatSheet={() => goToPage("cheatsheet")} onGoToFinder={() => goToPage("finder")} />}
 
-      {page === "cheatsheet" && <CheatSheetPage rankBy={rankBy} onRankByChange={setRankBy} onGoToFinder={() => goToPage("finder")} />}
+        {page === "cheatsheet" && <CheatSheetPage rankBy={rankBy} onRankByChange={setRankBy} onGoToFinder={() => goToPage("finder")} />}
 
-      {page === "methodology" && <MethodologyPage />}
+        {page === "methodology" && <MethodologyPage />}
 
-      {page === "changelog" && <ChangelogPage />}
+        {page === "changelog" && <ChangelogPage />}
 
-      {page === "suggestions" && <SuggestionsPage />}
+        {page === "suggestions" && <SuggestionsPage />}
 
-      {page === "referrals" && <ReferralsPage />}
+        {page === "referrals" && <ReferralsPage />}
 
-      {page === "finder" && (
-        <>
-          <nav aria-label="Steps">
-            <ol className="steps substeps">
-              {WIZARD_STEPS.map((name, i) => (
-                <li key={name}>
-                  <button type="button" className={i === step ? "step current" : "step"} aria-current={i === step ? "step" : undefined} onClick={() => goToStep(i)}>
-                    <span className="num">{i + 1}</span> {name}
-                  </button>
-                </li>
-              ))}
-            </ol>
-          </nav>
+        {page === "finder" && (
+          <>
+            <nav aria-label="Steps">
+              <ol className="steps substeps">
+                {WIZARD_STEPS.map((name, i) => (
+                  <li key={name}>
+                    <button type="button" className={i === step ? "step current" : "step"} aria-current={i === step ? "step" : undefined} onClick={() => goToStep(i)}>
+                      <span className="num">{i + 1}</span> {name}
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            </nav>
 
-          {step === 0 && <PlayersStep profile={profile} onChange={setProfile} />}
-          {step === 1 && <HistoryStep profile={profile} onChange={setProfile} />}
-          {step === 2 && <QuestionsStep profile={profile} onChange={setProfile} />}
-          {step === 3 && <HouseholdStep profile={profile} onChange={setProfile} />}
-          {step === 4 && <ResultsStep profile={profile} rankBy={rankBy} onRankByChange={setRankBy} />}
+            {step === 0 && <PlayersStep profile={profile} onChange={setProfile} />}
+            {step === 1 && <HistoryStep profile={profile} onChange={setProfile} />}
+            {step === 2 && <QuestionsStep profile={profile} onChange={setProfile} />}
+            {step === 3 && <HouseholdStep profile={profile} onChange={setProfile} />}
+            {step === 4 && <ResultsStep profile={profile} rankBy={rankBy} onRankByChange={setRankBy} />}
 
-          <div className="buttons">
-            {step > 0 && <button type="button" className="secondary" onClick={() => goToStep(step - 1)}>Back</button>}
-            {step < WIZARD_STEPS.length - 1 && <button type="button" className="primary" onClick={() => goToStep(step + 1)}>Next</button>}
-            {step === WIZARD_STEPS.length - 1 && <button type="button" className="secondary" onClick={startOver}>Start over</button>}
-          </div>
-        </>
-      )}
+            <div className="buttons">
+              {step > 0 && <button type="button" className="secondary" onClick={() => goToStep(step - 1)}>Back</button>}
+              {step < WIZARD_STEPS.length - 1 && <button type="button" className="primary" onClick={() => goToStep(step + 1)}>Next</button>}
+              {step === WIZARD_STEPS.length - 1 && <button type="button" className="secondary" onClick={startOver}>Start over</button>}
+            </div>
+          </>
+        )}
+      </div>
 
       <footer>
         <p>
