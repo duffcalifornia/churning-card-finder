@@ -52,12 +52,12 @@ export function defaultProfile(players = 1): Profile {
   return {
     version: 1,
     players: Array.from({ length: players }, (_, i) => newPlayer(i + 1)),
-    // Every spending answer starts blank (0), shown as an empty box with a suggested figure as its placeholder,
-    // not a pre-filled guess (owner, 2026-09-22) — spend3Months is the one the household must actually answer
-    // for the tool to produce anything useful; spend6Months, left blank, is assumed to be double spend3Months
-    // (spendCapacity in householdFilters.ts). A blank annual fee means no limit.
+    // Every spending answer starts genuinely blank (null), exactly like maxAnnualFee, shown as an empty box with
+    // a suggested figure as its placeholder rather than a pre-filled guess (owner, 2026-09-22) — spend3Months is
+    // the one the household must actually answer for the tool to produce anything useful; spend6Months, left
+    // blank, is assumed to be double spend3Months (spendCapacity in householdFilters.ts).
     household: {
-      maxAnnualFee: null, spend3Months: 0, spend6Months: 0, supplementalSpend3Months: 0, bonusTypes: [],
+      maxAnnualFee: null, spend3Months: null, spend6Months: null, supplementalSpend3Months: null, bonusTypes: [],
       excludedPrograms: [], targetPrograms: [],
     },
   };

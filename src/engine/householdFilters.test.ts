@@ -51,6 +51,15 @@ describe("spendCapacity", () => {
     const h0 = household({ spend3Months: 5000, spend6Months: 0, supplementalSpend3Months: 0 });
     expect(spendCapacity(h0, 6)).toBe(10000);
   });
+  it("treats a genuinely blank (null) spend3Months or supplementalSpend3Months as 0 (owner, 2026-09-22)", () => {
+    const blank = household({ spend3Months: null, spend6Months: null, supplementalSpend3Months: null });
+    expect(spendCapacity(blank, 3)).toBe(0);
+    expect(spendCapacity(blank, 6)).toBe(0);
+  });
+  it("a null spend6Months falls back to double spend3Months, same as a stored 0", () => {
+    const h = household({ spend3Months: 4000, spend6Months: null, supplementalSpend3Months: 0 });
+    expect(spendCapacity(h, 6)).toBe(8000);
+  });
 });
 
 describe("hardExclusion: minimum spend", () => {

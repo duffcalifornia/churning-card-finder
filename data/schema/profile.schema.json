@@ -235,16 +235,26 @@
      "description": "Highest annual fee accepted on a single card in its first year: a card whose first-year fee is waived counts as $0. Null (left blank) means no limit."
     },
     "spend3Months": {
-     "type": "number",
+     "type": [
+      "number",
+      "null"
+     ],
      "minimum": 0,
-     "description": "Spend if all day-to-day non-housing expenses went on one card for 3 months."
+     "description": "Spend if all day-to-day non-housing expenses went on one card for 3 months. Null (left blank) is treated as 0 by spendCapacity() — nothing is reachable until this is answered."
     },
     "spend6Months": {
-     "type": "number",
-     "minimum": 0
+     "type": [
+      "number",
+      "null"
+     ],
+     "minimum": 0,
+     "description": "Null (left blank) is treated by spendCapacity() as double spend3Months."
     },
     "supplementalSpend3Months": {
-     "type": "number",
+     "type": [
+      "number",
+      "null"
+     ],
      "minimum": 0
     },
     "bonusTypes": {

@@ -19,21 +19,18 @@ interface MoneyProps {
   label: string;
   hint?: string;
   value: number | null;
-  /** Blank means "no value" (null) instead of zero. */
-  allowBlank?: boolean;
-  /** Shows a stored 0 as an empty box (with `placeholder` in its place) instead of a literal "0" — for a field
-   * whose real answer is never usefully $0, so 0 just means "not answered yet" rather than a meaningful value. */
-  hideZero?: boolean;
   placeholder?: string;
   onChange: (n: number | null) => void;
 }
 
-function Money({ label, hint, value, allowBlank, hideZero, placeholder, onChange }: MoneyProps) {
-  const fmt = (v: number | null) => (v === null || (hideZero && v === 0) ? "" : String(v));
+/** A money field that starts genuinely blank (null), showing only `placeholder` (a suggested figure, or "No
+ * limit") until the household actually types something — never a pre-filled guess. */
+function Money({ label, hint, value, placeholder, onChange }: MoneyProps) {
+  const fmt = (v: number | null) => (v === null ? "" : String(v));
   // Local text, not derived straight from `value` on every render: otherwise clearing the box to type a new
-  // number calls onChange(0), the parent stores 0, and the next render snaps a literal "0" back into the box
-  // before the next keystroke lands, so it can never actually be cleared (the bug this fixes). Text is only
-  // resynced from `value` when it changed for a reason other than this input's own last edit (e.g. Start Over).
+  // number calls onChange(null), the parent stores null, and the next render could still fight the user's typing
+  // mid-edit. Text is only resynced from `value` when it changed for a reason other than this input's own last
+  // edit (e.g. Start Over resetting the whole profile).
   const [text, setText] = useState(() => fmt(value));
   const lastEmitted = useRef(value);
   useEffect(() => {
@@ -41,7 +38,7 @@ function Money({ label, hint, value, allowBlank, hideZero, placeholder, onChange
       setText(fmt(value));
       lastEmitted.current = value;
     }
-    // fmt/hideZero are effectively constant per field; only `value` (an external change) should resync text.
+    // fmt is effectively constant; only `value` (an external change) should resync text.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
@@ -56,12 +53,12 @@ function Money({ label, hint, value, allowBlank, hideZero, placeholder, onChange
           min={0}
           step={100}
           inputMode="numeric"
-          placeholder={placeholder ?? (allowBlank ? "No limit" : "0")}
+          placeholder={placeholder ?? "No limit"}
           value={text}
           onChange={(e) => {
             const raw = e.target.value;
             setText(raw);
-            const n = raw === "" ? (allowBlank ? null : 0) : Math.max(0, Number(raw) || 0);
+            const n = raw === "" ? null : Math.max(0, Number(raw) || 0);
             lastEmitted.current = n;
             onChange(n);
           }}
@@ -117,30 +114,28 @@ export function HouseholdStep({ profile, onChange }: Props) {
       <Money
         label="The highest annual fee you would pay on a single card"
         hint="This is what you would pay in a card's first year, so a card whose annual fee is waived that year counts as $0. Leave this blank if there is no limit on the annual fee you would pay."
-        allowBlank
         value={h.maxAnnualFee}
         onChange={(n) => set({ maxAnnualFee: n })}
       />
       <Money
         label="If you were to put all of your day-to-day, non-housing spending on one card for the next three months, how much would that be?"
         hint="Required — the tool can't tell which minimum spends you could reach without this."
-        hideZero
-        placeholder="3000"
+        placeholder="ex. 3000"
         value={h.spend3Months}
-        onChange={(n) => set({ spend3Months: n ?? 0 })}
+        onChange={(n) => set({ spend3Months: n })}
       />
       <Money
         label="The same, for the next 6 months"
         hint="Leave this blank to assume double your three-month answer."
-        hideZero
-        placeholder={h.spend3Months > 0 ? String(h.spend3Months * 2) : "6000"}
+        placeholder={h.spend3Months ? `ex. ${h.spend3Months * 2}` : "ex. 6000"}
         value={h.spend6Months}
-        onChange={(n) => set({ spend6Months: n ?? 0 })}
+        onChange={(n) => set({ spend6Months: n })}
       />
       <Money
         label="How much extra could you realistically spend over the next three months via supplemental spending?"
+        placeholder="0"
         value={h.supplementalSpend3Months}
-        onChange={(n) => set({ supplementalSpend3Months: n ?? 0 })}
+        onChange={(n) => set({ supplementalSpend3Months: n })}
       />
 
       <fieldset>

@@ -140,9 +140,12 @@ export interface Program {
 export interface Household {
   /** Highest annual fee accepted on a single card in its first year (a waived first year counts as $0). Null means no limit. */
   maxAnnualFee: number | null;
-  spend3Months: number;
-  spend6Months: number;
-  supplementalSpend3Months: number;
+  /** Null means not answered yet; spendCapacity() treats it as 0 (nothing is reachable until this is answered). */
+  spend3Months: number | null;
+  /** Null means not answered; spendCapacity() then assumes double spend3Months, since a real 6-month total lower
+   * than the 3-month total is never a sensible answer (spend only grows over time). */
+  spend6Months: number | null;
+  supplementalSpend3Months: number | null;
   bonusTypes: string[];
   excludedPrograms: string[];
   /** Programs the household is planning a redemption in. Cards that lead to them are ranked above the rest. */

@@ -329,3 +329,29 @@ typing another digit" — a real controlled-input bug, not a misunderstanding.
   "0"); clearing and retyping any field works cleanly; the 6-month placeholder updates live as the 3-month value
   changes; "Start Over" correctly resets every field back to its blank/0 starting state. `npx tsc --noEmit` clean,
   301 TS tests (299 + 2 new), 401 Python tests (unaffected), production build succeeds.
+
+## Spending fields now genuinely blank (null), matching the annual fee field (2026-09-22)
+Follow-up correction to the previous pass: the "hideZero" trick (a real stored 0 displayed as an empty box) still
+left the last field (supplemental spend) showing a literal, real "0" that had to be deleted, and the owner's own
+returning browser still had its real pre-fix values (3000/6000) saved from earlier testing — `defaultProfile()`
+only affects brand-new profiles, not an existing saved one. Owner's ask: all three spending fields should work
+exactly like the annual fee field already does — genuinely blank until typed, placeholder only, and the moment
+you type one digit, only that digit remains (standard placeholder behavior) — and if the 3000/6000 suggestions
+stay, prefix them with "ex." so they read as examples, not values to delete.
+- `Household.spend3Months`, `spend6Months`, and `supplementalSpend3Months` widened from `number` to `number | null`
+  (matching `maxAnnualFee`'s existing type) in `engine/types.ts` and `data/schema/profile.schema.json`; only one
+  real consumer needed updating (`spendCapacity` in `householdFilters.ts`, the sole place besides the UI that
+  reads these fields — confirmed by grep), which now null-coalesces spend3Months/supplementalSpend3Months to 0 and
+  still falls back spend6Months to double spend3Months when null (previously trigged by a stored 0; both now work
+  the same way). `defaultProfile()` sets all three to `null`.
+- `Money` (`HouseholdStep.tsx`) simplified back to a single blank/null behavior for every field (the `hideZero`
+  prop is gone, no longer needed now that these fields are genuinely nullable) — kept the local-text-state fix
+  from the previous pass (still necessary: without it, clearing the box to retype fights the user, this time via
+  `onChange(null)` instead of `onChange(0)`). Placeholders: "ex. 3000" and a live-dynamic "ex. {2x the 3-month
+  field}" (or "ex. 6000" while that's still blank) for the two spend fields, per the owner's exact wording; "0"
+  for supplemental spend (no "ex." — the owner only asked for it on the two fields they said could keep numbers).
+- Verified live on a fresh profile (`localStorage.clear()`): all four fields render genuinely blank with only
+  their placeholder text showing; typing into the 3-month field replaces the placeholder with exactly what was
+  typed and the 6-month field's placeholder updates live to double it. 3 new/updated tests in
+  `householdFilters.test.ts` covering the null case for every field. `npx tsc --noEmit` clean, 303 TS tests
+  (301 + 2 new), 401 Python tests (unaffected), production build succeeds.

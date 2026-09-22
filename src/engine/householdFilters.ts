@@ -5,15 +5,18 @@ import type { Card, Currency, Household, Program } from "./types";
  * 3 months is spend3Months plus the supplemental spend; 6 months is spend6Months plus twice the supplemental spend;
  * windows between are interpolated linearly. Anything else is refused rather than guessed.
  *
- * spend6Months left blank (stored as 0, the field's default) is treated as "double the 3-month answer" (owner,
- * 2026-09-22), since a real 6-month total lower than the 3-month total is never a sensible answer (spend only
- * grows over time) — there is no legitimate case where a household's real answer is genuinely 0 here.
+ * spend3Months and supplementalSpend3Months left blank (null, unanswered) count as 0. spend6Months left blank is
+ * instead treated as "double the 3-month answer" (owner, 2026-09-22), since a real 6-month total lower than the
+ * 3-month total is never a sensible answer (spend only grows over time) — there is no legitimate case where a
+ * household's real answer is genuinely 0 here, so 0 and null mean the same thing for this one field.
  */
 export function spendCapacity(household: Household, months: number): number {
   if (!(months >= 3 && months <= 6)) throw new Error(`unsupported spend window: ${months} months (expected 3 to 6)`);
-  const spend6Months = household.spend6Months || household.spend3Months * 2;
-  const at3 = household.spend3Months + household.supplementalSpend3Months;
-  const at6 = spend6Months + 2 * household.supplementalSpend3Months;
+  const spend3Months = household.spend3Months ?? 0;
+  const supplemental = household.supplementalSpend3Months ?? 0;
+  const spend6Months = household.spend6Months || spend3Months * 2;
+  const at3 = spend3Months + supplemental;
+  const at6 = spend6Months + 2 * supplemental;
   return at3 + ((at6 - at3) * (months - 3)) / 3;
 }
 
