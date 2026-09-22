@@ -30,8 +30,8 @@ a { color: var(--accent); }
 .hamburger-icon::before { position: absolute; top: -6px; left: 0; }
 .hamburger-icon::after { position: absolute; top: 6px; left: 0; }
 @media (max-width: 700px) {
-  nav[aria-label="Site"] { position: relative; }
-  .hamburger { display: inline-flex; }
+  nav[aria-label="Site"] { position: relative; min-height: 36px; }
+  .hamburger { display: inline-flex; position: absolute; top: 0; right: 0; margin: 0; }
   nav[aria-label="Site"] .steps { display: none; flex-direction: column; align-items: stretch; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; margin-top: 4px; z-index: 10; }
   nav[aria-label="Site"] .steps.open { display: flex; }
   nav[aria-label="Site"] .steps li { width: 100%; }

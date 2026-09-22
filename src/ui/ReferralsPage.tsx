@@ -3,9 +3,7 @@ import { useEffect } from "react";
 // Not linked from the site's main navigation, and kept out of search results below (belt and suspenders: a
 // hash-only route like #referrals is not normally crawled or indexed as its own URL in the first place). Reachable
 // only via a direct link or the footer.
-//
-// TODO (owner): replace with your real referral links and Buy Me a Coffee URL.
-export const BMAC_URL = "https://www.buymeacoffee.com/REPLACE_ME";
+export const BMAC_URL = "https://www.buymeacoffee.com/duffcalifornia";
 
 const REFERRAL_LINKS: { card: string; url: string; note?: string }[] = [
   // { card: "Chase Sapphire Preferred", url: "https://...", note: "75,000 points after $5,000 in 3 months" },

@@ -185,9 +185,9 @@ export function App() {
           Based on the r/churning credit card recommendation flowchart. Not financial advice. Card offers and bank rules change often; check the issuer before you apply.
         </p>
         <p className="footerlinks">
-          <a href="#referrals">My referral links</a>
-          {" · "}
-          <a href={BMAC_URL} target="_blank" rel="noreferrer">Buy me a coffee</a>
+          If you want to support this project, you could use{" "}
+          <a href="#referrals">one of my referral links</a> or{" "}
+          <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>
         </p>
       </footer>
     </main>
