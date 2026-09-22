@@ -79,10 +79,10 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Quicksilver Cash Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Savor Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - | a repeated amount was merged into one |
-| Spark Cash Select | - | $1,000 | - | $10,000 | 3 | - | - |  |
+| Spark Cash Select | - | $1,250 | - | $10,000 | 3 | - | - |  |
 | Venture X Business | 150,000 | $300 | - | $30,000 | 3 | - | - | a repeated amount was merged into one |
 | Wells Fargo Active Cash Card | - | $100 | - | $500 | 3 | - | - |  |
-| Wells Fargo Autograph Visa Card | 20,000 | $200 | - | $1,000 | 3 | - | - |  |
+| Wells Fargo Autograph Visa Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | Wells Fargo Autograph Journey Visa Card | 60,000 | $50 | - | $4,000 | 3 | - | - |  |
 | Wells Fargo Choice Privileges Mastercard | 60,000 | - | - | $1,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 60,000; please check |
 | Wells Fargo Signify Business Cash Card | - | $500 | - | $5,000 | 3 | - | - |  |

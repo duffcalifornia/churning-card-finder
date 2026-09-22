@@ -2195,7 +2195,7 @@
   "issuer": "capone",
   "kind": "business",
   "recommendable": true,
-  "annualFee": 95.0,
+  "annualFee": 0.0,
   "firstYearFeeWaived": true,
   "reportsToPersonal": true,
   "currency": "cash",
@@ -2203,7 +2203,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 1000.0
+   "cashBack": 1250.0
   },
   "typicalMinSpend": {
    "amount": 10000.0,
@@ -2273,8 +2273,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "points": 20000.0,
-   "cashBack": 200.0
+   "points": 20000.0
   },
   "typicalMinSpend": {
    "amount": 1000.0,
@@ -3304,7 +3303,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.bilt.com/card/palladium",
-  "verifiedOn": "2026-09-21"
+  "verifiedOn": "2026-09-22"
  },
  {
   "id": "boa-atmos-summit",

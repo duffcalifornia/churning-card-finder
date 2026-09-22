@@ -6,6 +6,8 @@ What changed about how this site chooses and ranks cards, and the major site mil
 - Confirmed Amex can be checked safely from the automated daily refresh (previously paused after an unrelated IP
   block during development).
 - Added the Signup Offer Cheat Sheet, Home page, Changelog, and Suggestions pages, and restructured site navigation.
+- Updated the bonus offer for the following card(s): Bilt Palladium Card, Spark Cash Select, and Wells Fargo Autograph Visa Card.
+- Updated the net value rankings to reflect changes to the annual fee on the following card: Spark Cash Select.
 
 ## 2026-09-21
 - Assembled the full card catalog and built the rules engine: 5/24 and issuer velocity limits, lifetime and family
