@@ -79,11 +79,6 @@ export function ResultsStep({ profile, rankBy, onRankByChange }: Props) {
           </ol>
         </div>
       ))}
-
-      <p className="note">
-        The complexities of the Bilt 2.0 program make it hard to determine whether this card makes sense for you. You will need to research this program and
-        see if it makes sense for your spending habits and your redemption goals.
-      </p>
     </section>
   );
 }

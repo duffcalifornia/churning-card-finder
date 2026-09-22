@@ -2805,6 +2805,28 @@
   "needsReview": false
  },
  {
+  "cardId": "bilt-palladium",
+  "name": "Bilt Palladium Card",
+  "issuer": "bilt",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 50,000 points after you spend $4,000 in purchases within the first 90 days of card membership.",
+  "seenOn": "2026-09-21",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
   "cardId": "boa-atmos-summit",
   "name": "Atmos Rewards Summit Visa Infinite Credit Card",
   "issuer": "boa",

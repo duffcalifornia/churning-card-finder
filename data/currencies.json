@@ -211,8 +211,8 @@
   "householdPooling": false,
   "unlockerCards": [],
   "quirks": [
-   "Bilt cards are never listed by the site (see docs/rule-audit.md Section I); kept for completeness."
+   "Only the Bilt Palladium card is ranked by the site so far; Bilt Blue and Obsidian are not tracked (see docs/rule-audit.md Section I)."
   ],
-  "verifiedOn": "2026-09-20"
+  "verifiedOn": "2026-09-21"
  }
 ]

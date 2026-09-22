@@ -143,10 +143,6 @@
       }
      }
     },
-    "showBiltBlurb": {
-     "type": "boolean",
-     "default": false
-    },
     "ceiling": {
      "type": "boolean",
      "default": false,

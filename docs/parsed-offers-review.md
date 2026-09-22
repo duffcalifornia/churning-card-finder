@@ -122,6 +122,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Discover it Chrome Gas & Restaurants Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Miles Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - | a repeated amount was merged into one |
+| Bilt Palladium Card | 50,000 | - | - | $4,000 | 3 | - | - |  |
 | Atmos Rewards Summit Visa Infinite Credit Card | 70,000 | - | - | $3,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
 | Air France KLM Visa Signature Credit Card | 50,000 | - | - | $2,000 | 3 | - | - |  |
 | Allways Rewards Visa Card | 30,000 | - | - | $1,500 | 3 | - | - |  |

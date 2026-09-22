@@ -3285,6 +3285,28 @@
   "verifiedOn": "2026-09-20"
  },
  {
+  "id": "bilt-palladium",
+  "name": "Bilt Palladium Card",
+  "issuer": "bilt",
+  "kind": "personal",
+  "recommendable": true,
+  "annualFee": 495.0,
+  "reportsToPersonal": true,
+  "currency": "bilt",
+  "bonusTypes": [
+   "transferable"
+  ],
+  "welcomeBonus": {
+   "points": 50000.0
+  },
+  "typicalMinSpend": {
+   "amount": 4000.0,
+   "months": 3
+  },
+  "sourceUrl": "https://www.bilt.com/card/palladium",
+  "verifiedOn": "2026-09-21"
+ },
+ {
   "id": "boa-atmos-summit",
   "name": "Atmos Rewards Summit Visa Infinite Credit Card",
   "issuer": "boa",

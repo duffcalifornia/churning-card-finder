@@ -210,11 +210,11 @@ Amex Marriott cards carry lifetime language like every Amex card (owner 2026-09-
 Engine notes: this is a pure lookup table keyed by (prior card, wanted card) with date arithmetic on approval date and bonus-received date, so the card-history input needs an optional "bonus received" month for Marriott cards.
 
 
-## I. Bilt (decision: note only, not ranked)
+## I. Bilt (decision: Palladium ranked, Blue and Obsidian still note-only)
 
-The Bilt program changed substantially in January 2026 ("Bilt 2.0"), so the flowchart's Bilt guidance (B4, F17, priority by rent) is obsolete. Decision (user, 2026-09-20): the engine does not rank Bilt cards or use rent to prioritize them. It shows a single note instead.
+The Bilt program changed substantially in January 2026 ("Bilt 2.0"), so the flowchart's Bilt guidance (B4, F17, priority by rent) is obsolete. Original decision (user, 2026-09-20): the engine does not rank Bilt cards or use rent to prioritize them; it shows a single note instead.
 
-Note text (draft): "Bilt cards only make sense if you regularly put non-rent spend on the card. Earning points on rent or mortgage requires paying a 3% fee or using Bilt Cash to offset it, and Bilt Cash comes mainly from everyday spend and expires each year. If you would only use Bilt for rent, it is probably not worth applying."
+Reversed in part (user, 2026-09-21): the Bilt Palladium card is now tracked and ranked like any other card (`bilt-palladium`), valued at Frequent Miler's Bilt cents-per-point like every other currency, with no special rent-related note in the UI. The unconditional "Bilt 2.0 is complex" blurb that used to appear on every Card Finder results page was removed rather than narrowed, per the owner's explicit instruction. Blue and Obsidian are still not tracked; if they are added later, revisit whether the removed note (or something like it) should come back as a per-card note instead of a page-wide one.
 
 Facts behind the note (sources: DoC article dated 2026-01-14, https://www.doctorofcredit.com/three-brand-new-bilt-2-0-cards-blue-obsidian-palladium/ and Frequent Miler https://frequentmiler.com/BiltPalladium/; both read through a summarizing tool, so re-check before launch):
 - Three cards: Blue ($0 fee), Obsidian ($95), Palladium ($495).

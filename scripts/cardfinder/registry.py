@@ -77,6 +77,10 @@ ISSUERS = {
         sitemaps=["https://www.discover.com/site-map.xml"],
         listing_pages=["https://www.discover.com/credit-cards/", "https://www.discover.com/credit-cards/travel/"],
     ),
+    "bilt": IssuerConfig(
+        name="bilt",
+        # Only the Palladium card is tracked so far (site owner, 2026-09-21); no sitemap or listing page needed for one card.
+    ),
 }
 
 
@@ -272,6 +276,8 @@ CARDS += [
     _c("discover", "it-student-cash-back", ["Discover it Student Cash Back Credit Card", "Discover it Student Cash Back"], _DISC + "student-credit-card/it-card/"),
     _c("discover", "it-student-chrome", ["Discover it Student Chrome Credit Card", "Discover it Student Chrome"], _DISC + "student-credit-card/chrome-card/"),
     _c("discover", "it-secured", ["Discover it Secured Cash Back Credit Card", "Discover it Secured Credit Card", "Discover it Secured"], _DISC + "secured-credit-card/"),
+    # Bilt: only Palladium is tracked (site owner, 2026-09-21); Blue and Obsidian are not
+    _c("bilt", "palladium", ["Bilt Palladium Card", "Bilt Palladium"], "https://www.bilt.com/card/palladium"),
 ]
 
 CARDS += [
@@ -338,6 +344,7 @@ CARDS = [dataclasses.replace(c, expected=False, note=NOT_TRACKED[c.id]) if c.id 
 OWNER_FEES = {
     "usbank-business-altitude-connect": (95.0, True),    # $0 intro first year, $95 second year on
     "usbank-business-altitude-power": (195.0, False),    # not waived
+    "bilt-palladium": (495.0, False),   # site owner, 2026-09-21; no waiver mentioned, so assumed not waived until confirmed
     # $0 annual fee; the Amex pages never state a fee readably (site owner, 2026-09-20)
     "amex-blue-cash-everyday": (0.0, False),
     "amex-delta-blue": (0.0, False),
@@ -407,6 +414,7 @@ for _issuer, _currency, _ids in [
     ("schwab", "amex-membership-rewards", ("platinum",)),
     ("morganstanley", "amex-membership-rewards", ("platinum",)),
     ("barclays", "frontier-bonus-miles", ("frontier",)),
+    ("bilt", "bilt", ("palladium",)),
     ("barclays", "jetblue-trueblue", ("jetblue", "jetblue-plus", "jetblue-premier")),
     ("barclays", "miles-and-more", ("lufthansa",)),
     ("barclays", "wyndham-rewards", ("wyndham-earner", "wyndham-earner-business", "wyndham-earner-plus", "wyndham-earner-premier")),
