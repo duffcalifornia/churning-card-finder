@@ -28,9 +28,9 @@ export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder }: Props) 
     <section>
       <h2>Signup Offer Cheat Sheet</h2>
       <p>
-        A quick reference, not a personalized recommendation: each list assumes you have never had any of these
-        cards and can meet any minimum spend, and only splits on 5/24 status and reward type. For a personalized
-        list based on your actual card history,{" "}
+        This is only a quick reference guide. The lists are separated by 5/24 status and redemption goals only -
+        they assume you're eligible for every card on them and that you can meet any spending requirements. For a
+        personalized list based on your actual card history,{" "}
         <button type="button" className="linklike" onClick={onGoToFinder}>use the Card Finder</button>.
       </p>
 
