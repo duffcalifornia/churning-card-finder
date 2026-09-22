@@ -58,7 +58,10 @@ button { font: inherit; }
 .cheatsheet-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; align-items: start; }
 .cheatsheet-column { border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-width: 0; }
 .cheatsheet-column h3 { font-size: 1rem; }
-.cheatsheet-column .results { padding-left: 1.1em; font-size: 0.92rem; }
+/* A permissive column (e.g. "5/24 or over, cash back") can list 70+ cards, since the cheat sheet shows every
+   eligible one rather than a top few; without a cap the page becomes tens of thousands of pixels tall. The
+   heading stays visible above the list and every card is still there, just scrollable in place. */
+.cheatsheet-column .results { padding-left: 1.1em; font-size: 0.92rem; max-height: 70vh; overflow-y: auto; overscroll-behavior: contain; }
 
 .field { display: block; margin: 14px 0; font-weight: 600; }
 .field select, .field input[type="text"], .field textarea, .money input { font: inherit; padding: 6px 8px; margin-top: 4px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
