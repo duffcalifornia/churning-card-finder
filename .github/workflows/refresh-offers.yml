@@ -60,10 +60,11 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Install Playwright's Chromium (for issuers whose offers only appear after scripts run)
+      - name: Install Python dependencies
         run: |
+          pip install -r scripts/requirements.txt
           pip install playwright
-          playwright install --with-deps chromium
+          playwright install --with-deps chromium   # for issuers whose offers only appear after scripts run
 
       - name: Run the offer refresh
         id: refresh
