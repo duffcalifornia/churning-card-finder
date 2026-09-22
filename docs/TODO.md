@@ -402,3 +402,27 @@ stylized exclamation point, to read as more "stop and read this" than a generic 
 `.nllnote` now uses `AlertIcon`; `.ceiling` is untouched, still `WarningIcon`. Verified live (SVG markup checked
 directly on the same real scenario from the earlier NLL fix) that the two notes now render visually distinct
 icons. `npx tsc --noEmit` clean, 304 TS tests, 401 Python tests, production build succeeds.
+
+## New preference: hide Amex NLL-only cards entirely (2026-09-22)
+Owner's methodology change: rather than always showing Amex cards that need a targeted "no lifetime language"
+(NLL) offer (flagged with the new warning box), let each player opt out and have them hidden from the results
+completely.
+- New per-player field `Player.showAmexNllCards?: boolean` (`engine/types.ts`, `data/schema/profile.schema.json`)
+  — undefined/true keeps today's behavior (show, flagged); `false` hides them. Defaults to `true` in `newPlayer()`,
+  matching the existing behavior for anyone who doesn't touch the new question.
+- New unconditional yes/no question in the About You step (`QuestionsStep.tsx`), owner's exact wording: "Do you
+  wish to be shown American Express cards that require you to have an offer without lifetime language in order to
+  earn the bonus?" Unlike the Ink LLC question, this one always shows (it's a general preference, not conditional
+  on card history).
+- `recommend.ts`'s `candidatesFor` now computes `nllBlock()` once per card (previously computed only for the
+  stored flag) and, when a player said no, `continue`s past a flagged card instead of adding it to the candidate
+  list — reuses the exact same check that produces the flag, so there's no separate exclusion logic to keep in
+  sync. Applies everywhere `candidatesFor` is used (the main list and the "Best Personal Cards" relaxed list),
+  automatically.
+- 2 new tests (`recommend.test.ts`, real catalog, TDD): a player who said no gets both `amex-platinum` and
+  `amex-gold` excluded entirely (while an unrelated Chase card and an Amex card nothing blocks are unaffected);
+  a player who left it at the default still sees them, flagged.
+- Verified live: reproduced the owner's own Platinum/Gold scenario, toggled the new question to "No" and confirmed
+  Platinum disappears from the results entirely (revealing the higher-value business cards underneath it), then
+  back to "Yes" and confirmed it reappears with its NLL note. `npx tsc --noEmit` clean, 306 TS tests (304 + 2
+  new), 401 Python tests (unaffected), production build succeeds.

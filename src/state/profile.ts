@@ -45,6 +45,7 @@ export function newPlayer(n: number): Player {
     hasBoaDepositAccount: false,
     hasAmexBusinessChecking: false,
     willingToFormLlcForInk: false,
+    showAmexNllCards: true,
   };
 }
 

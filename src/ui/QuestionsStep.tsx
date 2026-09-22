@@ -78,6 +78,11 @@ export function QuestionsStep({ profile, onChange }: Props) {
               onChange={(v) => update(i, { wantsUnder524: v })}
             />
             <YesNo label="Do you have an open Bank of America deposit account (checking or savings)?" value={p.hasBoaDepositAccount ?? false} onChange={(v) => update(i, { hasBoaDepositAccount: v })} />
+            <YesNo
+              label="Do you wish to be shown American Express cards that require you to have an offer without lifetime language in order to earn the bonus?"
+              value={p.showAmexNllCards ?? true}
+              onChange={(v) => update(i, { showAmexNllCards: v })}
+            />
             {holdsBusinessPlatinum && (
               <YesNo label="Do you have an Amex Business Checking account in your own name?" value={p.hasAmexBusinessChecking ?? false} onChange={(v) => update(i, { hasAmexBusinessChecking: v })} />
             )}

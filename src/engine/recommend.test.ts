@@ -295,6 +295,30 @@ describe("recommend: real data", () => {
     expect(gold!.players[0]!.viaNllOnly).toBe(true);
   });
 
+  it("hides Amex NLL-only cards entirely for a player who said no to them (owner, 2026-09-22)", () => {
+    const holder = person("Solo", { showAmexNllCards: false }, { "amex-platinum": { current: 1, approved: {} } });
+    const r = recommend(
+      profile([holder], { maxAnnualFee: 900000, spend3Months: 8000000, spend6Months: 16000000 }),
+      real,
+      { perPlayer: Number.POSITIVE_INFINITY },
+    );
+    expect(r.ranked.find((e) => e.cardId === "amex-platinum")).toBeUndefined();
+    expect(r.ranked.find((e) => e.cardId === "amex-gold")).toBeUndefined();
+    // A non-Amex card, and an Amex card nothing blocks, are unaffected.
+    expect(r.ranked.find((e) => e.cardId === "chase-sapphire-preferred")).toBeDefined();
+    expect(r.ranked.find((e) => e.cardId === "amex-blue-business-plus")).toBeDefined();
+  });
+
+  it("still shows Amex NLL-only cards, flagged, when showAmexNllCards is left at its default (true)", () => {
+    const holder = person("Solo", {}, { "amex-platinum": { current: 1, approved: {} } });
+    const r = recommend(
+      profile([holder], { maxAnnualFee: 900000, spend3Months: 8000000, spend6Months: 16000000 }),
+      real,
+      { perPlayer: Number.POSITIVE_INFINITY },
+    );
+    expect(r.ranked.find((e) => e.cardId === "amex-platinum")?.players[0]?.viaNllOnly).toBe(true);
+  });
+
   it("is valid for two players, one with cards and one shut down by Chase", () => {
     const p1 = person("P1", {}, { "chase-sapphire-preferred": { current: 1, approved: { m12to24: 1 } } });
     const p2 = person("P2", { shutdownIssuers: ["chase"], wantsUnder524: true });

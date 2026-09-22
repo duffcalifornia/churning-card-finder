@@ -211,6 +211,11 @@
      "type": "boolean",
      "default": false,
      "description": "Lives in a low-fee LLC state and is willing to form an LLC (with its own EIN, for a real business) to get around Chase's Ink lifetime limit. Asked only if an Ink card's bonus is otherwise blocked by that limit. A yes lifts the lifetime block for every Ink card (docs/rule-audit.md K7)."
+    },
+    "showAmexNllCards": {
+     "type": "boolean",
+     "default": true,
+     "description": "Whether to show Amex cards that would need a targeted 'no lifetime language' (NLL) offer to earn the bonus. Default (true, or left unset) shows them flagged with a note; false hides them from the results entirely."
     }
    }
   },

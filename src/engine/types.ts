@@ -90,6 +90,13 @@ export interface Player {
    * business) to get around Chase's Ink lifetime limit (K7). A "yes" lifts the lifetime block for every Ink card.
    */
   willingToFormLlcForInk?: boolean;
+  /**
+   * Whether to show Amex cards whose bonus would need a targeted "no lifetime language" (NLL) offer (owner,
+   * 2026-09-22). Undefined means yes (the historical default: show them, flagged with the NLL note). A "no" hard-
+   * excludes them instead of just flagging them — recommend.ts checks this, not hardExclusion.ts, since it needs
+   * the same nllBlock() call recommend.ts already makes to compute the flag in the first place.
+   */
+  showAmexNllCards?: boolean;
 }
 
 export interface Derived {

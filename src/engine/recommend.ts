@@ -41,6 +41,10 @@ function candidatesFor(player: Player, data: EngineData, ctx: ExclusionContext, 
   const out: Candidate[] = [];
   for (const card of data.catalog) {
     if (hardExclusion(player, card, ctx) !== null) continue;
+    const viaNllOnly = nllBlock(player, ctx.derived, card, data.catalog, data.marriottMatrix) !== null;
+    // A player who said no to Amex NLL-only cards (owner, 2026-09-22) gets them hidden entirely, not just
+    // flagged — the same nllBlock() call that would have set the flag is reused as the exclusion check itself.
+    if (viaNllOnly && player.showAmexNllCards === false) continue;
     // The unlocker cards themselves are valued at the with-unlocker rate: getting one unlocks the currency.
     const currency = currencyOf(card);
     const unlocked = currency !== undefined && (ctx.unlock.get(currency.id) === true || currency.unlockerCards.includes(card.id));
@@ -51,7 +55,7 @@ function candidatesFor(player: Player, data: EngineData, ctx: ExclusionContext, 
       bonus,
       net,
       value: rankBy === "raw" ? bonus : net,
-      viaNllOnly: nllBlock(player, ctx.derived, card, data.catalog, data.marriottMatrix) !== null,
+      viaNllOnly,
       targeted: targetsProgram(player, card, ctx),
     });
   }
