@@ -11,8 +11,11 @@ name: Refresh card offers
 #
 # If a genuinely tracked card could not be read this run — which is also what an issuer's circuit breaker
 # tripping (a likely block) looks like — this job fails on purpose, the same notification pattern as the
-# RRV check workflow. Cards that did read successfully are still committed either way: one bad card should
-# not hold back 130 good reads.
+# RRV check workflow, AND posts a summary comment to the tracking issue
+# (https://github.com/duffcalifornia/churning-card-finder/issues/1): watching that issue is how GitHub emails
+# you the actual details, not just a "run failed" link. Nothing is posted on a clean run, on purpose — only
+# runs that did not pass are worth an email. Cards that did read successfully are still committed either
+# way: one bad card should not hold back 130 good reads.
 
 on:
   schedule:
@@ -36,6 +39,7 @@ on:
 
 permissions:
   contents: write   # to commit the refreshed data back to the repo
+  issues: write      # to post a summary comment on issue #1 when a run does not pass
 
 jobs:
   refresh:
@@ -59,8 +63,24 @@ jobs:
           args="--delay ${{ github.event.inputs.delay || '3' }}"
           if [ "${{ github.event.inputs.include_paused }}" = "true" ]; then args="$args --include-paused"; fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then args="$args --dry-run"; fi
-          python3 scripts/refresh_offers.py $args
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          python3 scripts/refresh_offers.py $args 2>&1 | tee refresh.log
+          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Post a summary comment, only if the run did not pass
+        if: steps.refresh.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Run did not pass (exit code ${{ steps.refresh.outputs.exit_code }}): a tracked card could not be read, or an issuer's circuit breaker tripped."
+            echo ""
+            echo '```'
+            grep -E '^\[NOT FOUND\]|Stopped after repeated error pages|flags:.*page_error|^Summary:' refresh.log || echo "(could not pull details from the log; see the full run)"
+            echo '```'
+            echo ""
+            echo "[Full run log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          } > comment.md
+          gh issue comment 1 --repo ${{ github.repository }} --body-file comment.md
 
       - name: Commit the refreshed data, if anything changed
         if: github.event.inputs.dry_run != 'true'
