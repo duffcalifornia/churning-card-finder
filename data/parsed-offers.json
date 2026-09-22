@@ -873,7 +873,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "AS HIGH AS 100,000 Membership Rewards \u00ae points after you spend $8,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 100000.0,
@@ -895,7 +895,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "AS HIGH AS 175,000 Membership Rewards \u00ae points after you spend $12,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 175000.0,
@@ -917,7 +917,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "AS HIGH AS $200 Cash Back 1 after you spend $2,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": null,
@@ -939,7 +939,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "AS HIGH AS $300 Cash Back 1 after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": null,
@@ -961,7 +961,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 10,000 Bonus Miles after you spend $1,000 on eligible purchases on your new Card within your first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 10000.0,
@@ -983,7 +983,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "As High As 80,000 Bonus Miles after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 80000.0,
@@ -1005,7 +1005,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "As High As 90,000 Bonus Miles after you spend $4,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 90000.0,
@@ -1027,7 +1027,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "50,000 Bonus Miles after you spend $10,000 in purchases on your new Card in the first 6 months",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 50000.0,
@@ -1049,7 +1049,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 70,000 Hilton Honors Bonus Points + A Free Night Reward after you spend $2,000 in purchases on the Hilton Honors American Express Card in the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 70000.0,
@@ -1071,7 +1071,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 130,000 Hilton Honors Bonus Points + A Free Night Reward after you spend $3,000 in purchases on the Hilton Honors American Express Surpass \u00ae Card in the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 130000.0,
@@ -1093,7 +1093,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 200,000 Hilton Honors Bonus Points with the Hilton Honors American Express Aspire Card after you spend $6,000 in purchases on the Card within your first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 200000.0,
@@ -1115,7 +1115,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 125,000 Marriott Bonvoy \u00ae Bonus Points Plus A $150 Statement Credit after you use your new Card to make $5,000 in purchases within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 125000.0,
@@ -1137,7 +1137,7 @@
   "cardKind": "personal",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 150,000 Marriott Bonvoy \u00ae Bonus Points Plus A $250 Statement Credit after you use your new Card to make $6,000 in purchases within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 150000.0,
@@ -1159,7 +1159,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "AS HIGH AS 200,000 Membership Rewards \u00ae Points after you spend $15,000 in purchases on your new Card within the first 3 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 200000.0,
@@ -1181,7 +1181,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "AS HIGH AS 300,000 Membership Rewards \u00ae Points after you spend $20,000 in eligible purchases on your new Card within the first 3 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 300000.0,
@@ -1203,7 +1203,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 15,000 Membership Rewards \u00ae points after you spend $3,000 on eligible purchases on the Card within your first 3 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 15000.0,
@@ -1225,7 +1225,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 15,000 Membership Rewards \u00ae Points after you spend $3,000 in purchases on your Card in your first 3 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 15000.0,
@@ -1247,7 +1247,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn a $250 Statement Credit after you spend $3,000 in purchases on your Card in your first 3 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": null,
@@ -1268,12 +1268,12 @@
   "issuer": "amex",
   "cardKind": "business",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn $1,500 Cash Back in the form of Reward Dollars after you spend $50,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "sourceText": "Earn $1,500 $2,000 Cash Back in the form of Reward Dollars after you spend $50,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": null,
-   "cashBack": 1500.0,
+   "cashBack": 2000.0,
    "freeNightAwards": 0,
    "minSpend": 50000.0,
    "windowMonths": 6,
@@ -1291,7 +1291,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 150,000 Hilton Honors Bonus Points and a Free Night Reward after you spend $8,000 on eligible purchases on your Card within your first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 150000.0,
@@ -1313,7 +1313,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 60,000 90,000 Bonus Miles after you spend $6,000 in purchases on your new Card in your first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 90000.0,
@@ -1338,7 +1338,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 70,000 100,000 Bonus Miles after you spend $8,000 in purchases on your new Card in your first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 100000.0,
@@ -1363,7 +1363,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 80,000 200,000 Bonus Miles after you spend $20,000 in purchases on your new Card in your first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 200000.0,
@@ -1388,7 +1388,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 100,000 Marriott Bonvoy \u00ae Bonus Points and 1 Free Night Award after you spend $8,000 in purchases on the Card within the first 6 months of Card Membership",
-  "seenOn": "2026-09-21",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 100000.0,
