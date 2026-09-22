@@ -1,8 +1,9 @@
 import { useMemo } from "react";
 import { recommend, type RankBy } from "../engine/recommend";
-import type { Profile, ResultEntry, Results } from "../engine/types";
+import type { Profile, Results } from "../engine/types";
 import { engineData } from "../data/engineData";
-import { describeBonus } from "./bonusText";
+import { CardItem, money } from "./CardItem";
+import { RankBySelector } from "./RankBySelector";
 
 interface Props {
   profile: Profile;
@@ -11,52 +12,6 @@ interface Props {
 }
 
 const FM_RULES = "https://frequentmiler.com/complete-guide-to-credit-card-application-rules-by-bank/";
-
-const money = (n: number) => `${n < 0 ? "-" : ""}$${Math.abs(Math.round(n)).toLocaleString("en-US")}`;
-
-function joinNames(names: string[]): string {
-  if (names.length <= 1) return names.join("");
-  return `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
-}
-
-function playerLabel(p: ResultEntry["players"][number]): string {
-  return p.viaNllOnly ? `${p.name} (via NLL only)` : p.name;
-}
-
-function CardItem({ entry, single, rankBy }: { entry: ResultEntry; single: boolean; rankBy: RankBy }) {
-  const card = engineData.catalog.find((c) => c.id === entry.cardId)!;
-  const backups = entry.players.filter((p) => p.backup).map((p) => p.name);
-  const main = entry.players.filter((p) => !p.backup);
-  return (
-    <li>
-      <div className="cardname">{card.name}</div>
-      {!single && main.length > 0 && <div className="who">{joinNames(main.map(playerLabel))}</div>}
-      {backups.length > 0 && (
-        <div className="backup">Backup for {joinNames(backups)}, in case the offer you get is lower than the maximum shown</div>
-      )}
-      <div className="bonus">{describeBonus(card, engineData.currencies, engineData.programs).join(" + ")}</div>
-      <div className="values">
-        <span className={rankBy === "raw" ? "value ranked" : "value"}>Bonus value {money(entry.bonusValue)}</span>
-        <span className={rankBy === "net" ? "value ranked" : "value"}>
-          Net value {money(entry.netValue)}
-          {entry.annualFee > 0 && entry.firstYearFeeWaived ? " (first-year fee waived)" : entry.annualFee > 0 ? " after the annual fee" : ""}
-        </span>
-      </div>
-      <div className="facts">
-        <span>
-          Annual fee {money(entry.annualFee)}
-          {entry.firstYearFeeWaived ? ", waived the first year" : ""}
-        </span>
-        {entry.minSpend && (
-          <span>
-            Minimum spend {money(entry.minSpend.amount)} in {entry.minSpend.months} months
-          </span>
-        )}
-      </div>
-      {entry.ceiling && <div className="ceiling">The offer shown on the issuer's site is an "as high as" maximum. Yours may be lower.</div>}
-    </li>
-  );
-}
 
 export function ResultsStep({ profile, rankBy, onRankByChange }: Props) {
   const outcome = useMemo((): { results: Results } | { error: string } => {
@@ -92,17 +47,7 @@ export function ResultsStep({ profile, rankBy, onRankByChange }: Props) {
         limit which cards you can be approved for. If you are new to churning, read the notes on the r/churning flowchart and the r/churning wiki first.
       </p>
 
-      <fieldset className="rankby">
-        <legend>Rank the list by</legend>
-        <label>
-          <input type="radio" name="rankby" checked={rankBy === "net"} onChange={() => onRankByChange("net")} /> Best net value
-          <span className="hint">The welcome bonus's value minus the annual fee you would pay in the first year.</span>
-        </label>
-        <label>
-          <input type="radio" name="rankby" checked={rankBy === "raw"} onChange={() => onRankByChange("raw")} /> Best raw value
-          <span className="hint">The welcome bonus's value alone, ignoring the annual fee.</span>
-        </label>
-      </fieldset>
+      <RankBySelector rankBy={rankBy} onChange={onRankByChange} />
 
       <div className="counters">
         {results.players.map((p) => (

@@ -8,10 +8,20 @@ import { QuestionsStep } from "./ui/QuestionsStep";
 import { HouseholdStep } from "./ui/HouseholdStep";
 import { ResultsStep } from "./ui/ResultsStep";
 import { MethodologyPage } from "./ui/MethodologyPage";
+import { HomePage } from "./ui/HomePage";
+import { CheatSheetPage } from "./ui/CheatSheetPage";
 
 const STORAGE_KEY = "churning-card-finder:profile:v1";
 const RANK_KEY = "churning-card-finder:rankBy:v1";
-const STEPS = ["People", "Card history", "About you", "Spending", "Your cards"];
+const WIZARD_STEPS = ["People", "Card history", "About you", "Spending", "Your cards"];
+
+type Page = "home" | "cheatsheet" | "finder" | "methodology";
+const NAV: { page: Page; hash: string; label: string }[] = [
+  { page: "home", hash: "", label: "Home" },
+  { page: "cheatsheet", hash: "#cheatsheet", label: "Signup Offer Cheat Sheet" },
+  { page: "finder", hash: "#finder", label: "Card Finder" },
+  { page: "methodology", hash: "#methodology", label: "Ranking Methodology" },
+];
 
 // Browser storage can be missing or blocked (private windows), so every use is guarded and the site works without it.
 function loadProfile(): Profile {
@@ -30,20 +40,21 @@ function loadRankBy(): RankBy {
   }
 }
 
-// The Methodology page is a second, static "page" alongside the wizard, reachable by a plain link (#methodology) so
-// it can be shared and bookmarked, without pulling in a router for what is otherwise a single-page wizard.
-function isMethodologyHash(): boolean {
-  return window.location.hash === "#methodology";
+// Each top-level destination is a plain hash (#cheatsheet, #finder, #methodology; home is no hash), so every one of
+// them can be linked to and bookmarked directly, without pulling in a router.
+function pageFromHash(): Page {
+  const hash = window.location.hash;
+  return NAV.find((n) => n.hash === hash && n.hash !== "")?.page ?? "home";
 }
 
 export function App() {
   const [profile, setProfile] = useState<Profile>(loadProfile);
   const [rankBy, setRankBy] = useState<RankBy>(loadRankBy);
   const [step, setStep] = useState(0);
-  const [showMethodology, setShowMethodology] = useState(isMethodologyHash);
+  const [page, setPage] = useState<Page>(pageFromHash);
 
   useEffect(() => {
-    const onHashChange = () => setShowMethodology(isMethodologyHash());
+    const onHashChange = () => setPage(pageFromHash());
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
@@ -64,13 +75,19 @@ export function App() {
     }
   }, [rankBy]);
 
-  const go = (n: number) => {
+  const goToPage = (p: Page) => {
+    const hash = NAV.find((n) => n.page === p)!.hash;
+    if (window.location.hash !== hash) window.location.hash = hash;
+    else setPage(p); // same hash as already set: hashchange would not fire, so update directly
+    window.scrollTo(0, 0);
+  };
+  const goToStep = (n: number) => {
     setStep(n);
     window.scrollTo(0, 0);
   };
   const startOver = () => {
     setProfile(defaultProfile(1));
-    go(0);
+    goToStep(0);
   };
 
   return (
@@ -80,15 +97,31 @@ export function App() {
         <p className="tagline">A free tool for r/churning that replaces the credit card recommendation flowchart.</p>
       </header>
 
-      {showMethodology ? (
-        <MethodologyPage />
-      ) : (
+      <nav aria-label="Site">
+        <ol className="steps">
+          {NAV.map((n) => (
+            <li key={n.page}>
+              <button type="button" className={n.page === page ? "step current" : "step"} aria-current={n.page === page ? "page" : undefined} onClick={() => goToPage(n.page)}>
+                {n.label}
+              </button>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      {page === "home" && <HomePage onGoToCheatSheet={() => goToPage("cheatsheet")} onGoToFinder={() => goToPage("finder")} />}
+
+      {page === "cheatsheet" && <CheatSheetPage rankBy={rankBy} onRankByChange={setRankBy} onGoToFinder={() => goToPage("finder")} />}
+
+      {page === "methodology" && <MethodologyPage />}
+
+      {page === "finder" && (
         <>
           <nav aria-label="Steps">
-            <ol className="steps">
-              {STEPS.map((name, i) => (
+            <ol className="steps substeps">
+              {WIZARD_STEPS.map((name, i) => (
                 <li key={name}>
-                  <button type="button" className={i === step ? "step current" : "step"} aria-current={i === step ? "step" : undefined} onClick={() => go(i)}>
+                  <button type="button" className={i === step ? "step current" : "step"} aria-current={i === step ? "step" : undefined} onClick={() => goToStep(i)}>
                     <span className="num">{i + 1}</span> {name}
                   </button>
                 </li>
@@ -103,16 +136,15 @@ export function App() {
           {step === 4 && <ResultsStep profile={profile} rankBy={rankBy} onRankByChange={setRankBy} />}
 
           <div className="buttons">
-            {step > 0 && <button type="button" className="secondary" onClick={() => go(step - 1)}>Back</button>}
-            {step < STEPS.length - 1 && <button type="button" className="primary" onClick={() => go(step + 1)}>Next</button>}
-            {step === STEPS.length - 1 && <button type="button" className="secondary" onClick={startOver}>Start over</button>}
+            {step > 0 && <button type="button" className="secondary" onClick={() => goToStep(step - 1)}>Back</button>}
+            {step < WIZARD_STEPS.length - 1 && <button type="button" className="primary" onClick={() => goToStep(step + 1)}>Next</button>}
+            {step === WIZARD_STEPS.length - 1 && <button type="button" className="secondary" onClick={startOver}>Start over</button>}
           </div>
         </>
       )}
 
       <footer>
         Based on the r/churning credit card recommendation flowchart. Not financial advice. Card offers and bank rules change often; check the issuer before you apply.
-        {" "}<a href="#methodology">Ranking Methodology</a>.
       </footer>
     </main>
   );
