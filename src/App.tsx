@@ -115,7 +115,7 @@ export function App() {
     <main>
       <header>
         <h1>Which credit card should I get?</h1>
-        <p className="tagline">A free tool for r/churning that replaces the credit card recommendation flowchart.</p>
+        <p className="tagline">A free, impartial, logic based tool for determining which credit card to apply for.</p>
         <button
           type="button"
           className="hamburger"
