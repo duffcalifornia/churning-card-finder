@@ -85,6 +85,20 @@ def offer_change_entry(old_offers, new_offers, card_names):
     return f"Updated the bonus offer for the following card(s): {format_list(names)}."
 
 
+def fee_change_entry(old_fees, new_fees, old_waived, new_waived, card_names):
+    """The changelog line for a run where a card's offer text was unchanged but its annual fee (the amount, or
+    whether the first year is waived) moved — either one changes the net value ranking on its own. None if
+    nothing did. Deliberately keeps "card" singular in the template even for more than one card (owner's call,
+    2026-09-22: expected to be rare enough that singular reads fine regardless of count).
+    """
+    changed_ids = {cid for cid, amount in new_fees.items() if old_fees.get(cid) != amount}
+    changed_ids |= set(old_waived) ^ set(new_waived)  # newly waived, or (not expected from an automated run) un-waived
+    if not changed_ids:
+        return None
+    names = sorted(card_names.get(cid, cid) for cid in changed_ids)
+    return f"Updated the net value rankings to reflect changes to the annual fee on the following card: {format_list(names)}."
+
+
 def valuation_change_entry(old_values, new_values):
     """The changelog line for a change in data/valuations.json's `values`, or None if nothing changed.
 

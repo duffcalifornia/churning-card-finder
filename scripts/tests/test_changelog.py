@@ -3,7 +3,7 @@ import tempfile
 import unittest
 
 from cardfinder.changelog import (
-    currency_label, format_list, offer_change_entry, prepend_changelog_entry, valuation_change_entry,
+    currency_label, fee_change_entry, format_list, offer_change_entry, prepend_changelog_entry, valuation_change_entry,
 )
 
 
@@ -58,6 +58,43 @@ class OfferChangeEntryTests(unittest.TestCase):
         old = {"amex-gold": {"text": "100,000"}}
         new = {}
         self.assertIsNone(offer_change_entry(old, new, self.NAMES))
+
+
+class FeeChangeEntryTests(unittest.TestCase):
+    """Owner's rule (2026-09-22): a fee-only change (the offer text itself did not move) gets its own line,
+    deliberately keeping "card" singular in the template even when more than one card changed, since the owner
+    expects this to be rare enough that singular reads fine either way."""
+
+    NAMES = {"chase-sapphire-preferred": "Chase Sapphire Preferred", "amex-gold": "American Express Gold Card"}
+
+    def test_no_change_is_none(self):
+        entry = fee_change_entry({"amex-gold": 250.0}, {"amex-gold": 250.0}, set(), set(), self.NAMES)
+        self.assertIsNone(entry)
+
+    def test_one_cards_fee_amount_changed(self):
+        entry = fee_change_entry({"amex-gold": 250.0}, {"amex-gold": 325.0}, set(), set(), self.NAMES)
+        self.assertEqual(entry, "Updated the net value rankings to reflect changes to the annual fee on the following card: American Express Gold Card.")
+
+    def test_newly_waived_first_year_counts_as_a_change(self):
+        entry = fee_change_entry({"amex-gold": 250.0}, {"amex-gold": 250.0}, set(), {"amex-gold"}, self.NAMES)
+        self.assertEqual(entry, "Updated the net value rankings to reflect changes to the annual fee on the following card: American Express Gold Card.")
+
+    def test_multiple_cards_still_use_the_singular_card_template(self):
+        old_fees = {"chase-sapphire-preferred": 95.0, "amex-gold": 250.0}
+        new_fees = {"chase-sapphire-preferred": 100.0, "amex-gold": 325.0}
+        entry = fee_change_entry(old_fees, new_fees, set(), set(), self.NAMES)
+        self.assertEqual(
+            entry,
+            "Updated the net value rankings to reflect changes to the annual fee on the following card: American Express Gold Card and Chase Sapphire Preferred.",
+        )
+
+    def test_a_brand_new_fee_where_none_was_known_counts_as_changed(self):
+        entry = fee_change_entry({}, {"amex-gold": 250.0}, set(), set(), self.NAMES)
+        self.assertEqual(entry, "Updated the net value rankings to reflect changes to the annual fee on the following card: American Express Gold Card.")
+
+    def test_unmapped_card_id_falls_back_to_the_id_itself(self):
+        entry = fee_change_entry({"some-new-card": 0.0}, {"some-new-card": 95.0}, set(), set(), {})
+        self.assertEqual(entry, "Updated the net value rankings to reflect changes to the annual fee on the following card: some-new-card.")
 
 
 class CurrencyLabelTests(unittest.TestCase):

@@ -226,3 +226,17 @@ Wired into the two places these changes actually happen:
 Deliberately out of scope, not invented beyond what the owner specified: a fee-only change (bonus text identical,
 annual fee different) has no changelog rule of its own and is not currently logged automatically — flagged in case
 a third consistent phrasing is wanted for that case too.
+
+## A third changelog rule: fee-only changes (2026-09-22)
+Follow-up to the offer/valuation changelog automation above. Owner added a third consistent phrasing for the case
+those two didn't cover: a run where a card's bonus offer text is unchanged but its annual fee (the amount, or it
+becoming waived the first year) changed, which still moves that card's net value ranking on its own.
+- `scripts/cardfinder/changelog.py`: new `fee_change_entry(old_fees, new_fees, old_waived, new_waived, card_names)`
+  (6 new tests, test-first). Phrasing: "Updated the net value rankings to reflect changes to the annual fee on the
+  following card: X." — deliberately keeps "card" singular in the template regardless of how many cards are
+  listed, per the owner's explicit call that this will be rare enough not to need "card(s)".
+- `scripts/refresh_offers.py`: now checks both `offer_change_entry` and `fee_change_entry` every run and logs
+  either, neither, or both — they're independent facts, so a card with both kinds of change in the same run gets
+  both lines. 1 new integration test confirming a fee-only run does NOT produce a bonus-offer line.
+- `scripts/README.md` and the `refresh-offers.yml` header comment updated to describe all three rules together.
+- Full suite: 401 Python tests (298 TS unaffected, this is Python-only), all green.

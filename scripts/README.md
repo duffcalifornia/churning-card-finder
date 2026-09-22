@@ -78,8 +78,12 @@ first time this was built). A card that could not be read this run keeps its las
 guessed. Amex is skipped by default, same as `card_offers.py`.
 
 Any card whose offer text actually changed this run gets one line in `CHANGELOG.md`: "Updated the bonus offer for
-the following card(s): X." (site owner's rule, 2026-09-22, for consistent changelog entries once the site is past
-its initial development phase). A run where nothing changed adds nothing.
+the following card(s): X." A card whose offer text was unchanged but whose annual fee (amount, or newly waived the
+first year) changed gets its own line instead: "Updated the net value rankings to reflect changes to the annual fee
+on the following card: X." (deliberately singular "card" even for more than one, per the owner). Both are the
+owner's rule, 2026-09-22, for consistent changelog entries once the site is past its initial development phase, and
+both can fire for the same card in the same run if it genuinely had both kinds of change. A run where nothing
+changed adds nothing.
 
 ```
 python3 scripts/refresh_offers.py                       # full run, all non-paused issuers, writes and rebuilds

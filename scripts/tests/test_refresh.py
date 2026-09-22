@@ -218,6 +218,24 @@ class MainWritesTheChangelogTests(unittest.TestCase):
         self.assertIn("Updated the bonus offer for the following card(s): Chase Sapphire Preferred.", changelog)
         self.assertIn("## 2026-09-20\n- An older entry.", changelog)  # the old section survives untouched
 
+    def test_a_fee_only_change_gets_its_own_entry_with_the_offer_text_unchanged(self):
+        # Same offer text as LAST_KNOWN_OFFERS (no bonus-offer entry expected), but a different fee.
+        self.mod.LAST_KNOWN_OFFERS = {"chase-sapphire-preferred": {"seen": "2026-01-01", "text": "75,000 points"}}
+        self.mod.LAST_KNOWN_FEES = {"chase-sapphire-preferred": 95.0}
+        offer = Offer(text="75,000 points", method="after_amount")
+        fee = Fee(text="$100", amount=100.0)
+        self.mod.run = lambda *a, **k: [found("chase-sapphire-preferred", offer=offer, fee=fee)]
+
+        exit_code = self.mod.main(["--card", "chase-sapphire-preferred", "--no-render"])
+        self.assertEqual(exit_code, 0)
+
+        changelog = open(self.mod.CHANGELOG_PATH).read()
+        self.assertNotIn("Updated the bonus offer", changelog)
+        self.assertIn(
+            "Updated the net value rankings to reflect changes to the annual fee on the following card: Chase Sapphire Preferred.",
+            changelog,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

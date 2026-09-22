@@ -31,7 +31,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
-from cardfinder.changelog import offer_change_entry, prepend_changelog_entry  # noqa: E402
+from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_changelog_entry  # noqa: E402
 from cardfinder.cli import exit_code, format_report, run, select_cards, split_paused  # noqa: E402
 from cardfinder.fetchers import CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
 from cardfinder.refresh import merge_last_known  # noqa: E402
@@ -101,13 +101,17 @@ def main(argv=None):
     new_offers, new_fees, new_waived = merge_last_known(results, LAST_KNOWN_OFFERS, LAST_KNOWN_FEES, LAST_KNOWN_FEE_WAIVED, today)
     _write_cache_files(new_offers, new_fees, new_waived)
 
-    # Site owner's rule (2026-09-22): every offer change gets logged this one consistent way, since these will
-    # be the most common changelog entries by far once the site is past its initial development phase.
+    # Site owner's rule (2026-09-22): every offer or fee change gets logged this one consistent way each, since
+    # these will be the most common changelog entries by far once the site is past its initial development
+    # phase. The two are independent facts and both can fire for the same card in the same run.
     card_names = {c.id: c.names[0] for c in CARDS}
-    entry = offer_change_entry(LAST_KNOWN_OFFERS, new_offers, card_names)
-    if entry:
-        prepend_changelog_entry(CHANGELOG_PATH, today, entry)
-        print(f"Changelog: {entry}")
+    for entry in (
+        offer_change_entry(LAST_KNOWN_OFFERS, new_offers, card_names),
+        fee_change_entry(LAST_KNOWN_FEES, new_fees, LAST_KNOWN_FEE_WAIVED, new_waived, card_names),
+    ):
+        if entry:
+            prepend_changelog_entry(CHANGELOG_PATH, today, entry)
+            print(f"Changelog: {entry}")
     print(f"Wrote {OFFERS_PATH}, {FEES_PATH}, {WAIVED_PATH}")
 
     # Rebuild the data the site actually reads, as real separate processes (not `import parse_offers` in this

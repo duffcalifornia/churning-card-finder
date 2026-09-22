@@ -6,8 +6,10 @@ name: Refresh card offers
 # scripts/README.md and the script's own docstring for what it does and does not touch.
 #
 # Any card whose offer text actually changed this run gets one line in CHANGELOG.md: "Updated the bonus offer
-# for the following card(s): X." (site owner's rule, 2026-09-22, for consistent changelog entries once the site
-# is past its initial development phase). A run where nothing changed adds nothing.
+# for the following card(s): X." A fee-only change (offer text the same, annual fee different) gets its own line:
+# "Updated the net value rankings to reflect changes to the annual fee on the following card: X." (site owner's
+# rule, 2026-09-22, for consistent changelog entries once the site is past its initial development phase). A run
+# where nothing changed adds nothing.
 #
 # Amex stays excluded (paused=... in scripts/cardfinder/registry.py) even here, unless run by hand with
 # "include_paused" set to true. That flag should only ever be used after confirming the earlier block has
