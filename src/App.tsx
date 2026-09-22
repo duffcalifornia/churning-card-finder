@@ -116,9 +116,6 @@ export function App() {
       <header>
         <h1>Which credit card should I get?</h1>
         <p className="tagline">A free tool for r/churning that replaces the credit card recommendation flowchart.</p>
-      </header>
-
-      <nav aria-label="Site">
         <button
           type="button"
           className="hamburger"
@@ -129,16 +126,21 @@ export function App() {
         >
           <span className="hamburger-icon" aria-hidden="true" />
         </button>
-        <ol id="site-nav-list" className={navOpen ? "steps open" : "steps"}>
-          {NAV.map((n) => (
-            <li key={n.page}>
-              <button type="button" className={n.page === page ? "step current" : "step"} aria-current={n.page === page ? "page" : undefined} onClick={() => goToPage(n.page)}>
-                {n.label}
-              </button>
-            </li>
-          ))}
-        </ol>
-      </nav>
+
+        {/* Nested inside header (rather than a header sibling) so the dropdown, on mobile, can be positioned
+            relative to header and drop straight down from the button instead of from below the tagline text. */}
+        <nav aria-label="Site">
+          <ol id="site-nav-list" className={navOpen ? "steps open" : "steps"}>
+            {NAV.map((n) => (
+              <li key={n.page}>
+                <button type="button" className={n.page === page ? "step current" : "step"} aria-current={n.page === page ? "page" : undefined} onClick={() => goToPage(n.page)}>
+                  {n.label}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </header>
 
       {page === "home" && <HomePage onGoToCheatSheet={() => goToPage("cheatsheet")} onGoToFinder={() => goToPage("finder")} />}
 

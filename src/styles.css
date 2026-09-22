@@ -30,9 +30,11 @@ a { color: var(--accent); }
 .hamburger-icon::before { position: absolute; top: -6px; left: 0; }
 .hamburger-icon::after { position: absolute; top: 6px; left: 0; }
 @media (max-width: 700px) {
-  nav[aria-label="Site"] { position: relative; min-height: 36px; }
+  header { position: relative; padding-right: 56px; }
   .hamburger { display: inline-flex; position: absolute; top: 0; right: 0; margin: 0; }
-  nav[aria-label="Site"] .steps { display: none; flex-direction: column; align-items: stretch; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; margin-top: 4px; z-index: 10; }
+  /* The dropdown drops from the button itself (top: 44px = the button's own 36px plus an 8px gap), not from
+     below the header's tagline text, since it's now nested in header rather than sitting below it. */
+  nav[aria-label="Site"] .steps { display: none; flex-direction: column; align-items: stretch; position: absolute; top: 44px; right: 0; left: auto; width: 220px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; z-index: 10; }
   nav[aria-label="Site"] .steps.open { display: flex; }
   nav[aria-label="Site"] .steps li { width: 100%; }
   nav[aria-label="Site"] .step { width: 100%; text-align: left; border-radius: 6px; }
