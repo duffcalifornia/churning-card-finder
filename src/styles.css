@@ -10,7 +10,7 @@
   }
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 main { max-width: 860px; margin: 0 auto; padding: 16px; }
 h1 { margin: 8px 0 0; font-size: 1.85rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; }
 h2 { margin-top: 24px; }
@@ -25,6 +25,16 @@ a { color: var(--accent); }
 .step { border: 1px solid var(--line); background: var(--soft); color: var(--fg); padding: 6px 10px; border-radius: 999px; cursor: pointer; font: inherit; }
 .step.current { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
 .step .num { font-weight: 600; margin-right: 4px; }
+
+/* The site-level nav (Home, Cheat Sheet, Card Finder, ...) reads as underlined tabs on desktop, not filled pills;
+   the wizard's own step sub-nav (a different <nav>, aria-label="Steps") keeps the pill style. Scoped to widths
+   above the hamburger breakpoint below: the mobile dropdown keeps the pill treatment, which suits a vertical list
+   better than an underline would. */
+@media (min-width: 701px) {
+  nav[aria-label="Site"] .steps { gap: 22px; border-bottom: 1px solid var(--line); }
+  nav[aria-label="Site"] .step { background: transparent; border: none; border-radius: 0; padding: 6px 1px 12px; color: var(--muted); font-weight: 500; border-bottom: 2px solid transparent; }
+  nav[aria-label="Site"] .step.current { background: transparent; color: var(--fg); font-weight: 700; border-bottom-color: var(--accent); }
+}
 
 /* The site-level nav (Home, Cheat Sheet, Card Finder, ...) collapses into a hamburger menu below 700px, since it
    now has six items and some long labels; the wizard's own step sub-nav is a different <nav> and is unaffected. */
@@ -53,7 +63,6 @@ button { font: inherit; }
 
 .homecards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
 .homecard { border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; background: var(--soft); box-shadow: var(--shadow); }
-.homecard-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-tint); color: var(--accent); display: flex; align-items: center; justify-content: center; }
 .homecard h3 { margin: 0; }
 .homecard p { flex: 1; margin: 0; color: var(--muted); font-size: 0.95rem; }
 .homecard .primary { align-self: flex-start; }
