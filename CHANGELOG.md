@@ -1,5 +1,3 @@
-# Changelog
-
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
 ## 2026-09-22

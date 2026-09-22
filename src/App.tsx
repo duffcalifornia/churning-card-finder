@@ -71,6 +71,7 @@ export function App() {
   const [rankBy, setRankBy] = useState<RankBy>(loadRankBy);
   const [step, setStep] = useState(0);
   const [page, setPage] = useState<Page>(pageFromHash);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const onHashChange = () => setPage(pageFromHash());
@@ -99,6 +100,7 @@ export function App() {
     if (window.location.hash !== hash) window.location.hash = hash;
     else setPage(p); // already at this hash: hashchange would not fire, so update directly
     window.scrollTo(0, 0);
+    setNavOpen(false); // closes the mobile hamburger menu; a no-op on desktop, where it is always open
   };
   const goToStep = (n: number) => {
     setStep(n);
@@ -117,7 +119,17 @@ export function App() {
       </header>
 
       <nav aria-label="Site">
-        <ol className="steps">
+        <button
+          type="button"
+          className="hamburger"
+          aria-label={navOpen ? "Close menu" : "Menu"}
+          aria-expanded={navOpen}
+          aria-controls="site-nav-list"
+          onClick={() => setNavOpen((v) => !v)}
+        >
+          <span className="hamburger-icon" aria-hidden="true" />
+        </button>
+        <ol id="site-nav-list" className={navOpen ? "steps open" : "steps"}>
           {NAV.map((n) => (
             <li key={n.page}>
               <button type="button" className={n.page === page ? "step current" : "step"} aria-current={n.page === page ? "page" : undefined} onClick={() => goToPage(n.page)}>
