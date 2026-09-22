@@ -1,0 +1,79 @@
+name: Refresh card offers
+
+# Runs scripts/refresh_offers.py once a day: reads each tracked card's welcome offer and annual fee from the
+# issuer's own public page, folds successful reads into scripts/cardfinder/last_known_*.json, and rebuilds
+# data/parsed-offers.json and data/cards.json (what the live site actually reads) from them. See
+# scripts/README.md and the script's own docstring for what it does and does not touch.
+#
+# Amex stays excluded (paused=... in scripts/cardfinder/registry.py) even here, unless run by hand with
+# "include_paused" set to true. That flag should only ever be used after confirming the earlier block has
+# actually cleared, not from this schedule.
+#
+# If a genuinely tracked card could not be read this run — which is also what an issuer's circuit breaker
+# tripping (a likely block) looks like — this job fails on purpose, the same notification pattern as the
+# RRV check workflow. Cards that did read successfully are still committed either way: one bad card should
+# not hold back 130 good reads.
+
+on:
+  schedule:
+    - cron: "37 13 * * *"   # once daily, offset from the RRV check so they don't start in the same minute
+  workflow_dispatch:
+    inputs:
+      delay:
+        description: "Seconds between requests"
+        required: false
+        default: "3"
+      include_paused:
+        description: "Also check paused issuers (Amex) — only after confirming the block has actually cleared"
+        required: false
+        type: boolean
+        default: false
+      dry_run:
+        description: "Check and report only; write and commit nothing"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # to commit the refreshed data back to the repo
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install Playwright's Chromium (for issuers whose offers only appear after scripts run)
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+
+      - name: Run the offer refresh
+        id: refresh
+        run: |
+          set +e
+          args="--delay ${{ github.event.inputs.delay || '3' }}"
+          if [ "${{ github.event.inputs.include_paused }}" = "true" ]; then args="$args --include-paused"; fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then args="$args --dry-run"; fi
+          python3 scripts/refresh_offers.py $args
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the refreshed data, if anything changed
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json"
+          if ! git diff --quiet -- $files; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add $files
+            git commit -m "refresh_offers: daily data refresh"
+            git push
+          fi
+
+      - name: Fail the job if a tracked card could not be read
+        if: steps.refresh.outputs.exit_code != '0'
+        run: exit ${{ steps.refresh.outputs.exit_code }}

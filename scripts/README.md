@@ -63,14 +63,36 @@ Exit codes, meant for a daily cron job: `0` nothing needs attention, `1` the pag
 `data/valuations.json` by hand, then rerun with `--ack` to accept the new baseline), `2` the page could not be read
 (never reported as "unchanged"). See the script's own `--help` for a sample crontab line.
 
-## Automation
-`.github/workflows/check-rrv.yml` runs the RRV checker above once a day on GitHub Actions, once this repo is pushed
-there: it commits the updated baseline when there's nothing to flag, and fails the job (so GitHub notifies whoever
-watches the repo) when the page changed or couldn't be read. Re-run it by hand with the `ack` input set to `true`
-once you've compared a change to `data/valuations.json`.
+## Refreshing offers automatically
+`scripts/refresh_offers.py` is what actually keeps the site's data current: it runs the same checker as
+`card_offers.py`, folds successful reads into `cardfinder/last_known_offers.json`, `last_known_fees.json` and
+`last_known_fee_waived.json`, and then rebuilds `data/parsed-offers.json` and `data/cards.json` from them (as
+separate processes — see the comment in the script for why an in-process rebuild silently used stale data the
+first time this was built). A card that could not be read this run keeps its last known value; nothing is
+guessed. Amex is skipped by default, same as `card_offers.py`.
 
-**Deliberately not automated:** the issuer offer checker (`card_offers.py`), for the same reason it stays
-manual and slow locally — heavy automated use got this project's own IP blocked by Amex once already (see the
-banner at the top of this file). Running it unattended, on a fixed schedule, from GitHub's shared runner IPs would
-risk the same thing again, with less ability to notice and back off. If you want it automated too, it should at
-least skip Amex, use a long delay, and be watched closely the first few runs.
+```
+python3 scripts/refresh_offers.py                       # full run, all non-paused issuers, writes and rebuilds
+python3 scripts/refresh_offers.py --dry-run --delay 3     # check and report only, writes nothing
+```
+
+`.github/workflows/refresh-offers.yml` runs it once a day on GitHub Actions: it commits the refreshed files when
+something changed, and fails the job (so GitHub notifies whoever watches the repo, same as the RRV check below)
+when a genuinely tracked card could not be read — which is also what an issuer's circuit breaker tripping (a
+likely block) looks like. One bad card does not hold back the rest: everything that did read successfully is
+still committed. It can also be triggered manually from the Actions tab at any time — worth knowing if you
+suspect an issuer is giving you trouble and want to check without waiting for the schedule, or with a longer
+`delay` — and its `include_paused` input can re-check Amex by hand, but only once you've actually confirmed the
+earlier block has cleared; the schedule itself never touches Amex.
+
+**A real risk worth knowing about:** this runs from GitHub's shared runner IPs, not your own connection. Bot
+defenses on sites like Chase, BoA, Capital One and Citi are specifically built to notice traffic like that, so
+unattended daily use here is arguably more likely to draw attention than the same requests from a residential
+IP, not less — this project has already been blocked by Amex once from heavy automated use (see the banner at
+the top of this file). Watch the first several scheduled runs, and if an issuer starts erroring or circuit-breaking
+repeatedly, pause it in `cardfinder/registry.py` (`IssuerConfig.paused`) the same way Amex is paused now, rather
+than letting the daily job keep hammering it.
+
+`.github/workflows/check-rrv.yml` runs the RRV checker above once a day too: it commits the updated baseline when
+there's nothing to flag, and fails the job when the page changed or couldn't be read. Re-run it by hand with the
+`ack` input set to `true` once you've compared a change to `data/valuations.json`.
