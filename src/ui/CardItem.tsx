@@ -42,10 +42,10 @@ export function CardItem({ entry, single, rankBy, rank }: { entry: ResultEntry; 
           <div className="nllnote">
             <WarningIcon />
             {single
-              ? 'This is normally a once-per-lifetime bonus, and the player already has or has had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn it again.'
+              ? 'This is normally a once-per-lifetime bonus, and the player already has or has had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn this bonus.'
               : nllPlayers.length === main.length
-                ? 'This is normally a once-per-lifetime bonus, and everyone listed already has or has had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn it again.'
-                : `This is normally a once-per-lifetime bonus, and ${joinNames(nllPlayers)} already ${nllPlayers.length === 1 ? "has" : "have"} or had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn it again.`}
+                ? 'This is normally a once-per-lifetime bonus, and everyone listed already has or has had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn this bonus.'
+                : `This is normally a once-per-lifetime bonus, and ${joinNames(nllPlayers)} already ${nllPlayers.length === 1 ? "has" : "have"} or had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn this bonus.`}
           </div>
         )}
         <div className="bonus">{describeBonus(card, engineData.currencies, engineData.programs).join(" + ")}</div>

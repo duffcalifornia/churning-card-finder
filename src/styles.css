@@ -1,11 +1,16 @@
 :root {
   --bg: #ffffff; --fg: #1b1f24; --muted: #59636e; --line: #d0d7de; --accent: #0b5fff; --accent-fg: #ffffff;
   --warn-bg: #fff4e5; --warn-fg: #8a4b00; --soft: #f6f8fa; --ok: #1a7f37;
+  /* A distinct, more urgent color from --warn-*: the ceiling note ("your bonus might be a bit lower") is just
+     informational, but the NLL note means the player may not be able to earn this bonus at all without a
+     targeted offer — a real risk of applying for nothing, not a minor caveat. */
+  --danger-bg: #fdeae5; --danger-fg: #9a3412;
   --accent-tint: rgba(11, 95, 255, 0.08); --shadow: 0 1px 2px rgba(20, 20, 20, 0.05), 0 8px 20px rgba(20, 20, 20, 0.06);
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0d1117; --fg: #e6edf3; --muted: #9aa4af; --line: #30363d; --accent: #4c8dff; --accent-fg: #0d1117; --warn-bg: #3a2a10; --warn-fg: #f2c27b; --soft: #161b22; --ok: #3fb950;
+    --danger-bg: #3d1a10; --danger-fg: #ff9466;
     --accent-tint: rgba(76, 141, 255, 0.14); --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 26px rgba(0, 0, 0, 0.26);
   }
 }
@@ -141,7 +146,9 @@ tr.extra label { display: block; }
 .rankby label { display: block; margin: 4px 0; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 0.92rem; }
 .facts span { display: inline-flex; align-items: center; gap: 6px; }
-.ceiling, .nllnote { display: inline-flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--warn-fg); background: var(--warn-bg); padding: 5px 10px; border-radius: 8px; margin-top: 2px; width: fit-content; }
+.ceiling, .nllnote { display: inline-flex; align-items: center; gap: 7px; font-size: 0.85rem; padding: 5px 10px; border-radius: 8px; margin-top: 2px; width: fit-content; }
+.ceiling { color: var(--warn-fg); background: var(--warn-bg); }
+.nllnote { color: var(--danger-fg); background: var(--danger-bg); }
 .bestpersonal { border: 1px solid var(--line); border-radius: 12px; padding: 4px 16px 16px; margin: 24px 0; background: var(--soft); }
 .bestpersonal .results { padding-top: 4px; }
 footer { margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }

@@ -380,3 +380,17 @@ consequences, and this was silently hiding exactly the information someone needs
 - Verified live end to end, reproducing the owner's exact scenario (single player, Platinum held, Gold never
   held): the results page now shows a clear, prominent warning box on the Platinum entry the moment it renders.
   `npx tsc --noEmit` clean, 304 TS tests (303 + 1 new), 401 Python tests (unaffected), production build succeeds.
+
+## NLL note: copy fix and a distinct, more urgent color (2026-09-22)
+Two small owner follow-ups to the NLL warning just added:
+- Copy: "...offer to earn it again" -> "...offer to earn this bonus." The family-rule case can trigger with no
+  prior history on the card itself at all (e.g. Gold blocked purely by holding Platinum), so "again" was wrong
+  there — "this bonus" is accurate either way.
+- Color: previously shared the same amber as the "as high as" ceiling note. Owner's instinct (agreed): these are
+  different severities — ceiling just means the real bonus might be a little lower than shown, still guaranteed;
+  NLL means the player may not be able to earn the bonus at all without a specific targeted offer, a real risk of
+  applying for nothing. Gave `.nllnote` its own `--danger-bg`/`--danger-fg` tokens (a red-orange, distinct from
+  the ceiling note's amber in both themes) instead of reusing `--warn-*`; `.ceiling` unchanged. Contrast checked
+  in both themes (6.3:1 light, 7.2:1 dark, both comfortably above WCAG AA).
+- Verified live: copy and both colors confirmed via computed styles against the real catalog scenario from the
+  previous fix. `npx tsc --noEmit` clean, 304 TS tests, 401 Python tests, production build succeeds.
