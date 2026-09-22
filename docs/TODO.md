@@ -394,3 +394,11 @@ Two small owner follow-ups to the NLL warning just added:
   in both themes (6.3:1 light, 7.2:1 dark, both comfortably above WCAG AA).
 - Verified live: copy and both colors confirmed via computed styles against the real catalog scenario from the
   previous fix. `npx tsc --noEmit` clean, 304 TS tests, 401 Python tests, production build succeeds.
+
+## NLL note: distinct icon (2026-09-22)
+Owner asked for the NLL note to use a different icon than the shared triangle warning — something like a
+stylized exclamation point, to read as more "stop and read this" than a generic caution triangle. Added
+`AlertIcon` (`icons.tsx`): a circled, filled exclamation mark, distinct in shape from `WarningIcon`'s triangle.
+`.nllnote` now uses `AlertIcon`; `.ceiling` is untouched, still `WarningIcon`. Verified live (SVG markup checked
+directly on the same real scenario from the earlier NLL fix) that the two notes now render visually distinct
+icons. `npx tsc --noEmit` clean, 304 TS tests, 401 Python tests, production build succeeds.

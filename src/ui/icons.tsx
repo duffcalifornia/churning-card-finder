@@ -29,3 +29,15 @@ export function WarningIcon() {
     </svg>
   );
 }
+
+/** A circled, filled exclamation mark: visually distinct from WarningIcon's triangle, for the NLL note — a more
+ * "stop and read this" mark than a generic caution triangle, matching how much more it matters. */
+export function AlertIcon() {
+  return (
+    <svg {...common} width="14" height="14">
+      <circle cx="12" cy="12" r="9.5" />
+      <line x1="12" y1="7" x2="12" y2="13.2" />
+      <circle cx="12" cy="16.6" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}

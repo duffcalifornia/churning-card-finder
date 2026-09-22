@@ -3,7 +3,7 @@ import type { ResultEntry } from "../engine/types";
 import { engineData } from "../data/engineData";
 import { describeBonus } from "./bonusText";
 import { issuerLabel } from "../state/profile";
-import { ClockIcon, FeeIcon, WarningIcon } from "./icons";
+import { AlertIcon, ClockIcon, FeeIcon, WarningIcon } from "./icons";
 
 export const money = (n: number) => `${n < 0 ? "-" : ""}$${Math.abs(Math.round(n)).toLocaleString("en-US")}`;
 
@@ -40,7 +40,7 @@ export function CardItem({ entry, single, rankBy, rank }: { entry: ResultEntry; 
         {!single && main.length > 0 && <div className="who">{joinNames(main.map(playerLabel))}</div>}
         {nllPlayers.length > 0 && (
           <div className="nllnote">
-            <WarningIcon />
+            <AlertIcon />
             {single
               ? 'This is normally a once-per-lifetime bonus, and the player already has or has had this card (or a higher card in its family). It would take a targeted "no lifetime language" (NLL) offer to earn this bonus.'
               : nllPlayers.length === main.length
