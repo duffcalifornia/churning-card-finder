@@ -188,7 +188,7 @@ export function App() {
 
       <footer>
         <p>
-          Based on the r/churning credit card recommendation flowchart. Not financial advice. Card offers and bank rules change often; check the issuer before you apply.
+          The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.
         </p>
         <p className="footerlinks">
           If you want to support this project, you could use{" "}

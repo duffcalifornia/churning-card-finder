@@ -9,7 +9,8 @@ export function HomePage({ onGoToCheatSheet, onGoToFinder }: Props) {
       <p>
         Most credit card sites push cards that make them money rather than what fits your needs. This site is
         different: no affiliate links or sponsored placement influences the rankings you see in any way. It's
-        free, and it always will be.
+        free, and it always will be. To learn how the cards get ranked, see the{" "}
+        <a href="#methodology">Ranking Methodology</a> page.
       </p>
 
       <h2>Two ways to use this site</h2>
@@ -31,18 +32,13 @@ export function HomePage({ onGoToCheatSheet, onGoToFinder }: Props) {
         <div className="homecard">
           <h3>Card Finder</h3>
           <p>
-            Tell it your (or your household's) real card history, spending, and preferences, and it works out
-            exactly which cards you're eligible for right now, accounting for 5/24, lifetime and family rules,
-            the Marriott matrix, and more, then ranks them by value.
+            Tell it your (or your household's) real card history, spending ability, and preferences, and it shows
+            you the most valuable cards to apply for right now while taking all applicable bank rules into
+            account. Your information never leaves your web browser.
           </p>
           <button type="button" className="primary" onClick={onGoToFinder}>Start the Card Finder</button>
         </div>
       </div>
-
-      <p className="note">
-        If you use the Card Finder, your answers stay entirely in this browser - nothing is ever sent to a server. See the{" "}
-        <a href="#methodology">Ranking Methodology</a> page for how cards are valued and which rules are checked.
-      </p>
     </section>
   );
 }

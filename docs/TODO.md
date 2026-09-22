@@ -586,3 +586,17 @@ Verified live: skip link (`getComputedStyle` confirms `top: -40px` at rest), `#m
 new/changed meta tag values read back correctly, `/og-image.svg` and `/robots.txt` serve and render correctly
 (screenshotted), `dist/` build copies `og-image.svg`, `robots.txt`, and the updated `favicon.svg`. `npx tsc
 --noEmit` clean, 306 TS tests pass, production build succeeds.
+
+## Home page and footer copy pass (2026-09-22)
+`HomePage.tsx`: folded the standalone "See the Ranking Methodology..." note into the end of the trust-blurb
+paragraph above "Two ways to use this site" ("To learn how the cards get ranked, see the Ranking Methodology
+page."); reworded the Card Finder card's body copy per the owner's exact text, which now ends with "Your
+information never leaves your web browser." — since that sentence now covers the privacy disclosure, removed the
+separate "If you use the Card Finder, your answers stay entirely in this browser..." note paragraph below the
+cards entirely (no longer needed). `App.tsx`: reworded the footer's first line to "The information presented on
+this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules
+can change; check the issuer before you apply." (drops the old "Based on the r/churning flowchart" sentence,
+per the owner's exact replacement text). Confirmed the footer was already rendered unconditionally on every page
+(outside all page-conditional blocks in `App.tsx`) — no code change was needed for "always visible on all
+pages"; verified live on both the home page and the Card Finder page. `npx tsc --noEmit` clean, 306 TS tests
+pass, production build succeeds.
