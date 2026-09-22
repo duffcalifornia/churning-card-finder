@@ -10,17 +10,35 @@ import { ResultsStep } from "./ui/ResultsStep";
 import { MethodologyPage } from "./ui/MethodologyPage";
 import { HomePage } from "./ui/HomePage";
 import { CheatSheetPage } from "./ui/CheatSheetPage";
+import { ChangelogPage } from "./ui/ChangelogPage";
+import { SuggestionsPage } from "./ui/SuggestionsPage";
+import { ReferralsPage, BMAC_URL } from "./ui/ReferralsPage";
 
 const STORAGE_KEY = "churning-card-finder:profile:v1";
 const RANK_KEY = "churning-card-finder:rankBy:v1";
 const WIZARD_STEPS = ["People", "Card history", "About you", "Spending", "Your cards"];
 
-type Page = "home" | "cheatsheet" | "finder" | "methodology";
-const NAV: { page: Page; hash: string; label: string }[] = [
-  { page: "home", hash: "", label: "Home" },
-  { page: "cheatsheet", hash: "#cheatsheet", label: "Signup Offer Cheat Sheet" },
-  { page: "finder", hash: "#finder", label: "Card Finder" },
-  { page: "methodology", hash: "#methodology", label: "Ranking Methodology" },
+type Page = "home" | "cheatsheet" | "finder" | "methodology" | "changelog" | "suggestions" | "referrals";
+
+// Every destination's hash, including "referrals", which is deliberately left out of NAV (below) so it only
+// shows up in the footer and isn't part of the site's visible navigation.
+const PAGE_HASHES: Record<Page, string> = {
+  home: "",
+  cheatsheet: "#cheatsheet",
+  finder: "#finder",
+  methodology: "#methodology",
+  changelog: "#changelog",
+  suggestions: "#suggestions",
+  referrals: "#referrals",
+};
+
+const NAV: { page: Page; label: string }[] = [
+  { page: "home", label: "Home" },
+  { page: "cheatsheet", label: "Signup Offer Cheat Sheet" },
+  { page: "finder", label: "Card Finder" },
+  { page: "methodology", label: "Ranking Methodology" },
+  { page: "changelog", label: "Changelog" },
+  { page: "suggestions", label: "Suggestions" },
 ];
 
 // Browser storage can be missing or blocked (private windows), so every use is guarded and the site works without it.
@@ -40,11 +58,12 @@ function loadRankBy(): RankBy {
   }
 }
 
-// Each top-level destination is a plain hash (#cheatsheet, #finder, #methodology; home is no hash), so every one of
-// them can be linked to and bookmarked directly, without pulling in a router.
+// Every destination is a plain hash (home is no hash), so every one of them, including the unlisted referrals
+// page, can be linked to and bookmarked directly, without pulling in a router.
 function pageFromHash(): Page {
   const hash = window.location.hash;
-  return NAV.find((n) => n.hash === hash && n.hash !== "")?.page ?? "home";
+  const entry = (Object.entries(PAGE_HASHES) as [Page, string][]).find(([, h]) => h === hash && h !== "");
+  return entry?.[0] ?? "home";
 }
 
 export function App() {
@@ -76,9 +95,9 @@ export function App() {
   }, [rankBy]);
 
   const goToPage = (p: Page) => {
-    const hash = NAV.find((n) => n.page === p)!.hash;
+    const hash = PAGE_HASHES[p];
     if (window.location.hash !== hash) window.location.hash = hash;
-    else setPage(p); // same hash as already set: hashchange would not fire, so update directly
+    else setPage(p); // already at this hash: hashchange would not fire, so update directly
     window.scrollTo(0, 0);
   };
   const goToStep = (n: number) => {
@@ -115,6 +134,12 @@ export function App() {
 
       {page === "methodology" && <MethodologyPage />}
 
+      {page === "changelog" && <ChangelogPage />}
+
+      {page === "suggestions" && <SuggestionsPage />}
+
+      {page === "referrals" && <ReferralsPage />}
+
       {page === "finder" && (
         <>
           <nav aria-label="Steps">
@@ -144,7 +169,14 @@ export function App() {
       )}
 
       <footer>
-        Based on the r/churning credit card recommendation flowchart. Not financial advice. Card offers and bank rules change often; check the issuer before you apply.
+        <p>
+          Based on the r/churning credit card recommendation flowchart. Not financial advice. Card offers and bank rules change often; check the issuer before you apply.
+        </p>
+        <p className="footerlinks">
+          <a href="#referrals">My referral links</a>
+          {" · "}
+          <a href={BMAC_URL} target="_blank" rel="noreferrer">Buy me a coffee</a>
+        </p>
       </footer>
     </main>
   );
