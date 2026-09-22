@@ -16,6 +16,7 @@ import { ReferralsPage, BMAC_URL } from "./ui/ReferralsPage";
 
 const STORAGE_KEY = "churning-card-finder:profile:v1";
 const RANK_KEY = "churning-card-finder:rankBy:v1";
+const FOOTER_COLLAPSED_KEY = "churning-card-finder:footerCollapsed:v1";
 const WIZARD_STEPS = ["People", "Card history", "About you", "Spending", "Your cards"];
 
 type Page = "home" | "cheatsheet" | "finder" | "methodology" | "changelog" | "suggestions" | "referrals";
@@ -58,6 +59,17 @@ function loadRankBy(): RankBy {
   }
 }
 
+// Session-only (not localStorage): collapsing the footer to reclaim mobile screen space is remembered for the
+// rest of this browsing session, but a new visit starts with it expanded again — someone who collapses it once
+// should not have "support this project" quietly hidden from them forever.
+function loadFooterCollapsed(): boolean {
+  try {
+    return sessionStorage.getItem(FOOTER_COLLAPSED_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 // Every destination is a plain hash (home is no hash), so every one of them, including the unlisted referrals
 // page, can be linked to and bookmarked directly, without pulling in a router.
 function pageFromHash(): Page {
@@ -72,6 +84,7 @@ export function App() {
   const [step, setStep] = useState(0);
   const [page, setPage] = useState<Page>(pageFromHash);
   const [navOpen, setNavOpen] = useState(false);
+  const [footerCollapsed, setFooterCollapsed] = useState(loadFooterCollapsed);
 
   useEffect(() => {
     const onHashChange = () => setPage(pageFromHash());
@@ -108,6 +121,14 @@ export function App() {
       /* storage unavailable */
     }
   }, [rankBy]);
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(FOOTER_COLLAPSED_KEY, footerCollapsed ? "1" : "0");
+    } catch {
+      /* storage unavailable */
+    }
+  }, [footerCollapsed]);
 
   const goToPage = (p: Page) => {
     const hash = PAGE_HASHES[p];
@@ -200,15 +221,22 @@ export function App() {
         )}
       </div>
 
-      <footer ref={footerRef} className={footerFixed ? "footer-fixed" : undefined}>
-        <p>
-          The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.
-        </p>
-        <p className="footerlinks">
-          If you want to support this project, you could use{" "}
-          <a href="#referrals">one of my referral links</a> or{" "}
-          <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>
-        </p>
+      <footer ref={footerRef} className={[footerFixed && "footer-fixed", footerCollapsed && "collapsed"].filter(Boolean).join(" ") || undefined}>
+        {/* Only shown (see .footer-toggle in styles.css) at the same narrow widths where a fixed footer costs
+            real screen space; collapsing is remembered for this browsing session only (see loadFooterCollapsed). */}
+        <button type="button" className="footer-toggle" aria-expanded={!footerCollapsed} onClick={() => setFooterCollapsed((v) => !v)}>
+          {footerCollapsed ? "Show footer" : "Hide footer"}
+        </button>
+        <div className="footer-body">
+          <p>
+            The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.
+          </p>
+          <p className="footerlinks">
+            If you want to support this project, you could use{" "}
+            <a href="#referrals">one of my referral links</a> or{" "}
+            <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>
+          </p>
+        </div>
       </footer>
     </main>
   );

@@ -169,7 +169,16 @@ footer p { margin: 4px 0; }
    which are already dense with inputs and need the vertical space; the inner max-width/padding mirrors `main`'s
    own so the content lines up, since the fixed footer itself spans the full viewport width. */
 .footer-fixed { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; margin-top: 0; padding: 10px 16px; background: var(--bg); max-width: none; }
-.footer-fixed > * { max-width: 860px; margin-left: auto; margin-right: auto; }
+.footer-fixed .footer-body { max-width: 860px; margin: 0 auto; }
+.footer-toggle { display: none; }
+/* The fixed footer only costs meaningful screen space at the width where the site nav also collapses to a
+   hamburger, so the collapse toggle (and the ability to actually collapse) only shows up there; on wider
+   screens the footer is small relative to the viewport and always stays fully expanded. */
+@media (max-width: 700px) {
+  .footer-fixed { display: flex; flex-direction: column; gap: 2px; }
+  .footer-toggle { display: inline-flex; align-self: flex-end; align-items: center; background: none; border: none; color: var(--muted); font: inherit; font-size: 0.78rem; text-decoration: underline; padding: 2px 0; cursor: pointer; }
+  .footer-fixed.collapsed .footer-body { display: none; }
+}
 .footerlinks a { color: var(--muted); }
 
 .changelog h2 { margin-top: 28px; }

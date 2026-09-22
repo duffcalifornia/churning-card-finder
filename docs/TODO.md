@@ -618,3 +618,26 @@ on Card Finder steps 1-4 (`footer.className === ""`), IS fixed on step 5 / Resul
 mobile-width (375px, 3-line-wrapped footer) view and confirmed via `getBoundingClientRect()` that the footer's
 top edge sits below the last content element's bottom edge in both cases — no overlap. `npx tsc --noEmit` clean,
 306 TS tests pass, production build succeeds.
+
+## Let mobile users collapse the fixed footer for the session (2026-09-22)
+Owner asked whether mobile users could hide the fixed footer, since it costs real space there. Proposed a
+collapse toggle remembered in storage; owner then asked directly whether that struck the right balance between
+usability and still surfacing the support/referral links, and — being honest with themself — admitted they want
+people to see those links. Flagged the real tradeoff before building: `localStorage` would let someone collapse
+it once and never see the support links again on that device, which quietly opts out exactly the repeat visitors
+most likely to want to support the project. Owner agreed and asked for `sessionStorage` instead, so a collapse
+choice resets on the next visit rather than persisting forever.
+`App.tsx`: `footerCollapsed` state seeded from `loadFooterCollapsed()` (reads `sessionStorage`, defaults false on
+any error), persisted back via its own effect; a `.footer-toggle` button (`aria-expanded`, label toggles "Hide
+footer" / "Show footer") flips it, and the footer's own content moved into a `.footer-body` wrapper so it can be
+hidden without touching the toggle button itself. `styles.css`: the toggle is `display: none` outside `@media
+(max-width: 700px)` — the same breakpoint the site nav already collapses to a hamburger at — so desktop always
+shows the full footer regardless of the stored collapsed flag, and only narrow viewports can act on it or see
+the effect; collapsed state there hides `.footer-body`, leaving just the slim toggle bar.
+Verified live: clicking the toggle at 375px width collapses the footer to a one-line bar and writes `"1"` to
+`sessionStorage`; confirmed that value alone does nothing at a true desktop width (1200px, well above the
+breakpoint) — `.footer-body` stayed `display: block` and the toggle stayed `display: none` even with the
+collapsed flag still set from the mobile test, proving desktop always ignores it. (Note: the Browser pane's own
+"desktop" preset here is ~655px, narrower than the site's 700px breakpoint, so it shows the mobile hamburger nav
+too — verification used an explicit 1200px width to test real desktop behavior instead.) `npx tsc --noEmit`
+clean, 306 TS tests pass, production build succeeds.
