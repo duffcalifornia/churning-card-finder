@@ -87,6 +87,10 @@ button { font: inherit; }
 .money input { width: 9em; margin-left: 4px; }
 fieldset { border: 1px solid var(--line); border-radius: 8px; margin: 14px 0; padding: 10px 14px; }
 legend { font-weight: 600; padding: 0 6px; }
+/* .yesno is a <div role="group">, not a <fieldset>, so a long, multi-line question renders correctly (see the
+   comment in QuestionsStep.tsx's YesNo component); styled to look the same as the fieldset-based groups. */
+.yesno { border: 1px solid var(--line); border-radius: 8px; margin: 14px 0; padding: 10px 14px; }
+.yesno-label { margin: 0 0 8px; font-weight: 600; }
 .yesno label, .checks label { margin-right: 18px; display: inline-block; }
 .checks.columns { columns: 2 260px; margin-top: 10px; }
 .checks.columns label { display: block; margin: 0 0 4px; }

@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { computeDerived } from "../engine/computeDerived";
 import type { Player, Profile } from "../engine/types";
 import { engineData } from "../data/engineData";
@@ -20,12 +21,17 @@ const SHUTDOWN_ISSUERS: { id: string; name: string }[] = [
 ];
 
 function YesNo({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void }) {
+  // A plain group (not <fieldset>/<legend>) because a native legend assumes a single short line: once the
+  // question text wraps to several lines (the Ink LLC question below is four), browsers still only reserve
+  // room for one line of it on the border, so the fieldset's top border renders straight through the wrapped
+  // text instead of above it. A labelled group with a normal paragraph renders correctly at any label length.
+  const id = useId();
   return (
-    <fieldset className="yesno">
-      <legend>{label}</legend>
+    <div className="yesno" role="group" aria-labelledby={id}>
+      <p id={id} className="yesno-label">{label}</p>
       <label><input type="radio" checked={value} onChange={() => onChange(true)} /> Yes</label>
       <label><input type="radio" checked={!value} onChange={() => onChange(false)} /> No</label>
-    </fieldset>
+    </div>
   );
 }
 

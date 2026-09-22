@@ -264,3 +264,19 @@ Two real usability bugs the owner hit actually using the Card Finder:
 - Verified live: entering "hold now" no longer auto-fills any approval window; entering an approval window (even
   after "hold now" was already set) never touches any other window or `current`. Full suite green: 299 TS tests
   (298 + 1 new), 401 Python tests (unaffected, Python-side wasn't touched), production build succeeds.
+
+## Fixed a fieldset/legend rendering bug on long yes/no questions (2026-09-22)
+The Ink LLC workaround question's box border rendered straight through its own wrapped text (visible on the About
+You step) instead of enclosing it. Root cause: `YesNo` (in `QuestionsStep.tsx`) used a native `<fieldset><legend>`,
+and a browser's native legend rendering only reserves border space for one line of it — fine for every other
+yes/no question here (all short, single-line), but the Ink LLC question's label is six lines long, so the extra
+wrapped lines rendered outside the space the fieldset border accounted for.
+- Replaced with `<div role="group" aria-labelledby>` plus a normal `<p>` for the label (`React.useId()` for a
+  stable id), styled in `styles.css` to look identical to the fieldset-based groups elsewhere on the site. A
+  `role="group"` + `aria-labelledby` div is the standard accessible substitute for fieldset/legend and renders
+  correctly at any label length, native box-model quirk avoided entirely.
+- Scoped to just `YesNo`; the one other native `<fieldset><legend>` on this step (the "which issuers shut you
+  down" checkbox group) has a short, single-line question and wasn't reported as broken, so it was left alone.
+- Verified live: reproduced the original bug's exact question (gave the profile an Ink card via History, then
+  viewed About You), confirmed the box now fully encloses all six lines. `npx tsc --noEmit` clean, 299 TS tests,
+  401 Python tests (unaffected), production build succeeds.
