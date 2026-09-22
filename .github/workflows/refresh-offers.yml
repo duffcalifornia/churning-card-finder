@@ -27,6 +27,10 @@ on:
     - cron: "37 13 * * *"   # once daily, offset from the RRV check so they don't start in the same minute
   workflow_dispatch:
     inputs:
+      issuer:
+        description: "Only this issuer (e.g. amex), or 'all'"
+        required: false
+        default: "all"
       delay:
         description: "Seconds between requests"
         required: false
@@ -65,7 +69,7 @@ jobs:
         id: refresh
         run: |
           set +e
-          args="--delay ${{ github.event.inputs.delay || '3' }}"
+          args="--delay ${{ github.event.inputs.delay || '3' }} --issuer ${{ github.event.inputs.issuer || 'all' }}"
           if [ "${{ github.event.inputs.include_paused }}" = "true" ]; then args="$args --include-paused"; fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then args="$args --dry-run"; fi
           python3 scripts/refresh_offers.py $args 2>&1 | tee refresh.log
