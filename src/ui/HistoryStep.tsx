@@ -29,26 +29,74 @@ export function HistoryStep({ profile, onChange }: Props) {
   const marriottIds = useMemo(() => new Set((engineData.marriottMatrix.cards ?? []).map((c) => c.id)), []);
   const cards = player.history.cards ?? {};
 
-  // iOS Safari and Chrome (both WebKit) have a long-standing bug where a `position: sticky` element inside the
-  // page that contains a focused input stops being sticky for the rest of the scroll session: focusing a Count
-  // field below shrinks the browser's URL bar, and WebKit fails to recompute the sticky elements' stuck state
-  // afterward, so they scroll away with the page instead of re-pinning - visually, they scroll up past where the
-  // URL bar collapsed to, rather than staying pinned just below it. There is no CSS-only fix; the documented
-  // workaround is to force a reflow of the sticky element by briefly clearing `position` and restoring it, right
-  // when the viewport actually changes size (`visualViewport`'s resize event fires exactly then, covering both
-  // the URL bar collapsing and a keyboard opening, regardless of which input triggered it).
+  // iOS Safari and Chrome (both WebKit) break `position: sticky` on this page: once a Count field below is
+  // focused, the issuer name bar (e.g. "Chase") stops sticking and just scrolls away with the rest of the page,
+  // off the top of the screen, instead of staying pinned below the URL bar. Two CSS-only workarounds (forcing a
+  // compositing layer, then forcing a reflow on visualViewport resize) were tried and confirmed not to fix it on
+  // real iPad and iPhone hardware, so this drives the pinning ourselves instead of trusting the browser's native
+  // sticky implementation at all: on every scroll/resize we measure whether each open issuer's own top edge has
+  // scrolled above the viewport, and if so switch its <summary> to `position: fixed` (with an explicit left/width,
+  // since fixed elements don't inherit their containing block's box the way sticky ones do) and reserve the space
+  // it would otherwise have occupied with padding-top on the issuer, so the table below it doesn't jump.
   useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-    const resetStickiness = () => {
-      document.querySelectorAll<HTMLElement>(".issuer[open] > summary, .issuer[open] thead th").forEach((el) => {
-        el.style.position = "static";
-        void el.offsetHeight; // force a reflow between the two assignments, or the browser coalesces them into a no-op
-        el.style.position = "sticky";
+    const BORDER_WIDTH = 1; // .issuer's own border-width (border: 1px solid var(--line))
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      document.querySelectorAll<HTMLDetailsElement>(".issuer").forEach((issuer) => {
+        const summary = issuer.querySelector<HTMLElement>(":scope > summary");
+        if (!summary) return;
+        // A closed issuer's <summary> stays visible (it's the toggle control), so it must be explicitly excluded
+        // here rather than relying on a `.issuer[open]` selector - otherwise closing an issuer while its header
+        // is pinned would leave that header stuck in fixed position, floating over the page forever.
+        const rect = issuer.getBoundingClientRect();
+        const summaryHeight = summary.offsetHeight || 44;
+        const shouldPin = issuer.open && rect.top < 0 && rect.bottom > summaryHeight;
+        if (shouldPin) {
+          summary.style.position = "fixed";
+          summary.style.top = "0";
+          summary.style.left = `${rect.left + BORDER_WIDTH}px`;
+          summary.style.width = `${issuer.clientWidth}px`;
+          issuer.classList.add("js-pinned");
+        } else {
+          summary.style.position = "";
+          summary.style.top = "";
+          summary.style.left = "";
+          summary.style.width = "";
+          issuer.classList.remove("js-pinned");
+        }
       });
     };
-    vv.addEventListener("resize", resetStickiness);
-    return () => vv.removeEventListener("resize", resetStickiness);
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.visualViewport?.addEventListener("resize", schedule);
+    window.visualViewport?.addEventListener("scroll", schedule);
+    // Opening or closing an issuer moves every rect below it, so re-measure right away rather than waiting for
+    // the next scroll (a click doesn't scroll the page on its own).
+    const detailsEls = Array.from(document.querySelectorAll<HTMLDetailsElement>(".issuer"));
+    detailsEls.forEach((d) => d.addEventListener("toggle", schedule));
+    schedule();
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.visualViewport?.removeEventListener("resize", schedule);
+      window.visualViewport?.removeEventListener("scroll", schedule);
+      detailsEls.forEach((d) => d.removeEventListener("toggle", schedule));
+      document.querySelectorAll<HTMLElement>(".issuer > summary").forEach((s) => {
+        s.style.position = "";
+        s.style.top = "";
+        s.style.left = "";
+        s.style.width = "";
+      });
+      document.querySelectorAll(".issuer").forEach((d) => d.classList.remove("js-pinned"));
+    };
   }, []);
 
   return (
