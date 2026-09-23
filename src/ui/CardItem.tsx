@@ -37,7 +37,7 @@ export function CardItem({ entry, single, rankBy, rank }: { entry: ResultEntry; 
             </span>
           )}
         </div>
-        {isBackup && <div className="backupnote">In case the offer you get is lower than the maximum shown.</div>}
+        {isBackup && <div className="backupnote">In case an offer you get is lower than the maximum shown.</div>}
         {!single && main.length > 0 && <div className="who">{joinNames(main.map(playerLabel))}</div>}
         {nllPlayers.length > 0 && (
           <div className="nllnote">
