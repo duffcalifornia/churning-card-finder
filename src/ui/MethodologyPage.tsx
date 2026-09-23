@@ -107,6 +107,7 @@ export function MethodologyPage() {
           how each individual person might use the points, they are instead given the flat valuation Frequent Miler provides.
           The value you get from those points could be higher or lower than their assigned value.
         </li>
+        <li>Cards that award transferrable points are only shown in cash only lists if you can cash your points out for at least one cent per point. They're too flexible and too valuable to treat them as cash back cards otherwise.</li>
         <li>Ranking uses the first-year annual fee only; a card's fee in later years is shown but not ranked on.</li>
         <li>Authorized-user accounts aren't counted anywhere, including toward Chase's 5/24.</li>
       </ul>
