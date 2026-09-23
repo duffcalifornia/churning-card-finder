@@ -29,21 +29,26 @@ export function HistoryStep({ profile, onChange }: Props) {
   const marriottIds = useMemo(() => new Set((engineData.marriottMatrix.cards ?? []).map((c) => c.id)), []);
   const cards = player.history.cards ?? {};
 
-  // iOS Safari and Chrome (both WebKit) break `position: sticky` on this page: once a Count field below is
-  // focused, the issuer name bar (e.g. "Chase") stops sticking and just scrolls away with the rest of the page,
-  // off the top of the screen, instead of staying pinned below the URL bar. Two CSS-only workarounds (forcing a
-  // compositing layer, then forcing a reflow on visualViewport resize) were tried and confirmed not to fix it on
-  // real iPad and iPhone hardware, so this drives the pinning ourselves instead of trusting the browser's native
-  // sticky implementation at all: on every scroll/resize we measure whether each open issuer's own top edge has
-  // scrolled above the viewport, and if so switch its <summary> to `position: fixed` (with an explicit left/width,
-  // since fixed elements don't inherit their containing block's box the way sticky ones do) and reserve the space
-  // it would otherwise have occupied with padding-top on the issuer, so the table below it doesn't jump.
+  // iOS Safari and Chrome (both WebKit) break header pinning on this page once a Count field below is focused:
+  // the issuer name bar (e.g. "Chase") ends up above the visible screen instead of pinned below the URL bar. Two
+  // earlier attempts (a compositing-layer hint, then forcing a sticky reflow) didn't fix it: neither did a first
+  // cut at this same JS-driven `position: fixed` approach, which is the key clue - a *manually computed* fixed
+  // position failing the same way means the bug isn't in how the header is positioned, it's in what "top: 0"
+  // even means right then. iOS does not resize the layout viewport when the keyboard opens or the URL bar
+  // collapses - only the *visual* viewport shifts - but `getBoundingClientRect()` and `position: fixed` are both
+  // anchored to the layout viewport. So "top: 0" pins to the top of a viewport that may no longer be the part of
+  // the page actually on screen. `window.visualViewport.offsetTop` is the documented way to read that gap, so
+  // pinning has to track it instead of a hardcoded 0 - and every rect this code reads has to be adjusted by the
+  // same amount, or "is this issuer's top above the visible area" would still be judged against the wrong frame.
   useEffect(() => {
     const BORDER_WIDTH = 1; // .issuer's own border-width (border: 1px solid var(--line))
     let raf = 0;
 
     const update = () => {
       raf = 0;
+      const vv = window.visualViewport;
+      const offsetTop = vv?.offsetTop ?? 0;
+      const offsetLeft = vv?.offsetLeft ?? 0;
       document.querySelectorAll<HTMLDetailsElement>(".issuer").forEach((issuer) => {
         const summary = issuer.querySelector<HTMLElement>(":scope > summary");
         if (!summary) return;
@@ -52,11 +57,11 @@ export function HistoryStep({ profile, onChange }: Props) {
         // is pinned would leave that header stuck in fixed position, floating over the page forever.
         const rect = issuer.getBoundingClientRect();
         const summaryHeight = summary.offsetHeight || 44;
-        const shouldPin = issuer.open && rect.top < 0 && rect.bottom > summaryHeight;
+        const shouldPin = issuer.open && rect.top < offsetTop && rect.bottom > offsetTop + summaryHeight;
         if (shouldPin) {
           summary.style.position = "fixed";
-          summary.style.top = "0";
-          summary.style.left = `${rect.left + BORDER_WIDTH}px`;
+          summary.style.top = `${offsetTop}px`;
+          summary.style.left = `${rect.left + BORDER_WIDTH - offsetLeft}px`;
           summary.style.width = `${issuer.clientWidth}px`;
           issuer.classList.add("js-pinned");
         } else {
