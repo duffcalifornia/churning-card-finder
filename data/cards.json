@@ -300,9 +300,10 @@
   "recommendable": true,
   "annualFee": 95.0,
   "reportsToPersonal": true,
-  "currency": "cash",
+  "currency": "marriott-bonvoy",
+  "coBrandedProgram": "marriott-bonvoy",
   "bonusTypes": [
-   "cashback"
+   "hotel"
   ],
   "welcomeBonus": {
    "freeNights": 3,

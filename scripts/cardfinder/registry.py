@@ -426,7 +426,7 @@ for _issuer, _currency, _ids in [
     ("chase", "aeroplan", ("aeroplan",)),
     ("chase", "ultimate-rewards", ("freedom-flex", "freedom-unlimited", "ink-cash", "ink-unlimited", "ink-preferred", "sapphire-preferred", "sapphire-reserve", "sapphire-reserve-business")),
     ("chase", "ihg-one-rewards", ("ihg-premier", "ihg-premier-business", "ihg-traveler")),
-    ("chase", "marriott-bonvoy", ("marriott-bold", "marriott-bountiful")),
+    ("chase", "marriott-bonvoy", ("marriott-bold", "marriott-bountiful", "marriott-boundless")),
     ("chase", "southwest-rapid-rewards", ("southwest-performance-business", "southwest-plus", "southwest-premier", "southwest-premier-business", "southwest-priority")),
     ("chase", "united-mileageplus", ("united-business", "united-club-business", "united-club-infinite", "united-explorer", "united-gateway", "united-quest")),
     ("chase", "world-of-hyatt", ("world-of-hyatt", "world-of-hyatt-business")),

@@ -99,6 +99,11 @@ class Flags(unittest.TestCase):
         self.assertEqual(BY_ID["amex-delta-gold"]["coBrandedProgram"], "delta-skymiles")
         self.assertEqual(BY_ID["amex-delta-gold"]["bonusTypes"], ["airline"])
         self.assertEqual(BY_ID["amex-hilton-surpass"]["bonusTypes"], ["hotel"])
+        # A free-night-only offer (no points component) is still a hotel bonus, never cash back -- a real bug
+        # (owner report, 2026-09-22): Boundless's current offer is 3 free nights with no points, and lacking any
+        # points fell through to the "cash" default meant for genuinely cash-back cards.
+        self.assertEqual(BY_ID["chase-marriott-boundless"]["bonusTypes"], ["hotel"])
+        self.assertEqual(BY_ID["chase-marriott-boundless"]["currency"], "marriott-bonvoy")
         self.assertEqual(BY_ID["amex-blue-business-cash"]["currency"], "cash")
         self.assertEqual(BY_ID["amex-blue-business-cash"]["bonusTypes"], ["cashback"])
         self.assertNotIn("coBrandedProgram", BY_ID["chase-sapphire-preferred"])

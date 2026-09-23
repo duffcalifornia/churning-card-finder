@@ -742,3 +742,24 @@ untouched. Test suite green after the fix. Added the matching end-to-end test in
 pattern as the Platinum one): holding `amex-blue-cash-preferred`, `morganstanley-blue-cash-preferred` is
 confirmed `viaNllOnly: true` in the real ranked results. `npx tsc --noEmit` clean, 310 TS tests pass (2 more
 new), 404 Python tests pass, production build succeeds.
+
+## Fixed a real bug: a free-nights-only offer was classified cash back, not hotel (2026-09-22)
+Found while comparing the Cheat Sheet's lists to the r/churning flowchart's: Marriott Bonvoy Boundless showed
+under "cash back," not "travel." Owner confirmed the rule: free night awards are always a hotel-program benefit,
+even when the current offer carries no separate points component -- never cash back just because there's no
+points this cycle.
+Root cause in `scripts/cardfinder/catalog.py`'s `build_catalog()`: `currency = CARD_CURRENCY[card.id] if
+parsed.get("points") else "cash"` only checked for a points component, so Boundless's current offer (3 free
+nights, no points) fell through to the "cash" default meant for genuinely cash-back cards -- silently, since the
+dollar valuation itself was already correct (free nights are valued separately via `FREE_NIGHT_CERTIFICATE`
+regardless of currency); only the category label was wrong. Also, `chase-marriott-boundless` was missing from
+`CARD_CURRENCY` entirely (only `marriott-bold`/`marriott-bountiful` were mapped), since nothing needed it while
+this branch was unreachable for a points-less offer.
+Reproduced first: added a test to `test_catalog.py` asserting `BY_ID["chase-marriott-boundless"]["bonusTypes"]
+== ["hotel"]`, confirmed red. Fixed both the condition (now checks `points` OR `freeNightAwards`, symmetrically
+in both the currency-assignment branch and the "no currency mapped, mark unranked rather than guess" safety
+branch above it) and added `marriott-boundless` to `CARD_CURRENCY`'s `("chase", "marriott-bonvoy", ...)` group.
+Regenerated `data/cards.json`; diff touched only `chase-marriott-boundless`'s `currency`/`coBrandedProgram`/
+`bonusTypes`, nothing else. Verified live: Boundless now appears in "Under 5/24, travel" (was absent from every
+travel list before) and no longer appears in any cash-back list. `npx tsc --noEmit` clean, 310 TS tests pass, 405
+Python tests pass (1 new), production build succeeds.

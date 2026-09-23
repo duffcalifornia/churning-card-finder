@@ -181,13 +181,17 @@ def build_catalog():
                 entry["unrankedReason"] = UNVALUED[card.id]
             elif parsed["kind"] != "standard":
                 entry["unrankedReason"] = "; ".join(parsed["notes"]) or "The offer has no fixed amount."
-            elif parsed.get("points") and card.id not in CARD_CURRENCY:
-                # A fresh read found points for a card with no known currency: never guess which one, and never let
-                # one card's gap take the whole build down (docs/TODO.md, 2026-09-22: this exact case crashed a
-                # scheduled run). Add the card to CARD_CURRENCY (a real currency) or UNVALUED (none exists yet).
+            # Free night awards are always a hotel-program benefit, whether or not points also come with the offer
+            # (owner, 2026-09-22): a free-nights-only current offer, e.g. Boundless, is never "cash back" just
+            # because it happens to carry no separate points component this offer cycle.
+            elif (parsed.get("points") or parsed.get("freeNightAwards")) and card.id not in CARD_CURRENCY:
+                # A fresh read found points (or free nights) for a card with no known currency: never guess which
+                # one, and never let one card's gap take the whole build down (docs/TODO.md, 2026-09-22: this exact
+                # case crashed a scheduled run). Add the card to CARD_CURRENCY (a real currency) or UNVALUED (none
+                # exists yet).
                 entry["unrankedReason"] = f"No points currency is mapped for this card yet (CARD_CURRENCY is missing {card.id})."
             else:
-                currency = CARD_CURRENCY[card.id] if parsed.get("points") else "cash"
+                currency = CARD_CURRENCY[card.id] if (parsed.get("points") or parsed.get("freeNightAwards")) else "cash"
                 entry["currency"] = currency
                 if currency in programs:
                     entry["coBrandedProgram"] = currency
