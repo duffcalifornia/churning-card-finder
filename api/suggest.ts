@@ -8,6 +8,12 @@
 // Honest limitation: this function is stateless per invocation, so there is no persistent request-rate limiting
 // here beyond the honeypot field and GitHub's own API rate limit on the token (a real backstop, but not built for
 // this specifically). A dedicated store (e.g. Upstash) would be needed for real abuse-rate limiting.
+//
+// GitHub never emails the token's own owner about issues that token created (it suppresses notifications for
+// your own activity), so a suggestion landing as a GitHub issue is not enough to actually notify anyone. The
+// RESEND_API_KEY + SUGGESTION_NOTIFY_EMAIL env vars below are optional: when both are set, a submission also
+// sends a direct email via Resend (https://resend.com). See docs/deployment.md for setup. Best-effort only — an
+// email failure never blocks the GitHub issue from being created, since that's the primary record of the suggestion.
 export const config = { runtime: "edge" };
 
 const REPO = "duffcalifornia/churning-card-finder";
@@ -16,6 +22,26 @@ const MAX_DETAILS = 3000;
 
 function json(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
+}
+
+async function notifyByEmail(summary: string, details: string, issueUrl: string): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.SUGGESTION_NOTIFY_EMAIL;
+  if (!apiKey || !to) return; // not configured; silently skip
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+        to,
+        subject: `New site suggestion: ${summary}`,
+        text: `${details ? details : "(no further detail given)"}\n\nGitHub issue: ${issueUrl}`,
+      }),
+    });
+  } catch {
+    // Best-effort notification only; the GitHub issue is the real record.
+  }
 }
 
 export default async function handler(request: Request): Promise<Response> {
@@ -57,5 +83,9 @@ export default async function handler(request: Request): Promise<Response> {
   });
 
   if (!ghResponse.ok) return json(502, { error: "Could not create the issue. Try again in a moment." });
+
+  const issue = await ghResponse.json().catch(() => null);
+  await notifyByEmail(summary, details, issue?.html_url ?? `https://github.com/${REPO}/issues`);
+
   return json(200, { ok: true });
 }

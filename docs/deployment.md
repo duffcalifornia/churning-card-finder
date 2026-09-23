@@ -19,6 +19,22 @@ To deploy on Vercel:
    commit it, never put it in any file in this repo (see `.env.example`, which documents the variable name only).
 4. Redeploy. The Suggest a Change form should now work; test it once before linking the site anywhere public.
 
+### Optional: email notification for new suggestions
+
+GitHub does not email a token's own owner about issues that token created — it suppresses notifications for your
+own account's activity, even if you're watching the repo. So without this, the only way to notice a new
+suggestion is to check the repo's Issues tab yourself. To also get a direct email:
+
+1. Create a free account at <https://resend.com> and generate an API key.
+2. In the Vercel project's Settings → Environment Variables, add:
+   - `RESEND_API_KEY` — the key from step 1.
+   - `SUGGESTION_NOTIFY_EMAIL` — the address you want notified.
+   - `RESEND_FROM_EMAIL` (optional) — defaults to `onboarding@resend.dev`, Resend's shared test sender, which can
+     only send to the email address you signed up to Resend with. To notify a different address, or once you're
+     past testing, verify your own sending domain in Resend and set this to an address at that domain instead.
+3. Redeploy. Both env vars must be set for email to fire; leaving either unset skips it silently and the GitHub
+   issue is still created as before — the email is a best-effort extra, never a requirement for suggestions to work.
+
 ## Data refresh automation (already running, needs no hosting change)
 `.github/workflows/check-rrv.yml` and `.github/workflows/refresh-offers.yml` run on GitHub Actions regardless of
 where the site itself is hosted — they commit straight to this repo, and a redeploy on Vercel (or wherever) picks
