@@ -61,14 +61,20 @@ REPORTING_BUSINESS_ISSUERS = {"capone", "discover"}
 LIFETIME_CARDS = {"chase-sapphire-preferred", "chase-sapphire-reserve", "chase-sapphire-reserve-business",
                   "chase-ink-unlimited", "chase-ink-premier", "chase-ink-cash", "chase-ink-preferred",
                   "citi-strata", "citi-strata-premier", "citi-strata-elite"}
-# The Amex Platinum is reissued as-is (same product, same lifetime bonus restriction) under the Schwab and
-# Morgan Stanley co-brands, unlike genuinely different same-tier products (e.g. Blue Cash Preferred vs. Cash
-# Magnet): ever having had any one of the three blocks the bonus on the other two (owner, 2026-09-22).
-_PLATINUM_TRIO = ["amex-platinum", "schwab-platinum", "morganstanley-platinum"]
+def _mutual(*card_ids):
+    """Every id in the group also-blocks every other id in it: a co-branded reissue of the same underlying
+    product (same lifetime bonus restriction), unlike genuinely different same-tier products in the same family
+    (e.g. Blue Cash Preferred vs. Cash Magnet), which are left alone to only follow the ordinary family rule."""
+    return {card_id: [other for other in card_ids if other != card_id] for card_id in card_ids}
+
+
+# Owner-confirmed co-branded reissue groups (2026-09-22): same product under Amex's own brand plus its bank
+# partners (Schwab, Morgan Stanley), so holding any one blocks the welcome bonus on the others too.
 LIFETIME_ALSO_BLOCKED_BY = {
     "citi-strata": ["citi-strata-student"],
     "citi-strata-premier": ["citi-premier"],
-    **{card_id: [other for other in _PLATINUM_TRIO if other != card_id] for card_id in _PLATINUM_TRIO},
+    **_mutual("amex-platinum", "schwab-platinum", "morganstanley-platinum"),
+    **_mutual("amex-blue-cash-preferred", "morganstanley-blue-cash-preferred"),
 }
 SOUTHWEST_PERSONAL = {"chase-southwest-plus", "chase-southwest-premier", "chase-southwest-priority"}
 IHG_PERSONAL = {"chase-ihg-premier", "chase-ihg-traveler"}

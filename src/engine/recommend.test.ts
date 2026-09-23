@@ -312,6 +312,18 @@ describe("recommend: real data", () => {
     expect(morganStanley!.players[0]!.viaNllOnly).toBe(true);
   });
 
+  it("flags the Morgan Stanley Blue Cash Preferred as viaNllOnly for a player who currently holds the regular one (owner, 2026-09-22)", () => {
+    const holder = person("Solo", {}, { "amex-blue-cash-preferred": { current: 1, approved: { lt12: 1 } } });
+    const r = recommend(
+      profile([holder], { maxAnnualFee: 900000, spend3Months: 8000000, spend6Months: 16000000 }),
+      real,
+      { perPlayer: Number.POSITIVE_INFINITY },
+    );
+    const morganStanley = r.ranked.find((e) => e.cardId === "morganstanley-blue-cash-preferred");
+    expect(morganStanley, "morganstanley-blue-cash-preferred should still be listed, just flagged").toBeDefined();
+    expect(morganStanley!.players[0]!.viaNllOnly).toBe(true);
+  });
+
   it("hides Amex NLL-only cards entirely for a player who said no to them (owner, 2026-09-22)", () => {
     const holder = person("Solo", { showAmexNllCards: false }, { "amex-platinum": { current: 1, approved: {} } });
     const r = recommend(

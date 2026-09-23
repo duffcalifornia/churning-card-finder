@@ -1175,7 +1175,10 @@
    "tier": 2
   },
   "bonusRules": {
-   "onceInLifetime": true
+   "onceInLifetime": true,
+   "lifetimeAlsoBlockedBy": [
+    "morganstanley-blue-cash-preferred"
+   ]
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/",
   "verifiedOn": "2026-09-22"
@@ -3842,7 +3845,10 @@
    "tier": 2
   },
   "bonusRules": {
-   "onceInLifetime": true
+   "onceInLifetime": true,
+   "lifetimeAlsoBlockedBy": [
+    "amex-blue-cash-preferred"
+   ]
   },
   "sourceUrl": "https://us.etrade.com/l/morgan-stanley-blue-cash-preferred",
   "verifiedOn": "2026-09-22"

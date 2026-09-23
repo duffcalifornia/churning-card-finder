@@ -727,3 +727,18 @@ Flagged for the owner, not fixed without confirmation: `amex-blue-cash-preferred
 `morganstanley-blue-cash-preferred` look like the same parallel situation (a co-branded reissue of the same
 product, same family tier) -- worth confirming whether that pair should get the same treatment.
 `npx tsc --noEmit` clean, 308 TS tests pass (2 new), 404 Python tests pass, production build succeeds.
+
+## Applied the same co-branded-reissue fix to Blue Cash Preferred (2026-09-22)
+Owner confirmed: yes, `amex-blue-cash-preferred` and `morganstanley-blue-cash-preferred` needed the same fix as
+the Platinum trio. Reproduced first (a new test asserting `nll(prior({ "amex-blue-cash-preferred": old() }),
+"morganstanley-blue-cash-preferred")` was `"lifetime"` failed red, as expected, before the fix).
+Refactored `scripts/cardfinder/catalog.py`'s `LIFETIME_ALSO_BLOCKED_BY` while adding this: pulled the inline
+dict-comprehension used for the Platinum trio into a small `_mutual(*card_ids)` helper (every id in a group
+also-blocks every other id in it), so a second co-branded-reissue group doesn't repeat the same pattern by hand.
+`LIFETIME_ALSO_BLOCKED_BY` is now `_mutual("amex-platinum", "schwab-platinum", "morganstanley-platinum")` plus
+`_mutual("amex-blue-cash-preferred", "morganstanley-blue-cash-preferred")`, alongside the existing Citi entries.
+Regenerated `data/cards.json`; diff touched only the two Blue Cash Preferred cards' `bonusRules`, Platinum trio
+untouched. Test suite green after the fix. Added the matching end-to-end test in `recommend.test.ts` (same
+pattern as the Platinum one): holding `amex-blue-cash-preferred`, `morganstanley-blue-cash-preferred` is
+confirmed `viaNllOnly: true` in the real ranked results. `npx tsc --noEmit` clean, 310 TS tests pass (2 more
+new), 404 Python tests pass, production build succeeds.

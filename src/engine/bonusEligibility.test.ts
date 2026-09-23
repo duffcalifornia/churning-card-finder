@@ -128,6 +128,11 @@ describe("Amex lifetime and family blocks are NLL blocks, not hard exclusions", 
     expect(nll(prior({ "morganstanley-platinum": old() }), "amex-platinum")).toBe("lifetime");
   });
 
+  it("blocks the Blue Cash Preferred bonus across its Morgan Stanley co-branded reissue, in both directions", () => {
+    expect(nll(prior({ "amex-blue-cash-preferred": old() }), "morganstanley-blue-cash-preferred")).toBe("lifetime");
+    expect(nll(prior({ "morganstanley-blue-cash-preferred": old() }), "amex-blue-cash-preferred")).toBe("lifetime");
+  });
+
   it("covers the Blue Cash, Hilton and Delta business families", () => {
     expect(nll(prior({ "amex-blue-cash-preferred": old() }), "amex-blue-cash-everyday")).toBe("family");
     expect(nll(prior({ "amex-hilton-ascend": old() }), "amex-hilton-surpass")).toBe("family");
