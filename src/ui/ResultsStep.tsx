@@ -44,7 +44,8 @@ export function ResultsStep({ profile, rankBy, onRankByChange }: Props) {
 
       <p className="note">
         This list assumes you have an established credit history and an above-average credit score. A thinner credit history or a lower score will
-        limit which cards you can be approved for. If you are new to churning, read the notes on the r/churning flowchart and the r/churning wiki first.
+        limit which cards you can be approved for. If you are new to churning, read the notes on the r/churning flowchart and the r/churning wiki first. 
+         If you are new to churning, please read the r/churning wiki and flowchart first. This list is based on public offers, but better offers may be available. Please double-check the offer before applying.
       </p>
 
       <RankBySelector rankBy={rankBy} onChange={onRankByChange} />
