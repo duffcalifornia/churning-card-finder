@@ -78,8 +78,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | VentureOne Rewards | 20,000 | - | - | $500 | 3 | - | - |  |
 | Quicksilver Cash Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Savor Rewards | - | $200 | - | $500 | 3 | - | - |  |
-| Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - | a repeated amount was merged into one |
-| Spark Cash Select | - | $1,250 | - | $10,000 | 3 | - | - |  |
+| Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - |  |
+| Spark Cash Select | - | $1,000 | - | $10,000 | 3 | - | - |  |
 | Venture X Business | 150,000 | - | - | $30,000 | 3 | - | - |  |
 | Wells Fargo Active Cash Card | - | $100 | - | $500 | 3 | - | - |  |
 | Wells Fargo Autograph Visa Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
@@ -112,7 +112,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Wyndham Rewards Earner Plus Card | 45,000 | - | - | $1,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Premier Card | 90,000 | - | - | $6,000 | 4 | 30,000 pts after $750 in 6 mo | - |  |
 | Wyndham Rewards Earner Business Card | 45,000 | - | - | $3,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
-| Frontier Airlines World Mastercard | 50,000 | - | - | $500 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
+| Frontier Airlines World Mastercard | 50,000 | - | - | $500 | 3 | - | - |  |
 | Breeze Airways Card | 30,000 | - | - | $1,000 | 3 | - | - |  |
 | Emirates Skywards Premium World Elite Mastercard | 70,000 | - | - | $3,000 | 3 | - | - |  |
 | Emirates Skywards Rewards World Elite Mastercard | 40,000 | - | - | $3,000 | 3 | - | - |  |
@@ -122,7 +122,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Discover it Cash Back Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Chrome Gas & Restaurants Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Miles Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
-| Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - | a repeated amount was merged into one |
+| Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - |  |
 | Bilt Palladium Card | 50,000 | - | - | $4,000 | 3 | - | - |  |
 | Atmos Rewards Summit Visa Infinite Credit Card | 70,000 | - | - | $3,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
 | Air France KLM Visa Signature Credit Card | 50,000 | - | - | $2,000 | 3 | - | - |  |
