@@ -44,6 +44,43 @@ export function HistoryStep({ profile, onChange }: Props) {
     const BORDER_WIDTH = 1; // .issuer's own border-width (border: 1px solid var(--line))
     let raf = 0;
 
+    // Column widths have to be frozen before any header cell is ever pinned, or the table's own layout drifts out
+    // from under the pinned copy in two ways: (1) `getBoundingClientRect()` forces a synchronous layout pass, so
+    // measuring cell N's width *after* cell N-1 has already gone `position: fixed` reads an already-shifted table;
+    // (2) with the default `table-layout: auto`, column widths are computed from every row together, header
+    // included - once every header cell has left the flow, the tbody's own narrower content (a small number input
+    // vs. a long column label) is free to win, so the body's columns end up narrower than the frozen header still
+    // shown above them. `table-layout: fixed` plus an explicit <colgroup> makes column widths independent of
+    // which cells are actually present in a given row, so removing the header from flow can't affect the body.
+    const freezeColumns = () => {
+      document.querySelectorAll<HTMLTableElement>(".issuer table").forEach((table) => {
+        const row = table.querySelector<HTMLTableRowElement>("thead tr");
+        if (!row) return;
+        const cells = Array.from(row.querySelectorAll<HTMLElement>("th"));
+        // Release any previous freeze/pin first, so this always measures the table's true natural (auto-layout)
+        // widths rather than compounding an earlier, possibly-stale freeze.
+        table.style.tableLayout = "";
+        cells.forEach((c) => {
+          c.style.position = "";
+          c.style.width = "";
+        });
+        const widths = cells.map((c) => c.getBoundingClientRect().width);
+        table.style.tableLayout = "fixed";
+        let colgroup = table.querySelector("colgroup");
+        if (!colgroup) {
+          colgroup = document.createElement("colgroup");
+          table.prepend(colgroup);
+        }
+        colgroup.replaceChildren(
+          ...widths.map((w) => {
+            const col = document.createElement("col");
+            col.style.width = `${w}px`;
+            return col;
+          }),
+        );
+      });
+    };
+
     const update = () => {
       raf = 0;
       const vv = window.visualViewport;
@@ -87,13 +124,17 @@ export function HistoryStep({ profile, onChange }: Props) {
         const table = issuer.querySelector<HTMLTableElement>("table");
         const row = table?.querySelector<HTMLTableRowElement>("thead tr");
         const cells = row ? Array.from(row.querySelectorAll<HTMLElement>("th")) : [];
-        if (shouldPin && !isNarrowLayout && table && row && cells.length) {
-          const rowHeight = row.style.height ? parseFloat(row.style.height) : row.getBoundingClientRect().height;
-          row.style.height = `${rowHeight}px`; // reserve the row's own space now that its cells leave table flow
+        const colWidths = table
+          ? Array.from(table.querySelectorAll<HTMLElement>("colgroup col")).map((c) => parseFloat(c.style.width) || 0)
+          : [];
+        if (shouldPin && !isNarrowLayout && table && row && cells.length && colWidths.length === cells.length) {
+          // Reserve the row's own space now that its cells leave table flow. Read from the frozen column widths,
+          // never from the cells themselves mid-loop below - see the comment on freezeColumns for why.
+          row.style.height = row.style.height || `${row.getBoundingClientRect().height}px`;
           const tableLeft = table.getBoundingClientRect().left;
           let x = tableLeft;
-          cells.forEach((cell) => {
-            const width = cell.style.width ? parseFloat(cell.style.width) : cell.getBoundingClientRect().width;
+          cells.forEach((cell, i) => {
+            const width = colWidths[i]!;
             cell.style.position = "fixed";
             cell.style.top = `${offsetTop + summaryHeight}px`;
             cell.style.left = `${x - offsetLeft}px`;
@@ -114,21 +155,30 @@ export function HistoryStep({ profile, onChange }: Props) {
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(update);
     };
+    // Re-freeze only on the layout viewport actually changing width (orientation change, split view, etc.), not
+    // on a plain scroll or on visualViewport's resize event, which also fires for the keyboard opening/closing -
+    // that changes height and the visible offset, never the columns' natural widths, so re-measuring there would
+    // just be a wasted flash of unpinned layout on every keystroke's focus change.
+    const onResize = () => {
+      freezeColumns();
+      schedule();
+    };
 
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    window.addEventListener("resize", onResize);
     window.visualViewport?.addEventListener("resize", schedule);
     window.visualViewport?.addEventListener("scroll", schedule);
     // Opening or closing an issuer moves every rect below it, so re-measure right away rather than waiting for
     // the next scroll (a click doesn't scroll the page on its own).
     const detailsEls = Array.from(document.querySelectorAll<HTMLDetailsElement>(".issuer"));
     detailsEls.forEach((d) => d.addEventListener("toggle", schedule));
+    freezeColumns();
     schedule();
 
     return () => {
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("resize", onResize);
       window.visualViewport?.removeEventListener("resize", schedule);
       window.visualViewport?.removeEventListener("scroll", schedule);
       detailsEls.forEach((d) => d.removeEventListener("toggle", schedule));
@@ -139,6 +189,10 @@ export function HistoryStep({ profile, onChange }: Props) {
         s.style.width = "";
       });
       document.querySelectorAll(".issuer").forEach((d) => d.classList.remove("js-pinned"));
+      document.querySelectorAll<HTMLTableElement>(".issuer table").forEach((table) => {
+        table.style.tableLayout = "";
+        table.querySelector("colgroup")?.remove();
+      });
       document.querySelectorAll<HTMLElement>(".issuer thead tr").forEach((row) => row.style.removeProperty("height"));
       document.querySelectorAll<HTMLElement>(".issuer thead th").forEach((cell) => {
         cell.style.position = "";
