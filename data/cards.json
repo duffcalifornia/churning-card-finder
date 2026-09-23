@@ -1110,7 +1110,11 @@
    "tier": 2
   },
   "bonusRules": {
-   "onceInLifetime": true
+   "onceInLifetime": true,
+   "lifetimeAlsoBlockedBy": [
+    "schwab-platinum",
+    "morganstanley-platinum"
+   ]
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/platinum/",
   "verifiedOn": "2026-09-22"
@@ -3804,7 +3808,11 @@
    "tier": 2
   },
   "bonusRules": {
-   "onceInLifetime": true
+   "onceInLifetime": true,
+   "lifetimeAlsoBlockedBy": [
+    "amex-platinum",
+    "morganstanley-platinum"
+   ]
   },
   "sourceUrl": "https://www.schwab.com/credit-cards/platinum-card",
   "verifiedOn": "2026-09-22"
@@ -3864,7 +3872,11 @@
    "tier": 2
   },
   "bonusRules": {
-   "onceInLifetime": true
+   "onceInLifetime": true,
+   "lifetimeAlsoBlockedBy": [
+    "amex-platinum",
+    "schwab-platinum"
+   ]
   },
   "sourceUrl": "https://us.etrade.com/l/morgan-stanley-platinum",
   "verifiedOn": "2026-09-22"

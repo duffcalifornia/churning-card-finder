@@ -700,3 +700,30 @@ for Business, and an Amex link that defaults to showing the Business Platinum bu
 business Amex card (noted inline, since that's not obvious from the link itself). Verified live: all four hrefs
 read back byte-for-byte identical to what the owner provided. `npx tsc --noEmit` clean, 306 TS tests pass,
 production build succeeds.
+
+## Fixed a real bug: Amex Platinum's co-branded reissues (Schwab, Morgan Stanley) didn't block each other (2026-09-22)
+Owner reported: holding a personal Platinum, the tool still recommended the Schwab Platinum with no warning.
+Root cause: `amex-platinum`, `schwab-platinum` and `morganstanley-platinum` are the exact same underlying Amex
+product, just reissued under different co-brands, all at the same "mr-personal" family tier (2) -- but
+`familyBlocked()` only blocks a *lower* tier after a *higher* one, by design (same-tier cards are normally
+different products that legitimately don't block each other, e.g. Blue Cash Preferred vs. Cash Magnet). Each of
+the three also only had its own `onceInLifetime` flag, which only blocks the exact same card id, not its
+co-branded twins. An existing test (`bonusEligibility.test.ts`, "does not block a card from the same tier or a
+higher one") had pinned this exact gap: `nll(prior({ "amex-platinum": old() }), "schwab-platinum")` was asserted
+`null`. Reproduced first (confirmed red) before touching the fix.
+Fix, using the mechanism this codebase already has for "different card, same lifetime restriction" (previously
+used for Citi Strata/Strata Premier and Strata/Strata Student): added `LIFETIME_ALSO_BLOCKED_BY` entries in
+`scripts/cardfinder/catalog.py` so each of the three Platinum variants lists the other two, symmetrically, then
+regenerated `data/cards.json` via `python3 scripts/build_cards.py`. Since all three are Amex-issued, this is a
+soft (NLL-liftable) block, not a hard exclusion, matching how every other Amex lifetime/family rule works: the
+card still shows, now correctly flagged "via NLL only" instead of looking like a clean recommendation.
+Rewrote the test that pinned the bug to assert the correct same-tier-but-different-product case instead (Blue
+Cash Preferred vs. Cash Magnet) and added a new test asserting all three Platinum variants now block each other
+in every direction. Also added an end-to-end test in `recommend.test.ts` (mirroring the existing "owner report"
+test pattern) reproducing the exact scenario against the real catalog: holding `amex-platinum`, both
+`schwab-platinum` and `morganstanley-platinum` are confirmed `viaNllOnly: true` in the actual ranked results, not
+just at the isolated rule level.
+Flagged for the owner, not fixed without confirmation: `amex-blue-cash-preferred` and
+`morganstanley-blue-cash-preferred` look like the same parallel situation (a co-branded reissue of the same
+product, same family tier) -- worth confirming whether that pair should get the same treatment.
+`npx tsc --noEmit` clean, 308 TS tests pass (2 new), 404 Python tests pass, production build succeeds.

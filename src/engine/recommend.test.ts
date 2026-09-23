@@ -295,6 +295,23 @@ describe("recommend: real data", () => {
     expect(gold!.players[0]!.viaNllOnly).toBe(true);
   });
 
+  it("flags the Schwab and Morgan Stanley Platinum as viaNllOnly for a player who currently holds the regular Platinum (owner report, 2026-09-22)", () => {
+    // Owner reported Schwab Platinum showing as a clean recommendation while already holding the regular
+    // Platinum -- the same underlying card, reissued under a different co-brand.
+    const holder = person("Solo", {}, { "amex-platinum": { current: 1, approved: { lt12: 1 } } });
+    const r = recommend(
+      profile([holder], { maxAnnualFee: 900000, spend3Months: 8000000, spend6Months: 16000000 }),
+      real,
+      { perPlayer: Number.POSITIVE_INFINITY },
+    );
+    const schwab = r.ranked.find((e) => e.cardId === "schwab-platinum");
+    const morganStanley = r.ranked.find((e) => e.cardId === "morganstanley-platinum");
+    expect(schwab, "schwab-platinum should still be listed, just flagged").toBeDefined();
+    expect(schwab!.players[0]!.viaNllOnly).toBe(true);
+    expect(morganStanley, "morganstanley-platinum should still be listed, just flagged").toBeDefined();
+    expect(morganStanley!.players[0]!.viaNllOnly).toBe(true);
+  });
+
   it("hides Amex NLL-only cards entirely for a player who said no to them (owner, 2026-09-22)", () => {
     const holder = person("Solo", { showAmexNllCards: false }, { "amex-platinum": { current: 1, approved: {} } });
     const r = recommend(

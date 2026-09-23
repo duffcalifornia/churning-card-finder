@@ -61,7 +61,15 @@ REPORTING_BUSINESS_ISSUERS = {"capone", "discover"}
 LIFETIME_CARDS = {"chase-sapphire-preferred", "chase-sapphire-reserve", "chase-sapphire-reserve-business",
                   "chase-ink-unlimited", "chase-ink-premier", "chase-ink-cash", "chase-ink-preferred",
                   "citi-strata", "citi-strata-premier", "citi-strata-elite"}
-LIFETIME_ALSO_BLOCKED_BY = {"citi-strata": ["citi-strata-student"], "citi-strata-premier": ["citi-premier"]}
+# The Amex Platinum is reissued as-is (same product, same lifetime bonus restriction) under the Schwab and
+# Morgan Stanley co-brands, unlike genuinely different same-tier products (e.g. Blue Cash Preferred vs. Cash
+# Magnet): ever having had any one of the three blocks the bonus on the other two (owner, 2026-09-22).
+_PLATINUM_TRIO = ["amex-platinum", "schwab-platinum", "morganstanley-platinum"]
+LIFETIME_ALSO_BLOCKED_BY = {
+    "citi-strata": ["citi-strata-student"],
+    "citi-strata-premier": ["citi-premier"],
+    **{card_id: [other for other in _PLATINUM_TRIO if other != card_id] for card_id in _PLATINUM_TRIO},
+}
 SOUTHWEST_PERSONAL = {"chase-southwest-plus", "chase-southwest-premier", "chase-southwest-priority"}
 IHG_PERSONAL = {"chase-ihg-premier", "chase-ihg-traveler"}
 

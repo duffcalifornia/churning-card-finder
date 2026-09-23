@@ -117,9 +117,15 @@ describe("Amex lifetime and family blocks are NLL blocks, not hard exclusions", 
     expect(nll(prior({ "amex-gold": old(), "amex-platinum": old() }), "amex-gold")).toBe("lifetime");
   });
 
-  it("does not block a card from the same tier or a higher one", () => {
-    expect(nll(prior({ "amex-platinum": old() }), "schwab-platinum")).toBeNull();
+  it("does not block a different product at the same tier, or a higher one", () => {
+    expect(nll(prior({ "amex-cash-magnet": old() }), "amex-blue-cash-preferred")).toBeNull();
     expect(nll(prior({ "amex-gold": old() }), "amex-platinum")).toBeNull();
+  });
+
+  it("blocks the Platinum bonus across its Schwab and Morgan Stanley co-branded reissues, in every direction", () => {
+    expect(nll(prior({ "amex-platinum": old() }), "schwab-platinum")).toBe("lifetime");
+    expect(nll(prior({ "schwab-platinum": old() }), "morganstanley-platinum")).toBe("lifetime");
+    expect(nll(prior({ "morganstanley-platinum": old() }), "amex-platinum")).toBe("lifetime");
   });
 
   it("covers the Blue Cash, Hilton and Delta business families", () => {
