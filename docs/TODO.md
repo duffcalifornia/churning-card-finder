@@ -763,3 +763,15 @@ Regenerated `data/cards.json`; diff touched only `chase-marriott-boundless`'s `c
 `bonusTypes`, nothing else. Verified live: Boundless now appears in "Under 5/24, travel" (was absent from every
 travel list before) and no longer appears in any cash-back list. `npx tsc --noEmit` clean, 310 TS tests pass, 405
 Python tests pass (1 new), production build succeeds.
+
+## Added Vercel Analytics (2026-09-23)
+Owner supplied `import { Analytics } from "@vercel/analytics/next"` to wire in. Corrected before adding it: that
+import is the Next.js-specific entry point (pulls in `next/script`, which isn't a dependency of this Vite app);
+used `@vercel/analytics/react` instead, the correct entry point for a plain Vite/React app. The package
+(`@vercel/analytics ^2.0.1`) was already in `package.json` but unused anywhere. Added `<Analytics />` as the
+first child of `<main>` in `App.tsx` (renders nothing visually; only needs to mount once). Verified live: no
+console errors, page renders normally. `npx tsc --noEmit` clean, 310 TS tests pass, production build succeeds.
+Worth flagging: when discussing whether the site needs a privacy page (2026-09-22 conversation), "no analytics"
+was part of the reasoning for skipping one. That's no longer true. Vercel Web Analytics is cookieless and
+collects only aggregated page-view data (no cross-site tracking, no personal data), so it likely still doesn't
+change that conclusion -- but the owner should know the premise shifted, not have it silently go stale.
