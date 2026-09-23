@@ -6,7 +6,14 @@ import { useEffect } from "react";
 export const BMAC_URL = "https://www.buymeacoffee.com/duffcalifornia";
 
 const REFERRAL_LINKS: { card: string; url: string; note?: string }[] = [
-  // { card: "Chase Sapphire Preferred", url: "https://...", note: "75,000 points after $5,000 in 3 months" },
+  { card: "Chase Sapphire Preferred or Chase Sapphire Reserve", url: "https://www.referyourchasecard.com/19y/LGJY8U38RR" },
+  { card: "Any personal Chase Marriott Bonvoy card", url: "https://www.referyourchasecard.com/252x/7ZNYOB8EJ1" },
+  { card: "Any Chase Ink card, or the Sapphire Reserve for Business", url: "https://www.referyourchasecard.com/21h/SJH75ACD2K" },
+  {
+    card: "Any American Express card, personal or business",
+    url: "https://americanexpress.com/en-us/referral/business-platinum-charge-card?ref=PAULBoQy8&xl=cp01",
+    note: "The link shows the Business Platinum by default, but you can pick any other personal or business Amex card from that page before applying.",
+  },
 ];
 
 export function ReferralsPage() {

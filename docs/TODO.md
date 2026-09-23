@@ -692,3 +692,11 @@ requests to `fonts.googleapis.com`/`fonts.gstatic.com`; `document.fonts` shows t
 text) to before the swap. Production build confirms `dist/fonts/public-sans-var.woff2` is the only file there
 (the new `docs/self-hosted-fonts.md` intentionally lives outside `public/`, so it isn't shipped). `npx tsc
 --noEmit` clean, 306 TS tests pass, production build succeeds.
+
+## Added the owner's real referral links (2026-09-22)
+Filled in `REFERRAL_LINKS` in `ReferralsPage.tsx` (was empty, showing "No referral links added yet."): Chase
+Sapphire Preferred/Reserve, any personal Chase Marriott Bonvoy card, any Chase Ink card or the Sapphire Reserve
+for Business, and an Amex link that defaults to showing the Business Platinum but works for any personal or
+business Amex card (noted inline, since that's not obvious from the link itself). Verified live: all four hrefs
+read back byte-for-byte identical to what the owner provided. `npx tsc --noEmit` clean, 306 TS tests pass,
+production build succeeds.
