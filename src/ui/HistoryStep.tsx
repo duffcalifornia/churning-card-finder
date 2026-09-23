@@ -41,7 +41,6 @@ export function HistoryStep({ profile, onChange }: Props) {
   // pinning has to track it instead of a hardcoded 0 - and every rect this code reads has to be adjusted by the
   // same amount, or "is this issuer's top above the visible area" would still be judged against the wrong frame.
   useEffect(() => {
-    const BORDER_WIDTH = 1; // .issuer's own border-width (border: 1px solid var(--line))
     let raf = 0;
 
     // Column widths have to be frozen before any header cell is ever pinned, or the table's own layout drifts out
@@ -58,11 +57,18 @@ export function HistoryStep({ profile, onChange }: Props) {
         if (!row) return;
         const cells = Array.from(row.querySelectorAll<HTMLElement>("th"));
         // Release any previous freeze/pin first, so this always measures the table's true natural (auto-layout)
-        // widths rather than compounding an earlier, possibly-stale freeze.
+        // widths rather than compounding an earlier, possibly-stale freeze - every property the pin logic below
+        // sets on a cell must be cleared here, not just position/width, or a stale `display: flex` (etc.) from a
+        // prior pin skews this measurement and produces a corrupt (and visibly too-wide or too-narrow) freeze.
         table.style.tableLayout = "";
+        row.style.removeProperty("height");
         cells.forEach((c) => {
           c.style.position = "";
           c.style.width = "";
+          c.style.height = "";
+          c.style.display = "";
+          c.style.alignItems = "";
+          c.style.justifyContent = "";
         });
         const widths = cells.map((c) => c.getBoundingClientRect().width);
         table.style.tableLayout = "fixed";
@@ -96,10 +102,18 @@ export function HistoryStep({ profile, onChange }: Props) {
         const summaryHeight = summary.offsetHeight || 44;
         const shouldPin = issuer.open && rect.top < offsetTop && rect.bottom > offsetTop + summaryHeight;
         if (shouldPin) {
+          // A normal in-flow child sits inset from .issuer's border by both its border-width and its own
+          // horizontal padding - `left`/`width` have to reconstruct that same content-box, not just the
+          // border-to-border span, or the disclosure triangle (drawn at summary's own left edge) jumps left by
+          // however much padding got left out the moment this switches to position: fixed.
+          const issuerStyle = getComputedStyle(issuer);
+          const borderLeft = parseFloat(issuerStyle.borderLeftWidth) || 0;
+          const paddingLeft = parseFloat(issuerStyle.paddingLeft) || 0;
+          const paddingRight = parseFloat(issuerStyle.paddingRight) || 0;
           summary.style.position = "fixed";
           summary.style.top = `${offsetTop}px`;
-          summary.style.left = `${rect.left + BORDER_WIDTH - offsetLeft}px`;
-          summary.style.width = `${issuer.clientWidth}px`;
+          summary.style.left = `${rect.left + borderLeft + paddingLeft - offsetLeft}px`;
+          summary.style.width = `${issuer.clientWidth - paddingLeft - paddingRight}px`;
           issuer.classList.add("js-pinned");
         } else {
           summary.style.position = "";
@@ -127,11 +141,20 @@ export function HistoryStep({ profile, onChange }: Props) {
         const colWidths = table
           ? Array.from(table.querySelectorAll<HTMLElement>("colgroup col")).map((c) => parseFloat(c.style.width) || 0)
           : [];
-        if (shouldPin && !isNarrowLayout && table && row && cells.length && colWidths.length === cells.length) {
+        const rowHeight = row ? (row.style.height ? parseFloat(row.style.height) : row.getBoundingClientRect().height) : 0;
+        // The header row has to release as soon as the *table itself* has scrolled past, not the whole issuer:
+        // `.issuer` also contains the freeform "other cards" line below the table, which has no columns for these
+        // headers to sit above. Reusing the issuer-wide `shouldPin` here left the header floating over that
+        // unrelated content, and over the next issuer's own bar, for as long as the rest of the accordion (not
+        // just the table) kept scrolling past.
+        const tableRect = table?.getBoundingClientRect();
+        const shouldPinThead = shouldPin && !isNarrowLayout && !!table && !!row && cells.length > 0 &&
+          colWidths.length === cells.length && tableRect!.bottom > offsetTop + summaryHeight + rowHeight;
+        if (shouldPinThead) {
           // Reserve the row's own space now that its cells leave table flow. Read from the frozen column widths,
           // never from the cells themselves mid-loop below - see the comment on freezeColumns for why.
-          row.style.height = row.style.height || `${row.getBoundingClientRect().height}px`;
-          const tableLeft = table.getBoundingClientRect().left;
+          row!.style.height = `${rowHeight}px`;
+          const tableLeft = tableRect!.left;
           let x = tableLeft;
           cells.forEach((cell, i) => {
             const width = colWidths[i]!;
@@ -139,6 +162,15 @@ export function HistoryStep({ profile, onChange }: Props) {
             cell.style.top = `${offsetTop + summaryHeight}px`;
             cell.style.left = `${x - offsetLeft}px`;
             cell.style.width = `${width}px`;
+            // A table row stretches every cell to match its tallest sibling, so all six share one border-bottom
+            // line; position: fixed drops each cell out of that shared row box, back to sizing off its own
+            // content, so the one-line "Card"/"Hold now" cells end up shorter than the two-line "Approved ..."
+            // ones and their borders land at different heights. Locking height + switching to flex centering
+            // (vertical-align has no effect once position: fixed blockifies the cell's display) restores both.
+            cell.style.height = `${rowHeight}px`;
+            cell.style.display = "flex";
+            cell.style.alignItems = "center";
+            cell.style.justifyContent = "center";
             x += width;
           });
         } else {
@@ -148,6 +180,10 @@ export function HistoryStep({ profile, onChange }: Props) {
             cell.style.top = "";
             cell.style.left = "";
             cell.style.width = "";
+            cell.style.height = "";
+            cell.style.display = "";
+            cell.style.alignItems = "";
+            cell.style.justifyContent = "";
           });
         }
       });
@@ -199,6 +235,10 @@ export function HistoryStep({ profile, onChange }: Props) {
         cell.style.top = "";
         cell.style.left = "";
         cell.style.width = "";
+        cell.style.height = "";
+        cell.style.display = "";
+        cell.style.alignItems = "";
+        cell.style.justifyContent = "";
       });
     };
   }, []);
