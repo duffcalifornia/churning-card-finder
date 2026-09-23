@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { computeDerived } from "../engine/computeDerived";
 import type { Card, Profile } from "../engine/types";
 import { engineData } from "../data/engineData";
@@ -28,6 +28,28 @@ export function HistoryStep({ profile, onChange }: Props) {
   const sections = useMemo(() => historyCardsByIssuer(engineData.catalog, engineData.marriottMatrix), []);
   const marriottIds = useMemo(() => new Set((engineData.marriottMatrix.cards ?? []).map((c) => c.id)), []);
   const cards = player.history.cards ?? {};
+
+  // iOS Safari and Chrome (both WebKit) have a long-standing bug where a `position: sticky` element inside the
+  // page that contains a focused input stops being sticky for the rest of the scroll session: focusing a Count
+  // field below shrinks the browser's URL bar, and WebKit fails to recompute the sticky elements' stuck state
+  // afterward, so they scroll away with the page instead of re-pinning - visually, they scroll up past where the
+  // URL bar collapsed to, rather than staying pinned just below it. There is no CSS-only fix; the documented
+  // workaround is to force a reflow of the sticky element by briefly clearing `position` and restoring it, right
+  // when the viewport actually changes size (`visualViewport`'s resize event fires exactly then, covering both
+  // the URL bar collapsing and a keyboard opening, regardless of which input triggered it).
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const resetStickiness = () => {
+      document.querySelectorAll<HTMLElement>(".issuer[open] > summary, .issuer[open] thead th").forEach((el) => {
+        el.style.position = "static";
+        void el.offsetHeight; // force a reflow between the two assignments, or the browser coalesces them into a no-op
+        el.style.position = "sticky";
+      });
+    };
+    vv.addEventListener("resize", resetStickiness);
+    return () => vv.removeEventListener("resize", resetStickiness);
+  }, []);
 
   return (
     <section>

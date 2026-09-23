@@ -133,16 +133,15 @@ legend { font-weight: 600; padding: 0 6px; }
 .issuer { border: 1px solid var(--line); border-radius: 8px; margin: 8px 0; padding: 0 12px; --summary-h: 44px; }
 .issuer summary { cursor: pointer; height: var(--summary-h); padding: 10px 0; line-height: 24px; font-weight: 600; }
 /* An open issuer keeps its name and the column headings pinned to the top of the page while its cards scroll past; the
-   next issuer only appears once the section's last cards (and its other-cards line) have scrolled into view.
-   `transform: translateZ(0)` forces these two stacked sticky layers onto their own compositing layer: on iPadOS
-   Safari and Chrome, focusing one of the Count inputs in the table below shrinks the browser's URL bar, and
-   without a layer of their own the two sticky elements recompute their offset against the stale viewport for a
-   frame and briefly scroll up underneath it instead of staying pinned below it. */
-.issuer[open] > summary { position: sticky; top: 0; z-index: 3; background: var(--bg); border-bottom: 1px solid var(--line); transform: translateZ(0); }
+   next issuer only appears once the section's last cards (and its other-cards line) have scrolled into view. iOS
+   Safari/Chrome can stop honoring `position: sticky` on these two elements after a Count input below is focused
+   (see the comment above the `resetStickiness` effect in HistoryStep.tsx for the actual fix and why it has to be
+   done in JS, not CSS). */
+.issuer[open] > summary { position: sticky; top: 0; z-index: 3; background: var(--bg); border-bottom: 1px solid var(--line); }
 .badge { margin-left: 10px; background: var(--accent); color: var(--accent-fg); border-radius: 999px; padding: 1px 9px; font-size: 0.8rem; font-weight: 500; }
 table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 th, td { padding: 4px 6px; text-align: center; border-bottom: 1px solid var(--line); }
-thead th { position: sticky; top: var(--summary-h); z-index: 2; background: var(--bg); font-size: 0.8rem; color: var(--muted); font-weight: 600; box-shadow: 0 1px 0 var(--line); transform: translateZ(0); }
+thead th { position: sticky; top: var(--summary-h); z-index: 2; background: var(--bg); font-size: 0.8rem; color: var(--muted); font-weight: 600; box-shadow: 0 1px 0 var(--line); }
 tbody th { text-align: left; font-weight: 500; min-width: 12em; }
 .tag { margin-left: 6px; font-size: 0.72rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
 tr.extra td { text-align: left; background: var(--soft); }
