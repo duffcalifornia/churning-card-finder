@@ -143,12 +143,20 @@ legend { font-weight: 600; padding: 0 6px; }
 .badge { margin-left: 10px; background: var(--accent); color: var(--accent-fg); border-radius: 999px; padding: 1px 9px; font-size: 0.8rem; font-weight: 500; }
 table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 th, td { padding: 4px 6px; text-align: center; border-bottom: 1px solid var(--line); }
-thead th { position: sticky; top: var(--summary-h); z-index: 2; background: var(--bg); font-size: 0.8rem; color: var(--muted); font-weight: 600; box-shadow: 0 1px 0 var(--line); }
+/* Also pinned from HistoryStep.tsx, same as the issuer summary above and for the same reason: native
+   `position: sticky` here was confirmed broken on real hardware too. The effect locks each pinned <th>'s
+   width and its row's height as inline styles, since removing the cells from table layout (`position: fixed`)
+   would otherwise let the table recompute column widths without them and collapse the row's height to 0. */
+thead th { z-index: 2; background: var(--bg); font-size: 0.8rem; color: var(--muted); font-weight: 600; box-shadow: 0 1px 0 var(--line); }
 tbody th { text-align: left; font-weight: 500; min-width: 12em; }
 .tag { margin-left: 6px; font-size: 0.72rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
 tr.extra td { text-align: left; background: var(--soft); }
 tr.extra label { display: block; }
-.count { width: 3.6em; padding: 4px; font: inherit; text-align: center; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
+/* font-size must be at least 16px: iOS Safari auto-zooms the whole page in on focus for any input below that
+   size (to keep the text legible), and since layout width doesn't change with that zoom, the site then appears
+   to spill past the edges of the now-zoomed-in visible area. `font: inherit` here was pulling in the table's
+   0.92rem (~14.7px), which is what triggered it. */
+.count { width: 3.6em; padding: 4px; font: inherit; font-size: 16px; text-align: center; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
 .other { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 0 12px; }
 
 .banner { background: var(--warn-bg); color: var(--warn-fg); border-radius: 8px; padding: 10px 14px; margin: 12px 0; }

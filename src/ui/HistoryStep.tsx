@@ -71,6 +71,44 @@ export function HistoryStep({ profile, onChange }: Props) {
           summary.style.width = "";
           issuer.classList.remove("js-pinned");
         }
+
+        // The column headers pin the same way, right below the issuer bar, and for the same reason: native
+        // `position: sticky` on <thead> cells was confirmed broken on real hardware too. Individual <th> cells
+        // (not the whole <thead>) are pinned because `position: fixed` on the whole row would drop it out of the
+        // table layout algorithm entirely, misaligning it with the tbody's own column widths.
+        //
+        // Below 600px (the same breakpoint the mobile @media block below uses), <thead> is deliberately hidden
+        // from sighted users - clipped to 1px via overflow: hidden, screen-reader only - because each row becomes
+        // a labelled card instead of a table row. `position: fixed` on a th would escape that overflow clipping
+        // (fixed elements aren't clipped by an ancestor's overflow unless that ancestor is itself a fixed-position
+        // containing block, which .issuer thead isn't), popping the "hidden" headers back into view, so this has
+        // to be skipped there entirely rather than relying on the clip to still hide a fixed-positioned child.
+        const isNarrowLayout = window.innerWidth <= 600;
+        const table = issuer.querySelector<HTMLTableElement>("table");
+        const row = table?.querySelector<HTMLTableRowElement>("thead tr");
+        const cells = row ? Array.from(row.querySelectorAll<HTMLElement>("th")) : [];
+        if (shouldPin && !isNarrowLayout && table && row && cells.length) {
+          const rowHeight = row.style.height ? parseFloat(row.style.height) : row.getBoundingClientRect().height;
+          row.style.height = `${rowHeight}px`; // reserve the row's own space now that its cells leave table flow
+          const tableLeft = table.getBoundingClientRect().left;
+          let x = tableLeft;
+          cells.forEach((cell) => {
+            const width = cell.style.width ? parseFloat(cell.style.width) : cell.getBoundingClientRect().width;
+            cell.style.position = "fixed";
+            cell.style.top = `${offsetTop + summaryHeight}px`;
+            cell.style.left = `${x - offsetLeft}px`;
+            cell.style.width = `${width}px`;
+            x += width;
+          });
+        } else {
+          row?.style.removeProperty("height");
+          cells.forEach((cell) => {
+            cell.style.position = "";
+            cell.style.top = "";
+            cell.style.left = "";
+            cell.style.width = "";
+          });
+        }
       });
     };
     const schedule = () => {
@@ -101,6 +139,13 @@ export function HistoryStep({ profile, onChange }: Props) {
         s.style.width = "";
       });
       document.querySelectorAll(".issuer").forEach((d) => d.classList.remove("js-pinned"));
+      document.querySelectorAll<HTMLElement>(".issuer thead tr").forEach((row) => row.style.removeProperty("height"));
+      document.querySelectorAll<HTMLElement>(".issuer thead th").forEach((cell) => {
+        cell.style.position = "";
+        cell.style.top = "";
+        cell.style.left = "";
+        cell.style.width = "";
+      });
     };
   }, []);
 
