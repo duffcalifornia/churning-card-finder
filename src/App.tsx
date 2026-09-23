@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { Profile } from "./engine/types";
 import type { RankBy } from "./engine/recommend";
 import { defaultProfile, parseStoredProfile } from "./state/profile";
@@ -150,6 +151,7 @@ export function App() {
   return (
     <main>
       <Analytics />
+      <SpeedInsights />
       <a href="#main-content" className="skip-link">Skip to content</a>
 
       <header>

@@ -775,3 +775,16 @@ Worth flagging: when discussing whether the site needs a privacy page (2026-09-2
 was part of the reasoning for skipping one. That's no longer true. Vercel Web Analytics is cookieless and
 collects only aggregated page-view data (no cross-site tracking, no personal data), so it likely still doesn't
 change that conclusion -- but the owner should know the premise shifted, not have it silently go stale.
+
+## Added Vercel Speed Insights (2026-09-23)
+Same pattern as Analytics: installed `@vercel/speed-insights`, imported `SpeedInsights` from its `/react` entry
+point (not `/next`), rendered right after `<Analytics />` in `App.tsx`.
+Hit a false alarm while verifying: after installing the new package, the dev server's existing browser tab threw
+"Invalid hook call" / "Cannot read properties of null (reading 'useEffect')" errors pointing at a specific
+`.vite/deps/react-dom_client.js?v=...` hash. Confirmed it was a stale cached module graph in that one browser
+tab, not a real bug: `node_modules/.vite/_metadata.json` showed Vite had already regenerated a new dependency
+hash after the install, but the open tab kept resolving to the old one even across a full server restart and
+`location.reload(true)`. Closing that tab and opening a fresh one picked up the new hash immediately with zero
+console errors. No code changed to "fix" this -- it never was a code issue.
+Verified live in the fresh tab: page renders normally, no console errors. `npx tsc --noEmit` clean, 310 TS tests
+pass, production build succeeds.
