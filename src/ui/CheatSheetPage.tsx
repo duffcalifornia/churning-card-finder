@@ -18,11 +18,26 @@ interface Props {
  * list assumes (never held any of these cards, unlimited spend) and why. Only one list is shown at a time, picked
  * from a dropdown, at every screen width: fitting all four side by side would squeeze each one too narrow to read.
  */
+const KIND_FILTERS = [
+  { id: "all", label: "All cards" },
+  { id: "personal", label: "Personal only" },
+  { id: "business", label: "Business only" },
+] as const;
+type KindFilter = (typeof KIND_FILTERS)[number]["id"];
+
 export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder }: Props) {
   const [selected, setSelected] = useState(CHEAT_SHEET_PRESETS[0]!.id);
+  const [kindFilter, setKindFilter] = useState<KindFilter>("all");
   const preset = CHEAT_SHEET_PRESETS.find((p) => p.id === selected)!;
 
-  const entries = useMemo(() => rankForPreset(preset, engineData, rankBy), [preset, rankBy]);
+  const allEntries = useMemo(() => rankForPreset(preset, engineData, rankBy), [preset, rankBy]);
+  const entries = useMemo(
+    () =>
+      kindFilter === "all"
+        ? allEntries
+        : allEntries.filter((entry) => engineData.catalog.find((c) => c.id === entry.cardId)?.kind === kindFilter),
+    [allEntries, kindFilter],
+  );
 
   return (
     <section>
@@ -41,6 +56,15 @@ export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder }: Props) 
         <select value={selected} onChange={(e) => setSelected(e.target.value)}>
           {CHEAT_SHEET_PRESETS.map((p) => (
             <option key={p.id} value={p.id}>{p.label}</option>
+          ))}
+        </select>
+      </label>
+
+      <label className="cheatsheet-select">
+        Cards to show
+        <select value={kindFilter} onChange={(e) => setKindFilter(e.target.value as KindFilter)}>
+          {KIND_FILTERS.map((f) => (
+            <option key={f.id} value={f.id}>{f.label}</option>
           ))}
         </select>
       </label>

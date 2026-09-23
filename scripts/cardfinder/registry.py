@@ -258,6 +258,10 @@ CARDS += [
     _c("barclays", "jetblue", ["JetBlue Card"], _BARC + "jetblue-card/"),
     _c("barclays", "jetblue-plus", ["JetBlue Plus Card"], _BARC + "jetblue-plus-card/"),
     _c("barclays", "jetblue-premier", ["JetBlue Premier Card"], _BARC + "jetblue-premier-card/"),
+    # Not on Barclays' own sitemap/listing pages (site owner, 2026-09-23) - added by hand from the card's own page,
+    # so automated discovery will not find it on its own; keep this entry rather than relying on discovery to re-add it.
+    _c("barclays", "hawaiian", ["Hawaiian Airlines World Elite Mastercard"],
+       "https://cards.barclaycardus.com/banking/credit-card/hawaiian-airlines/combo-app/hawaiian-hbl-boh-combo-app-alt-1/"),
     _c("barclays", "wyndham-earner", ["Wyndham Rewards Earner Card"], _BARC + "wyndham-rewards-earner-card/"),
     _c("barclays", "wyndham-earner-plus", ["Wyndham Rewards Earner Plus Card"], _BARC + "wyndham-rewards-earner-plus-card/"),
     _c("barclays", "wyndham-earner-premier", ["Wyndham Rewards Earner Premier Card"], _BARC + "wyndham-rewards-earner-premier-card/"),
@@ -416,6 +420,7 @@ for _issuer, _currency, _ids in [
     ("barclays", "frontier-bonus-miles", ("frontier",)),
     ("bilt", "bilt", ("palladium",)),
     ("barclays", "jetblue-trueblue", ("jetblue", "jetblue-plus", "jetblue-premier")),
+    ("barclays", "atmos-rewards", ("hawaiian",)),
     ("barclays", "miles-and-more", ("lufthansa",)),
     ("barclays", "wyndham-rewards", ("wyndham-earner", "wyndham-earner-business", "wyndham-earner-plus", "wyndham-earner-premier")),
     ("boa", "air-france-klm-flying-blue", ("air-france-klm",)),

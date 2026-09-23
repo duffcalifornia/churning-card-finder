@@ -107,6 +107,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | JetBlue Card | 10,000 | - | - | $1,000 | 3 | - | - |  |
 | JetBlue Plus Card | 70,000 | - | - | $1,000 | 3 | - | - |  |
 | JetBlue Premier Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
+| Hawaiian Airlines World Elite Mastercard | 60,000 | - | - | $1,000 | 3 | 10,000 pts after $1,000 in 6 mo | - |  |
 | Wyndham Rewards Earner Card | 30,000 | - | - | $1,000 | 3 | 45,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Plus Card | 45,000 | - | - | $1,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Premier Card | 90,000 | - | - | $6,000 | 4 | 30,000 pts after $750 in 6 mo | - |  |

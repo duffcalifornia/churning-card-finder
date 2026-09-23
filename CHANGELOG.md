@@ -1,5 +1,11 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-09-23
+- Added a "Cards to show" filter to the Signup Offer Cheat Sheet, so you can view all cards, personal cards only, or business cards only.
+- Fixed a bug where, on iPad in Safari and Chrome, focusing a card-count field in the card history table could scroll the sticky issuer and column headers up behind the browser's own toolbar.
+- Added a button to download the Card Finder's recommended cards as a CSV file.
+- Added the Barclays Hawaiian Airlines World Elite Mastercard, which is not listed on Barclays' own card pages.
+
 ## 2026-09-22
 - Fixed a bug where a fresh offer read could crash the whole daily data refresh instead of just flagging one card;
   added a test-suite gate so a bad build is never committed.

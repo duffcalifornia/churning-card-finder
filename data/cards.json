@@ -2912,6 +2912,39 @@
   "verifiedOn": "2026-09-22"
  },
  {
+  "id": "barclays-hawaiian",
+  "name": "Hawaiian Airlines World Elite Mastercard",
+  "issuer": "barclays",
+  "kind": "personal",
+  "recommendable": true,
+  "annualFee": 99.0,
+  "reportsToPersonal": true,
+  "currency": "atmos-rewards",
+  "coBrandedProgram": "atmos-rewards",
+  "bonusTypes": [
+   "airline"
+  ],
+  "welcomeBonus": {
+   "points": 60000.0,
+   "additionalTiers": [
+    {
+     "points": 10000.0,
+     "minSpend": 1000.0,
+     "windowMonths": 6
+    }
+   ]
+  },
+  "typicalMinSpend": {
+   "amount": 1000.0,
+   "months": 3
+  },
+  "bonusRules": {
+   "blockedWhileHeld": true
+  },
+  "sourceUrl": "https://cards.barclaycardus.com/banking/credit-card/hawaiian-airlines/combo-app/hawaiian-hbl-boh-combo-app-alt-1/",
+  "verifiedOn": "2026-09-23"
+ },
+ {
   "id": "barclays-wyndham-earner",
   "name": "Wyndham Rewards Earner Card",
   "issuer": "barclays",

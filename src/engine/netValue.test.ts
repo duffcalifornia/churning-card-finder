@@ -75,6 +75,6 @@ describe("value of real cards", () => {
         n++;
       }
     }
-    expect(n).toBe(122); // was 121 before Bilt Palladium was added, 2026-09-21
+    expect(n).toBe(123); // was 122 before Barclays Hawaiian Airlines World Elite Mastercard was added, 2026-09-23
   });
 });

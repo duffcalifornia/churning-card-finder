@@ -4,6 +4,7 @@ import type { Profile, Results } from "../engine/types";
 import { engineData } from "../data/engineData";
 import { CardItem, money } from "./CardItem";
 import { RankBySelector } from "./RankBySelector";
+import { downloadResultsCsv } from "./downloadResults";
 
 interface Props {
   profile: Profile;
@@ -62,9 +63,16 @@ export function ResultsStep({ profile, rankBy, onRankByChange }: Props) {
       {results.ranked.length === 0 ? (
         <p>No cards match your answers. Try raising the annual fee or spending amounts, or allowing more reward types.</p>
       ) : (
-        <ol className="results">
-          {results.ranked.map((entry, i) => <CardItem key={entry.cardId} entry={entry} single={single} rankBy={rankBy} rank={i + 1} />)}
-        </ol>
+        <>
+          <p>
+            <button type="button" className="secondary" onClick={() => downloadResultsCsv(results.ranked, "card-finder-results.csv")}>
+              Download these cards (CSV)
+            </button>
+          </p>
+          <ol className="results">
+            {results.ranked.map((entry, i) => <CardItem key={entry.cardId} entry={entry} single={single} rankBy={rankBy} rank={i + 1} />)}
+          </ol>
+        </>
       )}
 
       {results.bestPersonal.map((b) => (
