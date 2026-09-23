@@ -1,2 +1,55 @@
-User-agent: *
+User-Agent: Googlebot
+User-Agent: Bingbot
+User-Agent: DuckDuckBot
 Allow: /
+Disallow: /api/
+Disallow: /auth
+Disallow: /profile
+
+User-Agent: facebookexternalhit
+User-Agent: Twitterbot
+User-Agent: LinkedInBot
+User-Agent: Slackbot
+User-Agent: Discordbot
+Allow: /
+
+User-Agent: GPTBot
+User-Agent: Google-Extended
+User-Agent: ClaudeBot
+User-Agent: anthropic-ai
+User-Agent: CCBot
+User-Agent: FacebookBot
+User-Agent: ByteSpider
+User-Agent: Diffbot
+User-Agent: cohere-ai
+User-Agent: PerplexityBot
+User-Agent: YouBot
+User-Agent: AI2Bot
+User-Agent: Omgilibot
+User-Agent: Amazonbot
+User-Agent: img2dataset
+Disallow: /
+
+User-Agent: AhrefsBot
+User-Agent: SemrushBot
+User-Agent: MajesticBot
+User-Agent: MJ12bot
+User-Agent: DotBot
+User-Agent: BLEXBot
+User-Agent: DataForSeoBot
+User-Agent: PetalBot
+User-Agent: SerpstatBot
+Disallow: /
+
+User-Agent: HTTrack
+User-Agent: scrapy
+User-Agent: python-requests
+User-Agent: python-urllib
+User-Agent: MegaIndex
+Disallow: /
+
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth
+Disallow: /profile
