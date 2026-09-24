@@ -62,5 +62,12 @@ export function presetProfile(preset: CheatSheetPreset): Profile {
 
 /** Every eligible card for this preset, ranked, with nothing held back to a top N: this page is a full reference. */
 export function rankForPreset(preset: CheatSheetPreset, data: EngineData, rankBy: RankBy): ResultEntry[] {
-  return recommend(presetProfile(preset), data, { perPlayer: Number.POSITIVE_INFINITY, rankBy }).ranked;
+  // On the cash-back columns, Ultimate Rewards' own unlocker cards (Sapphire Preferred/Reserve, Ink Preferred)
+  // would otherwise still be valued at the travel-transfer rate, since getting one of them unlocks the currency -
+  // but a page about cashing out shouldn't show a card's travel value. Non-unlocker UR earners are unaffected:
+  // this hypothetical player holds nothing, so they already price at the cash rate. Amex Membership Rewards is
+  // deliberately left alone: its cash-out is only good with specific cards/accounts (Schwab Platinum, or Business
+  // Platinum plus an Amex Business Checking account) that this no-history hypothetical can never model either way.
+  const forceCashOutCurrencies = preset.focus === "cashback" ? ["ultimate-rewards"] : undefined;
+  return recommend(presetProfile(preset), data, { perPlayer: Number.POSITIVE_INFINITY, rankBy, forceCashOutCurrencies }).ranked;
 }

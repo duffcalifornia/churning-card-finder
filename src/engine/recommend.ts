@@ -36,7 +36,9 @@ const BEST_PERSONAL_COUNT = 3;
  * that only an NLL offer would allow kept in place and marked. Cards that lead to a targeted program come first, then by
  * value. Ties break on the card id so the order is stable.
  */
-function candidatesFor(player: Player, data: EngineData, ctx: ExclusionContext, rankBy: RankBy): Candidate[] {
+function candidatesFor(
+  player: Player, data: EngineData, ctx: ExclusionContext, rankBy: RankBy, forceCashOutCurrencies: Set<string>,
+): Candidate[] {
   const currencyOf = (card: Card) => data.currencies.find((c) => c.id === card.currency);
   const out: Candidate[] = [];
   for (const card of data.catalog) {
@@ -45,9 +47,13 @@ function candidatesFor(player: Player, data: EngineData, ctx: ExclusionContext, 
     // A player who said no to Amex NLL-only cards (owner, 2026-09-22) gets them hidden entirely, not just
     // flagged — the same nllBlock() call that would have set the flag is reused as the exclusion check itself.
     if (viaNllOnly && player.showAmexNllCards === false) continue;
-    // The unlocker cards themselves are valued at the with-unlocker rate: getting one unlocks the currency.
+    // The unlocker cards themselves are valued at the with-unlocker rate: getting one unlocks the currency - unless
+    // forceCashOutCurrencies says otherwise (the Cheat Sheet's cash-back columns, where a card that unlocks the
+    // currency, like Chase Sapphire Preferred, would otherwise still show its travel-transfer value even on a page
+    // about cashing out; see rankForPreset in cheatSheetPresets.ts).
     const currency = currencyOf(card);
-    const unlocked = currency !== undefined && (ctx.unlock.get(currency.id) === true || currency.unlockerCards.includes(card.id));
+    const unlocked = currency !== undefined && !forceCashOutCurrencies.has(currency.id) &&
+      (ctx.unlock.get(currency.id) === true || currency.unlockerCards.includes(card.id));
     const bonus = bonusValue(card, data.valuations, unlocked);
     const net = bonus - firstYearFee(card);
     out.push({
@@ -80,9 +86,13 @@ function entryFor(card: Card, players: ResultEntry["players"], bonus: number, ne
  * Players who want to get or stay under 5/24 and are at 4/24 or more also get a "Best Personal Cards" section.
  * Pure: the inputs are never changed. docs/questionnaire-design.md, Results.
  */
-export function recommend(profile: Profile, data: EngineData, opts: { perPlayer?: number; rankBy?: RankBy } = {}): Results {
+export function recommend(
+  profile: Profile, data: EngineData,
+  opts: { perPlayer?: number; rankBy?: RankBy; forceCashOutCurrencies?: string[] } = {},
+): Results {
   const perPlayer = opts.perPlayer ?? 5;
   const rankBy = opts.rankBy ?? "net";
+  const forceCashOutCurrencies = new Set(opts.forceCashOutCurrencies ?? []);
   const unlocks = unlockStatus(profile.players, data.currencies);
 
   const standings: Results["players"] = [];
@@ -100,7 +110,7 @@ export function recommend(profile: Profile, data: EngineData, opts: { perPlayer?
       amexCredit: derived.amexCredit, amexCharge: derived.amexCharge, chaseBusinessOpen: derived.chaseBusinessOpen,
     });
 
-    const candidates = candidatesFor(player, data, ctx, rankBy);
+    const candidates = candidatesFor(player, data, ctx, rankBy, forceCashOutCurrencies);
     const listing = (c: Candidate, backup: boolean): Listing => ({
       cardId: c.card.id, bonus: c.bonus, net: c.net, value: c.value, viaNllOnly: c.viaNllOnly, backup, targeted: c.targeted,
     });
@@ -117,7 +127,7 @@ export function recommend(profile: Profile, data: EngineData, opts: { perPlayer?
     if (player.wantsUnder524 && derived.x24 >= 4) {
       // The main list hides cards that would count toward 5/24; these are the best personal cards to consider instead.
       const relaxed = { ...player, wantsUnder524: false };
-      const cards = candidatesFor(relaxed, data, ctx, rankBy).filter((c) => c.card.kind === "personal").slice(0, BEST_PERSONAL_COUNT);
+      const cards = candidatesFor(relaxed, data, ctx, rankBy, forceCashOutCurrencies).filter((c) => c.card.kind === "personal").slice(0, BEST_PERSONAL_COUNT);
       bestPersonal.push({
         player: player.name,
         cards: cards.map((c) => entryFor(c.card, [c.viaNllOnly ? { name: player.name, viaNllOnly: true } : { name: player.name }], c.bonus, c.net)),

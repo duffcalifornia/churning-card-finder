@@ -229,6 +229,21 @@ describe("recommend: unlocking currencies change the value", () => {
     // lesser 100,000 x 1.5c = 1500 beats flat 1200
     expect(ids(r).slice(0, 2)).toEqual(["lesser", "flat"]);
   });
+
+  it("forceCashOutCurrencies overrides even the unlocker card itself back to the without-unlocker rate", () => {
+    const p = person("P1", {}, { unlocker: { current: 1, approved: { gt48: 1 } } });
+    const r = recommend(profile([p]), data(cards, [currency]), { forceCashOutCurrencies: ["twoRate"] });
+    // Without the override this player gets lesser at 1500 and unlocker at 900 (see the test above); forced to the
+    // cash rate, lesser drops to 1000 and unlocker (still holding it, but no longer priced as unlocked) to 600.
+    const byId = (id: string) => r.ranked.find((e) => e.cardId === id)!;
+    expect(byId("lesser").bonusValue).toBeCloseTo(1000);
+    expect(byId("unlocker").bonusValue).toBeCloseTo(600);
+  });
+
+  it("forceCashOutCurrencies leaves an untouched currency alone", () => {
+    const r = recommend(profile([person()]), data(cards, [currency]), { forceCashOutCurrencies: ["some-other-currency"] });
+    expect(ids(r)).toEqual(["flat", "lesser", "unlocker"]);
+  });
 });
 
 describe("recommend: best personal cards", () => {

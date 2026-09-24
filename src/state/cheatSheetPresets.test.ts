@@ -108,6 +108,34 @@ describe("rankForPreset: bonus focus", () => {
   });
 });
 
+describe("rankForPreset: cash-back columns value Ultimate Rewards at its cash rate", () => {
+  const cppOf = (id: string, focus: "cashback" | "travel") => {
+    const entry = rankForPreset(preset("under", focus), data, "raw").find((e) => e.cardId === id)!;
+    const points = byId(id).welcomeBonus!.points!;
+    return entry.bonusValue / (points / 100);
+  };
+
+  it("values a UR-unlocking card (Sapphire Preferred) at 1 cent per point on the cash-back column", () => {
+    expect(cppOf("chase-sapphire-preferred", "cashback")).toBeCloseTo(1.0);
+  });
+
+  it("still values the same card at the travel rate on the travel column", () => {
+    expect(cppOf("chase-sapphire-preferred", "travel")).toBeCloseTo(1.5);
+  });
+
+  it("leaves a non-unlocking UR earner alone: already priced at 1 cent per point either way", () => {
+    // Chase Freedom Unlimited earns Ultimate Rewards but doesn't unlock it, and this hypothetical player holds
+    // nothing, so it was already at the cash rate before this change - it should stay there, unaffected.
+    expect(cppOf("chase-freedom-unlimited", "cashback")).toBeCloseTo(1.0);
+  });
+
+  it("leaves Amex Membership Rewards alone: its cash-out depends on cards this hypothetical can't model", () => {
+    const entry = rankForPreset(preset("under", "travel"), data, "raw").find((e) => e.cardId === "amex-gold")!;
+    const points = byId("amex-gold").welcomeBonus!.points!;
+    expect(entry.bonusValue / (points / 100)).toBeCloseTo(1.5);
+  });
+});
+
 describe("rankForPreset: raw vs net still works", () => {
   it("produces the same set of ids regardless of rankBy, only reordered", () => {
     const net = new Set(ids(preset("under", "travel")));
