@@ -2,6 +2,7 @@ What changed about how this site chooses and ranks cards, and the major site mil
 
 ## 2026-09-24
 - Fixed the Signup Offer Cheat Sheet's cash-back columns valuing Chase Sapphire Preferred, Chase Sapphire Reserve, and Ink Business Preferred at Ultimate Rewards' travel-transfer rate instead of its cash-out rate, since getting one of those cards is what unlocks the currency in the first place.
+- Updated the bonus offer for the following card(s): Wells Fargo Autograph Journey Visa Card.
 
 ## 2026-09-23
 - Made the Changelog page collapse older entries as the site ages: this month stays fully visible, older months in the current year each get their own collapsible section, and past years collapse into one section per year holding that year's own months - so the page stays short no matter how long the changelog gets.
