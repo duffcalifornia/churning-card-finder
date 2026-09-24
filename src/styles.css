@@ -216,6 +216,13 @@ footer p { margin: 4px 0; }
 .changelog h2:first-child { margin-top: 0; }
 .changelog ul { padding-left: 1.2em; }
 .changelog li { margin: 4px 0; }
+/* A month or year the reader didn't ask to see yet: collapsed to one line so the page stays a flat table of
+   contents no matter how far back the changelog goes. A year group's own <details> nests a copy of this same
+   month-group markup, so the indent (a left border, like breadcrumbs) is what shows you're a level deeper. */
+.changelog-group { margin: 14px 0; }
+.changelog-group summary { cursor: pointer; font-weight: 700; padding: 6px 0; }
+.changelog-group > .changelog-group { margin-left: 16px; padding-left: 14px; border-left: 1px solid var(--line); }
+.changelog-group h2 { font-size: 1rem; margin-top: 18px; }
 @media (max-width: 600px) {
   main { padding: 12px; }
   /* On a phone the six columns cannot fit, so each card becomes a name with its five counts in a labelled row. */

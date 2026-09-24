@@ -1,6 +1,7 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
 ## 2026-09-23
+- Made the Changelog page collapse older entries as the site ages: this month stays fully visible, older months in the current year each get their own collapsible section, and past years collapse into one section per year holding that year's own months - so the page stays short no matter how long the changelog gets.
 - Added a "Cards to show" filter to the Signup Offer Cheat Sheet, so you can view all cards, personal cards only, or business cards only.
 - Fixed a bug where, on iPad and iPhone in Safari and Chrome, focusing a card-count field in the card history table could scroll the sticky issuer and column headers up behind the browser's own toolbar.
 - Added a button to download the Card Finder's recommended cards as a CSV file.
