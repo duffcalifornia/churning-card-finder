@@ -68,16 +68,35 @@ def format_list(items):
     return f"{', '.join(items[:-1])}, and {items[-1]}"
 
 
-def offer_change_entry(old_offers, new_offers, card_names):
-    """The changelog line for this run's offer-text changes, or None if nothing changed.
+# The fields of a parsed-offer record (cardfinder.build.build_parsed_offers) that represent an actual dollar
+# value. Deliberately excludes `notes` (scraper commentary that can vary without the offer itself changing) and
+# metadata like `seenOn`/`sourceText`/`needsReview`/`stale` - none of those affect what the site shows or ranks.
+_VALUE_FIELDS = ("kind", "points", "cashBack", "freeNightAwards", "minSpend", "windowMonths", "additionalTiers", "ceiling", "displayedAsCash")
 
-    old_offers/new_offers: the last_known_offers.json shape ({card_id: {"text": ..., ...}}), before and after
-    a refresh. card_names: {card_id: display name}; an id missing from it (should not normally happen) falls
-    back to the id itself rather than crashing or silently dropping the card from the list.
+
+def _offer_value(record):
+    """The comparable value of one parsed-offer record: None if the card has no recorded offer at all (so gaining
+    or losing a recorded offer counts as a change), or a tuple of just the value-bearing fields otherwise."""
+    if not record or not record.get("hasWelcomeOffer"):
+        return None
+    parsed = record.get("parsed") or {}
+    return tuple(parsed.get(f) for f in _VALUE_FIELDS)
+
+
+def offer_change_entry(old_records, new_records, card_names):
+    """The changelog line for this run's actual offer-value changes, or None if nothing changed.
+
+    old_records/new_records: {card_id: parsed-offer-record} (data/parsed-offers.json's shape, keyed by card id),
+    before and after a refresh - not the raw last_known_offers.json text. Comparing the *parsed* offer, not the
+    scraped page text byte-for-byte, matters because an issuer's own page can reformat between reads (an en dash
+    swapped for a hyphen, "Annual Fee" recapitalized, unrelated marketing copy trimmed) with the actual points,
+    minimum spend and fee never moving at all; comparing raw text flags that as a bonus change it never was.
+    card_names: {card_id: display name}; an id missing from it (should not normally happen) falls back to the id
+    itself rather than crashing or silently dropping the card from the list.
     """
     changed_ids = [
-        cid for cid, entry in new_offers.items()
-        if old_offers.get(cid, {}).get("text") != entry.get("text")
+        cid for cid, new in new_records.items()
+        if _offer_value(old_records.get(cid)) != _offer_value(new)
     ]
     if not changed_ids:
         return None

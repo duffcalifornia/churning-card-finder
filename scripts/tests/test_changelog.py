@@ -22,40 +22,74 @@ class FormatListTests(unittest.TestCase):
 
 
 class OfferChangeEntryTests(unittest.TestCase):
+    """old_records/new_records are keyed by card id, each value shaped like one of
+    cardfinder.build.build_parsed_offers' records: {"hasWelcomeOffer": bool, "parsed": {...}}."""
+
     NAMES = {"chase-sapphire-preferred": "Chase Sapphire Preferred", "amex-gold": "American Express Gold Card"}
 
+    @staticmethod
+    def _offer(points, **extra):
+        parsed = {"kind": "standard", "points": points, "cashBack": None, "freeNightAwards": 0, "minSpend": 4000.0,
+                  "windowMonths": 3, "additionalTiers": [], "ceiling": False, "displayedAsCash": None, **extra}
+        return {"hasWelcomeOffer": True, "parsed": parsed}
+
     def test_no_change_is_none(self):
-        old = {"chase-sapphire-preferred": {"text": "75,000 points"}}
-        new = {"chase-sapphire-preferred": {"text": "75,000 points"}}
+        old = {"chase-sapphire-preferred": self._offer(75000.0)}
+        new = {"chase-sapphire-preferred": self._offer(75000.0)}
+        self.assertIsNone(offer_change_entry(old, new, self.NAMES))
+
+    def test_cosmetic_page_text_differences_are_not_a_change(self):
+        # The actual bug this guards against: the scraped page text can reformat (an en dash swapped for a
+        # hyphen, marketing copy trimmed) between reads with the parsed offer identical either way - only the
+        # parsed value fields are compared, never raw text, so this must not be reported as a change.
+        old = {"amex-gold": self._offer(60000.0)}
+        new = {"amex-gold": self._offer(60000.0)}  # same parsed value, as if only the raw page text had changed
         self.assertIsNone(offer_change_entry(old, new, self.NAMES))
 
     def test_one_card_changed(self):
-        old = {"chase-sapphire-preferred": {"text": "60,000 points"}}
-        new = {"chase-sapphire-preferred": {"text": "75,000 points"}}
+        old = {"chase-sapphire-preferred": self._offer(60000.0)}
+        new = {"chase-sapphire-preferred": self._offer(75000.0)}
         self.assertEqual(
             offer_change_entry(old, new, self.NAMES),
             "Updated the bonus offer for the following card(s): Chase Sapphire Preferred.",
         )
 
+    def test_a_change_to_a_non_points_field_still_counts(self):
+        # Minimum spend moving (with points unchanged) is just as real a value change as points moving.
+        old = {"amex-gold": self._offer(60000.0, minSpend=4000.0)}
+        new = {"amex-gold": self._offer(60000.0, minSpend=6000.0)}
+        self.assertEqual(offer_change_entry(old, new, self.NAMES), "Updated the bonus offer for the following card(s): American Express Gold Card.")
+
+    def test_notes_changing_alone_is_not_a_change(self):
+        # `notes` is scraper commentary, not a value - deliberately excluded from the comparison.
+        old = {"amex-gold": {**self._offer(60000.0), "notes": ["needs review"]}}
+        new = {"amex-gold": {**self._offer(60000.0), "notes": []}}
+        self.assertIsNone(offer_change_entry(old, new, self.NAMES))
+
     def test_multiple_cards_changed_join_with_oxford_comma(self):
-        old = {"chase-sapphire-preferred": {"text": "60,000"}, "amex-gold": {"text": "60,000"}}
-        new = {"chase-sapphire-preferred": {"text": "75,000"}, "amex-gold": {"text": "100,000"}}
+        old = {"chase-sapphire-preferred": self._offer(60000.0), "amex-gold": self._offer(60000.0)}
+        new = {"chase-sapphire-preferred": self._offer(75000.0), "amex-gold": self._offer(100000.0)}
         result = offer_change_entry(old, new, self.NAMES)
         self.assertEqual(result, "Updated the bonus offer for the following card(s): American Express Gold Card and Chase Sapphire Preferred.")
 
     def test_a_brand_new_offer_where_none_existed_counts_as_changed(self):
         old = {}
-        new = {"amex-gold": {"text": "100,000 points"}}
+        new = {"amex-gold": self._offer(100000.0)}
+        self.assertEqual(offer_change_entry(old, new, self.NAMES), "Updated the bonus offer for the following card(s): American Express Gold Card.")
+
+    def test_losing_a_recorded_offer_counts_as_changed(self):
+        old = {"amex-gold": self._offer(100000.0)}
+        new = {"amex-gold": {"hasWelcomeOffer": False, "parsed": None}}
         self.assertEqual(offer_change_entry(old, new, self.NAMES), "Updated the bonus offer for the following card(s): American Express Gold Card.")
 
     def test_unmapped_card_id_falls_back_to_the_id_itself(self):
-        old = {"some-new-card": {"text": "old"}}
-        new = {"some-new-card": {"text": "new"}}
+        old = {"some-new-card": self._offer(50000.0)}
+        new = {"some-new-card": self._offer(60000.0)}
         self.assertEqual(offer_change_entry(old, new, {}), "Updated the bonus offer for the following card(s): some-new-card.")
 
     def test_only_reports_ids_present_in_new_offers(self):
         # A card dropped from the cache entirely (should not happen in practice) is not reported as "changed".
-        old = {"amex-gold": {"text": "100,000"}}
+        old = {"amex-gold": self._offer(100000.0)}
         new = {}
         self.assertIsNone(offer_change_entry(old, new, self.NAMES))
 

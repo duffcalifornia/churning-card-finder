@@ -2,6 +2,7 @@ What changed about how this site chooses and ranks cards, and the major site mil
 
 ## 2026-09-24
 - Fixed the Signup Offer Cheat Sheet's cash-back columns valuing Chase Sapphire Preferred, Chase Sapphire Reserve, and Ink Business Preferred at Ultimate Rewards' travel-transfer rate instead of its cash-out rate, since getting one of those cards is what unlocks the currency in the first place.
+- Fixed the daily data refresh logging a "bonus offer updated" entry whenever an issuer's page reformatted its wording (a swapped punctuation mark, retitled section) with the actual points, minimum spend and fee never moving - it now compares the parsed offer instead of the raw scraped text.
 - Updated the bonus offer for the following card(s): Wells Fargo Autograph Journey Visa Card.
 
 ## 2026-09-23

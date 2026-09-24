@@ -31,11 +31,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
+from cardfinder.build import build_parsed_offers  # noqa: E402
 from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_changelog_entry  # noqa: E402
 from cardfinder.cli import exit_code, format_report, run, select_cards, split_paused  # noqa: E402
 from cardfinder.fetchers import CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
 from cardfinder.refresh import merge_last_known  # noqa: E402
-from cardfinder.registry import CARDS, ISSUERS, LAST_KNOWN_FEE_WAIVED, LAST_KNOWN_FEES, LAST_KNOWN_OFFERS  # noqa: E402
+from cardfinder.registry import (CARDS, CASH_PAID_AS_POINTS, ISSUERS, LAST_KNOWN_FEE_WAIVED, LAST_KNOWN_FEES,  # noqa: E402
+                                 LAST_KNOWN_OFFERS, NO_OFFER_CONFIRMED, REVIEWED_OK)
 
 OFFERS_PATH = os.path.join(HERE, "cardfinder", "last_known_offers.json")
 FEES_PATH = os.path.join(HERE, "cardfinder", "last_known_fees.json")
@@ -99,6 +101,22 @@ def main(argv=None):
 
     today = datetime.date.today().isoformat()
     new_offers, new_fees, new_waived = merge_last_known(results, LAST_KNOWN_OFFERS, LAST_KNOWN_FEES, LAST_KNOWN_FEE_WAIVED, today)
+
+    # Diffed as *parsed* offers, not raw scraped text: an issuer's own page can reformat between reads (an en
+    # dash swapped for a hyphen, unrelated marketing copy trimmed) with the actual points, minimum spend and fee
+    # never moving, and comparing raw text would wrongly log that as a bonus change. Site owner (2026-09-24), after
+    # Wells Fargo Autograph Journey Visa Card logged two "bonus updated" entries two days running for exactly that
+    # reason. Only cardfinder.build's parsing matters here, not cardfinder.registry's staleness bookkeeping (that
+    # only annotates a record, it never changes the value fields this compares), so stale_issuers/stale_since are
+    # left at their defaults.
+    def parsed_by_id(offers):
+        records = build_parsed_offers(
+            CARDS, offers, confirmed_none=NO_OFFER_CONFIRMED, reviewed=REVIEWED_OK, cash_paid_as_points=CASH_PAID_AS_POINTS,
+        )
+        return {r["cardId"]: r for r in records}
+
+    old_parsed, new_parsed = parsed_by_id(LAST_KNOWN_OFFERS), parsed_by_id(new_offers)
+
     _write_cache_files(new_offers, new_fees, new_waived)
 
     # Site owner's rule (2026-09-22): every offer or fee change gets logged this one consistent way each, since
@@ -106,7 +124,7 @@ def main(argv=None):
     # phase. The two are independent facts and both can fire for the same card in the same run.
     card_names = {c.id: c.names[0] for c in CARDS}
     for entry in (
-        offer_change_entry(LAST_KNOWN_OFFERS, new_offers, card_names),
+        offer_change_entry(old_parsed, new_parsed, card_names),
         fee_change_entry(LAST_KNOWN_FEES, new_fees, LAST_KNOWN_FEE_WAIVED, new_waived, card_names),
     ):
         if entry:
