@@ -44,13 +44,17 @@ function downloadBlob(json: string, filename: string): void {
 }
 
 /**
- * Saves the profile to a file: the Web Share API when it's available (most mobile browsers), since a plain
+ * Saves the profile to a file: the Web Share API on a touch-primary device (phones and tablets), since a plain
  * download link is unreliable there - iOS Safari sometimes just navigates the tab to show the raw JSON instead
  * of actually saving a file - and a share sheet (AirDrop, Files, Messages, email) is a more native way to get a
- * file off a phone than "check your Downloads folder" anyway. Falls back to a plain download where sharing files
- * isn't supported (desktop browsers, mainly). If the user cancels the share sheet or it fails for some other
- * reason, this leaves it at that rather than immediately following a dismissed share sheet with an unrequested
- * plain download.
+ * file off a phone than "check your Downloads folder" anyway. Everything else gets a plain download link,
+ * including desktop Safari on macOS, which DOES support sharing files through this same API (`canShare` alone
+ * isn't the right check) but whose share sheet has no direct "save this file" entry - confirmed against a real
+ * macOS Safari user, who got AirDrop/Mail/Messages/Notes/etc. and no way to just save it. `pointer: coarse` is
+ * true for a touch-primary device and false for a mouse/trackpad-primary one, which is what actually predicts
+ * whether the share sheet has a sensible option for this, not whether the API exists. If the user cancels the
+ * share sheet or it fails for some other reason, this leaves it at that rather than immediately following a
+ * dismissed share sheet with an unrequested plain download.
  */
 export async function downloadProfileBackup(profile: Profile): Promise<void> {
   const backup: ProfileBackup = { ...profile, savedOn: new Date().toISOString().slice(0, 10) };
@@ -58,7 +62,8 @@ export async function downloadProfileBackup(profile: Profile): Promise<void> {
   const filename = backupFilename();
   const file = new File([json], filename, { type: "application/json" });
   const nav = navigator as Navigator & { canShare?: (data: { files: File[] }) => boolean };
-  if (nav.canShare?.({ files: [file] })) {
+  const isTouchPrimary = window.matchMedia("(pointer: coarse)").matches;
+  if (isTouchPrimary && nav.canShare?.({ files: [file] })) {
     try {
       await navigator.share({ files: [file] });
     } catch {

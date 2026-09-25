@@ -2,6 +2,7 @@ What changed about how this site chooses and ranks cards, and the major site mil
 
 ## 2026-09-25
 - Added "Download my data" and "Restore from a file" to the Card Finder's card history step, so your answers survive clearing site data or switching devices. Nothing is sent to a server - the file only ever moves between your own device and your own browser. Restoring shows how long ago the backup was made and doesn't guess at anything: you're asked to look over the approval windows and how many of each card you hold, since either may have changed since the backup.
+- Fixed "Download my data" opening desktop Safari's share sheet (AirDrop, Mail, Messages...) instead of saving the file, since that sheet has no direct way to just save it. Only phones and tablets get the share sheet now; every other device gets a plain download.
 
 ## 2026-09-24
 - Fixed the Signup Offer Cheat Sheet's cash-back columns valuing Chase Sapphire Preferred, Chase Sapphire Reserve, and Ink Business Preferred at Ultimate Rewards' travel-transfer rate instead of its cash-out rate, since getting one of those cards is what unlocks the currency in the first place.
