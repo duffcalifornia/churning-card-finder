@@ -86,6 +86,9 @@ button { font: inherit; }
 .secondary { background: transparent; color: var(--accent); }
 .buttons { display: flex; gap: 10px; margin: 28px 0 16px; }
 .linklike { background: none; border: none; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font: inherit; }
+.backup { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px 16px; margin: 8px 0 20px; background: var(--accent-tint); }
+.backup .buttons { margin: 0 0 10px; }
+.backup .note { margin: 0; }
 
 .homecards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
 .homecard { border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; background: var(--soft); box-shadow: var(--shadow); }
@@ -225,6 +228,9 @@ footer p { margin: 4px 0; }
 .changelog-group h2 { font-size: 1rem; margin-top: 18px; }
 @media (max-width: 600px) {
   main { padding: 12px; }
+  /* "Download my data" and "Restore from a file" side by side can overflow a narrow phone screen (no wrap is
+     set on .buttons); stacked, each is full width instead. */
+  .backup .buttons { flex-direction: column; }
   /* On a phone the six columns cannot fit, so each card becomes a name with its five counts in a labelled row. */
   .issuer table, .issuer tbody { display: block; }
   .issuer thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

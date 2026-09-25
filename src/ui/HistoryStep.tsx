@@ -1,12 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { computeDerived } from "../engine/computeDerived";
 import type { Card, Profile } from "../engine/types";
 import { engineData } from "../data/engineData";
 import {
-  ISSUER_SECTIONS, clearHistory, historyCardsByIssuer, setCardCount, setMarriottFlag, setOtherCount,
+  ISSUER_SECTIONS, clearHistory, historyCardsByIssuer, parseStoredProfile, setCardCount, setMarriottFlag, setOtherCount,
   type CountField,
 } from "../state/profile";
 import { Count } from "./Count";
+import { describeElapsedSince, downloadProfileBackup } from "./profileBackup";
 
 interface Props {
   profile: Profile;
@@ -28,6 +29,24 @@ export function HistoryStep({ profile, onChange }: Props) {
   const sections = useMemo(() => historyCardsByIssuer(engineData.catalog, engineData.marriottMatrix), []);
   const marriottIds = useMemo(() => new Set((engineData.marriottMatrix.cards ?? []).map((c) => c.id)), []);
   const cards = player.history.cards ?? {};
+
+  const restoreInputRef = useRef<HTMLInputElement>(null);
+  const [restoreStatus, setRestoreStatus] = useState<{ kind: "restored"; elapsed: string | null } | { kind: "error" } | null>(null);
+
+  const handleRestoreFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // so picking the same file again still fires a change event
+    if (!file) return;
+    const raw = await file.text();
+    const imported = parseStoredProfile(raw);
+    if (imported) {
+      onChange(imported);
+      const savedOn: string | undefined = JSON.parse(raw)?.savedOn;
+      setRestoreStatus({ kind: "restored", elapsed: describeElapsedSince(savedOn) });
+    } else {
+      setRestoreStatus({ kind: "error" });
+    }
+  };
 
   // iOS Safari and Chrome (both WebKit) break header pinning on this page once a Count field below is focused:
   // the issuer name bar (e.g. "Chase") ends up above the visible screen instead of pinned below the URL bar. Two
@@ -276,6 +295,39 @@ export function HistoryStep({ profile, onChange }: Props) {
           {player.name} has never had any of these cards
         </button>
       </p>
+
+      <div className="backup">
+        <div className="buttons">
+          <button type="button" className="primary" onClick={() => void downloadProfileBackup(profile)}>
+            Download my data
+          </button>
+          <button type="button" className="secondary" onClick={() => restoreInputRef.current?.click()}>
+            Restore from a file
+          </button>
+          <input
+            ref={restoreInputRef}
+            type="file"
+            accept="application/json,.json"
+            style={{ display: "none" }}
+            onChange={handleRestoreFile}
+          />
+        </div>
+        <p className="note">
+          Download your card history as a file, or restore it from one you saved earlier. Nothing is sent anywhere - this stays on your device.
+        </p>
+      </div>
+
+      {restoreStatus?.kind === "restored" && (
+        <div className="banner">
+          Restored{restoreStatus.elapsed ? ` from a backup saved ${restoreStatus.elapsed}` : ""}. Card approval windows and how many of
+          each card you currently hold may have changed since then - please look over every entry below before continuing.
+        </div>
+      )}
+      {restoreStatus?.kind === "error" && (
+        <p className="note" style={{ color: "var(--warn-fg)" }}>
+          That file didn't look like a Card Finder backup. Nothing was changed.
+        </p>
+      )}
 
       {ISSUER_SECTIONS.map((section) => {
         const list = sections.get(section.id) ?? [];
