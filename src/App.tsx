@@ -190,8 +190,13 @@ export function App() {
     setNavOpen(false); // closes the mobile hamburger menu; a no-op on desktop, where it is always open
   };
   const goToCheatSheetPreset = (presetId: string) => {
+    // replaceState, not pushState: switching between the cheat sheet's four presets is one logical "stop" for the
+    // back button, not four. Landing on the cheat sheet at all (goToPage, above) still pushes - that's a real
+    // navigation, from Home or the nav bar - but flipping through presets once you're there shouldn't make back
+    // walk through every preset you looked at before it takes you back to wherever you actually came from
+    // (including off-site, if you arrived via a search result straight onto one preset's own URL).
     const url = cheatSheetPresetPath(presetId);
-    if (window.location.pathname !== url) history.pushState(null, "", url);
+    if (window.location.pathname !== url) history.replaceState(null, "", url);
     setPage("cheatsheet");
     setCheatSheetPreset(presetId);
     window.scrollTo(0, 0);
