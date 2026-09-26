@@ -5,9 +5,8 @@
 //
 // Uses only the standard Request/Response Web APIs, not a Vercel-specific SDK, so it is not locked to Vercel.
 //
-// Honest limitation: this function is stateless per invocation, so there is no persistent request-rate limiting
-// here beyond the honeypot field and GitHub's own API rate limit on the token (a real backstop, but not built for
-// this specifically). A dedicated store (e.g. Upstash) would be needed for real abuse-rate limiting.
+// Spam resistance today is the honeypot field below plus GitHub's own API limits on the token; a dedicated
+// request-rate store (e.g. Upstash) would be a reasonable future improvement.
 //
 // GitHub never emails the token's own owner about issues that token created (it suppresses notifications for
 // your own activity), so a suggestion landing as a GitHub issue is not enough to actually notify anyone. The

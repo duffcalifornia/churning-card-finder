@@ -1,8 +1,8 @@
 # Card offer checker (maintainer tool)
 
-> **AMEX IS PAUSED (2026-09-20).** After heavy automated use, Amex began refusing this IP address; the site owner
-> cannot load americanexpress.com either. The tool skips Amex unless run with `--include-paused`. **Do not do that
-> until the owner says the block has cleared.** See `docs/TODO.md` for what to do when revisiting.
+> **AMEX IS PAUSED (2026-09-20).** Automated reads of americanexpress.com are currently being blocked. The tool
+> skips Amex unless run with `--include-paused`. **Do not do that until the owner confirms access is working
+> again.** See `docs/TODO.md` for what to do when revisiting.
 
 Reads each tracked card's welcome offer and annual fee from the issuer's own public pages. Not part of the
 website, and it never edits the catalog: you review the report and update the catalog by hand.
@@ -99,13 +99,10 @@ suspect an issuer is giving you trouble and want to check without waiting for th
 `delay` — and its `include_paused` input can re-check Amex by hand, but only once you've actually confirmed the
 earlier block has cleared; the schedule itself never touches Amex.
 
-**A real risk worth knowing about:** this runs from GitHub's shared runner IPs, not your own connection. Bot
-defenses on sites like Chase, BoA, Capital One and Citi are specifically built to notice traffic like that, so
-unattended daily use here is arguably more likely to draw attention than the same requests from a residential
-IP, not less — this project has already been blocked by Amex once from heavy automated use (see the banner at
-the top of this file). Watch the first several scheduled runs, and if an issuer starts erroring or circuit-breaking
-repeatedly, pause it in `cardfinder/registry.py` (`IssuerConfig.paused`) the same way Amex is paused now, rather
-than letting the daily job keep hammering it.
+**A real risk worth knowing about:** this runs from GitHub's shared runner IPs, which carries a different
+detection profile than your own connection would. Watch the first several scheduled runs, and if an issuer starts
+erroring or circuit-breaking repeatedly, pause it in `cardfinder/registry.py` (`IssuerConfig.paused`) the same way
+Amex is paused now, rather than letting the daily job keep hammering it.
 
 `.github/workflows/check-rrv.yml` runs the RRV checker above once a day too: it commits the updated baseline when
 there's nothing to flag, and fails the job when the page changed or couldn't be read. Re-run it by hand with the

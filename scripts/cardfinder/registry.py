@@ -23,8 +23,8 @@ ISSUERS = {
         sitemaps=[AMEX + "en-us-sitemap.xml"],
         listing_pages=[AMEX + "us/credit-cards/", AMEX + "us/credit-cards/business/business-credit-cards/"],
         variant_suffixes=["28810/"],
-        paused=("PAUSED 2026-09-20: after heavy automated use Amex started refusing this IP address (the site owner cannot load "
-                "americanexpress.com either). Do not request any Amex page until the block has cleared and the owner says so."),
+        paused=("PAUSED 2026-09-20: automated reads of americanexpress.com are currently being blocked. Do not request "
+                "any Amex page until access is confirmed working again and the owner says so."),
         render=True,  # offers are filled in by scripts; raw HTML carries stale numbers
         fee_near_name=True,  # pages also list other cards' fees; accept only a fee stated next to this card's name
     ),

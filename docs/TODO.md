@@ -1,9 +1,8 @@
 # Revisit later
 
 ## Amex (paused 2026-09-20)
-**Why:** after heavy automated use (well over 100 requests in one session, many through a headless browser), Amex
-started returning "Loading Error" pages and now refuses this IP address; the site owner cannot load americanexpress.com
-in a normal browser either. Reported by the owner, not verified by us.
+**Why:** Amex's product pages started returning "Loading Error" pages and became unreachable from this setup.
+Reported by the owner, not independently verified.
 
 **Do not** request any Amex page until the owner confirms they can load americanexpress.com normally again.
 
@@ -113,13 +112,13 @@ Brilliant offers ended 9/30/26 and should be treated as expired until a live rea
   1. `json.dump(..., sort_keys=True)` on the cache files alphabetized every entry's own fields (seen/text/full_text) on every write, turning a one-card update into a 100+ line diff across the whole file. Fixed by dropping sort_keys and relying on `merge_last_known` preserving each dict's existing order; regression-tested (`WriteCacheFilesPreservesOrder`).
   2. `import parse_offers; import build_cards` in the same process silently rebuilt from **stale** data: `cardfinder.registry` loads the cache files into module-level constants at import time, and refresh_offers.py had already imported it before writing the fresh files, so the in-process rebuild used the pre-write values (`cards.json`'s `verifiedOn` never actually moved). Fixed by running both as real subprocesses instead.
 - Reused `card_offers.py`'s existing exit-code contract (0 = every expected card found, 2 = something wasn't) as the "does this need a look" signal, rather than inventing a new one.
-- Flagged explicitly in scripts/README.md: automating this trades the caution that's kept this project un-blocked so far for daily freshness, on the owner's explicit call given the site's value depends on current offers. GitHub's shared runner IPs are plausibly a bigger bot-detection target than a residential IP, not a smaller one. Watch the first several scheduled runs; pause an issuer in registry.py the same way Amex already is if it starts erroring repeatedly.
+- Flagged explicitly in scripts/README.md: automating this trades the caution that's kept this project un-blocked so far for daily freshness, on the owner's explicit call given the site's value depends on current offers. Running this from a shared CI environment carries its own detection risk profile. Watch the first several scheduled runs; pause an issuer in registry.py the same way Amex already is if it starts erroring repeatedly.
 - Not yet done: has not been run against issuers other than a single Chase card (politely, by hand, to verify the pipeline). The first real scheduled/full run will be the first time this touches all issuers at once.
 
 ## Failure notifications for the offer refresh (2026-09-22)
 - Tracking issue https://github.com/duffcalifornia/churning-card-finder/issues/1 (owner is watching it automatically as its creator). refresh-offers.yml posts a comment there only when a run does not pass (exit code nonzero): the affected cards' NOT FOUND lines, any page_error flags, any circuit-breaker trip notes, and the summary line, plus a link to the full run log. Nothing is posted on a clean run, per the owner's explicit request ("if it doesn't pass, that is"). GitHub's own issue-comment notification email is what actually reaches the owner; no SMTP secret or third-party service needed.
 - Verified the log-line extraction locally against synthetic mixed-outcome results (found/not_found/page_error/circuit-breaker) before committing, not just by reading the code.
-- Open question raised by the owner, not yet resolved: whether a mature, paced daily job is actually safe against Amex specifically, given the block already happened once from a residential IP and a GitHub Actions job would come from a shared data-center IP instead, which bot-defense systems often weight independently of request rate. Proposed: one manual workflow_dispatch run with include_paused against Amex only, watched closely, before ever considering adding it to the schedule.
+- Open question raised by the owner, not yet resolved: whether a mature, paced daily job is actually safe against Amex specifically. Proposed: one manual workflow_dispatch run with include_paused against Amex only, watched closely, before ever considering adding it to the schedule.
 
 ## Site restructure: Home, Cheat Sheet, Card Finder, Methodology (2026-09-22)
 - Four top-level pages via plain hash routing (`""`, `#cheatsheet`, `#finder`, `#methodology`), generalized from the earlier methodology-only hack. The wizard (People/History/About/Spending/Results) now lives under `#finder`, with its own 5-step sub-nav unchanged.
@@ -132,7 +131,7 @@ Brilliant offers ended 9/30/26 and should be treated as expired until a live rea
 
 ## Changelog, Suggestions, and the unlisted referrals page (2026-09-22)
 - `CHANGELOG.md` at the repo root, rendered on `#changelog` via `marked` (new dependency) from a build-time `?raw` import — no runtime fetch, safe to render with `dangerouslySetInnerHTML` since the source is maintainer-authored, never user input.
-- `#suggestions`: a form that POSTs to `/api/suggest`, a Vercel Edge Function (`api/suggest.ts`, standard Web Request/Response APIs, not a Vercel-specific SDK) that creates a GitHub issue using a `GITHUB_TOKEN` environment variable — never in client code. Honeypot field (off-screen, `aria-hidden`, unreachable by tab) for basic spam resistance; honest limitation noted in the code: no persistent rate-limit store, so abuse protection beyond the honeypot relies on GitHub's own per-token API rate limit. `docs/deployment.md` covers hosting setup (Vercel assumed but not yet chosen for real; not yet deployed anywhere) and how to create a properly-scoped token; `.env.example` documents the variable name only. Typechecked standalone (Node types, no DOM) since it's outside the main app's tsconfig/runtime.
+- `#suggestions`: a form that POSTs to `/api/suggest`, a Vercel Edge Function (`api/suggest.ts`, standard Web Request/Response APIs, not a Vercel-specific SDK) that creates a GitHub issue using a `GITHUB_TOKEN` environment variable — never in client code. Honeypot field (off-screen, `aria-hidden`, unreachable by tab) for basic spam resistance; a dedicated request-rate store would be a reasonable future improvement, noted in the code. `docs/deployment.md` covers hosting setup (Vercel assumed but not yet chosen for real; not yet deployed anywhere) and how to create a properly-scoped token; `.env.example` documents the variable name only. Typechecked standalone (Node types, no DOM) since it's outside the main app's tsconfig/runtime.
 - `#referrals` ("Support this project"): not in the main nav, reachable only via the footer or a direct link; sets `<meta name="robots" content="noindex">` while active. Placeholder content only (no real referral URLs or BMAC link yet — owner to fill in `src/ui/ReferralsPage.tsx`). Deliberately has zero connection to the ranking engine, preserving the "no affiliate links" principle for the actual tool; this page is a separate, disclosed exception, not an influence on any ranking.
 - Footer now links to both from every page.
 
