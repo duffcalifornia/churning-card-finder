@@ -35,6 +35,21 @@ suggestion is to check the repo's Issues tab yourself. To also get a direct emai
 3. Redeploy. Both env vars must be set for email to fire; leaving either unset skips it silently and the GitHub
    issue is still created as before — the email is a best-effort extra, never a requirement for suggestions to work.
 
+### Optional: referral links on the "Support this project" page
+
+`src/ui/ReferralsPage.tsx` reads its referral URLs from Vite env vars rather than hardcoding them, so that
+swapping a link out later never touches git history — see the comment in `.env.example` for why. To set or change
+one:
+
+1. In the Vercel project's Settings → Environment Variables, add or edit whichever of these you have a live link
+   for: `VITE_REFERRAL_CHASE_SAPPHIRE`, `VITE_REFERRAL_CHASE_MARRIOTT`, `VITE_REFERRAL_CHASE_INK`,
+   `VITE_REFERRAL_AMEX`. Leave any of them unset (or blank) to just not show that entry.
+2. **Redeploy — this one matters more than usual.** Unlike `GITHUB_TOKEN` or the Resend vars (read by
+   `api/suggest.ts` at request time), these are Vite env vars: baked into the built JS bundle at build time. A
+   change here does nothing until the next build actually runs. They're also not secret from anyone visiting the
+   live site — that's the whole point of a referral link — this is purely about keeping an old, swapped-out link
+   from lingering in this repo's history.
+
 ## Data refresh automation (already running, needs no hosting change)
 `.github/workflows/check-rrv.yml` and `.github/workflows/refresh-offers.yml` run on GitHub Actions regardless of
 where the site itself is hosted — they commit straight to this repo, and a redeploy on Vercel (or wherever) picks
