@@ -84,7 +84,8 @@ export default async function handler(request: Request): Promise<Response> {
   if (!ghResponse.ok) return json(502, { error: "Could not create the issue. Try again in a moment." });
 
   const issue = await ghResponse.json().catch(() => null);
-  await notifyByEmail(summary, details, issue?.html_url ?? `https://github.com/${REPO}/issues`);
+  const issueUrl: string | null = issue?.html_url ?? null;
+  await notifyByEmail(summary, details, issueUrl ?? `https://github.com/${REPO}/issues`);
 
-  return json(200, { ok: true });
+  return json(200, { ok: true, issueUrl });
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const MAX_SUMMARY = 200;
 const MAX_DETAILS = 3000;
+const ISSUES_URL = "https://github.com/duffcalifornia/churning-card-finder/issues";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -11,6 +12,7 @@ export function SuggestionsPage() {
   const [website, setWebsite] = useState(""); // honeypot: real visitors never see or fill this field
   const [status, setStatus] = useState<Status>("idle");
   const [errorText, setErrorText] = useState("");
+  const [issueUrl, setIssueUrl] = useState<string | null>(null);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +26,8 @@ export function SuggestionsPage() {
         body: JSON.stringify({ summary: summary.trim(), details: details.trim(), website }),
       });
       if (!res.ok) throw new Error((await res.json().catch(() => null))?.error || `Request failed (${res.status})`);
+      const data = await res.json().catch(() => null);
+      setIssueUrl(data?.issueUrl ?? null);
       setStatus("sent");
       setSummary("");
       setDetails("");
@@ -37,7 +41,13 @@ export function SuggestionsPage() {
     return (
       <section>
         <h2>Suggest a change</h2>
-        <p>Thanks — that's been posted as an issue on the project's GitHub. You can follow along there if you'd like.</p>
+        <p>
+          Thanks — that's been posted as an issue on the project's GitHub. You can check{" "}
+          <a href={issueUrl ?? ISSUES_URL} target="_blank" rel="noreferrer">
+            {issueUrl ? "your suggestion" : "the issues page"}
+          </a>{" "}
+          any time to see its status.
+        </p>
         <button type="button" className="secondary" onClick={() => setStatus("idle")}>Suggest another</button>
       </section>
     );

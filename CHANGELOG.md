@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-09-26
+- After sending a suggestion, the confirmation now links straight to that suggestion's GitHub issue so you can check its status, instead of just mentioning that one exists.
+
 ## 2026-09-25
 - Added "Download my data" and "Restore from a file" to the Card Finder's card history step, so your answers survive clearing site data or switching devices. Nothing is sent to a server - the file only ever moves between your own device and your own browser. Restoring shows how long ago the backup was made and doesn't guess at anything: you're asked to look over the approval windows and how many of each card you hold, since either may have changed since the backup.
 - Fixed "Download my data" opening desktop Safari's share sheet (AirDrop, Mail, Messages...) instead of saving the file, since that sheet has no direct way to just save it. Only phones and tablets get the share sheet now; every other device gets a plain download.
