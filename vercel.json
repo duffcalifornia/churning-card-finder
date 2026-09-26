@@ -9,5 +9,9 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/cheatsheet", "destination": "/index.html" },
+    { "source": "/cheatsheet/:preset", "destination": "/index.html" }
   ]
 }

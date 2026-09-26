@@ -50,6 +50,22 @@ one:
    live site — that's the whole point of a referral link — this is purely about keeping an old, swapped-out link
    from lingering in this repo's history.
 
+## SEO: the cheat sheet's real URLs, and the sitemap
+
+Every page except the Signup Offer Cheat Sheet is a hash on `/` (`/#finder`, `/#methodology`, ...) rather than a
+real path — a hash fragment never reaches the server, so Google treats every one of those as the same URL as the
+homepage. That's fine for pages nobody searches for by name, but the cheat sheet's four presets ("best cash back
+card under 5/24", etc.) directly match how people actually phrase these searches, so those four get real,
+independent paths instead: `/cheatsheet/under-cashback`, `/cheatsheet/under-travel`, `/cheatsheet/over-cashback`,
+`/cheatsheet/over-travel` (bare `/cheatsheet` also works, defaulting to the first one). `vercel.json`'s `rewrites`
+are what make a direct load or refresh of one of these work — without them, Vercel would 404 on a path with no
+matching static file, since only `index.html` itself exists on disk; the client-side router in `src/App.tsx` reads
+`window.location.pathname` and takes it from there. `public/sitemap.xml` lists these real URLs (plus the
+homepage); it's a plain static file, hand-maintained, since this list of pages is small and doesn't change often -
+if a genuinely new indexable page is ever added, update it by hand rather than trying to automate something this
+small. `/referrals` is deliberately left out of both the sitemap and this real-URL treatment: it already sets its
+own `noindex` meta tag, and no one should be searching for it anyway.
+
 ## Data refresh automation (already running, needs no hosting change)
 `.github/workflows/check-rrv.yml` and `.github/workflows/refresh-offers.yml` run on GitHub Actions regardless of
 where the site itself is hosted — they commit straight to this repo, and a redeploy on Vercel (or wherever) picks

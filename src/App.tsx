@@ -15,6 +15,8 @@ import { CheatSheetPage } from "./ui/CheatSheetPage";
 import { ChangelogPage } from "./ui/ChangelogPage";
 import { SuggestionsPage } from "./ui/SuggestionsPage";
 import { ReferralsPage, BMAC_URL } from "./ui/ReferralsPage";
+import { CHEAT_SHEET_PRESETS } from "./state/cheatSheetPresets";
+import { cheatSheetPresetPath, presetIdFromPath } from "./ui/cheatSheetSeo";
 
 const STORAGE_KEY = "churning-card-finder:profile:v1";
 const RANK_KEY = "churning-card-finder:rankBy:v1";
@@ -80,18 +82,62 @@ function pageFromHash(): Page {
   return entry?.[0] ?? "home";
 }
 
+// The cheat sheet is the one exception to "every page is a hash": its four presets get real, indexable URLs
+// (/cheatsheet/<preset>) instead, since that's the one page whose content directly matches how people phrase
+// these searches ("best cash back card under 5/24") - a hash fragment never reaches the server, so Google treats
+// every #hash page as the same URL as the homepage, which is fine for pages nobody searches for by name but
+// defeats the purpose here.
+//
+// A recognized hash wins over a cheat sheet path when both are present, not the other way around: the footer's
+// referral link and Methodology's "back" link are plain <a href="#..."> tags rendered on every page, including
+// the cheat sheet, and a plain hash link click only ever changes the hash - clicking one while on
+// /cheatsheet/under-travel lands on /cheatsheet/under-travel#referrals, leaving that pathname stale. If the
+// pathname were checked first, that click would silently do nothing (still "cheatsheet", still that preset)
+// instead of going to Referrals.
+function deriveCurrentPage(): { page: Page; cheatSheetPreset: string } {
+  const hashPage = pageFromHash();
+  if (window.location.hash && hashPage !== "home") return { page: hashPage, cheatSheetPreset: CHEAT_SHEET_PRESETS[0]!.id };
+  const presetFromPath = presetIdFromPath(window.location.pathname);
+  if (presetFromPath !== null) return { page: "cheatsheet", cheatSheetPreset: presetFromPath };
+  return { page: "home", cheatSheetPreset: CHEAT_SHEET_PRESETS[0]!.id };
+}
+
+// Every non-cheat-sheet page's target URL is "/" plus its hash (home's hash is "", so this is just "/" for home).
+// Kept as one real pathname ("/") throughout so that navigating between these pages from a cheat sheet URL
+// correctly leaves the cheat sheet's own path behind, rather than stacking a hash onto it.
+function urlForPage(p: Page): string {
+  if (p === "cheatsheet") return cheatSheetPresetPath(CHEAT_SHEET_PRESETS[0]!.id);
+  return `/${PAGE_HASHES[p]}`;
+}
+
 export function App() {
   const [profile, setProfile] = useState<Profile>(loadProfile);
   const [rankBy, setRankBy] = useState<RankBy>(loadRankBy);
   const [step, setStep] = useState(0);
-  const [page, setPage] = useState<Page>(pageFromHash);
+  const [page, setPage] = useState<Page>(() => deriveCurrentPage().page);
+  const [cheatSheetPreset, setCheatSheetPreset] = useState<string>(() => deriveCurrentPage().cheatSheetPreset);
   const [navOpen, setNavOpen] = useState(false);
   const [footerCollapsed, setFooterCollapsed] = useState(loadFooterCollapsed);
 
+  // Two listeners, for two different kinds of navigation this page never fully controls:
+  // - hashchange: a plain <a href="#..."> click (the footer's referrals link, Methodology's "back" link) changes
+  //   only the hash, without going through goToPage, and fires this event but never popstate.
+  // - popstate: the browser's own back/forward buttons, which is how a cheat sheet URL (set via history.pushState
+  //   in goToPage/goToCheatSheetPreset below, which never fires either event on its own tab) is ever revisited.
+  // Both re-derive from scratch rather than assuming which one fired for which reason, since either can in
+  // principle leave the address bar pointing at a cheat sheet path or a hash page.
   useEffect(() => {
-    const onHashChange = () => setPage(pageFromHash());
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    const onNavigation = () => {
+      const derived = deriveCurrentPage();
+      setPage(derived.page);
+      setCheatSheetPreset(derived.cheatSheetPreset);
+    };
+    window.addEventListener("hashchange", onNavigation);
+    window.addEventListener("popstate", onNavigation);
+    return () => {
+      window.removeEventListener("hashchange", onNavigation);
+      window.removeEventListener("popstate", onNavigation);
+    };
   }, []);
 
   // The footer stays fixed to the bottom of the viewport everywhere except the questionnaire steps of the Card
@@ -133,11 +179,22 @@ export function App() {
   }, [footerCollapsed]);
 
   const goToPage = (p: Page) => {
-    const hash = PAGE_HASHES[p];
-    if (window.location.hash !== hash) window.location.hash = hash;
-    else setPage(p); // already at this hash: hashchange would not fire, so update directly
+    const url = urlForPage(p);
+    // pushState never fires hashchange or popstate on its own tab (only back/forward does), so state is always
+    // set directly here rather than waiting on an event - unlike the old hash-only version of this function, which
+    // relied on hashchange firing and had to special-case "already at this hash" for when it wouldn't.
+    if (`${window.location.pathname}${window.location.hash}` !== url) history.pushState(null, "", url);
+    setPage(p);
+    if (p === "cheatsheet") setCheatSheetPreset(CHEAT_SHEET_PRESETS[0]!.id);
     window.scrollTo(0, 0);
     setNavOpen(false); // closes the mobile hamburger menu; a no-op on desktop, where it is always open
+  };
+  const goToCheatSheetPreset = (presetId: string) => {
+    const url = cheatSheetPresetPath(presetId);
+    if (window.location.pathname !== url) history.pushState(null, "", url);
+    setPage("cheatsheet");
+    setCheatSheetPreset(presetId);
+    window.scrollTo(0, 0);
   };
   const goToStep = (n: number) => {
     setStep(n);
@@ -186,7 +243,15 @@ export function App() {
       <div id="main-content" style={footerFixed ? { paddingBottom: footerHeight + 16 } : undefined}>
         {page === "home" && <HomePage onGoToCheatSheet={() => goToPage("cheatsheet")} onGoToFinder={() => goToPage("finder")} />}
 
-        {page === "cheatsheet" && <CheatSheetPage rankBy={rankBy} onRankByChange={setRankBy} onGoToFinder={() => goToPage("finder")} />}
+        {page === "cheatsheet" && (
+          <CheatSheetPage
+            rankBy={rankBy}
+            onRankByChange={setRankBy}
+            onGoToFinder={() => goToPage("finder")}
+            selectedPreset={cheatSheetPreset}
+            onPresetChange={goToCheatSheetPreset}
+          />
+        )}
 
         {page === "methodology" && <MethodologyPage />}
 

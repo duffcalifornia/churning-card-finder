@@ -4,11 +4,15 @@ import { CHEAT_SHEET_PRESETS, rankForPreset } from "../state/cheatSheetPresets";
 import { engineData } from "../data/engineData";
 import { CardItem } from "./CardItem";
 import { RankBySelector } from "./RankBySelector";
+import { cheatSheetPresetPath, seoForPreset } from "./cheatSheetSeo";
+import { useSeo } from "./useSeo";
 
 interface Props {
   rankBy: RankBy;
   onRankByChange: (r: RankBy) => void;
   onGoToFinder: () => void;
+  selectedPreset: string;
+  onPresetChange: (id: string) => void;
 }
 
 /**
@@ -25,10 +29,12 @@ const KIND_FILTERS = [
 ] as const;
 type KindFilter = (typeof KIND_FILTERS)[number]["id"];
 
-export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder }: Props) {
-  const [selected, setSelected] = useState(CHEAT_SHEET_PRESETS[0]!.id);
+export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder, selectedPreset, onPresetChange }: Props) {
   const [kindFilter, setKindFilter] = useState<KindFilter>("all");
-  const preset = CHEAT_SHEET_PRESETS.find((p) => p.id === selected)!;
+  const preset = CHEAT_SHEET_PRESETS.find((p) => p.id === selectedPreset) ?? CHEAT_SHEET_PRESETS[0]!;
+
+  const seo = seoForPreset(preset.id);
+  useSeo(seo.title, seo.description, `https://www.whichcreditcardshouldiget.com${cheatSheetPresetPath(preset.id)}`);
 
   const allEntries = useMemo(() => rankForPreset(preset, engineData, rankBy), [preset, rankBy]);
   const entries = useMemo(
@@ -53,7 +59,7 @@ export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder }: Props) 
 
       <label className="cheatsheet-select">
         View
-        <select value={selected} onChange={(e) => setSelected(e.target.value)}>
+        <select value={preset.id} onChange={(e) => onPresetChange(e.target.value)}>
           {CHEAT_SHEET_PRESETS.map((p) => (
             <option key={p.id} value={p.id}>{p.label}</option>
           ))}
