@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-09-28
+- Updated the bonus offer for the following card(s): Wells Fargo Autograph Visa Card.
+
 ## 2026-09-26
 - The Signup Offer Cheat Sheet's four views now each have their own real, shareable URL (for example /cheatsheet/under-cashback) with their own page title, instead of all four sharing one generic link. Added a sitemap for search engines.
 - After sending a suggestion, the confirmation now links straight to that suggestion's GitHub issue so you can check its status, instead of just mentioning that one exists.
