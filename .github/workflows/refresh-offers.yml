@@ -25,6 +25,10 @@ name: Refresh card offers
 # issue asking whether it is discontinued. Replying "/discontinued" or "/still-active" to that issue (from the GitHub
 # mobile app is fine) is handled by card-status.yml. See scripts/cardfinder/missing.py.
 #
+# The same run also looks for cards an issuer sells that are not tracked yet. Each one becomes a "New card found"
+# issue; replying "/track" or "/ignore" (again from the mobile app is fine) is handled by card-status.yml. Nothing
+# is added to the site without that reply. See scripts/cardfinder/newcards.py.
+#
 # This job still fails on purpose, the same notification pattern as the RRV check workflow, AND posts a summary
 # comment to the tracking issue (https://github.com/duffcalifornia/churning-card-finder/issues/1), if a card could not
 # be READ (a page errored or refused us, which is also what an issuer's circuit breaker tripping looks like, or
@@ -89,7 +93,7 @@ jobs:
           args="--delay ${{ github.event.inputs.delay || '3' }} --issuer ${{ github.event.inputs.issuer || 'all' }}"
           if [ "${{ github.event.inputs.include_paused }}" = "true" ]; then args="$args --include-paused"; fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then args="$args --dry-run"; fi
-          python3 scripts/refresh_offers.py --missing-file missing-cards.json $args 2>&1 | tee refresh.log
+          python3 scripts/refresh_offers.py --missing-file missing-cards.json --new-cards-file new-cards.json $args 2>&1 | tee refresh.log
           echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
 
       - name: Run the test suite against the rebuilt data
@@ -126,7 +130,7 @@ jobs:
       - name: Commit the refreshed data, if anything changed
         if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0'
         run: |
-          files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json CHANGELOG.md"
+          files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json scripts/cardfinder/candidate_rejects.json CHANGELOG.md"
           if ! git diff --quiet -- $files; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -140,6 +144,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/report_missing_cards.py missing-cards.json
+
+      - name: Ask about new cards that were found
+        if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/report_new_cards.py new-cards.json
 
       - name: Fail the job if the run did not pass
         if: steps.refresh.outputs.exit_code != '0' || steps.verify.outputs.test_exit_code != '0'

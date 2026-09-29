@@ -61,6 +61,34 @@ one run, since that looks like a redesign or a block rather than retirements. To
 The logic is in `cardfinder/missing.py` and `cardfinder/status.py`; both workflows share a `data-writes` concurrency
 group so they never push at the same time.
 
+## When the scraper finds a card we do not track
+The same daily run also looks for cards an issuer sells that are not in the registry (`cardfinder/newcards.py`). It needs
+no list of card URLs and no per-issuer patterns: a link on the issuer's listing pages or sitemap is a *candidate* if it
+looks like the URLs of cards already tracked (same host, same top folder, same depth, same `.html`-or-not style) and is not
+a known, discontinued, ignored or recently rejected page. Each candidate page is fetched and must read like one card's own
+page: a singular "Card" in its heading (category pages say "Cards" or "Offers"), a card we do not already have, and a
+readable annual fee. At most 8 pages per issuer per run are fetched, and a page judged "not a card" is not re-checked for
+30 days (`cardfinder/candidate_rejects.json`). An issuer that served error pages, or was cut off by the circuit breaker, is
+not scanned that day. Amex stays untouched while paused.
+
+Nothing is added to the site automatically. `report_new_cards.py` opens one issue per candidate ("New card found: X", label
+`card-new`, at most 5 per run) showing the offer and fee it read and what the site would count. Reply, from the GitHub mobile
+app if you like:
+
+- `/track`: start tracking it. Optional: `kind=business`, `name="Exact Name"`, `currency=<id>`. It is added to
+  `cardfinder/tracked_cards.json`, its offer and fee are seeded from what was read (so it shows on the site complete
+  right away), the changelog line "Added the following card(s): ..." is added, the tests run, the change is committed, and
+  the issue closes. A card whose offer is paid in points must be given a currency (the ids are listed in the issue);
+  a card paying free night awards cannot be tracked from a reply yet. Family, lifetime and cooldown rules still have to be
+  added by hand.
+- `/ignore`: never raise this page again (`cardfinder/ignored_cards.json`), for retail store cards and the like.
+
+What it cannot do: judge rules, and it only sees cards linked from the pages and sitemaps it reads (a card that is not
+linked anywhere public, like the Barclays Hawaiian Airlines card, still has to be added by hand).
+To try it without the network, use `python3 scripts/refresh_offers.py --issuer usbank --new-cards-file /tmp/new.json` on a
+copy of the repo (a real run writes the cache files), then `python3 scripts/report_new_cards.py /tmp/new.json --dry-run`
+(needs the `gh` CLI signed in).
+
 ## Flags in the report
 `url_changed` `needs_render` `render_failed` `page_error` `no_offer_found` `no_fee_found` `fee_changed`
 `offer_is_ceiling` ("as high as", a maximum) `check_struck_through` (old and new figures both on the page)

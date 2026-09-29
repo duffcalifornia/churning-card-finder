@@ -1,6 +1,6 @@
 import unittest
 
-from cardfinder.registry import CARDS, DISCONTINUED, ISSUERS, LAST_KNOWN_FEES, OWNER_FEES
+from cardfinder.registry import CARDS, DISCONTINUED, IGNORED_CANDIDATES, ISSUERS, LAST_KNOWN_FEES, OWNER_FEES, TRACKED
 
 
 class Registry(unittest.TestCase):
@@ -72,6 +72,22 @@ class DiscontinuedCards(unittest.TestCase):
         for cid in DISCONTINUED:
             self.assertNotIn(cid, OWNER_FEES, cid)
             self.assertNotIn(cid, LAST_KNOWN_FEES, cid)
+
+
+class TrackedAndIgnoredCards(unittest.TestCase):
+    def test_every_tracked_card_is_an_ordinary_expected_card(self):
+        by_id = {c.id: c for c in CARDS}
+        for cid, entry in TRACKED.items():
+            self.assertTrue(by_id[cid].expected, cid)
+            self.assertEqual((by_id[cid].issuer, by_id[cid].kind, by_id[cid].urls), (entry["issuer"], entry["kind"], [entry["url"]]), cid)
+
+    def test_a_card_is_never_both_tracked_and_discontinued(self):
+        self.assertFalse(set(TRACKED) & set(DISCONTINUED))
+
+    def test_ignored_candidates_are_urls_with_a_date(self):
+        for url, entry in IGNORED_CANDIDATES.items():
+            self.assertTrue(url.startswith("https://"), url)
+            self.assertIn("date", entry)
 
 
 if __name__ == "__main__":

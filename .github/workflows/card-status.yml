@@ -1,12 +1,20 @@
 name: Card status reply
 
-# Handles the owner's reply to a "Card not found: ..." issue opened by refresh-offers.yml. Reply with:
-#   /discontinued   the card can no longer be applied for: it is added to
-#                   scripts/cardfinder/discontinued_cards.json, dropped from data/cards.json, a changelog line is
-#                   added, the change is committed, and the issue is closed.
-#   /still-active   the card can still be applied for (the scraper just cannot find it): the issue is labelled and
-#                   closed, and the same card is not raised again for 30 days. Its last known data stays on the site.
-# Both work from the GitHub mobile app; nothing needs a computer. See scripts/apply_card_status.py.
+# Handles the owner's reply to a review issue opened by refresh-offers.yml:
+#
+#   "Card not found: X"  (label card-missing)
+#     /discontinued   the card can no longer be applied for: added to scripts/cardfinder/discontinued_cards.json, dropped
+#                     from data/cards.json, changelog line added, committed, issue closed.
+#     /still-active   the card can still be applied for (the scraper just cannot find it): labelled and closed, and not
+#                     raised again for 30 days. Its last known data stays on the site.
+#   "New card found: X"  (label card-new)
+#     /track          start tracking it (added to tracked_cards.json, offer and fee seeded from what was read, changelog
+#                     line added, committed, closed). Options: kind=business name="Exact Name" currency=<id>. Sent again
+#                     later with a currency, it sets the points currency.
+#     /ignore         never raise this page again (added to ignored_cards.json).
+#
+# All of it works from the GitHub mobile app; nothing needs a computer. See scripts/apply_card_status.py, which decides
+# what to do and tells the steps below through its outputs.
 #
 # Safety: this is a public repo, so anyone can comment. A comment only counts if its author has write access to the
 # repo. Comment and issue text reach the scripts through environment variables, never spliced into a shell command.
@@ -28,8 +36,9 @@ jobs:
   apply:
     if: >-
       github.event.issue.pull_request == null &&
-      contains(github.event.issue.labels.*.name, 'card-missing') &&
-      (startsWith(github.event.comment.body, '/discontinued') || startsWith(github.event.comment.body, '/still-active'))
+      (contains(github.event.issue.labels.*.name, 'card-missing') || contains(github.event.issue.labels.*.name, 'card-new')) &&
+      (startsWith(github.event.comment.body, '/discontinued') || startsWith(github.event.comment.body, '/still-active') ||
+       startsWith(github.event.comment.body, '/track') || startsWith(github.event.comment.body, '/ignore'))
     runs-on: ubuntu-latest
     steps:
       - name: Check the commenter has write access
@@ -73,42 +82,40 @@ jobs:
           python3 -m unittest discover -s scripts/tests -t scripts 2>&1 | tee test.log
           echo "test_exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
 
-      - name: Commit and close - /discontinued
+      - name: Commit the change
         if: steps.auth.outputs.allowed == 'true' && steps.apply.outputs.changed == 'true' && steps.verify.outputs.test_exit_code == '0'
         env:
-          GH_TOKEN: ${{ github.token }}
-          CARD_NAME: ${{ steps.apply.outputs.card_name }}
+          MESSAGE: ${{ steps.apply.outputs.message }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A data scripts/cardfinder docs CHANGELOG.md
-          git commit -m "Remove $CARD_NAME: can no longer be applied for"
+          git commit -m "$MESSAGE"
           git push
-          gh issue comment "${{ github.event.issue.number }}" --body "Done. $CARD_NAME is removed from the site and the changelog has a line for it. The site updates once the change deploys."
-          gh issue close "${{ github.event.issue.number }}" --reason completed
 
       - name: Tests failed - nothing committed
         if: steps.auth.outputs.allowed == 'true' && steps.apply.outputs.changed == 'true' && steps.verify.outputs.test_exit_code != '0'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh issue comment "${{ github.event.issue.number }}" --body "Removing this card made the test suite fail, so nothing was committed and this issue stays open. [Full run log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          gh issue comment "${{ github.event.issue.number }}" --body "That change made the test suite fail, so nothing was committed and this issue stays open. [Full run log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           exit 1
 
-      - name: Already removed - /discontinued
-        if: steps.auth.outputs.allowed == 'true' && steps.apply.outputs.command == 'discontinued' && steps.apply.outputs.changed == 'false'
+      - name: Reply, label and close
+        if: steps.auth.outputs.allowed == 'true' && steps.apply.outputs.command != 'none' && (steps.apply.outputs.changed != 'true' || steps.verify.outputs.test_exit_code == '0')
         env:
           GH_TOKEN: ${{ github.token }}
+          REPLY: ${{ steps.apply.outputs.reply }}
+          LABEL: ${{ steps.apply.outputs.label }}
+          CLOSE_REASON: ${{ steps.apply.outputs.close_reason }}
         run: |
-          gh issue comment "${{ github.event.issue.number }}" --body "Nothing to change: this card is already removed (or its id is not recognised)."
-          gh issue close "${{ github.event.issue.number }}" --reason completed
-
-      - name: Label and close - /still-active
-        if: steps.auth.outputs.allowed == 'true' && steps.apply.outputs.command == 'still-active'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh label create still-active --color 0E8A16 --description "Owner confirmed the card can still be applied for" --force
-          gh issue edit "${{ github.event.issue.number }}" --add-label still-active
-          gh issue comment "${{ github.event.issue.number }}" --body "Noted: the card is still available. Its last known offer stays on the site, and it will not be raised again for 30 days."
-          gh issue close "${{ github.event.issue.number }}" --reason "not planned"
+          if [ -n "$LABEL" ]; then
+            gh label create "$LABEL" --color 0E8A16 --description "Owner confirmed the card can still be applied for" --force
+            gh issue edit "${{ github.event.issue.number }}" --add-label "$LABEL"
+          fi
+          if [ -n "$REPLY" ]; then
+            gh issue comment "${{ github.event.issue.number }}" --body "$REPLY"
+          fi
+          if [ -n "$CLOSE_REASON" ]; then
+            gh issue close "${{ github.event.issue.number }}" --reason "$CLOSE_REASON"
+          fi

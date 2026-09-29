@@ -327,6 +327,17 @@ CARDS += [
 ]
 
 
+# Cards the owner approved from a "New card found" issue (reply "/track"). Kept in JSON, not in this module, so the
+# card-status workflow can add to it without anyone editing Python. Each entry becomes an ordinary tracked card.
+with open(os.path.join(os.path.dirname(__file__), "tracked_cards.json")) as _f:
+    TRACKED = json.load(_f)
+CARDS += [Card(id=cid, issuer=e["issuer"], names=[e["name"]], kind=e["kind"], urls=[e["url"]]) for cid, e in TRACKED.items()]
+
+# Candidate pages the owner said not to track (reply "/ignore"): new-card detection never raises them again.
+with open(os.path.join(os.path.dirname(__file__), "ignored_cards.json")) as _f:
+    IGNORED_CANDIDATES = json.load(_f)
+
+
 # Cards the site owner has said not to track (2026-09-20).
 NOT_TRACKED = {
     "citi-custom-cash": "Does not exist or has no welcome offer; not considered (site owner).",
@@ -467,6 +478,12 @@ UNVALUED = {
     "fnbo-evergreen": "The live offer read is garbled (a truncated sentence fragment); the true bonus is unclear.",
     "fnbo-evergreen-business": "The live offer read is garbled (a truncated sentence fragment); the true bonus is unclear.",
 }
+
+
+# A points currency the owner gave when approving a new card ("/track currency=...").
+for _cid, _entry in TRACKED.items():
+    if _entry.get("currency"):
+        CARD_CURRENCY[_cid] = _entry["currency"]
 
 
 # A discontinued card has no fee, note or points currency worth maintaining, and the catalog tests expect every entry in

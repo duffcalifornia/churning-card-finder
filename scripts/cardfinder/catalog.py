@@ -83,6 +83,14 @@ _CURRENCY_BONUS_TYPES = {"default-bank-points": ["cashback"], "frontier-bonus-mi
                          "miles-and-more": ["airline"]}
 
 
+def bonus_currency_ids():
+    """Currency ids a welcome bonus can be paid in: the ones in data/valuations.json that build_catalog knows how to
+    classify. A new card may only be given one of these (anything else would crash the build)."""
+    known = ({c["id"] for c in _load("data", "currencies.json")} | {p["id"] for p in _load("data", "programs.json")}
+             | set(_CURRENCY_BONUS_TYPES) | {"cash"})
+    return sorted(set(_load("data", "valuations.json")["values"]) & known)
+
+
 def reports_to_personal(card_id, issuer, kind):
     if kind == "personal":
         return True

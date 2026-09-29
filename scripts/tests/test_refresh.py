@@ -305,5 +305,63 @@ class MainTreatsMissingCardsAsReviewNotFailure(unittest.TestCase):
         self.assertEqual(json.load(open(self.missing_file))["missing"], [])
 
 
+class MainWritesNewCardFiles(MainTreatsMissingCardsAsReviewNotFailure):
+    """With --new-cards-file, a full run writes what detection found, and remembers pages it judged not a card.
+    A targeted run (--card) or a dry run never scans."""
+
+    def setUp(self):
+        super().setUp()
+        import tempfile
+        self.new_file = tempfile.NamedTemporaryFile(suffix=".json", delete=False).name
+        self.rejects_file = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
+        self.rejects_file.write(b'{"https://old.example/x": "2020-01-01"}')
+        self.rejects_file.close()
+        self.tmp_paths += [self.new_file, self.rejects_file.name]
+        self.orig_paths["REJECTS_PATH"] = self.mod.REJECTS_PATH
+        self.mod.REJECTS_PATH = self.rejects_file.name
+        self._orig_find = self.mod.find_new_cards
+        self.calls = []
+        proposal = {"id": "usbank-x", "name": "X", "issuer": "usbank", "kind": "personal", "url": "https://www.usbank.com/x.html"}
+
+        def fake_find(issuers, all_cards, http, rendered, ignored, rejects, today, **kw):
+            self.calls.append(sorted(issuers))
+            return [proposal], {"https://www.usbank.com/junk.html": today}
+        self.mod.find_new_cards = fake_find
+
+    def tearDown(self):
+        self.mod.find_new_cards = self._orig_find
+        super().tearDown()
+
+    def _full_run(self, extra):
+        self.mod.run = lambda *a, **k: [found("usbank-business-shield")]
+        return self.mod.main(["--issuer", "usbank", "--no-render", "--new-cards-file", self.new_file] + extra)
+
+    def test_a_full_run_writes_candidates_and_a_pruned_rejects_cache(self):
+        self.assertEqual(self._full_run([]), 0)
+        self.assertEqual([c["id"] for c in json.load(open(self.new_file))["candidates"]], ["usbank-x"])
+        rejects = json.load(open(self.rejects_file.name))
+        self.assertEqual(list(rejects), ["https://www.usbank.com/junk.html"])    # the 2020 entry was forgotten
+        self.assertEqual(self.calls, [["usbank"]])
+
+    def test_always_skipped_discontinued_cards_do_not_stop_the_scan(self):
+        self.mod.run = lambda *a, **k: [found("usbank-business-shield"), skipped("usbank-split")]
+        self.mod.main(["--issuer", "usbank", "--no-render", "--new-cards-file", self.new_file])
+        self.assertEqual(self.calls, [["usbank"]])
+
+    def test_an_issuer_cut_off_by_the_circuit_breaker_is_not_scanned(self):
+        cut_off = CardResult("usbank-split", "Split", "skipped", note="Stopped after repeated error pages from this issuer; run again later.")
+        self.mod.run = lambda *a, **k: [found("usbank-business-shield"), cut_off]
+        self.mod.main(["--issuer", "usbank", "--no-render", "--new-cards-file", self.new_file])
+        self.assertEqual(self.calls, [])
+
+    def test_a_targeted_run_never_scans(self):
+        self.assertEqual(self._full_run(["--card", "business-shield"]), 0)
+        self.assertEqual(self.calls, [])
+
+    def test_a_dry_run_never_scans_or_writes(self):
+        self.assertEqual(self._full_run(["--dry-run"]), 0)
+        self.assertEqual(self.calls, [])
+
+
 if __name__ == "__main__":
     unittest.main()

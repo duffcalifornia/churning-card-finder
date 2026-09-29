@@ -20,6 +20,11 @@ looks like), or several cards from one issuer vanishing at once (a redesign, or 
 just gone (every page tried was a 404 or the wrong page) does not fail the run; it is listed in the file given
 by --missing-file, and scripts/report_missing_cards.py turns that into a GitHub issue asking the owner whether
 the card is discontinued (see cardfinder/missing.py). Such a card keeps its last known data meanwhile.
+
+New cards: with --new-cards-file, a full run also looks for cards an issuer sells that are not tracked yet (links on
+its listing pages and sitemap that look like the cards already tracked, and turn out to be a card's own page; see
+cardfinder/newcards.py) and writes them to that file. scripts/report_new_cards.py opens an issue for each; replying
+/track or /ignore is handled by .github/workflows/card-status.yml. Nothing is added to the site without that reply.
 Run the tests with: python3 -m unittest discover -s scripts/tests -t scripts
 """
 import argparse
@@ -38,14 +43,16 @@ from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_c
 from cardfinder.cli import format_report, run, select_cards, split_paused  # noqa: E402
 from cardfinder.fetchers import CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
 from cardfinder.missing import missing_document, split_not_found  # noqa: E402
+from cardfinder.newcards import REJECT_DAYS, find_new_cards  # noqa: E402
 from cardfinder.refresh import merge_last_known  # noqa: E402
 from cardfinder.registry import (CARDS, CASH_PAID_AS_POINTS, ISSUERS, LAST_KNOWN_FEE_WAIVED, LAST_KNOWN_FEES,  # noqa: E402
-                                 LAST_KNOWN_OFFERS, NO_OFFER_CONFIRMED, REVIEWED_OK)
+                                 IGNORED_CANDIDATES, LAST_KNOWN_OFFERS, NO_OFFER_CONFIRMED, REVIEWED_OK)
 
 OFFERS_PATH = os.path.join(HERE, "cardfinder", "last_known_offers.json")
 FEES_PATH = os.path.join(HERE, "cardfinder", "last_known_fees.json")
 WAIVED_PATH = os.path.join(HERE, "cardfinder", "last_known_fee_waived.json")
 CHANGELOG_PATH = os.path.join(ROOT, "CHANGELOG.md")
+REJECTS_PATH = os.path.join(HERE, "cardfinder", "candidate_rejects.json")
 
 
 def _write_cache_files(offers, fees, waived):
@@ -64,6 +71,47 @@ def _write_cache_files(offers, fees, waived):
         f.write("\n")
 
 
+def _look_for_new_cards(cards, results, http, rendered):
+    """Scan the issuers this run actually read for untracked cards. An issuer that served error pages or was cut off
+    by the circuit breaker is skipped (nothing trustworthy to compare against). Never raises: a failure here must not
+    take down the daily refresh."""
+    try:
+        with open(REJECTS_PATH) as f:
+            rejects = json.load(f)
+    except (OSError, ValueError):
+        rejects = {}
+    # "skipped" alone means nothing here (every discontinued or not-tracked card is skipped); only the circuit
+    # breaker's skip, or an error page, says the issuer was misbehaving today.
+    troubled = {c.issuer for c in cards for r in results
+                if r.card_id == c.id and ("Stopped after repeated error pages" in r.note or "page_error" in r.flags)}
+    issuers = {name: ISSUERS[name] for name in sorted({c.issuer for c in cards} - troubled)}
+    if not issuers:
+        return [], {}
+    try:
+        return find_new_cards(issuers, CARDS, http, rendered, set(IGNORED_CANDIDATES), rejects,
+                              datetime.date.today().isoformat(), log=lambda m: print(m, flush=True))
+    except Exception as e:
+        print(f"New-card scan failed: {e}", flush=True)
+        return [], {}
+
+
+def _write_new_card_files(path, proposals, new_rejects, today):
+    with open(path, "w") as f:
+        json.dump({"date": today, "candidates": proposals}, f, indent=1)
+        f.write("\n")
+    try:
+        with open(REJECTS_PATH) as f:
+            rejects = json.load(f)
+    except (OSError, ValueError):
+        rejects = {}
+    rejects.update(new_rejects)
+    cutoff = (datetime.date.fromisoformat(today) - datetime.timedelta(days=REJECT_DAYS * 2)).isoformat()
+    rejects = {u: d for u, d in sorted(rejects.items()) if d >= cutoff}    # forget old entries so the file stays small
+    with open(REJECTS_PATH, "w") as f:
+        json.dump(rejects, f, indent=1)
+        f.write("\n")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--issuer", default="all", choices=["all"] + sorted(ISSUERS))
@@ -73,6 +121,7 @@ def main(argv=None):
     ap.add_argument("--include-paused", action="store_true", help="also request issuers marked paused (only when told the block has cleared)")
     ap.add_argument("--dry-run", action="store_true", help="check and report only; write nothing, rebuild nothing")
     ap.add_argument("--missing-file", help="write the cards that could not be found to this JSON file, for report_missing_cards.py")
+    ap.add_argument("--new-cards-file", help="also look for untracked cards, and write any found to this JSON file, for report_new_cards.py")
     args = ap.parse_args(argv)
 
     cards = select_cards(CARDS, args.issuer, args.card)
@@ -86,6 +135,7 @@ def main(argv=None):
             sys.exit("Nothing to check: every selected issuer is paused (see above).")
 
     http = CachingFetcher(HttpFetcher(delay=args.delay))
+    proposals, new_rejects = [], {}
     browser = rendered = None
     if not args.no_render and RenderedFetcher.available() and any(ISSUERS[c.issuer].render for c in cards):
         browser = RenderedFetcher()
@@ -93,6 +143,8 @@ def main(argv=None):
     try:
         results = run(cards, ISSUERS, http, rendered, all_cards=CARDS,
                       on_result=lambda r: print(format_report([r]).split("\n\nSummary")[0], flush=True))
+        if args.new_cards_file and not args.card and not args.dry_run:
+            proposals, new_rejects = _look_for_new_cards(cards, results, http, rendered)
     finally:
         if browser:
             browser.close()
@@ -118,6 +170,11 @@ def main(argv=None):
         with open(args.missing_file, "w") as f:
             json.dump(missing_document(reviewable, found_ids, issuer_of, url_of, today), f, indent=1)
             f.write("\n")
+
+    if args.new_cards_file:
+        _write_new_card_files(args.new_cards_file, proposals, new_rejects, today)
+        if proposals:
+            print(f"New cards found, left for the owner to approve: {', '.join(p['name'] for p in proposals)}.")
 
     new_offers, new_fees, new_waived = merge_last_known(results, LAST_KNOWN_OFFERS, LAST_KNOWN_FEES, LAST_KNOWN_FEE_WAIVED, today)
 

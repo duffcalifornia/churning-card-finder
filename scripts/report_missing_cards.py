@@ -55,7 +55,11 @@ def main(argv=None):
         return 0
     with open(args.missing_file) as f:
         doc = json.load(f)
-    opened, closed = report(doc, datetime.date.today().isoformat(), dry_run=args.dry_run)
+    try:
+        opened, closed = report(doc, datetime.date.today().isoformat(), dry_run=args.dry_run)
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"Could not talk to GitHub through the gh CLI ({getattr(e, 'stderr', '') or e}). Is gh installed and GH_TOKEN set?", file=sys.stderr)
+        return 1
     print(f"Opened {len(opened)} issue(s): {', '.join(opened) or '-'}; closed {len(closed)} resolved.")
     return 0
 
