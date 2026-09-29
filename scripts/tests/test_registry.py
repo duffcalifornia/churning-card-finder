@@ -1,6 +1,6 @@
 import unittest
 
-from cardfinder.registry import CARDS, ISSUERS, LAST_KNOWN_FEES
+from cardfinder.registry import CARDS, DISCONTINUED, ISSUERS, LAST_KNOWN_FEES, OWNER_FEES
 
 
 class Registry(unittest.TestCase):
@@ -50,12 +50,28 @@ class Registry(unittest.TestCase):
         by_id = {c.id: c for c in CARDS}
         for cid in ("amex-blue-cash-everyday", "amex-delta-blue", "amex-hilton-honors"):
             self.assertEqual((by_id[cid].known_fee, by_id[cid].known_fee_first_year_waived), (0.0, False), cid)
-        self.assertEqual(by_id["usbank-business-altitude-power"].known_fee, 195.0)
 
     def test_business_cards_are_marked_business(self):
         for c in CARDS:
             if "business" in c.urls[0].lower() if c.urls else False:
                 self.assertEqual(c.kind, "business", c.id)
+
+
+class DiscontinuedCards(unittest.TestCase):
+    def test_business_leverage_and_altitude_power_are_recorded_as_discontinued(self):
+        self.assertIn("usbank-business-leverage", DISCONTINUED)
+        self.assertIn("usbank-business-altitude-power", DISCONTINUED)
+
+    def test_a_discontinued_card_is_never_requested(self):
+        by_id = {c.id: c for c in CARDS}
+        for cid, entry in DISCONTINUED.items():
+            self.assertFalse(by_id[cid].expected, cid)
+            self.assertEqual(by_id[cid].note, entry["note"], cid)
+
+    def test_a_discontinued_card_keeps_no_hand_maintained_facts(self):
+        for cid in DISCONTINUED:
+            self.assertNotIn(cid, OWNER_FEES, cid)
+            self.assertNotIn(cid, LAST_KNOWN_FEES, cid)
 
 
 if __name__ == "__main__":

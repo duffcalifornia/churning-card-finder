@@ -237,5 +237,73 @@ class MainWritesTheChangelogTests(unittest.TestCase):
         )
 
 
+class MainTreatsMissingCardsAsReviewNotFailure(unittest.TestCase):
+    """A card that is plainly gone (every attempt a 404 or the wrong page) must not fail the run: it goes to the
+    missing-cards file for a human to answer. A card that could not be READ (an error or refusal) still fails it."""
+
+    def setUp(self):
+        import importlib
+        import os
+        import tempfile
+
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+        import refresh_offers
+        importlib.reload(refresh_offers)
+        self.mod = refresh_offers
+        self.tmp_paths = []
+        self.orig_paths = {}
+        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH"):
+            f = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
+            f.write(b"{}")
+            f.close()
+            self.orig_paths[attr] = getattr(refresh_offers, attr)
+            self.tmp_paths.append(f.name)
+            setattr(refresh_offers, attr, f.name)
+        f = tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False)
+        f.write("What changed.\n\n## 2026-09-20\n- Older.\n")
+        f.close()
+        self.orig_paths["CHANGELOG_PATH"] = refresh_offers.CHANGELOG_PATH
+        refresh_offers.CHANGELOG_PATH = f.name
+        self.tmp_paths.append(f.name)
+        self.missing_file = tempfile.NamedTemporaryFile(suffix=".json", delete=False).name
+        self.tmp_paths.append(self.missing_file)
+        self._orig_run = refresh_offers.run
+        self._orig_subprocess = refresh_offers.subprocess.run
+        refresh_offers.subprocess.run = lambda *a, **k: None
+
+    def tearDown(self):
+        import os
+
+        for attr, orig in self.orig_paths.items():
+            setattr(self.mod, attr, orig)
+        self.mod.run = self._orig_run
+        self.mod.subprocess.run = self._orig_subprocess
+        for path in self.tmp_paths:
+            if os.path.exists(path):
+                os.unlink(path)
+
+    def _main(self, results):
+        self.mod.run = lambda *a, **k: results
+        return self.mod.main(["--card", "usbank-business-shield", "--no-render", "--missing-file", self.missing_file])
+
+    def test_a_card_that_is_plainly_gone_is_reported_and_does_not_fail_the_run(self):
+        from cardfinder.discovery import Attempt
+
+        gone = CardResult("usbank-business-shield", "Business Shield Visa Card", "not_found",
+                          attempts=[Attempt("known_url", "https://x/a", "wrong_page"), Attempt("variant", "https://x/a/", "http_404")])
+        self.assertEqual(self._main([gone, found("chase-sapphire-preferred")]), 0)
+        doc = json.load(open(self.missing_file))
+        self.assertEqual([m["id"] for m in doc["missing"]], ["usbank-business-shield"])
+        self.assertEqual(doc["found"], ["chase-sapphire-preferred"])
+
+    def test_a_card_that_could_not_be_read_still_fails_the_run(self):
+        from cardfinder.discovery import Attempt
+
+        blocked = CardResult("usbank-business-shield", "Business Shield Visa Card", "not_found",
+                             attempts=[Attempt("known_url", "https://x/a", "http_403")])
+        self.assertEqual(self._main([blocked]), 2)
+        self.assertEqual(json.load(open(self.missing_file))["missing"], [])
+
+
 if __name__ == "__main__":
     unittest.main()

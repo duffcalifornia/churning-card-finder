@@ -118,6 +118,12 @@ def fee_change_entry(old_fees, new_fees, old_waived, new_waived, card_names):
     return f"Updated the net value rankings to reflect changes to the annual fee on the following card: {format_list(names)}."
 
 
+def removed_cards_entry(names):
+    """The changelog line for cards taken off the site because they can no longer be applied for (site owner,
+    2026-09-29). Same one-phrasing-every-time rule as the offer and fee lines above."""
+    return f"Removed the following card(s) because they can no longer be applied for: {format_list(sorted(names))}."
+
+
 def valuation_change_entry(old_values, new_values):
     """The changelog line for a change in data/valuations.json's `values`, or None if nothing changed.
 

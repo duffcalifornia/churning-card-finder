@@ -13,7 +13,8 @@ python3 scripts/card_offers.py --issuer amex --card platinum --json out.json --d
 python3 -m unittest discover -s scripts/tests -t scripts      # 194 tests, no network
 ```
 
-Exit code 0 if every expected card was found, 2 if any could not be.
+Exit code 0 if every expected card was found, 2 if any could not be. (`refresh_offers.py`, the daily job, is gentler:
+a card that is plainly gone does not fail it. See "When a card cannot be found" below.)
 
 ## Turning offers into numbers
 `python3 scripts/parse_offers.py` (no network) reads `cardfinder/last_known_offers.json` and writes `data/parsed-offers.json`
@@ -39,6 +40,26 @@ Exit code 0 if every expected card was found, 2 if any could not be.
   differs from the last known one is flagged `fee_changed`.
 - **Being polite:** a pause between requests, retries with backoff only for transient errors, and a circuit breaker:
   after 3 error or block pages in a row from one issuer it stops and reports the rest as not checked.
+
+## When a card cannot be found
+The daily refresh (`.github/workflows/refresh-offers.yml`) does not fail because a card has vanished from its issuer's
+site. If every page it tried for a card was a 404 or the wrong page, the card keeps its last known data, and
+`report_missing_cards.py` opens a GitHub issue ("Card not found: ...", label `card-missing`) with what was tried. Reply
+to that issue, from the GitHub mobile app if you like:
+
+- `/discontinued`: the card can no longer be applied for. `card-status.yml` adds it to
+  `cardfinder/discontinued_cards.json`, drops its cached offer and fee, rebuilds `data/`, adds the changelog line
+  "Removed the following card(s) because they can no longer be applied for: ...", runs the tests, commits, and closes the issue.
+- `/still-active`: it can still be applied for. The issue is labelled `still-active` and closed, and the same card is not
+  raised again for 30 days.
+
+Only replies from someone with write access count, and the reply must start with the command. An open issue is closed
+automatically if the card is found again. The job **still fails** (and comments on issue 1) when a card could not be
+*read* (a page errored or refused us, which is what a block looks like) or 4 or more cards from one issuer go missing in
+one run, since that looks like a redesign or a block rather than retirements. To retire a card by hand, add it to
+`discontinued_cards.json` (or `NOT_TRACKED` in `registry.py`) and run `parse_offers.py` and `build_cards.py`.
+The logic is in `cardfinder/missing.py` and `cardfinder/status.py`; both workflows share a `data-writes` concurrency
+group so they never push at the same time.
 
 ## Flags in the report
 `url_changed` `needs_render` `render_failed` `page_error` `no_offer_found` `no_fee_found` `fee_changed`

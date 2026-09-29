@@ -101,7 +101,6 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | U.S. Bank Cash+ Visa Signature Card | - | $200 | - | $1,000 | 3 | - | - | a repeated amount was merged into one |
 | U.S. Bank Business Altitude Connect Visa Signature Card | 75,000 | - | - | $6,000 | 6 | - | - |  |
 | U.S. Bank Triple Cash Rewards Visa Business Card | - | $750 | - | $6,000 | 6 | - | - |  |
-| Business Leverage Visa Signature Card | - | $600 | - | $6,000 | 4 | - | yes |  |
 | Evergreen Credit Card | 20,000 | - | - | $1,000 | - | - | - | REVIEW: no time window found |
 | Evergreen Business Edition Credit Card | 20,000 | - | - | $3,000 | - | - | - | REVIEW: no time window found |
 | JetBlue Card | 10,000 | - | - | $1,000 | 3 | - | - |  |
@@ -132,7 +131,6 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Customized Cash Rewards Credit Card for Students | - | $200 | - | $1,000 | 3 | - | - |  |
 | Unlimited Cash Rewards Credit Card for Students | - | $250 | - | $1,000 | 3 | - | - |  |
 | Travel Rewards Credit Card for Students | 25,000 | - | - | $1,000 | 3 | - | - |  |
-| Business Altitude Power Visa Signature Card | 75,000 | - | - | $10,000 | 4 | - | - |  |
 | World of Hyatt Business Credit Card | 70,000 | - | - | $7,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Performance Business Credit Card | 80,000 | - | - | $5,000 | 3 | - | - |  |
 | Platinum Card from American Express Exclusively for Charles Schwab | 80,000 | - | - | $12,000 | 6 | - | - |  |

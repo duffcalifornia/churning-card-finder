@@ -341,13 +341,19 @@ NOT_TRACKED = {
     "capone-spark-miles": "Does not exist (site owner).",
     "capone-spark-miles-select": "Does not exist (site owner).",
 }
+
+# Cards that can no longer be applied for. Kept in a JSON file (not this module) so the card-status workflow can add
+# to it from a GitHub issue comment without anyone editing Python; see scripts/apply_card_status.py. Each entry is
+# treated exactly like a NOT_TRACKED card: never requested, never in data/cards.json.
+with open(os.path.join(os.path.dirname(__file__), "discontinued_cards.json")) as _f:
+    DISCONTINUED = json.load(_f)
+NOT_TRACKED.update({cid: entry["note"] for cid, entry in DISCONTINUED.items()})
 CARDS = [dataclasses.replace(c, expected=False, note=NOT_TRACKED[c.id]) if c.id in NOT_TRACKED else c for c in CARDS]
 
 # Facts supplied by the site owner (2026-09-20) that the issuers' pages do not state readably.
 # id -> (annual fee, first year waived)
 OWNER_FEES = {
     "usbank-business-altitude-connect": (95.0, True),    # $0 intro first year, $95 second year on
-    "usbank-business-altitude-power": (195.0, False),    # not waived
     "bilt-palladium": (495.0, False),   # site owner, 2026-09-21; no waiver mentioned, so assumed not waived until confirmed
     # $0 annual fee; the Amex pages never state a fee readably (site owner, 2026-09-20)
     "amex-blue-cash-everyday": (0.0, False),
@@ -355,7 +361,6 @@ OWNER_FEES = {
     "amex-hilton-honors": (0.0, False),
 }
 OWNER_NOTES = {
-    "usbank-business-leverage": "Bonus is worth $600 when redeemed as a deposit to a U.S. Bank bank account (site owner).",
     "usbank-altitude-connect": "The welcome bonus is truly the same on Altitude Connect and Altitude Go (site owner).",
     "usbank-altitude-go": "The welcome bonus is truly the same on Altitude Connect and Altitude Go (site owner).",
 }
@@ -437,7 +442,7 @@ for _issuer, _currency, _ids in [
     ("chase", "world-of-hyatt", ("world-of-hyatt", "world-of-hyatt-business")),
     ("citi", "american-aadvantage", ("aadvantage-business", "aadvantage-executive", "aadvantage-globe", "aadvantage-mileup", "aadvantage-platinum-select")),
     ("citi", "citi-thankyou", ("strata", "strata-elite", "strata-premier")),
-    ("usbank", "default-bank-points", ("altitude-connect", "altitude-go", "business-altitude-connect", "business-altitude-power")),
+    ("usbank", "default-bank-points", ("altitude-connect", "altitude-go", "business-altitude-connect")),
     ("wellsfargo", "wells-fargo-rewards", ("autograph", "autograph-journey")),
     ("wellsfargo", "choice-privileges", ("choice-privileges",)),
 ]:
@@ -460,3 +465,11 @@ UNVALUED = {
     "fnbo-evergreen": "The live offer read is garbled (a truncated sentence fragment); the true bonus is unclear.",
     "fnbo-evergreen-business": "The live offer read is garbled (a truncated sentence fragment); the true bonus is unclear.",
 }
+
+
+# A discontinued card has no fee, note or points currency worth maintaining, and the catalog tests expect every entry in
+# these tables to be a card that is still in data/cards.json. Done last so it also covers cards added to the JSON file.
+for _cid in DISCONTINUED:
+    OWNER_FEES.pop(_cid, None)
+    OWNER_NOTES.pop(_cid, None)
+    CARD_CURRENCY.pop(_cid, None)

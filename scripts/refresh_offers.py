@@ -15,9 +15,11 @@ Usage:
     python3 scripts/refresh_offers.py                        # full run, all non-paused issuers
     python3 scripts/refresh_offers.py --dry-run --delay 3     # check and report only, write nothing
 
-Exit code: 0 if every expected card was found, 2 if any could not be (this is also what a circuit-breaker
-trip from an issuer looks like: its remaining cards come back "skipped", which counts as not read, not
-as a hard failure by itself, but genuinely expected cards going missing does; see cardfinder/cli.py).
+Exit code: 0 unless a card could not be *read*: a page that errored or refused us (which is also what a block
+looks like), or several cards from one issuer vanishing at once (a redesign, or a block). A card that is plainly
+just gone (every page tried was a 404 or the wrong page) does not fail the run; it is listed in the file given
+by --missing-file, and scripts/report_missing_cards.py turns that into a GitHub issue asking the owner whether
+the card is discontinued (see cardfinder/missing.py). Such a card keeps its last known data meanwhile.
 Run the tests with: python3 -m unittest discover -s scripts/tests -t scripts
 """
 import argparse
@@ -33,8 +35,9 @@ sys.path.insert(0, HERE)
 
 from cardfinder.build import build_parsed_offers  # noqa: E402
 from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_changelog_entry  # noqa: E402
-from cardfinder.cli import exit_code, format_report, run, select_cards, split_paused  # noqa: E402
+from cardfinder.cli import format_report, run, select_cards, split_paused  # noqa: E402
 from cardfinder.fetchers import CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
+from cardfinder.missing import missing_document, split_not_found  # noqa: E402
 from cardfinder.refresh import merge_last_known  # noqa: E402
 from cardfinder.registry import (CARDS, CASH_PAID_AS_POINTS, ISSUERS, LAST_KNOWN_FEE_WAIVED, LAST_KNOWN_FEES,  # noqa: E402
                                  LAST_KNOWN_OFFERS, NO_OFFER_CONFIRMED, REVIEWED_OK)
@@ -69,6 +72,7 @@ def main(argv=None):
     ap.add_argument("--no-render", action="store_true", help="never use the headless browser")
     ap.add_argument("--include-paused", action="store_true", help="also request issuers marked paused (only when told the block has cleared)")
     ap.add_argument("--dry-run", action="store_true", help="check and report only; write nothing, rebuild nothing")
+    ap.add_argument("--missing-file", help="write the cards that could not be found to this JSON file, for report_missing_cards.py")
     args = ap.parse_args(argv)
 
     cards = select_cards(CARDS, args.issuer, args.card)
@@ -95,11 +99,26 @@ def main(argv=None):
 
     print("\n" + format_report(results).split("\n\n")[-1])
 
+    issuer_of = {c.id: c.issuer for c in CARDS}
+    reviewable, unreadable = split_not_found(results, issuer_of)
+    if reviewable:
+        print(f"Not found, left for the owner to review: {', '.join(r.name for r in reviewable)}. Their last known data is kept.")
+    if unreadable:
+        print(f"Could not be read (an error or refusal, or a whole issuer missing at once): {', '.join(r.name for r in unreadable)}. Failing the run.")
+    status = 2 if unreadable else 0
+
     if args.dry_run:
         print("Dry run: nothing written.")
-        return exit_code(results)
+        return status
 
     today = datetime.date.today().isoformat()
+    if args.missing_file:
+        found_ids = [r.card_id for r in results if r.status in ("found", "found_via_fallback")]
+        url_of = {c.id: (c.urls[0] if c.urls else None) for c in CARDS}
+        with open(args.missing_file, "w") as f:
+            json.dump(missing_document(reviewable, found_ids, issuer_of, url_of, today), f, indent=1)
+            f.write("\n")
+
     new_offers, new_fees, new_waived = merge_last_known(results, LAST_KNOWN_OFFERS, LAST_KNOWN_FEES, LAST_KNOWN_FEE_WAIVED, today)
 
     # Diffed as *parsed* offers, not raw scraped text: an issuer's own page can reformat between reads (an en
@@ -141,7 +160,7 @@ def main(argv=None):
     subprocess.run([sys.executable, os.path.join(HERE, "parse_offers.py")], check=True)
     subprocess.run([sys.executable, os.path.join(HERE, "build_cards.py")], check=True)
 
-    return exit_code(results)
+    return status
 
 
 if __name__ == "__main__":

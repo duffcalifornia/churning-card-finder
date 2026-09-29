@@ -3,7 +3,8 @@ import tempfile
 import unittest
 
 from cardfinder.changelog import (
-    currency_label, fee_change_entry, format_list, offer_change_entry, prepend_changelog_entry, valuation_change_entry,
+    currency_label, fee_change_entry, format_list, offer_change_entry, prepend_changelog_entry, removed_cards_entry,
+    valuation_change_entry,
 )
 
 
@@ -19,6 +20,16 @@ class FormatListTests(unittest.TestCase):
 
     def test_empty(self):
         self.assertEqual(format_list([]), "")
+
+
+class RemovedCardsEntryTests(unittest.TestCase):
+    def test_one_card(self):
+        self.assertEqual(removed_cards_entry(["Split Card World Mastercard"]),
+                         "Removed the following card(s) because they can no longer be applied for: Split Card World Mastercard.")
+
+    def test_two_cards_are_sorted_and_joined(self):
+        self.assertEqual(removed_cards_entry(["Business Leverage", "Business Altitude Power"]),
+                         "Removed the following card(s) because they can no longer be applied for: Business Altitude Power and Business Leverage.")
 
 
 class OfferChangeEntryTests(unittest.TestCase):

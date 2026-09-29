@@ -70,7 +70,7 @@ class Flags(unittest.TestCase):
         for cid in ("chase-sapphire-preferred", "amex-gold", "capone-spark-cash", "capone-venture"):
             self.assertTrue(BY_ID[cid]["reportsToPersonal"], cid)
         for cid in ("chase-ink-cash", "amex-business-gold", "capone-spark-cash-plus", "capone-venture-x-business",
-                    "usbank-business-leverage", "citi-aadvantage-business", "wellsfargo-signify-business"):
+                    "usbank-business-altitude-connect", "citi-aadvantage-business", "wellsfargo-signify-business"):
             self.assertFalse(BY_ID[cid]["reportsToPersonal"], cid)
 
     def test_first_year_fee_waived(self):
@@ -204,7 +204,7 @@ class BonusRules(unittest.TestCase):
 
     def test_us_bank_cards_have_no_exact_card_rule(self):
         # the "no bonus while the exact card is open" rule is outdated or YMMV (owner, 2026-09-21)
-        for cid in ("usbank-triple-cash", "usbank-business-leverage", "usbank-altitude-connect"):
+        for cid in ("usbank-triple-cash", "usbank-business-altitude-connect", "usbank-altitude-connect"):
             self.assertEqual(self.rules(cid), {}, cid)
 
     def test_barclays_cards_cannot_be_held_twice(self):

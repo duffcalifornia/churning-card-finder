@@ -20,13 +20,18 @@ name: Refresh card offers
 # the test suite catches that as a clean failure instead of a corrupt commit). A test failure blocks the commit
 # entirely, even though one unreadable card does not: those are different kinds of problem.
 #
-# If a genuinely tracked card could not be read this run — which is also what an issuer's circuit breaker
-# tripping (a likely block) looks like — or the test suite fails against the rebuilt data, this job fails on
-# purpose, the same notification pattern as the RRV check workflow, AND posts a summary comment to the tracking
-# issue (https://github.com/duffcalifornia/churning-card-finder/issues/1): watching that issue is how GitHub
-# emails you the actual details, not just a "run failed" link. Nothing is posted on a clean run, on purpose —
-# only runs that did not pass are worth an email. Cards that did read successfully are still committed as long
-# as the tests pass: one bad card should not hold back 130 good reads, but a broken build should never ship.
+# A tracked card that is plainly gone from the issuer's site (every page tried was a 404 or the wrong page) does NOT
+# fail this job. It keeps its last known data, and the "Ask about cards that could not be found" step opens a GitHub
+# issue asking whether it is discontinued. Replying "/discontinued" or "/still-active" to that issue (from the GitHub
+# mobile app is fine) is handled by card-status.yml. See scripts/cardfinder/missing.py.
+#
+# This job still fails on purpose, the same notification pattern as the RRV check workflow, AND posts a summary
+# comment to the tracking issue (https://github.com/duffcalifornia/churning-card-finder/issues/1), if a card could not
+# be READ (a page errored or refused us, which is also what an issuer's circuit breaker tripping looks like, or
+# several cards from one issuer vanished at once) or the test suite fails against the rebuilt data: watching that issue
+# is how GitHub emails you the actual details, not just a "run failed" link. Nothing is posted on a clean run, on
+# purpose - only runs that did not pass are worth an email. Cards that did read successfully are still committed as
+# long as the tests pass: one bad card should not hold back 130 good reads, but a broken build should never ship.
 
 on:
   schedule:
@@ -54,7 +59,12 @@ on:
 
 permissions:
   contents: write   # to commit the refreshed data back to the repo
-  issues: write      # to post a summary comment on issue #1 when a run does not pass
+  issues: write      # to post a summary comment on issue #1 when a run does not pass, and to open "card not found" issues
+
+# Shared with card-status.yml: both push data commits to main, so they must not overlap.
+concurrency:
+  group: data-writes
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -79,7 +89,7 @@ jobs:
           args="--delay ${{ github.event.inputs.delay || '3' }} --issuer ${{ github.event.inputs.issuer || 'all' }}"
           if [ "${{ github.event.inputs.include_paused }}" = "true" ]; then args="$args --include-paused"; fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then args="$args --dry-run"; fi
-          python3 scripts/refresh_offers.py $args 2>&1 | tee refresh.log
+          python3 scripts/refresh_offers.py --missing-file missing-cards.json $args 2>&1 | tee refresh.log
           echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
 
       - name: Run the test suite against the rebuilt data
@@ -98,7 +108,7 @@ jobs:
             echo "Run did not pass."
             echo ""
             if [ "${{ steps.refresh.outputs.exit_code }}" != "0" ]; then
-              echo "A tracked card could not be read (exit code ${{ steps.refresh.outputs.exit_code }}), or an issuer's circuit breaker tripped:"
+              echo "A tracked card could not be read (exit code ${{ steps.refresh.outputs.exit_code }}): a page errored or refused us, an issuer's circuit breaker tripped, or several of one issuer's cards vanished at once:"
               echo '```'
               grep -E '^\[NOT FOUND\]|Stopped after repeated error pages|flags:.*page_error|^Summary:' refresh.log || echo "(could not pull details from the log; see the full run)"
               echo '```'
@@ -124,6 +134,12 @@ jobs:
             git commit -m "refresh_offers: daily data refresh"
             git push
           fi
+
+      - name: Ask about cards that could not be found
+        if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/report_missing_cards.py missing-cards.json
 
       - name: Fail the job if the run did not pass
         if: steps.refresh.outputs.exit_code != '0' || steps.verify.outputs.test_exit_code != '0'

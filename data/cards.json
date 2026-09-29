@@ -2747,30 +2747,6 @@
   "verifiedOn": "2026-09-28"
  },
  {
-  "id": "usbank-business-leverage",
-  "name": "Business Leverage Visa Signature Card",
-  "issuer": "usbank",
-  "kind": "business",
-  "recommendable": true,
-  "annualFee": 95.0,
-  "firstYearFeeWaived": true,
-  "reportsToPersonal": false,
-  "currency": "cash",
-  "bonusTypes": [
-   "cashback"
-  ],
-  "welcomeBonus": {
-   "cashBack": 600.0,
-   "ceiling": true
-  },
-  "typicalMinSpend": {
-   "amount": 6000.0,
-   "months": 4
-  },
-  "sourceUrl": "https://www.usbank.com/business-banking/business-credit-cards/business-leverage-rewards-credit-card.html",
-  "verifiedOn": "2026-09-27"
- },
- {
   "id": "fnbo-getaway",
   "name": "Getaway Credit Card",
   "issuer": "fnbo",
@@ -3686,28 +3662,6 @@
   "reportsToPersonal": false,
   "sourceUrl": "https://www.bankofamerica.com/smallbusiness/credit-cards/products/unlimited-cash-rewards-secured-business-credit-card/",
   "verifiedOn": "2026-09-20"
- },
- {
-  "id": "usbank-business-altitude-power",
-  "name": "Business Altitude Power Visa Signature Card",
-  "issuer": "usbank",
-  "kind": "business",
-  "recommendable": true,
-  "annualFee": 195.0,
-  "reportsToPersonal": false,
-  "currency": "default-bank-points",
-  "bonusTypes": [
-   "cashback"
-  ],
-  "welcomeBonus": {
-   "points": 75000.0
-  },
-  "typicalMinSpend": {
-   "amount": 10000.0,
-   "months": 4
-  },
-  "sourceUrl": "https://www.usbank.com/business-banking/business-credit-cards/business-altitude-power-credit-card.html",
-  "verifiedOn": "2026-09-27"
  },
  {
   "id": "usbank-business-shield",
