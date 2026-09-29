@@ -2,6 +2,7 @@ What changed about how this site chooses and ranks cards, and the major site mil
 
 ## 2026-09-29
 - Removed the following card(s) because they can no longer be applied for: Business Altitude Power Visa Signature Card and Business Leverage Visa Signature Card.
+- Added the following card(s): Business Essentials Plus Visa Signature Card and Business Essentials Visa Card.
 
 ## 2026-09-28
 - Updated the bonus offer for the following card(s): Wells Fargo Autograph Visa Card.

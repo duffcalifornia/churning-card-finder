@@ -131,6 +131,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Customized Cash Rewards Credit Card for Students | - | $200 | - | $1,000 | 3 | - | - |  |
 | Unlimited Cash Rewards Credit Card for Students | - | $250 | - | $1,000 | 3 | - | - |  |
 | Travel Rewards Credit Card for Students | 25,000 | - | - | $1,000 | 3 | - | - |  |
+| Business Essentials Visa Card | - | $500 | - | $5,000 | 5 | - | - | cash back that is awarded as points: counted once, as cash |
+| Business Essentials Plus Visa Signature Card | - | $1,000 | - | $15,000 | 5 | - | - | cash back that is awarded as points: counted once, as cash |
 | World of Hyatt Business Credit Card | 70,000 | - | - | $7,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Performance Business Credit Card | 80,000 | - | - | $5,000 | 3 | - | - |  |
 | Platinum Card from American Express Exclusively for Charles Schwab | 80,000 | - | - | $12,000 | 6 | - | - |  |

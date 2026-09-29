@@ -3083,6 +3083,54 @@
   "needsReview": false
  },
  {
+  "cardId": "usbank-business-essentials",
+  "name": "Business Essentials Visa Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "earn $500 in cash back, awarded as 50,000 points, after spending $5,000 within the first 150 days of opening your new account",
+  "seenOn": "2026-09-29",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 500.0,
+   "freeNightAwards": 0,
+   "minSpend": 5000.0,
+   "windowMonths": 5,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "cash back that is awarded as points: counted once, as cash"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
+  "cardId": "usbank-business-essentials-plus",
+  "name": "Business Essentials Plus Visa Signature Card",
+  "issuer": "usbank",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "earn $1,000 cash back, awarded as 100,000 points, after spending $15,000 within the first 150 days of opening your new account",
+  "seenOn": "2026-09-29",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 1000.0,
+   "freeNightAwards": 0,
+   "minSpend": 15000.0,
+   "windowMonths": 5,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [
+    "cash back that is awarded as points: counted once, as cash"
+   ],
+   "displayedAsCash": null
+  },
+  "needsReview": false
+ },
+ {
   "cardId": "usbank-business-shield",
   "name": "Business Shield Visa Card",
   "issuer": "usbank",

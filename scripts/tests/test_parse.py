@@ -69,6 +69,16 @@ class PointsOffers(unittest.TestCase):
         check(self, "Earn 20,000 bonus points when you spend $1,000 in purchases in the first 3 months 1 – that’s a $200 cash redemption value $0 Annual Fee",
               points=20000, cash_back=None, min_spend=1000, window_months=3)
 
+    def test_cash_back_awarded_as_points_is_one_bonus_not_two(self):
+        check(self, "earn $500 in cash back, awarded as 50,000 points, after spending $5,000 within the first 150 days of opening your new account",
+              points=None, cash_back=500, min_spend=5000, window_months=5)
+        check(self, "earn $1,000 cash back, awarded as 100,000 points, after spending $15,000 within the first 150 days of opening your new account",
+              points=None, cash_back=1000, min_spend=15000)
+
+    def test_points_and_a_separate_cash_credit_still_count_both(self):
+        check(self, "Earn 125,000 Marriott Bonvoy Bonus Points Plus A $150 Statement Credit after you use your new Card to make $5,000 in purchases within the first 6 months of Card Membership",
+              points=125000, cash_back=150)
+
 
 class CashOffers(unittest.TestCase):
     def test_cash_bonus(self):

@@ -61,6 +61,10 @@ _BEFORE_A_SPEND_AMOUNT = re.compile(
     r"(?:spend|spending|spent|after|totaling|least|make|makes|making|when|once|than|of|for|"
     r"redeemed\s+for(?:\s+an?)?|equal\s+to|worth|value\s+of|toward|that(?:'s|\s+is))\s*$", re.I)
 _REDEMPTION_VALUE = re.compile(r"\s*(?:redemption\s+)?value\b", re.I)
+# "$500 in cash back, awarded as 50,000 points" (U.S. Bank Business Essentials): one bonus, stated twice. The points are
+# just how the cash back is paid out, so counting both would double it.
+_CASH_AWARDED_AS_POINTS = re.compile(
+    rf"\$(?:{_NUM}|\d+)\s+(?:in\s+)?cash\s*back,?\s+(?:awarded|paid|delivered|credited)\s+as\s+(?:{_NUM}|\d+)\s+(?:bonus\s+)?points", re.I)
 _FREE_NIGHT = re.compile(r"\b(\d+|an?|one|two|three|four|five)\s+Free\s+Night\s+(?:Award|Reward|Certificate)s?", re.I)
 _WORD_NUMBERS = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
 _SPEND = [
@@ -166,6 +170,10 @@ def parse_offer(raw):
         if len(distinct) < len(amounts):
             out.notes.append("a repeated amount was merged into one")
         out.cash_back = sum(distinct)
+
+    if out.points is not None and out.cash_back and _CASH_AWARDED_AS_POINTS.search(primary):
+        out.points = None
+        out.notes.append("cash back that is awarded as points: counted once, as cash")
 
     nights = _FREE_NIGHT.search(primary)
     if nights:

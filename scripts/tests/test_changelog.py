@@ -3,7 +3,7 @@ import tempfile
 import unittest
 
 from cardfinder.changelog import (
-    currency_label, fee_change_entry, format_list, offer_change_entry, prepend_changelog_entry, removed_cards_entry,
+    currency_label, fee_change_entry, format_list, offer_change_entry, prepend_changelog_entry, removed_cards_entry, added_cards_entry,
     valuation_change_entry,
 )
 
@@ -20,6 +20,12 @@ class FormatListTests(unittest.TestCase):
 
     def test_empty(self):
         self.assertEqual(format_list([]), "")
+
+
+class AddedCardsEntryTests(unittest.TestCase):
+    def test_names_are_sorted_and_joined(self):
+        self.assertEqual(added_cards_entry(["Business Essentials Plus Visa Signature Card", "Business Essentials Visa Card"]),
+                         "Added the following card(s): Business Essentials Plus Visa Signature Card and Business Essentials Visa Card.")
 
 
 class RemovedCardsEntryTests(unittest.TestCase):

@@ -306,6 +306,8 @@ CARDS += [
     _c("boa", "business-unlimited-cash-secured", ["Unlimited Cash Rewards Secured Business Credit Card"], _BOAB + "unlimited-cash-rewards-secured-business-credit-card/", "business"),
     # U.S. Bank: business cards from the business hub and the remaining personal cards
     _c("usbank", "business-altitude-power", ["Business Altitude Power Visa Signature Card", "Business Altitude Power"], "https://www.usbank.com/business-banking/business-credit-cards/business-altitude-power-credit-card.html", "business"),
+    _c("usbank", "business-essentials", ["Business Essentials Visa Card", "U.S. Bank Business Essentials Visa Card", "Business Essentials"], "https://www.usbank.com/business-banking/business-credit-cards/business-essentials-credit-card.html", "business"),
+    _c("usbank", "business-essentials-plus", ["Business Essentials Plus Visa Signature Card", "U.S. Bank Business Essentials Plus Visa Signature Card", "Business Essentials Plus"], "https://www.usbank.com/business-banking/business-credit-cards/business-essentials-plus-credit-card.html", "business"),
     _c("usbank", "business-shield", ["Business Shield Visa Card", "Business Shield"], "https://www.usbank.com/business-banking/business-credit-cards/business-shield-credit-card.html", "business"),
     _c("usbank", "amazon-business", ["Amazon Business Credit Card", "Amazon Business Prime"], "https://www.usbank.com/business-banking/business-credit-cards/amazon-business-credit-cards.html", "business"),
     _c("usbank", "split", ["Split Card World Mastercard", "Split Card"], _USB + "split-card-world-mastercard-credit-card.html"),

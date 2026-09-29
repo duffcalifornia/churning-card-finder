@@ -118,6 +118,13 @@ def fee_change_entry(old_fees, new_fees, old_waived, new_waived, card_names):
     return f"Updated the net value rankings to reflect changes to the annual fee on the following card: {format_list(names)}."
 
 
+def added_cards_entry(names):
+    """The changelog line for cards newly tracked and shown on the site. A brand-new card also looks like an "offer
+    changed" and "fee changed" to the daily diff (it goes from no recorded offer to one), so callers that add a card
+    log this line instead of those two."""
+    return f"Added the following card(s): {format_list(sorted(names))}."
+
+
 def removed_cards_entry(names):
     """The changelog line for cards taken off the site because they can no longer be applied for (site owner,
     2026-09-29). Same one-phrasing-every-time rule as the offer and fee lines above."""
