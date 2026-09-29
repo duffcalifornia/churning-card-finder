@@ -68,10 +68,10 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Citi Strata Elite Card | 75,000 | - | - | $6,000 | 3 | - | - |  |
 | Citi Strata Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | Citi Double Cash Card | - | $200 | - | $1,500 | 6 | - | - |  |
-| Citi AAdvantage Platinum Select World Elite Mastercard | 50,000 | - | - | $2,500 | 3 | - | - |  |
+| Citi AAdvantage Platinum Select World Elite Mastercard | 80,000 | - | - | $3,500 | 4 | - | - |  |
 | Citi AAdvantage Executive World Elite Mastercard | 125,000 | - | - | $15,000 | 5 | - | - |  |
 | Citi AAdvantage Globe Mastercard | 60,000 | - | - | $4,000 | 3 | - | - |  |
-| AAdvantage MileUp Card | 15,000 | - | - | $500 | 3 | - | - |  |
+| AAdvantage MileUp Card | 15,000 | $100 | - | $500 | 3 | - | - |  |
 | Citi AAdvantage Business World Elite Mastercard | 65,000 | - | - | $4,000 | 4 | - | - |  |
 | Venture X Rewards | 75,000 | - | - | $4,000 | 3 | - | - |  |
 | Venture Rewards Travel Card | 75,000 | - | - | $4,000 | 3 | - | - |  |
