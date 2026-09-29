@@ -1810,7 +1810,7 @@
   "parsed": {
    "kind": "standard",
    "points": 20000.0,
-   "cashBack": 200.0,
+   "cashBack": null,
    "freeNightAwards": 0,
    "minSpend": 1000.0,
    "windowMonths": 3,

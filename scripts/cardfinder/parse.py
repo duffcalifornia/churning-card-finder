@@ -60,6 +60,7 @@ _CASH = re.compile(
 _BEFORE_A_SPEND_AMOUNT = re.compile(
     r"(?:spend|spending|spent|after|totaling|least|make|makes|making|when|once|than|of|for|"
     r"redeemed\s+for(?:\s+an?)?|equal\s+to|worth|value\s+of|toward|that(?:'s|\s+is))\s*$", re.I)
+_REDEMPTION_VALUE = re.compile(r"\s*(?:redemption\s+)?value\b", re.I)
 _FREE_NIGHT = re.compile(r"\b(\d+|an?|one|two|three|four|five)\s+Free\s+Night\s+(?:Award|Reward|Certificate)s?", re.I)
 _WORD_NUMBERS = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
 _SPEND = [
@@ -151,6 +152,8 @@ def parse_offer(raw):
     for m in _CASH.finditer(primary):
         if _BEFORE_A_SPEND_AMOUNT.search(primary[max(0, m.start() - 30):m.start()]):
             continue
+        if _REDEMPTION_VALUE.match(primary, m.end()):
+            continue   # "that's a $200 cash redemption value" restates the points' worth, it is not a second bonus
         if re.search(r"annual\s+fee|\bfee\b", m.group(0), re.I) or _n(m.group(1)) == 0:
             continue   # a fee, not a bonus
         if re.search(r"credits?$", m.group(0), re.I) and _credit_is_specific(primary, m):

@@ -65,6 +65,10 @@ class PointsOffers(unittest.TestCase):
         check(self, "Earn 125,000 Marriott Bonvoy Bonus Points Plus A $150 Statement Credit after you use your new Card to make $5,000 in purchases within the first 6 months of Card Membership",
               points=125000, cash_back=150, min_spend=5000, window_months=6)
 
+    def test_cash_redemption_value_is_not_a_second_bonus(self):
+        check(self, "Earn 20,000 bonus points when you spend $1,000 in purchases in the first 3 months 1 – that’s a $200 cash redemption value $0 Annual Fee",
+              points=20000, cash_back=None, min_spend=1000, window_months=3)
+
 
 class CashOffers(unittest.TestCase):
     def test_cash_bonus(self):
