@@ -52,8 +52,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Hilton Honors American Express Card | 70,000 | - | 1 | $2,000 | 6 | - | - |  |
 | Hilton Honors American Express Surpass Card | 130,000 | - | 1 | $3,000 | 6 | - | - |  |
 | Hilton Honors American Express Aspire Card | 200,000 | - | - | $6,000 | 6 | - | - |  |
-| Marriott Bonvoy Bevy American Express Card | 85,000 | - | - | $5,000 | 6 | - | - |  |
-| Marriott Bonvoy Brilliant American Express Card | 100,000 | - | - | $6,000 | 6 | - | - |  |
+| Marriott Bonvoy Bevy American Express Card | 125,000 | $150 | - | $5,000 | 6 | - | - |  |
+| Marriott Bonvoy Brilliant American Express Card | 150,000 | $250 | - | $6,000 | 6 | - | - |  |
 | American Express Business Gold Card | 200,000 | - | - | $15,000 | 3 | - | yes |  |
 | Business Platinum Card | 300,000 | - | - | $20,000 | 3 | - | yes |  |
 | Business Green Rewards Card | 15,000 | - | - | $3,000 | 3 | - | - |  |

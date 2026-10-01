@@ -1439,7 +1439,8 @@
    "hotel"
   ],
   "welcomeBonus": {
-   "points": 85000.0
+   "points": 125000.0,
+   "cashBack": 150.0
   },
   "typicalMinSpend": {
    "amount": 5000.0,
@@ -1450,7 +1451,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/marriott-bonvoy-bevy/",
-  "verifiedOn": "2026-10-01"
+  "verifiedOn": "2026-09-22"
  },
  {
   "id": "amex-marriott-brilliant",
@@ -1466,7 +1467,8 @@
    "hotel"
   ],
   "welcomeBonus": {
-   "points": 100000.0
+   "points": 150000.0,
+   "cashBack": 250.0
   },
   "typicalMinSpend": {
    "amount": 6000.0,
@@ -1477,7 +1479,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/marriott-bonvoy-brilliant/",
-  "verifiedOn": "2026-10-01"
+  "verifiedOn": "2026-09-22"
  },
  {
   "id": "amex-cash-magnet",
@@ -1797,7 +1799,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/amex-marriott-bonvoy-business-credit-card/",
-  "verifiedOn": "2026-10-01"
+  "verifiedOn": "2026-09-22"
  },
  {
   "id": "citi-strata-premier",

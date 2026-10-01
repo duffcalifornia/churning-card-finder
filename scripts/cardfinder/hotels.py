@@ -66,9 +66,9 @@ HOTEL_SITES = [
     HotelSite("marriott", "https://www.marriott.com/credit-cards.mi", {
         "chase-marriott-boundless": ["Marriott Bonvoy Boundless Credit Card from Chase"],
         "chase-marriott-bold": ["Marriott Bonvoy Bold Credit Card from Chase"],
-        "amex-marriott-bevy": ["Marriott Bonvoy Bevy American Express Card"],
-        "amex-marriott-brilliant": ["Marriott Bonvoy Brilliant American Express Card"],
-        "amex-marriott-business": ["Marriott Bonvoy Business American Express Card"],
+        # The Amex Marriott cards (Bevy, Brilliant, Business) are held back on purpose (site owner, 2026-10-01): Amex is paused, so
+        # their cached offers cannot be checked against Marriott's page, and Marriott's lower Bevy and Brilliant offers would
+        # replace Amex's expired ones. Add them back once Amex has been re-read.
     }),
 ]
 

@@ -1142,12 +1142,12 @@
   "issuer": "amex",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn 85,000 Bonus Points after you use your new Card to make $5,000 in purchases within the first 6 months of Card Membership",
-  "seenOn": "2026-10-01",
+  "sourceText": "Earn 125,000 Marriott Bonvoy \u00ae Bonus Points Plus A $150 Statement Credit after you use your new Card to make $5,000 in purchases within the first 6 months of Card Membership",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
-   "points": 85000.0,
-   "cashBack": null,
+   "points": 125000.0,
+   "cashBack": 150.0,
    "freeNightAwards": 0,
    "minSpend": 5000.0,
    "windowMonths": 6,
@@ -1156,8 +1156,6 @@
    "notes": [],
    "displayedAsCash": null
   },
-  "offerSource": "hotel",
-  "offerSourceUrl": "https://www.marriott.com/credit-cards.mi",
   "needsReview": false
  },
  {
@@ -1166,12 +1164,12 @@
   "issuer": "amex",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn 100,000 Bonus Points after you use your new Card to make $6,000 in purchases within the first 6 months of Card Membership",
-  "seenOn": "2026-10-01",
+  "sourceText": "Earn 150,000 Marriott Bonvoy \u00ae Bonus Points Plus A $250 Statement Credit after you use your new Card to make $6,000 in purchases within the first 6 months of Card Membership",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
-   "points": 100000.0,
-   "cashBack": null,
+   "points": 150000.0,
+   "cashBack": 250.0,
    "freeNightAwards": 0,
    "minSpend": 6000.0,
    "windowMonths": 6,
@@ -1180,8 +1178,6 @@
    "notes": [],
    "displayedAsCash": null
   },
-  "offerSource": "hotel",
-  "offerSourceUrl": "https://www.marriott.com/credit-cards.mi",
   "needsReview": false
  },
  {
@@ -1421,8 +1417,8 @@
   "issuer": "amex",
   "cardKind": "business",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn 100,000 bonus points and 1 Free Night Award after you spend $8,000 in purchases on the Card within the first 6 months of Card Membership",
-  "seenOn": "2026-10-01",
+  "sourceText": "Earn 100,000 Marriott Bonvoy \u00ae Bonus Points and 1 Free Night Award after you spend $8,000 in purchases on the Card within the first 6 months of Card Membership",
+  "seenOn": "2026-09-22",
   "parsed": {
    "kind": "standard",
    "points": 100000.0,
@@ -1435,8 +1431,6 @@
    "notes": [],
    "displayedAsCash": null
   },
-  "offerSource": "hotel",
-  "offerSourceUrl": "https://www.marriott.com/credit-cards.mi",
   "needsReview": false
  },
  {
