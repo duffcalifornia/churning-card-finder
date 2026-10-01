@@ -112,7 +112,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Wyndham Rewards Earner Premier Card | 90,000 | - | - | $6,000 | 4 | 30,000 pts after $750 in 6 mo | - |  |
 | Wyndham Rewards Earner Business Card | 45,000 | - | - | $3,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
 | Frontier Airlines World Mastercard | 50,000 | - | - | $500 | 3 | - | - |  |
-| Breeze Airways Card | 30,000 | - | - | $1,000 | 3 | - | - |  |
+| Breeze Airways Card | 40,000 | - | - | $1,000 | 3 | - | - |  |
 | Emirates Skywards Premium World Elite Mastercard | 70,000 | - | - | $3,000 | 3 | - | - |  |
 | Emirates Skywards Rewards World Elite Mastercard | 40,000 | - | - | $3,000 | 3 | - | - |  |
 | Lufthansa Miles & More World Elite Mastercard | 70,000 | - | - | $4,000 | 3 | - | - |  |
