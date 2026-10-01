@@ -1,5 +1,12 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-01
+- Added the following card(s): IHG One Rewards Premier Select Credit Card.
+- Renamed the IHG One Rewards Traveler Credit Card to the IHG One Rewards Credit Card, and the IHG One Rewards Premier Business Credit Card to the IHG One Rewards Business Credit Card, to match the new names Chase uses.
+- Updated the bonus offer for the following card(s): IHG One Rewards Business Credit Card, IHG One Rewards Credit Card, IHG One Rewards Premier Credit Card, Marriott Bonvoy Bevy American Express Card, and Marriott Bonvoy Brilliant American Express Card.
+- Updated the net value rankings to reflect changes to the annual fee on the following card: IHG One Rewards Business Credit Card and IHG One Rewards Premier Credit Card.
+- Card offers are now read from the IHG, Hilton and Marriott credit card pages as well as the issuers' own, and the better offer of the two is the one the Card Finder and the Signup Offer Cheat Sheet use. An offer that says it has ended, or one last read more than a week ago, is never preferred over a current one.
+
 ## 2026-09-29
 - Removed the following card(s) because they can no longer be applied for: Business Altitude Power Visa Signature Card and Business Leverage Visa Signature Card.
 - Added the following card(s): Business Essentials Plus Visa Signature Card and Business Essentials Visa Card.

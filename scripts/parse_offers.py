@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Build data/parsed-offers.json and docs/parsed-offers-review.md from the recorded offer texts.
 
-Makes no network requests: it reads cardfinder/last_known_offers.json (written by card_offers.py).
+Makes no network requests: it reads cardfinder/last_known_offers.json (written by card_offers.py) and
+cardfinder/last_known_hotel_offers.json, and keeps the better offer of the two for each card (cardfinder/choose.py).
     python3 scripts/parse_offers.py
 """
+import datetime
 import json
 import os
 import sys
@@ -13,8 +15,9 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 from cardfinder.build import build_parsed_offers  # noqa: E402
-from cardfinder.registry import (CARDS, CASH_PAID_AS_POINTS, ISSUERS, LAST_KNOWN_OFFERS, NO_OFFER_CONFIRMED,  # noqa: E402
-                                 REVIEWED_OK)
+from cardfinder.effective import effective_offers  # noqa: E402
+from cardfinder.registry import (CARDS, CASH_PAID_AS_POINTS, ISSUERS, LAST_KNOWN_HOTEL_OFFERS, LAST_KNOWN_OFFERS,  # noqa: E402
+                                 NO_OFFER_CONFIRMED, REVIEWED_OK)
 
 
 def money(x):
@@ -22,7 +25,8 @@ def money(x):
 
 
 def main():
-    records = build_parsed_offers(CARDS, LAST_KNOWN_OFFERS, confirmed_none=NO_OFFER_CONFIRMED, reviewed=REVIEWED_OK,
+    offers = effective_offers(LAST_KNOWN_OFFERS, LAST_KNOWN_HOTEL_OFFERS, datetime.date.today())
+    records = build_parsed_offers(CARDS, offers, confirmed_none=NO_OFFER_CONFIRMED, reviewed=REVIEWED_OK,
                                   cash_paid_as_points=CASH_PAID_AS_POINTS,
                                   stale_issuers={k: v.paused for k, v in ISSUERS.items() if v.paused},
                                   stale_since="2026-09-21")  # Amex was re-read on this date

@@ -167,6 +167,7 @@ class BonusRules(unittest.TestCase):
     def test_ihg_personal_cards_share_a_family_clock(self):
         self.assertEqual(self.rules("chase-ihg-premier")["cooldownFamily"], "ihg-personal")
         self.assertEqual(self.rules("chase-ihg-traveler")["cooldownFamily"], "ihg-personal")
+        self.assertEqual(self.rules("chase-ihg-premier-select")["cooldownFamily"], "ihg-personal")
 
     def test_boa_personal_cards_are_held_based_and_business_cards_have_no_rule(self):
         r = self.rules("boa-unlimited-cash")

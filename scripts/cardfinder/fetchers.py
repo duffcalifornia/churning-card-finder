@@ -6,6 +6,9 @@ import urllib.request
 from .models import FetchError, Page
 
 USER_AGENT = "churning-card-finder-maintainer/0.1 (personal use, low volume)"
+# Hotel sites (IHG's, for one) refuse the maintainer user agent and Playwright's default headless build outright, and
+# serve the page to an ordinary Chrome user agent in Chromium's "new" headless mode. Used only for those sites.
+BROWSER_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 RETRYABLE = lambda code: code == 429 or code >= 500
 
 
@@ -47,8 +50,9 @@ class RenderedFetcher:
     Optional: use available() first. Keeps one browser open across calls; call close() when done.
     """
 
-    def __init__(self, wait_ms=3500, timeout_ms=60000):
+    def __init__(self, wait_ms=3500, timeout_ms=60000, user_agent=USER_AGENT, channel=None):
         self.wait_ms, self.timeout_ms = wait_ms, timeout_ms
+        self.user_agent, self.channel = user_agent, channel
         self._pw = self._browser = None
 
     @staticmethod
@@ -63,12 +67,12 @@ class RenderedFetcher:
         if self._browser is None:
             from playwright.sync_api import sync_playwright
             self._pw = sync_playwright().start()
-            self._browser = self._pw.chromium.launch(headless=True)
+            self._browser = self._pw.chromium.launch(headless=True, **({"channel": self.channel} if self.channel else {}))
 
     def fetch(self, url):
         try:
             self._start()
-            page = self._browser.new_page(user_agent=USER_AGENT)
+            page = self._browser.new_page(user_agent=self.user_agent)
             try:
                 page.goto(url, wait_until="domcontentloaded", timeout=self.timeout_ms)
                 page.wait_for_timeout(self.wait_ms)

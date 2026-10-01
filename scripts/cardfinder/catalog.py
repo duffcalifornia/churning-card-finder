@@ -77,7 +77,7 @@ LIFETIME_ALSO_BLOCKED_BY = {
     **_mutual("amex-blue-cash-preferred", "morganstanley-blue-cash-preferred"),
 }
 SOUTHWEST_PERSONAL = {"chase-southwest-plus", "chase-southwest-premier", "chase-southwest-priority"}
-IHG_PERSONAL = {"chase-ihg-premier", "chase-ihg-traveler"}
+IHG_PERSONAL = {"chase-ihg-premier", "chase-ihg-premier-select", "chase-ihg-traveler"}
 
 _CURRENCY_BONUS_TYPES = {"default-bank-points": ["cashback"], "frontier-bonus-miles": ["airline"],
                          "miles-and-more": ["airline"]}

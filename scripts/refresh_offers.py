@@ -33,6 +33,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -41,14 +42,17 @@ sys.path.insert(0, HERE)
 from cardfinder.build import build_parsed_offers  # noqa: E402
 from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_changelog_entry  # noqa: E402
 from cardfinder.cli import format_report, run, select_cards, split_paused  # noqa: E402
-from cardfinder.fetchers import CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
+from cardfinder.effective import effective_offers  # noqa: E402
+from cardfinder.fetchers import BROWSER_USER_AGENT, CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
+from cardfinder.hotels import HOTEL_SITES, format_site_result, merge_hotel_offers, read_sites  # noqa: E402
 from cardfinder.missing import missing_document, split_not_found  # noqa: E402
 from cardfinder.newcards import REJECT_DAYS, find_new_cards  # noqa: E402
 from cardfinder.refresh import merge_last_known  # noqa: E402
 from cardfinder.registry import (CARDS, CASH_PAID_AS_POINTS, ISSUERS, LAST_KNOWN_FEE_WAIVED, LAST_KNOWN_FEES,  # noqa: E402
-                                 IGNORED_CANDIDATES, LAST_KNOWN_OFFERS, NO_OFFER_CONFIRMED, REVIEWED_OK)
+                                 IGNORED_CANDIDATES, LAST_KNOWN_HOTEL_OFFERS, LAST_KNOWN_OFFERS, NO_OFFER_CONFIRMED, REVIEWED_OK)
 
 OFFERS_PATH = os.path.join(HERE, "cardfinder", "last_known_offers.json")
+HOTEL_OFFERS_PATH = os.path.join(HERE, "cardfinder", "last_known_hotel_offers.json")
 FEES_PATH = os.path.join(HERE, "cardfinder", "last_known_fees.json")
 WAIVED_PATH = os.path.join(HERE, "cardfinder", "last_known_fee_waived.json")
 CHANGELOG_PATH = os.path.join(ROOT, "CHANGELOG.md")
@@ -69,6 +73,31 @@ def _write_cache_files(offers, fees, waived):
     with open(WAIVED_PATH, "w") as f:
         json.dump(sorted(waived), f, indent=1)
         f.write("\n")
+
+
+def _read_hotel_sites(wanted_ids, delay):
+    """Read the hotel programs' own card pages (IHG, Hilton, Marriott) for the wanted cards. Needs a real browser: these
+    sites refuse plain requests. Never raises and never fails the run: a hotel page we cannot read just leaves each card
+    with the issuer's offer, so the problem is reported as a warning (an Actions annotation) instead."""
+    if not RenderedFetcher.available():
+        print("::warning::Hotel card pages not read: Playwright is not installed.", flush=True)
+        return []
+    browser = RenderedFetcher(user_agent=BROWSER_USER_AGENT, channel="chromium")
+    try:
+        results = read_sites(HOTEL_SITES, CachingFetcher(browser), wanted_ids, sleep=time.sleep, delay=delay)
+    except Exception as e:  # a browser that will not start must not take down the issuer refresh
+        print(f"::warning::Hotel card pages not read: {type(e).__name__}: {e}", flush=True)
+        return []
+    finally:
+        browser.close()
+    for r in results:
+        print(format_site_result(r), flush=True)
+        if r.status != "ok":
+            print(f"::warning::{r.site} card page not read ({r.status}): {r.detail}. Its cards keep the issuer's offer.", flush=True)
+        for read in r.reads:
+            if read.status == "not_found" and r.status == "ok":
+                print(f"::warning::{r.site} card page: no offer found for {read.card_id}.", flush=True)
+    return results
 
 
 def _look_for_new_cards(cards, results, http, rendered):
@@ -127,6 +156,7 @@ def main(argv=None):
     cards = select_cards(CARDS, args.issuer, args.card)
     if not cards:
         sys.exit("No cards match.")
+    wanted_ids = {c.id for c in cards if c.expected}   # before paused issuers are dropped: a hotel page is not the issuer's site
     if not args.include_paused:
         cards, paused = split_paused(cards, ISSUERS)
         for issuer, reason in paused.items():
@@ -150,6 +180,8 @@ def main(argv=None):
             browser.close()
 
     print("\n" + format_report(results).split("\n\n")[-1])
+
+    hotel_results = [] if args.no_render else _read_hotel_sites(wanted_ids, args.delay)
 
     issuer_of = {c.id: c.issuer for c in CARDS}
     reviewable, unreadable = split_not_found(results, issuer_of)
@@ -177,6 +209,7 @@ def main(argv=None):
             print(f"New cards found, left for the owner to approve: {', '.join(p['name'] for p in proposals)}.")
 
     new_offers, new_fees, new_waived = merge_last_known(results, LAST_KNOWN_OFFERS, LAST_KNOWN_FEES, LAST_KNOWN_FEE_WAIVED, today)
+    new_hotel_offers = merge_hotel_offers(hotel_results, LAST_KNOWN_HOTEL_OFFERS, today)
 
     # Diffed as *parsed* offers, not raw scraped text: an issuer's own page can reformat between reads (an en
     # dash swapped for a hyphen, unrelated marketing copy trimmed) with the actual points, minimum spend and fee
@@ -185,15 +218,20 @@ def main(argv=None):
     # reason. Only cardfinder.build's parsing matters here, not cardfinder.registry's staleness bookkeeping (that
     # only annotates a record, it never changes the value fields this compares), so stale_issuers/stale_since are
     # left at their defaults.
-    def parsed_by_id(offers):
+    def parsed_by_id(issuer_offers, hotel_offers):
         records = build_parsed_offers(
-            CARDS, offers, confirmed_none=NO_OFFER_CONFIRMED, reviewed=REVIEWED_OK, cash_paid_as_points=CASH_PAID_AS_POINTS,
+            CARDS, effective_offers(issuer_offers, hotel_offers, datetime.date.today()),
+            confirmed_none=NO_OFFER_CONFIRMED, reviewed=REVIEWED_OK, cash_paid_as_points=CASH_PAID_AS_POINTS,
         )
         return {r["cardId"]: r for r in records}
 
-    old_parsed, new_parsed = parsed_by_id(LAST_KNOWN_OFFERS), parsed_by_id(new_offers)
+    old_parsed = parsed_by_id(LAST_KNOWN_OFFERS, LAST_KNOWN_HOTEL_OFFERS)
+    new_parsed = parsed_by_id(new_offers, new_hotel_offers)
 
     _write_cache_files(new_offers, new_fees, new_waived)
+    with open(HOTEL_OFFERS_PATH, "w") as f:
+        json.dump(new_hotel_offers, f, indent=1)
+        f.write("\n")
 
     # Site owner's rule (2026-09-22): every offer or fee change gets logged this one consistent way each, since
     # these will be the most common changelog entries by far once the site is past its initial development

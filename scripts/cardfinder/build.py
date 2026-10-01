@@ -45,6 +45,9 @@ def build_parsed_offers(cards, last_known_offers, confirmed_none=frozenset(), re
             parsed["notes"].append(f"advertised as ${p.cash_back:,.0f} cash back but paid as {currency} points")
         needs_review = p.kind == "unparsed" or any(m in n for n in p.notes for m in _REVIEW_MARKERS)
         record.update({"hasWelcomeOffer": True, "sourceText": entry["text"], "seenOn": entry["seen"], "parsed": parsed})
+        if entry.get("source"):
+            # Set only when the hotel site's page supplied the offer (cardfinder.choose); absent means the issuer's own page.
+            record.update(offerSource=entry["source"], offerSourceUrl=entry["sourceUrl"])
         if card.id in reviewed:
             needs_review = False
             record["reviewedByOwner"] = True

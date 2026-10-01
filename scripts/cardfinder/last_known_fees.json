@@ -87,8 +87,8 @@
   "chase-freedom-rise": 0.0,
   "chase-freedom-unlimited": 0.0,
   "chase-iberia": 95.0,
-  "chase-ihg-premier": 99.0,
-  "chase-ihg-premier-business": 99.0,
+  "chase-ihg-premier": 150.0,
+  "chase-ihg-premier-business": 200.0,
   "chase-ihg-traveler": 0.0,
   "chase-ink-cash": 0.0,
   "chase-ink-preferred": 95.0,
@@ -165,5 +165,6 @@
   "amex-delta-blue": 0.0,
   "amex-hilton-honors": 0.0,
   "usbank-business-essentials": 0.0,
-  "usbank-business-essentials-plus": 295.0
+  "usbank-business-essentials-plus": 295.0,
+  "chase-ihg-premier-select": 350.0
 }

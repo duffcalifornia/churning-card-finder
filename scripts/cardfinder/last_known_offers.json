@@ -378,19 +378,19 @@
   "full_text": "Earn 75,000 Avios after you spend $5,000 on purchases within the first 3 months of account opening."
  },
  "chase-ihg-premier": {
-  "seen": "2026-09-28",
-  "text": "Earn 140,000 Bonus Points after you spend $3,000 on purchases in the first 3 months from account opening",
-  "full_text": "Earn 140,000 Bonus Points after you spend $3,000 on purchases in the first 3 months from account opening."
+  "seen": "2026-10-01",
+  "text": "Earn 180,000 Bonus Points after you spend $3,000 on purchases in the first 3 months from account opening",
+  "full_text": "Earn 180,000 Bonus Points after you spend $3,000 on purchases in the first 3 months from account opening."
  },
  "chase-ihg-premier-business": {
-  "seen": "2026-09-28",
-  "text": "Earn 140,000 Bonus Points after spending $4,000 in the first 3 months from account opening",
-  "full_text": "Earn 140,000 Bonus Points after spending $4,000 in the first 3 months from account opening."
+  "seen": "2026-10-01",
+  "text": "Earn 190,000 Bonus Points after spending $5,000 in the first 3 months from account opening",
+  "full_text": "Earn 190,000 Bonus Points after spending $5,000 in the first 3 months from account opening."
  },
  "chase-ihg-traveler": {
-  "seen": "2026-09-28",
-  "text": "Earn 80,000 Bonus Points after you spend $2,000 on purchases in the first 3 months from account opening",
-  "full_text": "Earn 80,000 Bonus Points after you spend $2,000 on purchases in the first 3 months from account opening."
+  "seen": "2026-10-01",
+  "text": "Earn 125,000 Bonus Points after you spend $2,000 on purchases in the first 3 months from account opening",
+  "full_text": "Earn 125,000 Bonus Points after you spend $2,000 on purchases in the first 3 months from account opening."
  },
  "chase-ink-cash": {
   "seen": "2026-09-28",
@@ -662,5 +662,10 @@
   "seen": "2026-09-29",
   "text": "earn $1,000 cash back, awarded as 100,000 points, after spending $15,000 within the first 150 days of opening your new account",
   "full_text": "earn $1,000 cash back, awarded as 100,000 points, after spending $15,000 within the first 150 days of opening your new account. Does the U.S. Bank Business Essentials\u2122 Plus Credit Card offer bonus categories for higher rewards? Yes. Cardmembers earn 5% cash back on their top eligible spend category automatically up to $200,000 annually. What purchases made with the U.S. Bank Business Essentials\u2122 Plus Credit Card qualify fo"
+ },
+ "chase-ihg-premier-select": {
+  "seen": "2026-10-01",
+  "text": "Earn 200,000 Bonus Points after you spend $5,000 on purchases in the first 3 months from account opening",
+  "full_text": "Earn 200,000 Bonus Points after you spend $5,000 on purchases in the first 3 months from account opening."
  }
 }

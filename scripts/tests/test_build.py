@@ -34,6 +34,16 @@ class BuildParsedOffers(unittest.TestCase):
         self.assertEqual(e["seenOn"], "2026-09-20")
         self.assertIn("75,000", e["sourceText"])
 
+    def test_an_offer_taken_from_a_hotel_page_says_so_and_an_issuer_offer_does_not(self):
+        offers = {"a": {**OFFERS["a"], "source": "hotel", "sourceUrl": "https://hotel.example/cards"}, "cash": OFFERS["cash"]}
+        by_id = {e["cardId"]: e for e in build_parsed_offers([card("a"), card("cash")], offers)}
+        self.assertEqual((by_id["a"]["offerSource"], by_id["a"]["offerSourceUrl"]), ("hotel", "https://hotel.example/cards"))
+        self.assertNotIn("offerSource", by_id["cash"])
+        import jsonschema
+        schema = json.load(open(SCHEMA))
+        for e in by_id.values():
+            jsonschema.validate(e, schema)
+
     def test_the_fuller_text_is_used_so_a_second_tier_is_kept(self):
         tiers = self.by_id([card("tier")])["tier"]["parsed"]["additionalTiers"]
         self.assertEqual([(t["points"], t["minSpend"], t["windowMonths"]) for t in tiers], [(40000, 20000, 12)])

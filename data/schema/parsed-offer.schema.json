@@ -49,6 +49,15 @@
       "type": "string",
       "format": "date"
     },
+    "offerSource": {
+      "type": "string",
+      "enum": ["hotel"],
+      "description": "Present only when the offer was read from the hotel program's own card page because it beat the issuer's; absent means the issuer's page."
+    },
+    "offerSourceUrl": {
+      "type": "string",
+      "description": "The hotel page the offer was read from; present with offerSource."
+    },
     "parsed": {
       "type": "object",
       "additionalProperties": false,

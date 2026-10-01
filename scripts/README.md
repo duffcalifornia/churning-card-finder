@@ -89,6 +89,29 @@ To try it without the network, use `python3 scripts/refresh_offers.py --issuer u
 copy of the repo (a real run writes the cache files), then `python3 scripts/report_new_cards.py /tmp/new.json --dry-run`
 (needs the `gh` CLI signed in).
 
+## Hotel card pages
+IHG, Hilton and Marriott each publish a page listing their co-branded cards, with offers that can differ from the
+issuer's own page (one side gets a new offer first). `cardfinder/hotels.py` reads those three pages
+(`HOTEL_SITES`: ihg.com/onerewards/content/us/en/creditcard, hilton.com/en/hilton-honors/credit-cards,
+marriott.com/credit-cards.mi) in the same daily run and keeps each card's reading in
+`cardfinder/last_known_hotel_offers.json`. A card's offer is read from the stretch of page between its heading and the
+next card's heading; only the offer sentence and its "Offer ends" date are kept, because these pages do not mark where an
+offer stops and what follows is ongoing benefits.
+
+`cardfinder/choose.py` then picks, per card, the offer that is worth more by the site's own measure (points x
+cents-per-point, plus cash, plus free night certificates; the annual fee is the same on both pages so it cancels). Before
+comparing values, an offer whose own text says it has ended ("Offer ends 9/30/26") is dropped, and so is one last read more
+than 7 days ago when the other is fresh (Amex is paused, so its cached offers age while the hotel pages stay current). A tie,
+or an offer that cannot be valued, goes to the issuer. The annual fee always comes from the issuer's page. A hotel-sourced
+offer is marked `offerSource: "hotel"` with its `offerSourceUrl` in `data/parsed-offers.json`; `parse_offers.py` and the
+daily refresh both apply the choice, so the changelog logs a change however it came about.
+
+These sites sit behind bot protection: plain HTTP gets a 403, and so does Playwright's default headless build. They are
+fetched with an ordinary Chrome user agent in Chromium's "new" headless mode (`channel="chromium"`), which needs nothing
+beyond the `playwright install chromium` the workflow already does. A hotel page that cannot be read (blocked, redesigned,
+a card heading changed) never fails the run: its cards keep the issuer's offer and the log carries a `::warning::` line.
+GitHub's runner IPs are a different profile from a home connection, so watch the first few scheduled runs for those warnings.
+
 ## Flags in the report
 `url_changed` `needs_render` `render_failed` `page_error` `no_offer_found` `no_fee_found` `fee_changed`
 `offer_is_ceiling` ("as high as", a maximum) `check_struck_through` (old and new figures both on the page)

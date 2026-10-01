@@ -15,8 +15,9 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Marriott Bonvoy Bold Credit Card | 45,000 | - | - | $1,000 | 3 | - | - |  |
 | Marriott Bonvoy Bountiful Credit Card | 85,000 | - | - | $4,000 | 3 | - | - |  |
 | Marriott Bonvoy Boundless Credit Card | - | - | 3 | $3,000 | 3 | - | - |  |
-| IHG One Rewards Premier Credit Card | 140,000 | - | - | $3,000 | 3 | - | - |  |
-| IHG One Rewards Traveler Credit Card | 80,000 | - | - | $2,000 | 3 | - | - |  |
+| IHG One Rewards Premier Credit Card | 180,000 | - | - | $3,000 | 3 | - | - |  |
+| IHG One Rewards Premier Select Credit Card | 200,000 | - | - | $5,000 | 3 | - | - |  |
+| IHG One Rewards Credit Card | 125,000 | - | - | $2,000 | 3 | - | - |  |
 | World of Hyatt Credit Card | 30,000 | - | - | $3,000 | 3 | - | - | counted the first part only (the rest depends on further bonus spending) |
 | Southwest Rapid Rewards Plus Credit Card | 50,000 | - | - | $1,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Premier Credit Card | 55,000 | - | - | $1,500 | 3 | - | - |  |
@@ -38,7 +39,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Ink Business Preferred Credit Card | 100,000 | - | - | $8,000 | 3 | - | - |  |
 | United Business Card | 100,000 | - | - | $5,000 | 3 | - | - |  |
 | United Club Business Card | 100,000 | - | - | $5,000 | 3 | - | - |  |
-| IHG One Rewards Premier Business Credit Card | 140,000 | - | - | $4,000 | 3 | - | - |  |
+| IHG One Rewards Business Credit Card | 190,000 | - | - | $5,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Premier Business Credit Card | 80,000 | - | - | $3,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 80,000; please check |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
@@ -51,8 +52,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Hilton Honors American Express Card | 70,000 | - | 1 | $2,000 | 6 | - | - |  |
 | Hilton Honors American Express Surpass Card | 130,000 | - | 1 | $3,000 | 6 | - | - |  |
 | Hilton Honors American Express Aspire Card | 200,000 | - | - | $6,000 | 6 | - | - |  |
-| Marriott Bonvoy Bevy American Express Card | 125,000 | $150 | - | $5,000 | 6 | - | - |  |
-| Marriott Bonvoy Brilliant American Express Card | 150,000 | $250 | - | $6,000 | 6 | - | - |  |
+| Marriott Bonvoy Bevy American Express Card | 85,000 | - | - | $5,000 | 6 | - | - |  |
+| Marriott Bonvoy Brilliant American Express Card | 100,000 | - | - | $6,000 | 6 | - | - |  |
 | American Express Business Gold Card | 200,000 | - | - | $15,000 | 3 | - | yes |  |
 | Business Platinum Card | 300,000 | - | - | $20,000 | 3 | - | yes |  |
 | Business Green Rewards Card | 15,000 | - | - | $3,000 | 3 | - | - |  |

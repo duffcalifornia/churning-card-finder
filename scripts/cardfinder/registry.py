@@ -111,7 +111,9 @@ CARDS = [
     _chase("marriott-bountiful", ["Marriott Bonvoy Bountiful Credit Card", "Marriott Bonvoy Bountiful"], "travel-credit-cards/marriott-bonvoy/bountiful"),
     _chase("marriott-boundless", ["Marriott Bonvoy Boundless Credit Card", "Marriott Bonvoy Boundless"], "travel-credit-cards/marriott-bonvoy/boundless"),
     _chase("ihg-premier", ["IHG One Rewards Premier Credit Card", "IHG Rewards Club Premier", "IHG Premier"], "travel-credit-cards/ihg-rewards-club/premier"),
-    _chase("ihg-traveler", ["IHG One Rewards Traveler Credit Card", "IHG Rewards Club Traveler", "IHG Traveler"], "travel-credit-cards/ihg-rewards-club/traveler"),
+    _chase("ihg-premier-select", ["IHG One Rewards Premier Select Credit Card", "IHG Premier Select"], "travel-credit-cards/ihg-rewards-club/premier-select"),
+    # Chase renamed the Traveler card in September 2026; the old URL redirects here. The id stays so saved card histories still match.
+    _chase("ihg-traveler", ["IHG One Rewards Credit Card", "IHG One Rewards Traveler Credit Card", "IHG Rewards Club Traveler", "IHG Traveler"], "travel-credit-cards/ihg-rewards-club/one-rewards"),
     _chase("world-of-hyatt", ["World of Hyatt Credit Card", "World of Hyatt"], "travel-credit-cards/world-of-hyatt-credit-card"),
     _chase("southwest-plus", ["Southwest Rapid Rewards Plus Credit Card", "Southwest Plus"], "travel-credit-cards/southwest/plus"),
     _chase("southwest-premier", ["Southwest Rapid Rewards Premier Credit Card", "Southwest Premier"], "travel-credit-cards/southwest/premier"),
@@ -137,7 +139,8 @@ CARDS = [
     _chase("ink-preferred", ["Ink Business Preferred Credit Card", "Ink Business Preferred"], "business-credit-cards/ink/business-preferred", "business"),
     _chase("united-business", ["United Business Card", "United Business"], "business-credit-cards/united/united-business-card", "business"),
     _chase("united-club-business", ["United Club Business Card", "United Club Business"], "business-credit-cards/united/united-club-business", "business"),
-    _chase("ihg-premier-business", ["IHG One Rewards Premier Business Credit Card", "IHG Business Premier", "IHG Premier Business"], "business-credit-cards/IHG/business-premier", "business"),
+    # Renamed from "Premier Business" in September 2026; the old URL redirects here. The id stays for the same reason.
+    _chase("ihg-premier-business", ["IHG One Rewards Business Credit Card", "IHG One Rewards Premier Business Credit Card", "IHG Business Premier", "IHG Premier Business"], "business-credit-cards/IHG/business", "business"),
     _chase("southwest-premier-business", ["Southwest Rapid Rewards Premier Business Credit Card", "Southwest Premier Business"], "business-credit-cards/southwest/premier-business", "business"),
     # Amex personal
     _amex("gold", ["American Express Gold Card", "Gold Card"], _AC + "gold-card/"),
@@ -399,6 +402,11 @@ with open(os.path.join(os.path.dirname(__file__), "last_known_offers.json")) as 
 CARDS = [dataclasses.replace(c, last_known_offer=LAST_KNOWN_OFFERS[c.id]["text"], last_known_on=LAST_KNOWN_OFFERS[c.id]["seen"])
          if c.id in LAST_KNOWN_OFFERS else c for c in CARDS]
 
+# Offers last read from a hotel program's own credit card page (cardfinder.hotels). Never used on its own account:
+# cardfinder.choose compares each with the issuer's offer above and keeps the better one.
+with open(os.path.join(os.path.dirname(__file__), "last_known_hotel_offers.json")) as _f:
+    LAST_KNOWN_HOTEL_OFFERS = json.load(_f)
+
 
 # Cards whose pages were read and stated no welcome offer; the site owner confirmed on 2026-09-20 that they truly have none.
 # Not included: Wells Fargo Attune and Business Elite, whose pages were never found (their offers are unknown).
@@ -448,7 +456,7 @@ for _issuer, _currency, _ids in [
     ("chase", "avios", ("aer-lingus", "british-airways", "iberia")),
     ("chase", "aeroplan", ("aeroplan",)),
     ("chase", "ultimate-rewards", ("freedom-flex", "freedom-unlimited", "ink-cash", "ink-unlimited", "ink-preferred", "sapphire-preferred", "sapphire-reserve", "sapphire-reserve-business")),
-    ("chase", "ihg-one-rewards", ("ihg-premier", "ihg-premier-business", "ihg-traveler")),
+    ("chase", "ihg-one-rewards", ("ihg-premier", "ihg-premier-business", "ihg-premier-select", "ihg-traveler")),
     ("chase", "marriott-bonvoy", ("marriott-bold", "marriott-bountiful", "marriott-boundless")),
     ("chase", "southwest-rapid-rewards", ("southwest-performance-business", "southwest-plus", "southwest-premier", "southwest-premier-business", "southwest-priority")),
     ("chase", "united-mileageplus", ("united-business", "united-club-business", "united-club-infinite", "united-explorer", "united-gateway", "united-quest")),
