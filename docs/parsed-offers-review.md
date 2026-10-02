@@ -8,10 +8,10 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Chase Freedom Unlimited | 20,000 | - | - | $500 | 3 | - | - | advertised as $200 cash back but paid as ultimate-rewards points |
 | Chase Sapphire Preferred | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Chase Sapphire Reserve | 100,000 | - | - | $6,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
-| United Explorer Card | 50,000 | - | - | $3,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
-| United Gateway Card | 30,000 | - | - | $1,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
-| United Quest Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
-| United Club Infinite Card | 80,000 | - | - | $5,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
+| United Explorer Card | 70,000 | - | - | $3,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
+| United Gateway Card | 40,000 | - | - | $1,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
+| United Quest Card | 80,000 | - | - | $4,000 | 3 | - | - |  |
+| United Club Infinite Card | 90,000 | - | - | $5,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
 | Marriott Bonvoy Bold Credit Card | 45,000 | - | - | $1,000 | 3 | - | - |  |
 | Marriott Bonvoy Bountiful Credit Card | 85,000 | - | - | $4,000 | 3 | - | - |  |
 | Marriott Bonvoy Boundless Credit Card | - | - | 3 | $3,000 | 3 | - | - |  |
@@ -37,8 +37,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Ink Business Premier Credit Card | - | $1,000 | - | $10,000 | 3 | - | - |  |
 | Ink Business Cash Credit Card | 75,000 | - | - | $6,000 | 3 | - | - | advertised as $750 cash back but paid as ultimate-rewards points |
 | Ink Business Preferred Credit Card | 100,000 | - | - | $8,000 | 3 | - | - |  |
-| United Business Card | 100,000 | - | - | $5,000 | 3 | - | - |  |
-| United Club Business Card | 100,000 | - | - | $5,000 | 3 | - | - |  |
+| United Business Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
+| United Club Business Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
 | IHG One Rewards Business Credit Card | 190,000 | - | - | $5,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Premier Business Credit Card | 80,000 | - | - | $3,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 80,000; please check |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |

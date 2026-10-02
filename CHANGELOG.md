@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-02
+- Updated the bonus offer for the following card(s): United Business Card, United Club Business Card, United Club Infinite Card, United Explorer Card, United Gateway Card, and United Quest Card.
+
 ## 2026-10-01
 - Added the following card(s): IHG One Rewards Premier Select Credit Card.
 - Renamed the IHG One Rewards Traveler Credit Card to the IHG One Rewards Credit Card, and the IHG One Rewards Premier Business Credit Card to the IHG One Rewards Business Credit Card, to match the new names Chase uses.
