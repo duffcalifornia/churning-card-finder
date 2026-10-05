@@ -305,8 +305,7 @@ export function App() {
           <p>
             The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.{" "}
             <span className="footerlinks">
-              If you want to support this project, you could use{" "}
-              <a href="#referrals">one of my referral links</a> or{" "}
+              If you want to support this project, you can{" "}
               <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>
             </span>
           </p>
