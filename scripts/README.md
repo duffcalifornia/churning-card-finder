@@ -128,10 +128,12 @@ GitHub's runner IPs are a different profile from a home connection, so watch the
 ## Watching Frequent Miler's valuations for changes
 `python3 scripts/check_rrv.py` (one polite request) checks whether
 [Frequent Miler's Reasonable Redemption Values page](https://frequentmiler.com/reasonable-redemption-values-rrvs/)
-— the source for `data/valuations.json` — has moved since it was last saved, using the article's `dateModified` and a
-hash of its tables' text; either one differing counts as changed. State lives in `cardfinder/rrv_check_state.json`.
+— the source for `data/valuations.json` — has moved since it was last saved, using a hash of its tables' text. A `dateModified` bump with identical tables is
+only noted, not flagged. State lives in `cardfinder/rrv_check_state.json`; the table rows are kept in
+`cardfinder/rrv_check_rows.txt` so a flagged change prints exactly which rows moved. A given change is flagged once
+(the state records `flagged_hash`); later runs exit `0` until you `--ack`. A failed fetch is retried 3 times first.
 
-Exit codes, meant for a daily cron job: `0` nothing needs attention, `1` the page changed (compare it to
+Exit codes, meant for a daily cron job: `0` nothing needs attention, `1` the tables changed (compare it to
 `data/valuations.json` by hand, then rerun with `--ack` to accept the new baseline), `2` the page could not be read
 (never reported as "unchanged"). See the script's own `--help` for a sample crontab line.
 
@@ -177,5 +179,5 @@ erroring or circuit-breaking repeatedly, pause it in `cardfinder/registry.py` (`
 Amex is paused now, rather than letting the daily job keep hammering it.
 
 `.github/workflows/check-rrv.yml` runs the RRV checker above once a day too: it commits the updated baseline when
-there's nothing to flag, and fails the job when the page changed or couldn't be read. Re-run it by hand with the
+there's nothing to flag, and fails the job (once per change) when the tables changed or the page couldn't be read. Re-run it by hand with the
 `ack` input set to `true` once you've compared a change to `data/valuations.json`.

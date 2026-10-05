@@ -65,10 +65,22 @@ class Decide(unittest.TestCase):
         outcome, code = decide(prev, RrvSnapshot(date_modified="2026-09-02", values_hash="xyz", value_count=30, readable=True))
         self.assertEqual((outcome, code), ("changed", 1))
 
-    def test_a_different_date_alone_is_also_changed(self):
+    def test_a_different_date_alone_is_noted_but_does_not_fail(self):
         from cardfinder.rrv_check import RrvSnapshot
         prev = {"date_modified": "2026-09-02", "values_hash": "abc"}
         outcome, code = decide(prev, RrvSnapshot(date_modified="2026-09-03", values_hash="abc", value_count=30, readable=True))
+        self.assertEqual((outcome, code), ("date_only", 0))
+
+    def test_a_change_already_flagged_does_not_fail_again(self):
+        from cardfinder.rrv_check import RrvSnapshot
+        prev = {"date_modified": "2026-09-02", "values_hash": "abc", "flagged_hash": "xyz"}
+        outcome, code = decide(prev, RrvSnapshot(date_modified="2026-09-02", values_hash="xyz", value_count=30, readable=True))
+        self.assertEqual((outcome, code), ("already_flagged", 0))
+
+    def test_a_further_change_after_a_flag_is_flagged_again(self):
+        from cardfinder.rrv_check import RrvSnapshot
+        prev = {"date_modified": "2026-09-02", "values_hash": "abc", "flagged_hash": "xyz"}
+        outcome, code = decide(prev, RrvSnapshot(date_modified="2026-09-02", values_hash="new", value_count=30, readable=True))
         self.assertEqual((outcome, code), ("changed", 1))
 
     def test_an_unreadable_page_is_its_own_outcome_never_reported_as_unchanged(self):
@@ -76,6 +88,24 @@ class Decide(unittest.TestCase):
         prev = {"date_modified": "2026-09-02", "values_hash": "abc"}
         outcome, code = decide(prev, RrvSnapshot(date_modified=None, values_hash=None, value_count=0, readable=False))
         self.assertEqual((outcome, code), ("unreadable", 2))
+
+
+class DiffRows(unittest.TestCase):
+    def test_rows_are_read_one_per_tr_and_only_changed_rows_are_diffed(self):
+        from cardfinder.rrv_check import diff_rows
+        html = lambda v: f"<table><tr><td>Avios</td><td>{v}</td></tr><tr><td>Hyatt</td><td>2.0</td></tr></table>" * 15
+        old = read_rrv_snapshot(page(tables=html("1.5"))).rows
+        new = read_rrv_snapshot(page(tables=html("1.6"))).rows
+        self.assertEqual(old[0], "Avios 1.5")
+        self.assertIn("-Avios 1.5", diff_rows(old, new))
+        self.assertIn("+Avios 1.6", diff_rows(old, new))
+        self.assertNotIn("-Hyatt 2.0", diff_rows(old, new))
+
+    def test_a_long_diff_is_capped(self):
+        from cardfinder.rrv_check import diff_rows
+        out = diff_rows([f"a{i}" for i in range(200)], [f"b{i}" for i in range(200)], limit=10)
+        self.assertEqual(len(out), 11)
+        self.assertIn("more changed rows", out[-1])
 
 
 class StateFileRoundTrip(unittest.TestCase):
@@ -154,11 +184,15 @@ class AckWritesTheChangelogTests(unittest.TestCase):
             "VALUES_SNAPSHOT_PATH": check_rrv.VALUES_SNAPSHOT_PATH,
             "VALUATIONS_PATH": check_rrv.VALUATIONS_PATH,
             "CHANGELOG_PATH": check_rrv.CHANGELOG_PATH,
+            "ROWS_PATH": check_rrv.ROWS_PATH,
         }
         check_rrv.STATE_PATH = _mktemp()
         check_rrv.VALUES_SNAPSHOT_PATH = _mktemp()
         check_rrv.VALUATIONS_PATH = _mktemp()
         check_rrv.CHANGELOG_PATH = _mktemp()
+        check_rrv.ROWS_PATH = _mktemp()
+        with open(check_rrv.ROWS_PATH, "w") as f:
+            f.write("British Airways Executive Club Avios 1.1 cents\n")
 
         # An old baseline that will look "changed" against NEW_HTML's dateModified/table text.
         with open(check_rrv.STATE_PATH, "w") as f:
@@ -207,6 +241,22 @@ class AckWritesTheChangelogTests(unittest.TestCase):
 
         snapshot = json.load(open(self.check_rrv.VALUES_SNAPSHOT_PATH))
         self.assertEqual(snapshot, {"avios": 1.2, "cash": 1})  # snapshot now matches valuations.json for next time
+
+    def test_a_change_fails_once_with_the_changed_rows_then_stays_green_until_acked(self):
+        import contextlib
+        import io
+
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            first = self.check_rrv.main([])
+        self.assertEqual(first, 1)
+        self.assertIn("-British Airways Executive Club Avios 1.1 cents", out.getvalue())
+        self.assertIn("+British Airways Executive Club Avios 1.2 cents", out.getvalue())
+
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(self.check_rrv.main([]), 0)  # same page again: already flagged, not failed again
+            self.assertEqual(self.check_rrv.main(["--ack"]), 0)
+            self.assertEqual(self.check_rrv.main([]), 0)  # acked: now the baseline
 
     def test_ack_when_nothing_in_valuations_json_actually_changed_logs_nothing(self):
         import json

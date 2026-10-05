@@ -4,10 +4,12 @@ name: Check Frequent Miler RRVs
 # (the source for data/valuations.json), compared against the saved baseline in
 # scripts/cardfinder/rrv_check_state.json. See scripts/README.md for what the check itself does.
 #
-# If the page changed (or could not be read), this job fails on purpose so GitHub's own notification for a failed
-# scheduled workflow reaches whoever watches this repo — no extra secrets or services needed. It keeps failing every
-# day until someone compares the change to data/valuations.json and re-runs this workflow by hand with "ack" set to
-# true, which accepts the current page as the new baseline.
+# If the RRV tables changed (or the page could not be read), this job fails on purpose so GitHub's own notification
+# for a failed scheduled workflow reaches whoever watches this repo — no extra secrets or services needed. A given
+# table change fails once, with the changed rows printed in the log; later runs stay green (and say so) until
+# someone compares the change to data/valuations.json and re-runs this workflow by hand with "ack" set to true,
+# which accepts the current page as the new baseline. A dateModified bump with identical tables does not fail it,
+# and a fetch that fails is retried before it counts.
 #
 # "ack" also diffs data/valuations.json's cents-per-point values against scripts/cardfinder/last_known_values.json
 # (a snapshot as of the last ack) and, for whichever points programs actually moved, adds one line to CHANGELOG.md:
@@ -52,7 +54,7 @@ jobs:
 
       - name: Commit the updated baseline, if it changed
         run: |
-          files="scripts/cardfinder/rrv_check_state.json scripts/cardfinder/last_known_values.json CHANGELOG.md"
+          files="scripts/cardfinder/rrv_check_state.json scripts/cardfinder/rrv_check_rows.txt scripts/cardfinder/last_known_values.json CHANGELOG.md"
           if ! git diff --quiet -- $files; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
