@@ -108,7 +108,7 @@ describe("rankForPreset: bonus focus", () => {
   });
 });
 
-describe("rankForPreset: cash-back columns value Ultimate Rewards at its cash rate", () => {
+describe("rankForPreset: cash-back columns value Ultimate Rewards and Citi ThankYou at their cash rate", () => {
   const cppOf = (id: string, focus: "cashback" | "travel") => {
     const entry = rankForPreset(preset("under", focus), data, "raw").find((e) => e.cardId === id)!;
     const points = byId(id).welcomeBonus!.points!;
@@ -127,6 +127,16 @@ describe("rankForPreset: cash-back columns value Ultimate Rewards at its cash ra
     // Chase Freedom Unlimited earns Ultimate Rewards but doesn't unlock it, and this hypothetical player holds
     // nothing, so it was already at the cash rate before this change - it should stay there, unaffected.
     expect(cppOf("chase-freedom-unlimited", "cashback")).toBeCloseTo(1.0);
+  });
+
+  it("values Citi's ThankYou-unlocking cards at 1 cent per point on the cash-back column, 1.5 on travel", () => {
+    const citi = ["citi-strata", "citi-strata-elite", "citi-strata-premier"];
+    const priced = (focus: "cashback" | "travel") =>
+      citi.filter((id) => rankForPreset(preset("under", focus), data, "raw").some((e) => e.cardId === id));
+    expect(priced("cashback").length).toBeGreaterThan(0);
+    expect(priced("travel").length).toBeGreaterThan(0);
+    for (const id of priced("cashback")) expect(cppOf(id, "cashback"), id).toBeCloseTo(1.0);
+    for (const id of priced("travel")) expect(cppOf(id, "travel"), id).toBeCloseTo(1.5);
   });
 
   it("leaves Amex Membership Rewards alone: its cash-out depends on cards this hypothetical can't model", () => {

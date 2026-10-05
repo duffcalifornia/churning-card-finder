@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-05
+- The Signup Offer Cheat Sheet's cash back views now value Citi ThankYou Points at their 1 cent cash-out rate for the Citi Strata cards, instead of the 1.5 cent travel rate. The travel views are unchanged.
+
 ## 2026-10-02
 - Updated the bonus offer for the following card(s): United Business Card, United Club Business Card, United Club Infinite Card, United Explorer Card, United Gateway Card, and United Quest Card.
 
