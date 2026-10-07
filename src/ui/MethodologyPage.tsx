@@ -18,7 +18,7 @@ export function MethodologyPage() {
         Each card issuer has its own rules about which cards you can be approved for, and when. You don't need to know those
         rules: this site looks at the cards you've already had, works out which cards you're currently eligible for, and
         ranks the eligible ones by the value of their welcome bonus. If you tell it you're targeting a specific points
-        program, cards whose points end up in that program are moved to the top of the list, even if another card is objectively worth more.
+        program, cards whose points end up in that program are moved to the top of the list, even if another card is objectively worth more. These rankings only consider the value of the welcome bonus. If you're looking for a credit card for some other reason, such as building credit or having a low interest rate, this site won't help you. Please use credit cards responsibly.
       </p>
 
       <h3>How a bonus is valued</h3>
