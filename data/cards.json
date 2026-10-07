@@ -3950,6 +3950,32 @@
   "verifiedOn": "2026-10-06"
  },
  {
+  "id": "barclays-jetblue-business",
+  "name": "JetBlue Business Card",
+  "issuer": "barclays",
+  "kind": "business",
+  "recommendable": true,
+  "annualFee": 99.0,
+  "reportsToPersonal": false,
+  "currency": "jetblue-trueblue",
+  "coBrandedProgram": "jetblue-trueblue",
+  "bonusTypes": [
+   "airline"
+  ],
+  "welcomeBonus": {
+   "points": 50000.0
+  },
+  "typicalMinSpend": {
+   "amount": 4000.0,
+   "months": 3
+  },
+  "bonusRules": {
+   "blockedWhileHeld": true
+  },
+  "sourceUrl": "https://cards.barclaycardus.com/banking/cards/jetblue-business-card",
+  "verifiedOn": "2026-10-07"
+ },
+ {
   "id": "chase-ritz-carlton",
   "name": "Chase Ritz-Carlton Rewards Credit Card",
   "issuer": "chase",

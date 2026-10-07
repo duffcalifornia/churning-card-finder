@@ -1,1 +1,10 @@
-{}
+{
+ "barclays-jetblue-business": {
+  "issuer": "barclays",
+  "name": "JetBlue Business Card",
+  "kind": "business",
+  "url": "https://cards.barclaycardus.com/banking/cards/jetblue-business-card",
+  "added": "2026-10-07",
+  "currency": "jetblue-trueblue"
+ }
+}

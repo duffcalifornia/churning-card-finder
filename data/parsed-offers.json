@@ -3309,5 +3309,27 @@
    "displayedAsCash": null
   },
   "needsReview": false
+ },
+ {
+  "cardId": "barclays-jetblue-business",
+  "name": "JetBlue Business Card",
+  "issuer": "barclays",
+  "cardKind": "business",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn 50,000 bonus points after spending $4,000 on purchases and paying the annual fee in full, both within the first 90 days",
+  "seenOn": "2026-10-07",
+  "parsed": {
+   "kind": "standard",
+   "points": 50000.0,
+   "cashBack": null,
+   "freeNightAwards": 0,
+   "minSpend": 4000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
  }
 ]
