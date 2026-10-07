@@ -44,22 +44,22 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
 | Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | yes |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | yes |  |
+| Blue Cash Preferred Card | - | $250 | - | $3,000 | 6 | - | - |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
-| Delta SkyMiles Gold American Express Card | 80,000 | $250 | - | $3,000 | 6 | - | yes |  |
-| Delta SkyMiles Platinum American Express Card | 90,000 | $300 | - | $4,000 | 6 | - | yes |  |
+| Delta SkyMiles Gold American Express Card | 80,000 | - | - | $3,000 | 6 | - | yes |  |
+| Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $4,000 | 6 | - | yes |  |
 | Delta SkyMiles Reserve American Express Card | 50,000 | - | - | $10,000 | 6 | - | - |  |
 | Hilton Honors American Express Card | 70,000 | - | 1 | $2,000 | 6 | - | - |  |
 | Hilton Honors American Express Surpass Card | 130,000 | - | 1 | $3,000 | 6 | - | - |  |
 | Hilton Honors American Express Aspire Card | 200,000 | - | - | $6,000 | 6 | - | - |  |
-| Marriott Bonvoy Bevy American Express Card | 125,000 | $150 | - | $5,000 | 6 | - | - |  |
-| Marriott Bonvoy Brilliant American Express Card | 150,000 | $250 | - | $6,000 | 6 | - | - |  |
+| Marriott Bonvoy Bevy American Express Card | 85,000 | - | - | $5,000 | 6 | - | - |  |
+| Marriott Bonvoy Brilliant American Express Card | 100,000 | - | - | $6,000 | 6 | - | - |  |
 | American Express Business Gold Card | 200,000 | - | - | $15,000 | 3 | - | yes |  |
 | Business Platinum Card | 300,000 | - | - | $20,000 | 3 | - | yes |  |
 | Business Green Rewards Card | 15,000 | - | - | $3,000 | 3 | - | - |  |
 | Blue Business Plus Credit Card | 15,000 | - | - | $3,000 | 3 | - | - |  |
 | Blue Business Cash Card | - | $250 | - | $3,000 | 3 | - | - |  |
-| Graphite Business Cash Unlimited Card | - | $2,000 | - | $50,000 | 6 | - | - |  |
+| Graphite Business Cash Unlimited Card | - | $1,500 | - | $50,000 | 6 | - | - |  |
 | Hilton Honors American Express Business Card | 150,000 | - | 1 | $8,000 | 6 | - | - |  |
 | Delta SkyMiles Gold Business American Express Card | 90,000 | - | - | $6,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 90,000; please check |
 | Delta SkyMiles Platinum Business American Express Card | 100,000 | - | - | $8,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 100,000; please check |
@@ -114,7 +114,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Wyndham Rewards Earner Business Card | 45,000 | - | - | $3,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
 | Frontier Airlines World Mastercard | 50,000 | - | - | $500 | 3 | - | - |  |
 | Breeze Airways Card | 40,000 | - | - | $1,000 | 3 | - | - |  |
-| Emirates Skywards Premium World Elite Mastercard | 70,000 | - | - | $3,000 | 3 | - | - |  |
+| Emirates Skywards Premium World Elite Mastercard | 50,000 | - | - | $3,000 | 3 | - | - |  |
 | Emirates Skywards Rewards World Elite Mastercard | 40,000 | - | - | $3,000 | 3 | - | - |  |
 | Lufthansa Miles & More World Elite Mastercard | 70,000 | - | - | $4,000 | 3 | - | - |  |
 | AARP Essential Rewards Mastercard | - | $100 | - | $500 | 3 | - | - |  |
