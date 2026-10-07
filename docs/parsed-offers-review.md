@@ -140,6 +140,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Morgan Stanley Blue Cash Preferred American Express Card | - | $250 | - | $3,000 | 6 | - | - |  |
 | Morgan Stanley Platinum American Express Card | 80,000 | - | - | $12,000 | 6 | - | - |  |
 | JetBlue Business Card | 50,000 | - | - | $4,000 | 3 | - | - |  |
+| AT&T Points Plus Card | - | $200 | - | $1,000 | 3 | - | - |  |
 
 ## Cards with no welcome offer, confirmed by the site owner (27)
 

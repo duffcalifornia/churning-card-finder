@@ -3323,5 +3323,27 @@
    "displayedAsCash": null
   },
   "needsReview": false
+ },
+ {
+  "cardId": "citi-citi-att-pointsplus",
+  "name": "AT&T Points Plus Card",
+  "issuer": "citi",
+  "cardKind": "personal",
+  "hasWelcomeOffer": true,
+  "sourceText": "Earn a $200 statement credit 2 after $1,000 in purchases in the first 3 months",
+  "seenOn": "2026-10-07",
+  "parsed": {
+   "kind": "standard",
+   "points": null,
+   "cashBack": 200.0,
+   "freeNightAwards": 0,
+   "minSpend": 1000.0,
+   "windowMonths": 3,
+   "additionalTiers": [],
+   "ceiling": false,
+   "notes": [],
+   "displayedAsCash": null
+  },
+  "needsReview": false
  }
 ]

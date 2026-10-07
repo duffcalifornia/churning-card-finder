@@ -3971,6 +3971,32 @@
   "verifiedOn": "2026-10-07"
  },
  {
+  "id": "citi-citi-att-pointsplus",
+  "name": "AT&T Points Plus Card",
+  "issuer": "citi",
+  "kind": "personal",
+  "recommendable": true,
+  "annualFee": 0.0,
+  "reportsToPersonal": true,
+  "currency": "cash",
+  "bonusTypes": [
+   "cashback"
+  ],
+  "welcomeBonus": {
+   "cashBack": 200.0
+  },
+  "typicalMinSpend": {
+   "amount": 1000.0,
+   "months": 3
+  },
+  "bonusRules": {
+   "cooldownMonths": 48,
+   "cooldownBasis": "bonus"
+  },
+  "sourceUrl": "https://www.citi.com/credit-cards/citi-att-pointsplus-credit-card",
+  "verifiedOn": "2026-10-07"
+ },
+ {
   "id": "chase-ritz-carlton",
   "name": "Chase Ritz-Carlton Rewards Credit Card",
   "issuer": "chase",

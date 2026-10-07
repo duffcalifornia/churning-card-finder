@@ -6,5 +6,12 @@
   "url": "https://cards.barclaycardus.com/banking/cards/jetblue-business-card",
   "added": "2026-10-07",
   "currency": "jetblue-trueblue"
+ },
+ "citi-citi-att-pointsplus": {
+  "issuer": "citi",
+  "name": "AT&T Points Plus Card",
+  "kind": "personal",
+  "url": "https://www.citi.com/credit-cards/citi-att-pointsplus-credit-card",
+  "added": "2026-10-07"
  }
 }
