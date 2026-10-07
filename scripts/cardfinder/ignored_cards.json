@@ -30,5 +30,9 @@
  "https://www.capitalone.com/credit-cards/platinum-secured": {
   "name": "Platinum Secured Credit Card from Capital One",
   "date": "2026-10-07"
+ },
+ "https://www.citi.com/credit-cards/home-depot-pro-xtra-credit-card": {
+  "name": "Pro Xtra Credit Card",
+  "date": "2026-10-07"
  }
 }
