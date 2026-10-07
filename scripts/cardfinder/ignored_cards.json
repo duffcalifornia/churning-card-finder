@@ -26,5 +26,9 @@
  "https://www.capitalone.com/credit-cards/quicksilver-student": {
   "name": "Quicksilver Student Credit Card",
   "date": "2026-10-07"
+ },
+ "https://www.capitalone.com/credit-cards/platinum-secured": {
+  "name": "Platinum Secured Credit Card from Capital One",
+  "date": "2026-10-07"
  }
 }
