@@ -1,11 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
 ## 2026-10-07
-<<<<<<< Updated upstream
 - Added the following card(s): JetBlue Business Card.
-=======
 - The Signup Offer Cheat Sheet's four pages now load correctly when opened directly from a link or search result (they previously showed a blank page), include the date card offers were last reviewed, and are readable by search engines and link previews. Added a proper preview image for shared links and a sitemap that records when the data last changed.
->>>>>>> Stashed changes
 
 ## 2026-10-05
 - The Signup Offer Cheat Sheet's cash back views now value Citi ThankYou Points at their 1 cent cash-out rate for the Citi Strata cards, instead of the 1.5 cent travel rate. The travel views are unchanged.
