@@ -18,5 +18,9 @@
  "https://creditcards.wellsfargo.com/one-key-plus-credit-card": {
   "name": "One Key+ trademark Card",
   "date": "2026-10-07"
+ },
+ "https://creditcards.wellsfargo.com/one-key-credit-card": {
+  "name": "One Key trademark Card",
+  "date": "2026-10-07"
  }
 }
