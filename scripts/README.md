@@ -1,8 +1,9 @@
 # Card offer checker (maintainer tool)
 
-> **AMEX IS PAUSED (2026-09-20).** Automated reads of americanexpress.com are currently being blocked. The tool
-> skips Amex unless run with `--include-paused`. **Do not do that until the owner confirms access is working
-> again.** See `docs/TODO.md` for what to do when revisiting.
+> **Amex was paused 2026-09-20 to 2026-10-07** after americanexpress.com started returning "Loading Error" pages
+> to automated visits. The owner lifted the pause on 2026-10-07 (a test read of four cards worked). If it starts
+> blocking again, set `paused=...` on the Amex entry in `cardfinder/registry.py`; every tool then skips it unless run
+> with `--include-paused`.
 
 Reads each tracked card's welcome offer and annual fee from the issuer's own public pages. Not part of the
 website, and it never edits the catalog: you review the report and update the catalog by hand.
@@ -69,7 +70,7 @@ a known, discontinued, ignored or recently rejected page. Each candidate page is
 page: a singular "Card" in its heading (category pages say "Cards" or "Offers"), a card we do not already have, and a
 readable annual fee. At most 8 pages per issuer per run are fetched, and a page judged "not a card" is not re-checked for
 30 days (`cardfinder/candidate_rejects.json`). An issuer that served error pages, or was cut off by the circuit breaker, is
-not scanned that day. Amex stays untouched while paused.
+not scanned that day. A paused issuer (none right now) stays untouched.
 
 Nothing is added to the site automatically. `report_new_cards.py` opens one issue per candidate ("New card found: X", label
 `card-new`, at most 5 per run) showing the offer and fee it read and what the site would count. Reply, from the GitHub mobile
@@ -149,7 +150,7 @@ parses or guesses values off the RRV page, only whether the page looks different
 `last_known_fee_waived.json`, and then rebuilds `data/parsed-offers.json` and `data/cards.json` from them (as
 separate processes — see the comment in the script for why an in-process rebuild silently used stale data the
 first time this was built). A card that could not be read this run keeps its last known value; nothing is
-guessed. Amex is skipped by default, same as `card_offers.py`.
+guessed. A paused issuer (none right now) is skipped by default, same as `card_offers.py`.
 
 Any card whose offer text actually changed this run gets one line in `CHANGELOG.md`: "Updated the bonus offer for
 the following card(s): X." A card whose offer text was unchanged but whose annual fee (amount, or newly waived the
@@ -170,13 +171,14 @@ when a genuinely tracked card could not be read — which is also what an issuer
 likely block) looks like. One bad card does not hold back the rest: everything that did read successfully is
 still committed. It can also be triggered manually from the Actions tab at any time — worth knowing if you
 suspect an issuer is giving you trouble and want to check without waiting for the schedule, or with a longer
-`delay` — and its `include_paused` input can re-check Amex by hand, but only once you've actually confirmed the
-earlier block has cleared; the schedule itself never touches Amex.
+`delay` — and its `include_paused` input can re-check an issuer that is paused in the registry, but only once you've actually
+confirmed the block has cleared; the schedule never touches a paused issuer. Amex is included in the schedule
+again (see the top of this file).
 
 **A real risk worth knowing about:** this runs from GitHub's shared runner IPs, which carries a different
 detection profile than your own connection would. Watch the first several scheduled runs, and if an issuer starts
 erroring or circuit-breaking repeatedly, pause it in `cardfinder/registry.py` (`IssuerConfig.paused`) the same way
-Amex is paused now, rather than letting the daily job keep hammering it.
+Amex was paused before, rather than letting the daily job keep hammering it.
 
 `.github/workflows/check-rrv.yml` runs the RRV checker above once a day too: it commits the updated baseline when
 there's nothing to flag, and fails the job (once per change) when the tables changed or the page couldn't be read. Re-run it by hand with the

@@ -1,12 +1,18 @@
 # Revisit later
 
-## Amex (paused 2026-09-20)
-**Why:** Amex's product pages started returning "Loading Error" pages and became unreachable from this setup.
+## Amex (pause lifted 2026-10-07)
+**Status:** the owner lifted the pause on 2026-10-07 and the daily refresh now reads Amex again. A test read of four
+cards (Gold, Delta Gold, Business Gold, Delta Gold Business) from a home connection worked; GitHub's runner IPs are
+untested, so watch the first few scheduled runs and re-pause (`paused=` in `cardfinder/registry.py`) if they error.
+Still open: the Amex Marriott cards (Bevy, Brilliant, Business) are held back from the Marriott page comparison in
+`cardfinder/hotels.py` until Amex has been re-read.
+
+**Original reason for the pause (kept for history):** Amex's product pages started returning "Loading Error" pages and became unreachable from this setup.
 Reported by the owner, not independently verified.
 
-**Do not** request any Amex page until the owner confirms they can load americanexpress.com normally again.
+**If it blocks again:** pause it and request nothing until the owner confirms access.
 
-**When revisiting:**
+**How to revisit a block:**
 1. Confirm with the owner that the block has cleared.
 2. Run in small batches, one at a time, with a long delay, and stop at the first error page:
    `python3 scripts/card_offers.py --issuer amex --include-paused --card platinum --delay 8`

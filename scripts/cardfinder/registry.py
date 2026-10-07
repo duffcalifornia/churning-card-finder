@@ -23,8 +23,9 @@ ISSUERS = {
         sitemaps=[AMEX + "en-us-sitemap.xml"],
         listing_pages=[AMEX + "us/credit-cards/", AMEX + "us/credit-cards/business/business-credit-cards/"],
         variant_suffixes=["28810/"],
-        paused=("PAUSED 2026-09-20: automated reads of americanexpress.com are currently being blocked. Do not request "
-                "any Amex page until access is confirmed working again and the owner says so."),
+        # Was paused 2026-09-20 to 2026-10-07 (americanexpress.com returned "Loading Error" pages after heavy use);
+        # lifted by the site owner on 2026-10-07 after a test read of four cards worked. If it starts blocking again,
+        # set `paused="..."` here, as it was, rather than letting the daily job keep hammering it.
         render=True,  # offers are filled in by scripts; raw HTML carries stale numbers
         fee_near_name=True,  # pages also list other cards' fees; accept only a fee stated next to this card's name
     ),

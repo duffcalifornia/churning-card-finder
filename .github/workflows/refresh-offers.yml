@@ -16,9 +16,10 @@ name: Refresh card offers
 # whichever offer is better (scripts/cardfinder/choose.py). A hotel page that cannot be read never fails this job: its
 # cards simply keep the issuer's offer, and the run logs a warning annotation instead.
 #
-# Amex stays excluded (paused=... in scripts/cardfinder/registry.py) even here, unless run by hand with
-# "include_paused" set to true. That flag should only ever be used after confirming the earlier block has
-# actually cleared, not from this schedule.
+# An issuer paused in scripts/cardfinder/registry.py (paused=...) stays excluded even here, unless run by hand with
+# "include_paused" set to true; that flag should only be used after confirming the block has actually cleared. Amex
+# was paused until 2026-10-07 and is read by this schedule again. This runs from GitHub's shared runner IPs, which
+# americanexpress.com may treat differently from a home connection: if Amex starts failing here, re-pause it.
 #
 # The rebuilt data is verified against the Python test suite before anything is committed (2026-09-22: a fresh
 # read once produced a card with points and no known currency, which crashed data/cards.json's build outright —
