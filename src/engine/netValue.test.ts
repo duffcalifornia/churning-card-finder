@@ -75,6 +75,6 @@ describe("value of real cards", () => {
         n++;
       }
     }
-    expect(n).toBe(124); // was 123 before the IHG One Rewards Premier Select Credit Card was added, 2026-10-01 (122 before Barclays Hawaiian Airlines, 2026-09-23)
+    expect(n).toBe(125); // was 124 before the JetBlue Business Card was added, 2026-10-07 (123 before the IHG One Rewards Premier Select Credit Card, 2026-10-01; 122 before Barclays Hawaiian Airlines, 2026-09-23)
   });
 });
