@@ -23,7 +23,7 @@ export function MethodologyPage() {
 
       <h3>How a bonus is valued</h3>
       <p>
-        A card's bonus value is its points times a cents-per-point value, plus any cash back or statement credit, plus any
+        A card's bonus value the number of points awarded multiplied by a cents-per-point value, plus any cash back or statement credit that doesn't require spending in a specific category, plus any
         free night certificates, added together. Points are valued using{" "}
         <a href={FM_RRV} target="_blank" rel="noreferrer">Frequent Miler's Reasonable Redemption Values</a>, which the site
         treats as the definitive source; free night certificates use Frequent Miler's own discounted values for them too.
