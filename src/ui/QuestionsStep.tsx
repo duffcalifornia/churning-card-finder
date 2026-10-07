@@ -67,7 +67,7 @@ export function QuestionsStep({ profile, onChange }: Props) {
                   </label>
                 ))}
               </div>
-              <p className="note">Leave all boxes empty if none.</p>
+              <p className="note">Leave all boxes empty if none. You can also check one of these boxes if you wish to not be shown cards from a specific issuer for any other reason, such as having recently opened a card with that issuer.</p>
             </fieldset>
 
             <YesNo label="Are you banned from earning American Airlines AAdvantage miles?" value={p.bannedFromAA} onChange={(v) => update(i, { bannedFromAA: v })} />
