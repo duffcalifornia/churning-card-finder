@@ -5,6 +5,7 @@ import { engineData } from "../data/engineData";
 import { CardItem } from "./CardItem";
 import { RankBySelector } from "./RankBySelector";
 import { cheatSheetPresetPath, seoForPreset } from "./cheatSheetSeo";
+import { formatDate, oldestVerifiedOn } from "./staleness";
 import { useSeo } from "./useSeo";
 
 interface Props {
@@ -36,6 +37,8 @@ export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder, selectedP
   const seo = seoForPreset(preset.id);
   useSeo(seo.title, seo.description, `https://www.whichcreditcardshouldiget.com${cheatSheetPresetPath(preset.id)}`);
 
+  const lastReviewed = oldestVerifiedOn(engineData.catalog);
+
   const allEntries = useMemo(() => rankForPreset(preset, engineData, rankBy), [preset, rankBy]);
   const entries = useMemo(
     () =>
@@ -54,6 +57,8 @@ export function CheatSheetPage({ rankBy, onRankByChange, onGoToFinder, selectedP
         personalized list based on your actual card history,{" "}
         <button type="button" className="linklike" onClick={onGoToFinder}>use the Card Finder</button>.
       </p>
+
+      {lastReviewed && <p className="note">Card offers and fees last reviewed on {formatDate(lastReviewed)}.</p>}
 
       <RankBySelector rankBy={rankBy} onChange={onRankByChange} />
 

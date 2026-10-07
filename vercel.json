@@ -11,7 +11,29 @@
     }
   ],
   "rewrites": [
-    { "source": "/cheatsheet", "destination": "/index.html" },
-    { "source": "/cheatsheet/:preset", "destination": "/index.html" }
+    {
+      "source": "/cheatsheet",
+      "destination": "/cheatsheet/under-cashback.html"
+    },
+    {
+      "source": "/cheatsheet/under-cashback",
+      "destination": "/cheatsheet/under-cashback.html"
+    },
+    {
+      "source": "/cheatsheet/under-travel",
+      "destination": "/cheatsheet/under-travel.html"
+    },
+    {
+      "source": "/cheatsheet/over-cashback",
+      "destination": "/cheatsheet/over-cashback.html"
+    },
+    {
+      "source": "/cheatsheet/over-travel",
+      "destination": "/cheatsheet/over-travel.html"
+    },
+    {
+      "source": "/cheatsheet/:preset",
+      "destination": "/cheatsheet/under-cashback.html"
+    }
   ]
 }
