@@ -306,7 +306,7 @@ export function App() {
             The information presented on this site does not constitute financial advice. Please use credit cards responsibly. Card offers and bank rules can change; check the issuer before you apply.{" "}
             <span className="footerlinks">
               If you want to support this project, you can{" "}
-              <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>
+              <a href={BMAC_URL} target="_blank" rel="noreferrer">buy me a coffee</a>. Built by <a href="https://reddit.com/user/duffcalifornia">/u/duffcalifornia</a>.
             </span>
           </p>
         </div>
