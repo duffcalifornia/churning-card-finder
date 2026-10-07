@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDate, oldestVerifiedOn } from "./staleness";
+import { formatDate, freshness, oldestVerifiedOn } from "./staleness";
 import type { Card } from "../engine/types";
 import cardsJson from "../../data/cards.json";
 import valuationsJson from "../../data/valuations.json";
@@ -56,5 +56,30 @@ describe("real valuations data has a verifiedOn to show alongside it", () => {
   it("formats cleanly", () => {
     const v = valuationsJson as unknown as { verifiedOn: string };
     expect(formatDate(v.verifiedOn)).not.toMatch(/undefined|NaN/);
+  });
+});
+
+describe("freshness", () => {
+  it("headlines the recent date and lists a stale issuer separately instead of dragging the date back", () => {
+    const catalog = [
+      card("a", { verifiedOn: "2026-10-06" }), card("b", { verifiedOn: "2026-10-07" }),
+      card("x1", { issuer: "amex", verifiedOn: "2026-09-22" }), card("x2", { issuer: "amex", verifiedOn: "2026-09-25" }),
+    ];
+    expect(freshness(catalog)).toEqual({ current: "2026-10-06", older: [{ issuer: "amex", date: "2026-09-22" }] });
+  });
+
+  it("has nothing listed separately when everything is within the grace window", () => {
+    const catalog = [card("a", { verifiedOn: "2026-10-04" }), card("b", { verifiedOn: "2026-10-07" })];
+    expect(freshness(catalog)).toEqual({ current: "2026-10-04", older: [] });
+  });
+
+  it("ignores unranked and non-recommendable cards, and handles an empty ranking", () => {
+    const catalog = [card("a", { recommendable: false }), card("b", { unrankedReason: "x" })];
+    expect(freshness(catalog)).toEqual({ current: null, older: [] });
+  });
+
+  it("works across a month boundary", () => {
+    const catalog = [card("a", { verifiedOn: "2026-11-01" }), card("b", { verifiedOn: "2026-10-30" })];
+    expect(freshness(catalog).older).toEqual([]);
   });
 });
