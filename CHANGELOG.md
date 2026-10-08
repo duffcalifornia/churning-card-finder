@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-08
+- Updated the bonus offer for the following card(s): Blue Cash Preferred Card and Graphite Business Cash Unlimited Card.
+
 ## 2026-10-07
 - Added the following card(s): JetBlue Business Card.
 - The Signup Offer Cheat Sheet's four pages now load correctly when opened directly from a link or search result (they previously showed a blank page), include the date card offers were last reviewed, and are readable by search engines and link previews. Added a proper preview image for shared links and a sitemap that records when the data last changed.
