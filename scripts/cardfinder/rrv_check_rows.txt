@@ -1,0 +1,73 @@
+Program Reasonable Redemption Value Source
+Chase Ultimate Rewards 1.5 With Chase&#8217;s Sapphire Reserve card, it used to be possible to redeem points for travel through Chase Travel℠ for 1.5 cents per point value. We always thought that was a reasonable use of points, even if you can often do better by transferring to airline miles or hotel points. Even though Chase no longer offers that fixed 1.5 cents per point value, we continue to use this as the standard by which we value other transferable points programs.
+Amex Membership Rewards 1.5 Amex is now effectively in a 3-way toss-up with Chase and Citi. It has more transfer partners and bonuses, but with worse lodging options.
+Bilt 1.55 Bilt offers most of the same valuable transfer partners that Chase offers, plus some great additions like Alaska Airlines and Avianca LifeMiles. For this reason, we set the Bilt RRV slightly higher than Chase&#8217;s.
+Citi ThankYou Rewards 1.5 Citi has better transfer partners than Capital One (EVA 1-1, LHW, Choice 1 to 2, I Prefer 1 to 4), so we set its RRV slightly higher.
+Capital One Miles 1.45 In our opinion, Capital One&#8217;s transfer partners offer slightly less chance of outsized value than Chase&#8217;s, and so we set Capital One&#8217;s RRV slightly lower.
+Rove 1.4 Rove has some interesting partners like Japan Airlines and SAS, but coverage for Star Alliance without surcharges is lacking.
+Wells Fargo 1.4 Wells Fargo only has a small handful of transfer partners at this time, so we set the RRV lower than the other programs.
+Program Reasonable Redemption Value Source
+Air Canada Aeroplan 1.4 See: What are Air Canada Aeroplan points worth?
+Air France KLM Flying Blue 1.3 See: A big change to Frequent Miler’s point values .
+American AAdvantage 1.4 See: What are AAdvantage Miles worth?
+Atmos Rewards (Alaska/Hawaiian) 1.5 See: What are Atmos Rewards points worth?
+Avianca LifeMiles 1.3 See: A big change to Frequent Miler’s point values .
+British Airways Avios 1.1 See: A big change to Frequent Miler’s point values .
+Cathay Pacific Asia Miles 1.1 See: A big change to Frequent Miler’s point values .
+Delta SkyMiles 1.1 See: What are Delta SkyMiles worth?
+Frontier Bonus Miles 1 See: A big change to Frequent Miler’s point values .
+JetBlue TrueBlue 1.3 See: What are JetBlue TrueBlue points worth?
+Korean SkyPass 1.3 See: A big change to Frequent Miler’s point values .
+Miles &amp; More (Lufthansa) 1.3 See: A big change to Frequent Miler’s point values .
+Qantas Frequent Flyer 1.3 See: What are Qantas Frequent Flyer points worth?
+Southwest Rapid Rewards 1.3 See: How much are Southwest Rapid Rewards points worth?
+United MileagePlus 1.3 See: What are United Mileage Plus miles worth?
+Virgin Atlantic Flying Club 1.5 See: What are Virgin Atlantic points worth?
+Program Reasonable Redemption Value Source
+ALL Accor 2 Euro cents Accor points are worth a fixed 2 Euro cents; the US$ value will depend on the current exchange rate
+Best Western Rewards 0.61 See: What are Best Western points worth? (7/25/24)
+Choice Privileges 0.75 See: What are Choice points worth? (2/26/26)
+Hilton Honors 0.35 See: What are Hilton points worth? (5/27/26)
+IHG One Rewards 0.59 See: What are IHG points worth? (5/7/26)
+Leading Hotels of the World Leaders Club 7.6 See: What are Leaders Club points worth? (9/7/26)
+Marriott Bonvoy 0.73 See: What are Marriott Bonvoy points worth? (7/23/26)
+One Key (Expedia, Hotels.com, VRBO) 0.9 Estimating value at 90% of face value
+Preferred Hotels &amp; Resorts I Prefer 0.49 See: What are Preferred Hotels (I Prefer) Points Worth? (8/31/26)
+Sonesta Travel Pass 1.06 See: What are Sonesta points worth? (6/27/24)
+World of Hyatt 1.5 See: What are Hyatt points worth? (6/23/26)
+Wyndham Rewards 0.57 See: What are Wyndham points worth? (10/5/26)
+Certificate Reasonable Redemption Value Calculations
+Hilton $521 175K points (even though some Hilton hotels charge more) multiplied by Hilton RRV ($0.0035) multiplied by a fudge factor (0.85).
+Hyatt Cat 1-4 $240 20K points (based on moderate pricing rather than low or upper) multiplied by Hyatt RRV ($0.015) multiplied by a fudge factor (0.8).
+Hyatt Cat 1-7 $420 35K points (based on moderate pricing rather than low or upper) multiplied by Hyatt RRV ($0.015) multiplied by a fudge factor (0.8).
+Hyatt Ultimate Free Night (6-month expiry) $578 55K points (based on moderate pricing rather than low or upper) multiplied by Hyatt RRV ($0.015) multiplied by a fudge factor (0.7).
+IHG 40K $201 40K points multiplied by IHG RRV ($0.0059) multiplied by a fudge factor (0.85)
+IHG 60K $248 60K points multiplied by IHG RRV ($0.0059) multiplied by a fudge factor (0.70)
+Marriott 35K $192 35K points multiplied by Marriott RRV ($0.0073) multiplied by a fudge factor (0.75)
+Marriott 40K $219 40K points multiplied by Marriott RRV ($0.0073) multiplied by a fudge factor (0.75)
+Marriott 50K $274 50K points multiplied by Marriott RRV ($0.0073) multiplied by a fudge factor (0.75)
+Marriott 85K $465 85K points multiplied by Marriott RRV ($0.0073) multiplied by a fudge factor (0.75)
+Program Reasonable Redemption Value Source
+Amtrak Guest Rewards 2.56 Points are worth up to 2.56 cents each on Acela trains and up to 2.9 cents each on other routes.
+Arrival+ Points 1 Even though there is a 5% rebate when you redeem points for travel, this estimate is based on the amount of travel you can buy with existing points, regardless of rebates.
+CNB Rewards 1.11 When you use points for airfare, they&#8217;re more valuable for more expensive flights. Point values range from 0.9 to 1.16 cents per point. Flights costing $300 offer about 1.11 cents per point value. See: The Exact Value of CNB Crystal Visa Infinite Points .
+FlexPerks 1.5 FlexPerks moved to a fixed 1.5 cents per point value as of 1/1/2018
+Merrill+ Points 1.44 Assumes using 25,000 points for a $360 flight
+PenFed Premium Travel Reward 0.85 How much are PenFed points worth?
+Uber Cash 0.9 Valued at 90% of face value since Uber gift cards are often available at a discount.
+Most other bank points 1 Most bank point programs let you redeem points for 1 cent each for gift cards or travel.
+Email: *
+Subscribe to: * Frequent Miler Newsletter (Weekly) Frequent Miler Notifications (Daily) Frequent Miler Notifications (Instant)
+Please enter all required fields Correct invalid entries
+Frequent Miler's Daily Emails
+Q4 (Oct-Dec) 2026
+Discover It: Restaurants | Entertainment | Utilities
+Freedom/ Freedom Flex: Dining | Grocery Stores (excludes Walmart &amp; Target) | American Red Cross
+&#8211; Southwest &#8211; What Are Points Worth?
+&#8211; American Airlines &#8211; Amex Membership Rewards
+&#8211; Delta &#8211; Capital One Miles
+&#8211; United &#8211; Chase Ultimate Rewards
+&#8211; Marriott &#8211; Citi ThankYou Rewards
+&#8211; Hyatt &#8211; Current Transfer Bonuses
+&#8211; Hilton &#8211; Transfer Partner Master List
+&#8211; IHG

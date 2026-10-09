@@ -1,7 +1,7 @@
 {
  "source": "https://frequentmiler.com/reasonable-redemption-values-rrvs/",
  "publisher": "Frequent Miler",
- "retrievedOn": "2026-09-20",
+ "retrievedOn": "2026-10-09",
  "note": "Reference only. These are Frequent Miler's published Reasonable Redemption Values, read through a summarizing fetch tool (verify against the page). The site's own valuations are set by the site owner in data/valuations.json. Individual values on the page carry their own dates (12/16/24 to 7/23/26).",
  "centsPerPoint": {
   "transferable": {
@@ -37,13 +37,13 @@
    "choice-privileges": 0.75,
    "hilton-honors": 0.35,
    "ihg-one-rewards": 0.59,
-   "leading-hotels-leaders-club": "about 8.0 (variable)",
+   "leading-hotels-leaders-club": 7.6,
    "marriott-bonvoy": 0.73,
    "one-key": 0.9,
-   "preferred-hotels-i-prefer": 0.5,
+   "preferred-hotels-i-prefer": 0.49,
    "sonesta-travel-pass": 1.06,
    "world-of-hyatt": 1.5,
-   "wyndham-rewards": 0.67
+   "wyndham-rewards": 0.57
   },
   "other": {
    "amtrak-guest-rewards": 2.56,

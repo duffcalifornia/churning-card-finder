@@ -37,13 +37,13 @@
     "choice-privileges": 0.75,
     "hilton-honors": 0.35,
     "ihg-one-rewards": 0.59,
-    "leading-hotels-leaders-club": 8.0,
+    "leading-hotels-leaders-club": 7.6,
     "marriott-bonvoy": 0.73,
     "one-key": 0.9,
-    "preferred-hotels-i-prefer": 0.5,
+    "preferred-hotels-i-prefer": 0.49,
     "sonesta-travel-pass": 1.06,
     "world-of-hyatt": 1.5,
-    "wyndham-rewards": 0.67,
+    "wyndham-rewards": 0.57,
     "amtrak-guest-rewards": 2.56,
     "arrival-plus": 1.0,
     "cnb-rewards": 1.11,
@@ -70,8 +70,8 @@
     "ultimate-rewards": "withUnlocker = travel redemption (needs a Sapphire or Ink Preferred to transfer); withoutUnlocker = cash redemption, 1.0 cent.",
     "citi-thankyou": "withoutUnlocker is the cash-out value, 1.0 cent (site owner). Transfers need a Strata Elite or Strata Premier.",
     "capital-one-miles": "withoutUnlocker is the cash-out value, 1.0 cent (site owner). Transfers need a miles-earning card.",
-    "leading-hotels-leaders-club": "Frequent Miler lists about 8.0 and calls it variable.",
+    "leading-hotels-leaders-club": "Frequent Miler lists 7.6 (updated 9/7/26).",
     "all-accor": "Not included: Frequent Miler gives 2.0 euro cents, not a US-dollar value."
   },
-  "verifiedOn": "2026-09-20"
+  "verifiedOn": "2026-10-09"
 }

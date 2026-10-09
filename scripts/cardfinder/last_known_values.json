@@ -30,13 +30,13 @@
  "ihg-one-rewards": 0.59,
  "jetblue-trueblue": 1.3,
  "korean-skypass": 1.3,
- "leading-hotels-leaders-club": 8.0,
+ "leading-hotels-leaders-club": 7.6,
  "marriott-bonvoy": 0.73,
  "merrill-plus": 1.44,
  "miles-and-more": 1.3,
  "one-key": 0.9,
  "penfed-premium-travel": 0.85,
- "preferred-hotels-i-prefer": 0.5,
+ "preferred-hotels-i-prefer": 0.49,
  "qantas-frequent-flyer": 1.3,
  "rove": 1.4,
  "sonesta-travel-pass": 1.06,
@@ -50,5 +50,5 @@
  "virgin-atlantic-flying-club": 1.5,
  "wells-fargo-rewards": 1.4,
  "world-of-hyatt": 1.5,
- "wyndham-rewards": 0.67
+ "wyndham-rewards": 0.57
 }
