@@ -54,13 +54,24 @@ jobs:
 
       - name: Commit the updated baseline, if it changed
         run: |
-          files="scripts/cardfinder/rrv_check_state.json scripts/cardfinder/rrv_check_rows.txt scripts/cardfinder/last_known_values.json CHANGELOG.md"
-          if ! git diff --quiet -- $files; then
+          # Only the files that exist: the rows file is created on the first unchanged run or ack, and `git add` on a
+          # missing path exits 128 (that is what failed the 2026-10-08 run). `git status` rather than `git diff`
+          # so a brand-new, untracked file counts as a change too.
+          files=""
+          for f in scripts/cardfinder/rrv_check_state.json scripts/cardfinder/rrv_check_rows.txt scripts/cardfinder/last_known_values.json CHANGELOG.md; do
+            [ -e "$f" ] && files="$files $f"
+          done
+          if [ -n "$(git status --porcelain -- $files)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add $files
+            git add -- $files
             git commit -m "check_rrv: update saved baseline"
-            git push
+            # The daily offer refresh also pushes to main; rebase onto it rather than failing on a rejected push.
+            for attempt in 1 2 3; do
+              git pull --rebase -q && git push && break
+              [ "$attempt" = 3 ] && exit 1
+              sleep 5
+            done
           fi
 
       - name: Fail the job if the page changed or could not be read
