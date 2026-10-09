@@ -146,6 +146,14 @@
               },
               "note": {
                 "type": "string"
+              },
+              "spendBasis": {
+                "type": "string",
+                "enum": ["more", "total", "merchant"],
+                "description": "more = spend on top of the first tier's; total = cumulative since opening (includes the first tier's); merchant = spend at one named merchant."
+              },
+              "merchant": {
+                "type": "string"
               }
             }
           }

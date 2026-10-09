@@ -195,6 +195,10 @@ export interface BonusTier {
   cashBack?: number;
   minSpend?: number;
   windowMonths?: number;
+  /** What minSpend means: "more" (on top of the first tier's spend, the default), "total" (cumulative since opening,
+   * already including the first tier's spend) or "merchant" (spend at the named merchant). */
+  spendBasis?: "more" | "total" | "merchant";
+  merchant?: string;
 }
 
 export interface WelcomeBonus {

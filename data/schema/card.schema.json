@@ -250,6 +250,15 @@
                   "null"
                 ],
                 "minimum": 1
+              },
+              "spendBasis": {
+                "type": "string",
+                "enum": ["more", "total", "merchant"],
+                "description": "What minSpend means: more = on top of the first tier's spend; total = cumulative since opening (already includes the first tier's); merchant = spend at the named merchant. Absent is read as more."
+              },
+              "merchant": {
+                "type": "string",
+                "description": "The merchant the spend must be at, when spendBasis is merchant."
               }
             }
           }

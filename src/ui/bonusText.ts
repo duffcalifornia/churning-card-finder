@@ -47,9 +47,18 @@ export function describeBonus(card: Card, currencies: Currency[], programs: Prog
     const unit = currencyName(card, currencies, programs);
     const first = tieredAmount(bonus, unit);
     const extra = tier.points ? n(tier.points) : tier.cashBack ? `$${n(tier.cashBack)}` : "";
-    const extraSpend = tier.minSpend !== undefined && tier.minSpend !== null ? `$${n(tier.minSpend)}` : "more";
     const extraWindow = tier.windowMonths ? ` in ${tier.windowMonths} months` : "";
-    const parts = [`Get ${first} after spending $${n(spend.amount)} in ${spend.months} months, then get an additional ${extra} after spending ${extraSpend} more${extraWindow}`];
+    // The second tier's spend reads three different ways depending on the issuer: "$1,000 more" (on top of the first
+    // tier's spend), "$20,000 in total" (cumulative since opening, so only $16,000 beyond the first tier's $4,000), or
+    // "$500 at Hotels by Wyndham" (a separate spend at one merchant). Saying "more" for all of them overstated the
+    // spend a person needs (Aeroplan's 115,000-mile bonus takes $20,000 in total, not $24,000).
+    const amount = tier.minSpend !== undefined && tier.minSpend !== null ? `$${n(tier.minSpend)}` : null;
+    let extraSpend: string;
+    if (amount === null) extraSpend = "more";
+    else if (tier.spendBasis === "total") extraSpend = `${amount} in total`;
+    else if (tier.spendBasis === "merchant" && tier.merchant) extraSpend = `${amount} at ${tier.merchant}`;
+    else extraSpend = `${amount} more`;
+    const parts = [`Get ${first} after spending $${n(spend.amount)} in ${spend.months} months, then get an additional ${extra} after spending ${extraSpend}${extraWindow}`];
     if (bonus.freeNights) parts.push(`${bonus.freeNights} free night award${bonus.freeNights === 1 ? "" : "s"}`);
     return parts;
   }

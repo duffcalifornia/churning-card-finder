@@ -147,7 +147,8 @@ def _welcome_bonus(parsed, fnc_values, card_id):
         b["freeNights"] = parsed["freeNightAwards"]
         b["otherValue"] = parsed["freeNightAwards"] * fnc_values[FREE_NIGHT_CERTIFICATE[card_id]]
     tiers = [{k: v for k, v in {"points": t["points"], "cashBack": t["cashBack"], "minSpend": t["minSpend"],
-                                "windowMonths": t["windowMonths"]}.items() if v is not None}
+                                "windowMonths": t["windowMonths"], "spendBasis": t.get("spendBasis"),
+                                "merchant": t.get("merchant") or None}.items() if v is not None}
              for t in parsed.get("additionalTiers") or []]
     if tiers:
         b["additionalTiers"] = tiers

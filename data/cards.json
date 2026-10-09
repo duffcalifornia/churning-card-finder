@@ -540,7 +540,8 @@
     {
      "points": 40000.0,
      "minSpend": 20000.0,
-     "windowMonths": 12
+     "windowMonths": 12,
+     "spendBasis": "total"
     }
    ]
   },
@@ -2932,7 +2933,8 @@
     {
      "points": 10000.0,
      "minSpend": 1000.0,
-     "windowMonths": 6
+     "windowMonths": 6,
+     "spendBasis": "more"
     }
    ]
   },
@@ -2965,7 +2967,9 @@
     {
      "points": 45000.0,
      "minSpend": 500.0,
-     "windowMonths": 6
+     "windowMonths": 6,
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ]
   },
@@ -2998,7 +3002,9 @@
     {
      "points": 55000.0,
      "minSpend": 500.0,
-     "windowMonths": 6
+     "windowMonths": 6,
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ]
   },
@@ -3031,7 +3037,9 @@
     {
      "points": 30000.0,
      "minSpend": 750.0,
-     "windowMonths": 6
+     "windowMonths": 6,
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ]
   },
@@ -3064,7 +3072,9 @@
     {
      "points": 55000.0,
      "minSpend": 500.0,
-     "windowMonths": 6
+     "windowMonths": 6,
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ]
   },

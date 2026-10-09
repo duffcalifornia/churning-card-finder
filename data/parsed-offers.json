@@ -441,7 +441,9 @@
      "cashBack": null,
      "minSpend": 20000.0,
      "windowMonths": 12,
-     "note": ""
+     "note": "spend is a total from account opening, not on top of the first tier's spend",
+     "spendBasis": "total",
+     "merchant": ""
     }
    ],
    "ceiling": false,
@@ -2431,7 +2433,9 @@
      "cashBack": null,
      "minSpend": 1000.0,
      "windowMonths": 6,
-     "note": ""
+     "note": "",
+     "spendBasis": "more",
+     "merchant": ""
     }
    ],
    "ceiling": false,
@@ -2461,7 +2465,9 @@
      "cashBack": null,
      "minSpend": 500.0,
      "windowMonths": 6,
-     "note": "the spend must be at a specific merchant"
+     "note": "the spend must be at a specific merchant",
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ],
    "ceiling": false,
@@ -2491,7 +2497,9 @@
      "cashBack": null,
      "minSpend": 500.0,
      "windowMonths": 6,
-     "note": "the spend must be at a specific merchant"
+     "note": "the spend must be at a specific merchant",
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ],
    "ceiling": false,
@@ -2521,7 +2529,9 @@
      "cashBack": null,
      "minSpend": 750.0,
      "windowMonths": 6,
-     "note": "the spend must be at a specific merchant"
+     "note": "the spend must be at a specific merchant",
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ],
    "ceiling": false,
@@ -2551,7 +2561,9 @@
      "cashBack": null,
      "minSpend": 500.0,
      "windowMonths": 6,
-     "note": "the spend must be at a specific merchant"
+     "note": "the spend must be at a specific merchant",
+     "spendBasis": "merchant",
+     "merchant": "Hotels by Wyndham"
     }
    ],
    "ceiling": false,

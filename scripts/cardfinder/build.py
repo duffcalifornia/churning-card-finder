@@ -5,7 +5,8 @@ _REVIEW_MARKERS = ("struck-through", "no spend requirement found", "no time wind
 
 
 def _tier(t):
-    return {"points": t.points, "cashBack": t.cash_back, "minSpend": t.min_spend, "windowMonths": t.window_months, "note": t.note}
+    return {"points": t.points, "cashBack": t.cash_back, "minSpend": t.min_spend, "windowMonths": t.window_months, "note": t.note,
+            "spendBasis": t.basis, "merchant": t.merchant}
 
 
 def build_parsed_offers(cards, last_known_offers, confirmed_none=frozenset(), reviewed=frozenset(),

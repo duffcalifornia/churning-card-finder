@@ -27,7 +27,7 @@ describe("describeBonus", () => {
     expect(text("amex-delta-gold")[0]).not.toContain("miles miles");
   });
   it("marks an 'as high as' offer with Up to, on the first amount only", () => {
-    expect(text("amex-delta-gold")).toEqual(["Up to 80,000 Delta SkyMiles", "$250 statement credit or cash back"]);
+    expect(text("amex-delta-gold")).toEqual(["Up to 80,000 Delta SkyMiles"]); // Amex's page dropped the $250 statement credit, 2026-10-08
     expect(text("amex-gold")[0]).toBe("Up to 100,000 Amex Membership Rewards points");
   });
   it("puts Up to on a cash-only ceiling offer", () => {
@@ -38,14 +38,19 @@ describe("describeBonus", () => {
     expect(text("amex-hilton-surpass")).toEqual(["130,000 Hilton Honors points", "1 free night award"]);
     expect(text("chase-marriott-boundless")).toEqual(["3 free night awards"]);
   });
-  it("phrases extra tiers the way the offer itself does", () => {
+  it("phrases a cumulative second tier as a total, not as spend on top of the first (Aeroplan needs $20,000, not $24,000)", () => {
     expect(text("chase-aeroplan")).toEqual([
-      "Get 75,000 Air Canada Aeroplan miles after spending $4,000 in 3 months, then get an additional 40,000 after spending $20,000 more in 12 months",
+      "Get 75,000 Air Canada Aeroplan miles after spending $4,000 in 3 months, then get an additional 40,000 after spending $20,000 in total in 12 months",
     ]);
   });
-  it("phrases a cash extra tier the same way", () => {
+  it("phrases a second tier that is spend at one merchant as exactly that", () => {
     expect(text("barclays-wyndham-earner")).toEqual([
-      "Get 30,000 Wyndham Rewards points after spending $1,000 in 3 months, then get an additional 45,000 after spending $500 more in 6 months",
+      "Get 30,000 Wyndham Rewards points after spending $1,000 in 3 months, then get an additional 45,000 after spending $500 at Hotels by Wyndham in 6 months",
+    ]);
+  });
+  it("keeps 'more' when the issuer's own wording says the second spend is on top of the first", () => {
+    expect(text("barclays-hawaiian")).toEqual([
+      "Get 60,000 Alaska Atmos Rewards miles after spending $1,000 in 3 months, then get an additional 10,000 after spending $1,000 more in 6 months",
     ]);
   });
   it("gives friendly names to currencies that are not in the currency or program lists", () => {

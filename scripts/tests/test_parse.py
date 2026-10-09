@@ -209,6 +209,19 @@ class TieredOffers(unittest.TestCase):
         self.assertEqual(len(p.additional_tiers), 1)
         t = p.additional_tiers[0]
         self.assertEqual((t.points, t.min_spend, t.window_months), (40000, 20000, 12))
+        self.assertEqual(t.basis, "total")  # $20,000 is the whole 12 months, which already includes the first $4,000
+
+    def test_an_explicit_more_means_on_top_of_the_first_tier(self):
+        p = parse_offer("Earn 60,000 bonus Atmos Rewards miles after spending $1,000 on purchases in the first 90 days and also earn "
+                        "10,000 bonus Atmos Rewards miles after spending $1,000 more on purchases in the first 180 days")
+        t = p.additional_tiers[0]
+        self.assertEqual((t.points, t.min_spend, t.window_months, t.basis), (10000, 1000, 6, "more"))
+
+    def test_spend_at_a_named_merchant_is_recorded_as_such(self):
+        p = parse_offer("Earn 30,000 bonus points after spending $1,000 on qualifying purchases in the first 90 days and also earn "
+                        "45,000 bonus points after spending $500 at Hotels by Wyndham in the first 180 days")
+        t = p.additional_tiers[0]
+        self.assertEqual((t.basis, t.merchant), ("merchant", "Hotels by Wyndham"))
 
     def test_wyndham_two_part_offer(self):
         p = parse_offer("Earn 45,000 bonus points after spending $1,000 on qualifying purchases in the first 90 days and also earn 55,000 bonus points after spending $500 at Hotels by Wyndham in the first 90 days")
@@ -223,6 +236,7 @@ class TieredOffers(unittest.TestCase):
         self.assertEqual(len(p.additional_tiers), 1)
         t = p.additional_tiers[0]
         self.assertEqual((t.points, t.min_spend, t.window_months), (20000, 10000, 6))
+        self.assertEqual(t.basis, "total")
 
 
 class NoFixedAmount(unittest.TestCase):

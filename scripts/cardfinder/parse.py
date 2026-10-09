@@ -35,6 +35,13 @@ class Tier:
     min_spend: Optional[float] = None
     window_months: Optional[int] = None
     note: str = ""
+    # What min_spend means for this tier, so the site can word it correctly:
+    #   "more"     - on top of the first tier's spend ("after spending $1,000 more")
+    #   "total"    - cumulative since account opening, which already includes the first tier's spend
+    #                (Chase's Aeroplan: "$4,000 in 3 months ... Plus, 40,000 after you spend $20,000 in the first 12 months")
+    #   "merchant" - spend at one named merchant, separate from the first tier's spend ("$500 at Hotels by Wyndham")
+    basis: str = "more"
+    merchant: str = ""
 
 
 @dataclass
@@ -126,7 +133,7 @@ def parse_offer(raw):
         tier_match, primary = None, text[:total_match.start()]
         tier = Tier(points=_n(total_match.group(4)), min_spend=_n(total_match.group(1)),
                     window_months=_months(total_match.group(2), total_match.group(3)),
-                    note="spend is a total from account opening, not on top of the first tier's spend")
+                    note="spend is a total from account opening, not on top of the first tier's spend", basis="total")
         out.additional_tiers.append(tier)
     else:
         primary = text[:tier_match.start()] if tier_match else text
@@ -135,8 +142,17 @@ def parse_offer(raw):
         w = _WINDOW[0].search(tail) or _WINDOW[1].search(tail)
         tier = Tier(points=_n(tier_match.group(1)), min_spend=_n(tier_match.group(2)),
                     window_months=_months(w.group(1), w.group(2)) if w else None)
-        if re.search(r"\bat\s+[A-Z]", tail):
+        merchant = re.search(r"\bat\s+([A-Z].*?)(?:\s+(?:in|within)\s+(?:the\s+|your\s+)?first\b|$)", tail)
+        if merchant:
             tier.note = "the spend must be at a specific merchant"
+            tier.basis, tier.merchant = "merchant", merchant.group(1).strip()
+        elif re.match(r"\s+more\b", tail, re.I):
+            tier.basis = "more"
+        else:
+            # No "more": the issuer states the spend as a figure for the whole window since opening, which already
+            # counts what was spent for the first tier (Chase's phrasing).
+            tier.basis = "total"
+            tier.note = "spend is a total from account opening, not on top of the first tier's spend"
         out.additional_tiers.append(tier)
 
     # points
