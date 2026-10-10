@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-10
+- Updated the bonus offer for the following card(s): Bilt Palladium Card, Blue Cash Everyday Card, and Blue Cash Preferred Card.
+
 ## 2026-10-09
 - Corrected how second spending requirements are described. The Air Canada Aeroplan Card's extra 40,000 miles take $20,000 in total over 12 months (not $20,000 more on top of the first $4,000), and the Wyndham Rewards Earner cards' second bonus is spend at Hotels by Wyndham.
 - Updated the rankings to reflect changes to the value of Leading Hotels Leaders Club, Preferred Hotels I Prefer, and Wyndham Rewards.

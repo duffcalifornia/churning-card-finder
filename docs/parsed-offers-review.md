@@ -43,8 +43,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Southwest Rapid Rewards Premier Business Credit Card | 80,000 | - | - | $3,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 80,000; please check |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
-| Blue Cash Everyday Card | - | $150 | - | $2,000 | 6 | - | - |  |
-| Blue Cash Preferred Card | - | $250 | - | $3,000 | 6 | - | - |  |
+| Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | - |  |
+| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | - |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
 | Delta SkyMiles Gold American Express Card | 80,000 | - | - | $3,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $4,000 | 6 | - | yes |  |
@@ -123,7 +123,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Discover it Chrome Gas & Restaurants Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Miles Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - |  |
-| Bilt Palladium Card | 50,000 | - | - | $4,000 | 3 | - | - |  |
+| Bilt Palladium Card | 50,000 | $300 | - | $4,000 | 3 | - | - |  |
 | Atmos Rewards Summit Visa Infinite Credit Card | 70,000 | - | - | $3,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
 | Air France KLM Visa Signature Credit Card | 50,000 | - | - | $2,000 | 3 | - | - |  |
 | Allways Rewards Visa Card | 30,000 | - | - | $1,500 | 3 | - | - |  |
