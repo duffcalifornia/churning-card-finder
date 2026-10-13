@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-13
+- Updated the bonus offer for the following card(s): Blue Business Cash Card, Blue Business Plus Credit Card, Blue Cash Everyday Card, and Graphite Business Cash Unlimited Card.
+
 ## 2026-10-11
 - Updated the bonus offer for the following card(s): Blue Cash Preferred Card.
 
