@@ -43,8 +43,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Southwest Rapid Rewards Premier Business Credit Card | 80,000 | - | - | $3,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 80,000; please check |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
-| Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | - |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | - |  |
+| Blue Cash Everyday Card | - | $150 | - | $2,000 | 6 | - | - |  |
+| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | yes |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
 | Delta SkyMiles Gold American Express Card | 80,000 | - | - | $3,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $4,000 | 6 | - | yes |  |
@@ -59,7 +59,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Business Green Rewards Card | 15,000 | - | - | $3,000 | 3 | - | - |  |
 | Blue Business Plus Credit Card | 50,000 | - | - | $5,000 | 3 | - | yes |  |
 | Blue Business Cash Card | - | $500 | - | $5,000 | 3 | - | yes |  |
-| Graphite Business Cash Unlimited Card | - | $1,500 | - | $50,000 | 6 | - | - |  |
+| Graphite Business Cash Unlimited Card | - | $2,000 | - | $50,000 | 6 | - | - |  |
 | Hilton Honors American Express Business Card | 150,000 | - | 1 | $8,000 | 6 | - | - |  |
 | Delta SkyMiles Gold Business American Express Card | 90,000 | - | - | $6,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 90,000; please check |
 | Delta SkyMiles Platinum Business American Express Card | 100,000 | - | - | $8,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 100,000; please check |
@@ -81,11 +81,11 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Savor Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - |  |
 | Spark Cash Select | - | $1,000 | - | $10,000 | 3 | - | - |  |
-| Venture X Business | 150,000 | - | - | $30,000 | 3 | - | - |  |
+| Venture X Business | - | - | - | $40 | - | - | - | REVIEW: no bonus amount recognised; read the offer text |
 | Wells Fargo Active Cash Card | - | $100 | - | $500 | 3 | - | - |  |
 | Wells Fargo Autograph Visa Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | Wells Fargo Autograph Journey Visa Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
-| Wells Fargo Choice Privileges Mastercard | 60,000 | - | - | $1,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 60,000; please check |
+| Wells Fargo Choice Privileges Mastercard | 40,000 | - | - | $1,000 | 3 | - | - |  |
 | Wells Fargo Signify Business Cash Card | - | $500 | - | $5,000 | 3 | - | - |  |
 | Bank of America Customized Cash Rewards Credit Card | - | $200 | - | $1,000 | 3 | - | - |  |
 | Bank of America Unlimited Cash Rewards Credit Card | - | $250 | - | $1,000 | 3 | - | - |  |
@@ -119,7 +119,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Lufthansa Miles & More World Elite Mastercard | 70,000 | - | - | $4,000 | 3 | - | - |  |
 | AARP Essential Rewards Mastercard | - | $100 | - | $500 | 3 | - | - |  |
 | Carnival Rewards Mastercard | 20,000 | - | - | $1,000 | 3 | - | - |  |
-| Discover it Cash Back Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
+| Discover it Cash Back Credit Card | - | $200 | - | $500 | 3 | - | - |  |
 | Discover it Chrome Gas & Restaurants Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Miles Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - |  |
