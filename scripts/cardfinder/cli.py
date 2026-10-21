@@ -1,6 +1,7 @@
 """Selecting cards, running checks and reporting results."""
 import dataclasses
 import json
+from concurrent.futures import ThreadPoolExecutor
 
 from .check import CardResult, check_card
 
@@ -83,6 +84,27 @@ def run(cards, issuers, http, rendered=None, on_result=None, all_cards=None):
         results.append(result)
         if on_result:
             on_result(result)
+    return flag_shared_pages(results)
+
+
+def run_by_issuer(cards, check_issuer, workers=4):
+    """Check each issuer's cards in its own thread: check_issuer(issuer, its cards) -> results, normally run() with
+    fetchers of that thread's own. Requests to any one issuer stay one at a time with the usual delay between them;
+    only different issuers overlap, so no issuer sees more traffic than a sequential run. Results come back in the
+    order of cards."""
+    groups = {}
+    for c in cards:
+        groups.setdefault(c.issuer, []).append(c)
+    # Biggest issuers first, so the longest one is never the last to start.
+    order = sorted(groups, key=lambda name: -len(groups[name]))
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        futures = [pool.submit(check_issuer, name, groups[name]) for name in order]
+        results = [r for f in futures for r in f.result()]
+    position = {c.id: i for i, c in enumerate(cards)}
+    return flag_shared_pages(sorted(results, key=lambda r: position.get(r.card_id, len(cards))))
+
+
+def flag_shared_pages(results):
     # Two cards resolving to one page means at least one is wrong (a listing link led to a sibling's page).
     by_url = {}
     for r in results:

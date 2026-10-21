@@ -238,8 +238,12 @@ class WelcomeBonuses(unittest.TestCase):
             self.assertIn("unrankedReason", BY_ID[cid], cid)
             self.assertNotIn("currency", BY_ID[cid], cid)
 
-    def test_discover_match_offers_are_unranked(self):
-        self.assertIn("unrankedReason", BY_ID["discover-it-cash-back"])
+    def test_match_offers_are_unranked(self):
+        # Checked by offer kind, not by card: which cards carry a match offer changes with the issuer's current
+        # promotion (2026-10-20, Discover it Cash Back switched from Cashback Match to a flat $200 bonus).
+        for cid, record in OFFERS.items():
+            if record.get("parsed", {}).get("kind") == "match" and cid in BY_ID:
+                self.assertIn("unrankedReason", BY_ID[cid], cid)
 
     def test_every_ranked_card_has_a_currency_the_valuations_know(self):
         for c in CATALOG:

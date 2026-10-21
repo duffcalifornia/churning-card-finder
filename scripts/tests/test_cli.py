@@ -2,7 +2,7 @@ import json
 import unittest
 
 from cardfinder.check import CardResult
-from cardfinder.cli import select_cards, exit_code, format_report, to_json, run, split_paused
+from cardfinder.cli import select_cards, exit_code, format_report, to_json, run, run_by_issuer, split_paused
 from cardfinder.discovery import Attempt
 from cardfinder.extract import Fee, Offer
 from cardfinder.models import Card, IssuerConfig, Page, FetchError
@@ -154,6 +154,34 @@ class CircuitBreaker(unittest.TestCase):
         self.assertLessEqual(len(rendered.calls), 3)
         stopped = [r for r in results if r.status == "skipped" and "stopped" in r.note.lower()]
         self.assertEqual(len(stopped), 5)
+
+
+class ByIssuer(unittest.TestCase):
+    def test_each_issuer_gets_only_its_own_cards_and_results_keep_card_order(self):
+        cards = [card("a", "chase"), card("c", "amex"), card("b", "chase")]
+        seen = {}
+
+        def check(issuer, issuer_cards):
+            seen[issuer] = [c.id for c in issuer_cards]
+            return [CardResult(c.id, c.names[0], "found", url=f"https://{c.id}") for c in issuer_cards]
+
+        results = run_by_issuer(cards, check, workers=2)
+        self.assertEqual(seen, {"chase": ["a", "b"], "amex": ["c"]})
+        self.assertEqual([r.card_id for r in results], ["a", "c", "b"])
+
+    def test_same_page_is_flagged_across_issuers(self):
+        def check(issuer, issuer_cards):
+            return [CardResult(c.id, c.names[0], "found", url="https://same/") for c in issuer_cards]
+
+        results = run_by_issuer([card("a", "chase"), card("c", "amex")], check)
+        self.assertTrue(all("same_page_as_another_card" in r.flags for r in results))
+
+    def test_an_issuer_that_raises_fails_the_run(self):
+        def check(issuer, issuer_cards):
+            raise RuntimeError("boom")
+
+        with self.assertRaises(RuntimeError):
+            run_by_issuer([card("a")], check)
 
 
 if __name__ == "__main__":

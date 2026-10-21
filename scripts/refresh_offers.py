@@ -33,7 +33,9 @@ import json
 import os
 import subprocess
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -41,7 +43,7 @@ sys.path.insert(0, HERE)
 
 from cardfinder.build import build_parsed_offers  # noqa: E402
 from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_changelog_entry  # noqa: E402
-from cardfinder.cli import format_report, run, select_cards, split_paused  # noqa: E402
+from cardfinder.cli import format_report, run, run_by_issuer, select_cards, split_paused  # noqa: E402
 from cardfinder.effective import effective_offers  # noqa: E402
 from cardfinder.fetchers import BROWSER_USER_AGENT, CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
 from cardfinder.hotels import HOTEL_SITES, format_site_result, merge_hotel_offers, read_sites  # noqa: E402
@@ -146,6 +148,7 @@ def main(argv=None):
     ap.add_argument("--issuer", default="all", choices=["all"] + sorted(ISSUERS))
     ap.add_argument("--card", help="only cards whose id or name contains this text")
     ap.add_argument("--delay", type=float, default=2.0, help="seconds between requests (default 2, politer than the manual default since this runs unattended)")
+    ap.add_argument("--workers", type=int, default=4, help="issuers checked at once (default 4); each issuer's own requests stay one at a time")
     ap.add_argument("--no-render", action="store_true", help="never use the headless browser")
     ap.add_argument("--include-paused", action="store_true", help="also request issuers marked paused (only when told the block has cleared)")
     ap.add_argument("--dry-run", action="store_true", help="check and report only; write nothing, rebuild nothing")
@@ -164,24 +167,39 @@ def main(argv=None):
         if not cards:
             sys.exit("Nothing to check: every selected issuer is paused (see above).")
 
-    http = CachingFetcher(HttpFetcher(delay=args.delay))
-    proposals, new_rejects = [], {}
-    browser = rendered = None
-    if not args.no_render and RenderedFetcher.available() and any(ISSUERS[c.issuer].render for c in cards):
-        browser = RenderedFetcher()
-        rendered = CachingFetcher(browser)
-    try:
-        results = run(cards, ISSUERS, http, rendered, all_cards=CARDS,
-                      on_result=lambda r: print(format_report([r]).split("\n\nSummary")[0], flush=True))
-        if args.new_cards_file and not args.card and not args.dry_run:
-            proposals, new_rejects = _look_for_new_cards(cards, results, http, rendered)
-    finally:
-        if browser:
-            browser.close()
+    use_render = not args.no_render and RenderedFetcher.available() and any(ISSUERS[c.issuer].render for c in cards)
+    scan_new = args.new_cards_file and not args.card and not args.dry_run
+    print_lock = threading.Lock()
+    found_new = {}   # issuer -> (proposals, new_rejects)
+
+    def check_issuer(issuer, issuer_cards):
+        # Fetchers of this thread's own: Playwright's sync browser only works from the thread that started it, and a
+        # separate HttpFetcher keeps the delay between requests per issuer, exactly as in a sequential run.
+        http = CachingFetcher(HttpFetcher(delay=args.delay))
+        browser = RenderedFetcher() if use_render else None
+        rendered = CachingFetcher(browser) if browser else None
+        try:
+            issuer_results = run(issuer_cards, ISSUERS, http, rendered, all_cards=CARDS, on_result=report)
+            if scan_new:
+                found_new[issuer] = _look_for_new_cards(issuer_cards, issuer_results, http, rendered)
+            return issuer_results
+        finally:
+            if browser:
+                browser.close()
+
+    def report(r):
+        with print_lock:
+            print(format_report([r]).split("\n\nSummary")[0], flush=True)
+
+    # The hotel pages are separate sites entirely, so they are read alongside the issuers rather than after them.
+    with ThreadPoolExecutor(max_workers=1) as hotel_pool:
+        hotels = hotel_pool.submit(lambda: [] if args.no_render else _read_hotel_sites(wanted_ids, args.delay))
+        results = run_by_issuer(cards, check_issuer, workers=args.workers)
+        hotel_results = hotels.result()
+    proposals = [p for issuer in sorted(found_new) for p in found_new[issuer][0]]
+    new_rejects = {u: d for issuer in sorted(found_new) for u, d in found_new[issuer][1].items()}
 
     print("\n" + format_report(results).split("\n\n")[-1])
-
-    hotel_results = [] if args.no_render else _read_hotel_sites(wanted_ids, args.delay)
 
     issuer_of = {c.id: c.issuer for c in CARDS}
     reviewable, unreadable = split_not_found(results, issuer_of)
