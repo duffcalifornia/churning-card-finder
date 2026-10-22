@@ -42,7 +42,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 from cardfinder.build import build_parsed_offers  # noqa: E402
-from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_changelog_entry  # noqa: E402
+from cardfinder.changelog import fee_change_entry, offer_change_entry, prepend_changelog_entry, remember_offer_values  # noqa: E402
 from cardfinder.cli import format_report, run, run_by_issuer, select_cards, split_paused  # noqa: E402
 from cardfinder.effective import effective_offers  # noqa: E402
 from cardfinder.fetchers import BROWSER_USER_AGENT, CachingFetcher, HttpFetcher, RenderedFetcher  # noqa: E402
@@ -59,6 +59,7 @@ FEES_PATH = os.path.join(HERE, "cardfinder", "last_known_fees.json")
 WAIVED_PATH = os.path.join(HERE, "cardfinder", "last_known_fee_waived.json")
 CHANGELOG_PATH = os.path.join(ROOT, "CHANGELOG.md")
 REJECTS_PATH = os.path.join(HERE, "cardfinder", "candidate_rejects.json")
+RECENT_VALUES_PATH = os.path.join(HERE, "cardfinder", "recent_offer_values.json")
 
 
 def _write_cache_files(offers, fees, waived):
@@ -254,9 +255,21 @@ def main(argv=None):
     # Site owner's rule (2026-09-22): every offer or fee change gets logged this one consistent way each, since
     # these will be the most common changelog entries by far once the site is past its initial development
     # phase. The two are independent facts and both can fire for the same card in the same run.
+    # The old values were what the site showed until this run, so they count as seen too (owner, 2026-10-21: a card
+    # flipping back to an offer version it showed lately is not logged again).
+    try:
+        with open(RECENT_VALUES_PATH) as f:
+            recent = json.load(f)
+    except (OSError, ValueError):
+        recent = {}
+    recent = remember_offer_values(recent, old_parsed, today)
     card_names = {c.id: c.names[0] for c in CARDS}
+    offer_entry = offer_change_entry(old_parsed, new_parsed, card_names, recent)
+    with open(RECENT_VALUES_PATH, "w") as f:
+        json.dump(remember_offer_values(recent, new_parsed, today), f, indent=1)
+        f.write("\n")
     for entry in (
-        offer_change_entry(old_parsed, new_parsed, card_names),
+        offer_entry,
         fee_change_entry(LAST_KNOWN_FEES, new_fees, LAST_KNOWN_FEE_WAIVED, new_waived, card_names),
     ):
         if entry:

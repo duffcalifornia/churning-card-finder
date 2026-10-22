@@ -1,9 +1,10 @@
+import json
 import os
 import tempfile
 import unittest
 
 from cardfinder.changelog import (
-    currency_label, fee_change_entry, format_list, offer_change_entry, prepend_changelog_entry, removed_cards_entry, added_cards_entry,
+    currency_label, fee_change_entry, format_list, offer_change_entry, prepend_changelog_entry, remember_offer_values, removed_cards_entry, added_cards_entry,
     valuation_change_entry,
 )
 
@@ -109,6 +110,43 @@ class OfferChangeEntryTests(unittest.TestCase):
         old = {"amex-gold": self._offer(100000.0)}
         new = {}
         self.assertIsNone(offer_change_entry(old, new, self.NAMES))
+
+
+class RecentOfferValuesTests(unittest.TestCase):
+    """Owner's rule (2026-10-21): Amex shows different offer versions on different visits, so a card moving back to a
+    value it showed within the last 14 days is not logged as a new offer."""
+
+    NAMES = OfferChangeEntryTests.NAMES
+    _offer = staticmethod(OfferChangeEntryTests._offer)
+
+    def test_flipping_back_to_a_recent_value_is_not_logged(self):
+        recent = remember_offer_values({}, {"amex-gold": self._offer(100000.0)}, "2026-10-19")
+        recent = remember_offer_values(recent, {"amex-gold": self._offer(60000.0)}, "2026-10-20")
+        old, new = {"amex-gold": self._offer(60000.0)}, {"amex-gold": self._offer(100000.0)}
+        self.assertIsNone(offer_change_entry(old, new, self.NAMES, recent))
+
+    def test_a_value_not_seen_recently_is_still_logged(self):
+        recent = remember_offer_values({}, {"amex-gold": self._offer(60000.0)}, "2026-10-20")
+        old, new = {"amex-gold": self._offer(60000.0)}, {"amex-gold": self._offer(100000.0)}
+        self.assertEqual(offer_change_entry(old, new, self.NAMES, recent),
+                         "Updated the bonus offer for the following card(s): American Express Gold Card.")
+
+    def test_another_cards_history_does_not_count(self):
+        recent = remember_offer_values({}, {"chase-sapphire-preferred": self._offer(100000.0)}, "2026-10-20")
+        old, new = {"amex-gold": self._offer(60000.0)}, {"amex-gold": self._offer(100000.0)}
+        self.assertIsNotNone(offer_change_entry(old, new, self.NAMES, recent))
+
+    def test_values_older_than_the_window_are_forgotten(self):
+        recent = remember_offer_values({}, {"amex-gold": self._offer(100000.0)}, "2026-10-01")
+        recent = remember_offer_values(recent, {"amex-gold": self._offer(60000.0)}, "2026-10-15")
+        self.assertEqual(len(recent["amex-gold"]), 1)
+        old, new = {"amex-gold": self._offer(60000.0)}, {"amex-gold": self._offer(100000.0)}
+        self.assertIsNotNone(offer_change_entry(old, new, self.NAMES, recent))
+
+    def test_the_history_survives_a_json_round_trip(self):
+        offer = self._offer(60000.0, additionalTiers=[{"points": 10000, "minSpend": 1000}])
+        recent = json.loads(json.dumps(remember_offer_values({}, {"amex-gold": offer}, "2026-10-20")))
+        self.assertIsNone(offer_change_entry({"amex-gold": self._offer(1.0)}, {"amex-gold": offer}, self.NAMES, recent))
 
 
 class FeeChangeEntryTests(unittest.TestCase):

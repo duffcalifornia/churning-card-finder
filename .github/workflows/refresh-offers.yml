@@ -9,7 +9,9 @@ name: Refresh card offers
 # for the following card(s): X." A fee-only change (offer text the same, annual fee different) gets its own line:
 # "Updated the net value rankings to reflect changes to the annual fee on the following card: X." (site owner's
 # rule, 2026-09-22, for consistent changelog entries once the site is past its initial development phase). A run
-# where nothing changed adds nothing.
+# where nothing changed adds nothing. A card whose offer moves back to a value it showed within the last 14 days is not
+# logged again (scripts/cardfinder/recent_offer_values.json, 2026-10-21): Amex shows different offer versions on
+# different visits, and the site still shows the latest read either way.
 #
 # The same run also reads the hotel programs' own credit card pages (IHG, Hilton, Marriott; scripts/cardfinder/hotels.py)
 # in a real headless browser, since those sites refuse plain requests. For every card both pages describe, the site uses
@@ -141,7 +143,7 @@ jobs:
       - name: Commit the refreshed data, if anything changed
         if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0'
         run: |
-          files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json scripts/cardfinder/last_known_hotel_offers.json scripts/cardfinder/candidate_rejects.json CHANGELOG.md"
+          files="data/cards.json data/parsed-offers.json docs/parsed-offers-review.md scripts/cardfinder/last_known_offers.json scripts/cardfinder/last_known_fees.json scripts/cardfinder/last_known_fee_waived.json scripts/cardfinder/last_known_hotel_offers.json scripts/cardfinder/candidate_rejects.json scripts/cardfinder/recent_offer_values.json CHANGELOG.md"
           if ! git diff --quiet -- $files; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"

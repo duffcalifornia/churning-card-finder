@@ -115,7 +115,7 @@ class WriteCacheFilesPreservesOrder(unittest.TestCase):
         importlib.reload(refresh_offers)
         self.mod = refresh_offers
         self.tmp = {}
-        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH"):
+        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH", "RECENT_VALUES_PATH"):
             f = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
             f.close()
             self.tmp[attr] = (getattr(refresh_offers, attr), f.name)
@@ -169,7 +169,7 @@ class MainWritesTheChangelogTests(unittest.TestCase):
         importlib.reload(refresh_offers)
         self.mod = refresh_offers
         self.tmp = {}
-        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH"):
+        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH", "RECENT_VALUES_PATH"):
             f = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
             f.write(b"{}")
             f.close()
@@ -252,7 +252,7 @@ class MainTreatsMissingCardsAsReviewNotFailure(unittest.TestCase):
         self.mod = refresh_offers
         self.tmp_paths = []
         self.orig_paths = {}
-        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH"):
+        for attr in ("OFFERS_PATH", "FEES_PATH", "WAIVED_PATH", "RECENT_VALUES_PATH"):
             f = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
             f.write(b"{}")
             f.close()

@@ -4,6 +4,8 @@ consistent phrasing each, every time, rather than a one-off sentence per run.
 
 Pure functions only: no file or network access except prepend_changelog_entry, which does the one file write.
 """
+import datetime
+import json
 import os
 import re
 
@@ -83,7 +85,34 @@ def _offer_value(record):
     return tuple(parsed.get(f) for f in _VALUE_FIELDS)
 
 
-def offer_change_entry(old_records, new_records, card_names):
+# How long an offer value counts as "seen recently". Some issuers (Amex's Blue Cash cards, 2026-10) show a different
+# offer version on different visits, so the daily read lands on one of a few values at random; a card moving back
+# to a value it showed within this window is not logged as a new offer (site owner, 2026-10-21). The site itself
+# still shows whatever the latest read found.
+RECENT_OFFER_DAYS = 14
+
+
+def _value_key(record):
+    """_offer_value as a string, so it can be stored in JSON and compared after a round trip."""
+    return json.dumps(_offer_value(record), sort_keys=True)
+
+
+def remember_offer_values(recent, records, today, days=RECENT_OFFER_DAYS):
+    """recent: {card_id: {value key: date last seen}} (scripts/cardfinder/recent_offer_values.json). Returns a new
+    dict with each record's current value marked as seen today, and anything not seen within `days` dropped."""
+    cutoff = (datetime.date.fromisoformat(today) - datetime.timedelta(days=days)).isoformat()
+    merged = {cid: dict(values) for cid, values in recent.items()}
+    for cid, record in records.items():
+        merged.setdefault(cid, {})[_value_key(record)] = today
+    pruned = {}
+    for cid, values in sorted(merged.items()):
+        kept = {k: d for k, d in sorted(values.items()) if d > cutoff}
+        if kept:
+            pruned[cid] = kept
+    return pruned
+
+
+def offer_change_entry(old_records, new_records, card_names, recent=None):
     """The changelog line for this run's actual offer-value changes, or None if nothing changed.
 
     old_records/new_records: {card_id: parsed-offer-record} (data/parsed-offers.json's shape, keyed by card id),
@@ -93,10 +122,14 @@ def offer_change_entry(old_records, new_records, card_names):
     minimum spend and fee never moving at all; comparing raw text flags that as a bonus change it never was.
     card_names: {card_id: display name}; an id missing from it (should not normally happen) falls back to the id
     itself rather than crashing or silently dropping the card from the list.
+    recent: remember_offer_values' shape; a card whose new value is already in it is only flipping between offer
+    versions it showed lately, and is left out.
     """
+    recent = recent or {}
     changed_ids = [
         cid for cid, new in new_records.items()
         if _offer_value(old_records.get(cid)) != _offer_value(new)
+        and _value_key(new) not in recent.get(cid, {})
     ]
     if not changed_ids:
         return None
