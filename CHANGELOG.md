@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-27
+- Updated the net value rankings to reflect changes to the annual fee on the following card: Spark Cash Select.
+
 ## 2026-10-21
 - Updated the bonus offer for the following card(s): Blue Cash Everyday Card, Blue Cash Preferred Card, Discover it Cash Back Credit Card, Graphite Business Cash Unlimited Card, Venture X Business, and Wells Fargo Choice Privileges Mastercard.
 
