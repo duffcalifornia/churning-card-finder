@@ -1,5 +1,9 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-10-29
+- Updated the bonus offer for the following card(s): Atmos Rewards Ascent Visa Signature Credit Card, Atmos Rewards Summit Visa Infinite Credit Card, Citi AAdvantage Business World Elite Mastercard, Citi AAdvantage Executive World Elite Mastercard, Citi AAdvantage Platinum Select World Elite Mastercard, Southwest Rapid Rewards Plus Credit Card, Southwest Rapid Rewards Premier Business Credit Card, Southwest Rapid Rewards Premier Credit Card, Southwest Rapid Rewards Priority Credit Card, Wyndham Rewards Earner Business Card, Wyndham Rewards Earner Card, and Wyndham Rewards Earner Plus Card.
+- Updated the net value rankings to reflect changes to the annual fee on the following card: Wyndham Rewards Earner Plus Card.
+
 ## 2026-10-27
 - Updated the net value rankings to reflect changes to the annual fee on the following card: Spark Cash Select.
 

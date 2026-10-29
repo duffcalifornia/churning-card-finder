@@ -19,9 +19,9 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | IHG One Rewards Premier Select Credit Card | 200,000 | - | - | $5,000 | 3 | - | - |  |
 | IHG One Rewards Credit Card | 125,000 | - | - | $2,000 | 3 | - | - |  |
 | World of Hyatt Credit Card | 30,000 | - | - | $3,000 | 3 | - | - | counted the first part only (the rest depends on further bonus spending) |
-| Southwest Rapid Rewards Plus Credit Card | 50,000 | - | - | $1,000 | 3 | - | - |  |
-| Southwest Rapid Rewards Premier Credit Card | 55,000 | - | - | $1,500 | 3 | - | - |  |
-| Southwest Rapid Rewards Priority Credit Card | 60,000 | - | - | $2,000 | 3 | - | - |  |
+| Southwest Rapid Rewards Plus Credit Card | 80,000 | - | - | $1,000 | 3 | - | - |  |
+| Southwest Rapid Rewards Premier Credit Card | 85,000 | - | - | $2,000 | 3 | - | - |  |
+| Southwest Rapid Rewards Priority Credit Card | 90,000 | - | - | $3,000 | 3 | - | - |  |
 | Air Canada Aeroplan Card | 75,000 | - | - | $4,000 | 3 | 40,000 pts after $20,000 in 12 mo | - |  |
 | British Airways Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Aer Lingus Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
@@ -40,11 +40,11 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | United Business Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
 | United Club Business Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
 | IHG One Rewards Business Credit Card | 190,000 | - | - | $5,000 | 3 | - | - |  |
-| Southwest Rapid Rewards Premier Business Credit Card | 80,000 | - | - | $3,000 | 3 | - | - | struck-through pair (old and new figures); used the second, 80,000; please check |
+| Southwest Rapid Rewards Premier Business Credit Card | 60,000 | - | - | $3,000 | 3 | - | - |  |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
-| Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | yes |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | - |  |
+| Blue Cash Everyday Card | - | $150 | - | $2,000 | 6 | - | - |  |
+| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | yes |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
 | Delta SkyMiles Gold American Express Card | 80,000 | - | - | $3,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $4,000 | 6 | - | yes |  |
@@ -69,11 +69,11 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Citi Strata Elite Card | 75,000 | - | - | $6,000 | 3 | - | - |  |
 | Citi Strata Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | Citi Double Cash Card | - | $200 | - | $1,500 | 6 | - | - |  |
-| Citi AAdvantage Platinum Select World Elite Mastercard | 80,000 | - | - | $3,500 | 4 | - | - |  |
-| Citi AAdvantage Executive World Elite Mastercard | 125,000 | - | - | $15,000 | 5 | - | - |  |
+| Citi AAdvantage Platinum Select World Elite Mastercard | 50,000 | - | - | $2,500 | 3 | - | - |  |
+| Citi AAdvantage Executive World Elite Mastercard | 80,000 | - | - | $8,000 | 3 | - | - |  |
 | Citi AAdvantage Globe Mastercard | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | AAdvantage MileUp Card | 15,000 | $100 | - | $500 | 3 | - | - |  |
-| Citi AAdvantage Business World Elite Mastercard | 65,000 | - | - | $4,000 | 4 | - | - |  |
+| Citi AAdvantage Business World Elite Mastercard | 75,000 | - | - | $5,000 | 5 | - | - |  |
 | Venture X Rewards | 75,000 | - | - | $4,000 | 3 | - | - |  |
 | Venture Rewards Travel Card | 75,000 | - | - | $4,000 | 3 | - | - |  |
 | VentureOne Rewards | 20,000 | - | - | $500 | 3 | - | - |  |
@@ -92,7 +92,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Bank of America Travel Rewards Credit Card | 25,000 | - | - | $1,000 | 3 | - | - |  |
 | Bank of America Premium Rewards Credit Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | Bank of America Premium Rewards Elite Credit Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
-| Atmos Rewards Ascent Visa Signature Credit Card | 50,000 | - | - | $1,500 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
+| Atmos Rewards Ascent Visa Signature Credit Card | 70,000 | - | - | $2,500 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
 | Business Advantage Unlimited Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - |  |
 | Business Advantage Customized Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - |  |
 | Business Advantage Travel Rewards World Mastercard | 50,000 | - | - | $5,000 | 3 | - | - |  |
@@ -108,10 +108,10 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | JetBlue Plus Card | 70,000 | - | - | $1,000 | 3 | - | - |  |
 | JetBlue Premier Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
 | Hawaiian Airlines World Elite Mastercard | 60,000 | - | - | $1,000 | 3 | 10,000 pts after $1,000 in 6 mo | - |  |
-| Wyndham Rewards Earner Card | 30,000 | - | - | $1,000 | 3 | 45,000 pts after $500 in 6 mo | - |  |
-| Wyndham Rewards Earner Plus Card | 45,000 | - | - | $1,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
+| Wyndham Rewards Earner Card | 45,000 | - | - | $2,000 | 3 | - | - |  |
+| Wyndham Rewards Earner Plus Card | 45,000 | - | - | $1,000 | 3 | 45,000 pts after $500 in 6 mo | - |  |
 | Wyndham Rewards Earner Premier Card | 90,000 | - | - | $6,000 | 4 | 30,000 pts after $750 in 6 mo | - |  |
-| Wyndham Rewards Earner Business Card | 45,000 | - | - | $3,000 | 3 | 55,000 pts after $500 in 6 mo | - |  |
+| Wyndham Rewards Earner Business Card | 45,000 | - | - | $3,000 | 3 | - | - |  |
 | Frontier Airlines World Mastercard | 50,000 | - | - | $500 | 3 | - | - |  |
 | Breeze Airways Card | 40,000 | - | - | $1,000 | 3 | - | - |  |
 | Emirates Skywards Premium World Elite Mastercard | 50,000 | - | - | $3,000 | 3 | - | - |  |
@@ -124,7 +124,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Discover it Miles Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - |  |
 | Bilt Palladium Card | 50,000 | $300 | - | $4,000 | 3 | - | - |  |
-| Atmos Rewards Summit Visa Infinite Credit Card | 70,000 | - | - | $3,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
+| Atmos Rewards Summit Visa Infinite Credit Card | 80,000 | - | - | $4,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
 | Air France KLM Visa Signature Credit Card | 50,000 | - | - | $2,000 | 3 | - | - |  |
 | Allways Rewards Visa Card | 30,000 | - | - | $1,500 | 3 | - | - |  |
 | Norwegian Cruise Line World Mastercard | 20,000 | - | - | $1,000 | 3 | - | - |  |
