@@ -1,642 +1,643 @@
 {
  "amex-blue-business-cash": {
-  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], true, null]": "2026-10-29",
+  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-blue-business-plus": {
-  "[\"standard\", 50000.0, null, 0, 5000.0, 3, [], true, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 5000.0, 3, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-blue-cash-everyday": {
-  "[\"standard\", null, 150.0, 0, 2000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 150.0, 0, 2000.0, 6, [], false, null]": "2026-10-30",
   "[\"standard\", null, 200.0, 0, 2000.0, 6, [], false, null]": "2026-10-28",
   "[\"standard\", null, 200.0, 0, 2000.0, 6, [], true, null]": "2026-10-29",
   "null": "2026-10-21"
  },
  "amex-blue-cash-preferred": {
   "[\"standard\", null, 250.0, 0, 3000.0, 6, [], false, null]": "2026-10-26",
-  "[\"standard\", null, 300.0, 0, 3000.0, 6, [], false, null]": "2026-10-29",
-  "[\"standard\", null, 300.0, 0, 3000.0, 6, [], true, null]": "2026-10-29",
+  "[\"standard\", null, 300.0, 0, 3000.0, 6, [], false, null]": "2026-10-30",
+  "[\"standard\", null, 300.0, 0, 3000.0, 6, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-business-gold": {
-  "[\"standard\", 200000.0, null, 0, 15000.0, 3, [], true, null]": "2026-10-29",
+  "[\"standard\", 200000.0, null, 0, 15000.0, 3, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-business-green": {
-  "[\"standard\", 15000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 15000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-business-platinum": {
-  "[\"standard\", 300000.0, null, 0, 20000.0, 3, [], true, null]": "2026-10-29",
+  "[\"standard\", 300000.0, null, 0, 20000.0, 3, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-delta-blue": {
-  "[\"standard\", 10000.0, null, 0, 1000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 10000.0, null, 0, 1000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-delta-gold": {
-  "[\"standard\", 80000.0, null, 0, 3000.0, 6, [], true, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 3000.0, 6, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-delta-gold-business": {
-  "[\"standard\", 90000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-delta-platinum": {
-  "[\"standard\", 90000.0, null, 0, 4000.0, 6, [], true, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 4000.0, 6, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-delta-platinum-business": {
-  "[\"standard\", 100000.0, null, 0, 8000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 100000.0, null, 0, 8000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-delta-reserve": {
-  "[\"standard\", 50000.0, null, 0, 10000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 10000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-delta-reserve-business": {
-  "[\"standard\", 200000.0, null, 0, 20000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 200000.0, null, 0, 20000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-gold": {
-  "[\"standard\", 100000.0, null, 0, 8000.0, 6, [], true, null]": "2026-10-29",
+  "[\"standard\", 100000.0, null, 0, 8000.0, 6, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-graphite": {
   "[\"standard\", null, 1500.0, 0, 50000.0, 6, [], false, null]": "2026-10-28",
-  "[\"standard\", null, 2000.0, 0, 50000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 2000.0, 0, 50000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-hilton-aspire": {
-  "[\"standard\", 200000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-29"
+  "[\"standard\", 200000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-30"
  },
  "amex-hilton-business": {
-  "[\"standard\", 150000.0, null, 1, 8000.0, 6, [], false, null]": "2026-10-29"
+  "[\"standard\", 150000.0, null, 1, 8000.0, 6, [], false, null]": "2026-10-30"
  },
  "amex-hilton-honors": {
-  "[\"standard\", 70000.0, null, 1, 2000.0, 6, [], false, null]": "2026-10-29"
+  "[\"standard\", 70000.0, null, 1, 2000.0, 6, [], false, null]": "2026-10-30"
  },
  "amex-hilton-surpass": {
-  "[\"standard\", 130000.0, null, 1, 3000.0, 6, [], false, null]": "2026-10-29"
+  "[\"standard\", 130000.0, null, 1, 3000.0, 6, [], false, null]": "2026-10-30"
  },
  "amex-marriott-bevy": {
-  "[\"standard\", 85000.0, null, 0, 5000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 85000.0, null, 0, 5000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-marriott-brilliant": {
-  "[\"standard\", 100000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 100000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-marriott-business": {
-  "[\"standard\", 100000.0, null, 1, 8000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 100000.0, null, 1, 8000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "amex-platinum": {
-  "[\"standard\", 175000.0, null, 0, 12000.0, 6, [], true, null]": "2026-10-29",
+  "[\"standard\", 175000.0, null, 0, 12000.0, 6, [], true, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-aarp": {
-  "[\"standard\", null, 100.0, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 100.0, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-breeze": {
-  "[\"standard\", 40000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 40000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-carnival": {
-  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-emirates-premium": {
-  "[\"standard\", 50000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-emirates-rewards": {
-  "[\"standard\", 40000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 40000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-frontier": {
-  "[\"standard\", 50000.0, null, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-hawaiian": {
-  "[\"standard\", 60000.0, null, 0, 1000.0, 3, [{\"cashBack\": null, \"merchant\": \"\", \"minSpend\": 1000.0, \"note\": \"\", \"points\": 10000.0, \"spendBasis\": \"more\", \"windowMonths\": 6}], false, null]": "2026-10-29",
+  "[\"standard\", 60000.0, null, 0, 1000.0, 3, [{\"cashBack\": null, \"merchant\": \"\", \"minSpend\": 1000.0, \"note\": \"\", \"points\": 10000.0, \"spendBasis\": \"more\", \"windowMonths\": 6}], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-jetblue": {
-  "[\"standard\", 10000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 10000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-jetblue-business": {
-  "[\"standard\", 50000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-jetblue-plus": {
-  "[\"standard\", 70000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 70000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-jetblue-premier": {
-  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-lufthansa": {
-  "[\"standard\", 70000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 70000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-wyndham-earner": {
   "[\"standard\", 30000.0, null, 0, 1000.0, 3, [{\"cashBack\": null, \"merchant\": \"Hotels by Wyndham\", \"minSpend\": 500.0, \"note\": \"the spend must be at a specific merchant\", \"points\": 45000.0, \"spendBasis\": \"merchant\", \"windowMonths\": 6}], false, null]": "2026-10-29",
-  "[\"standard\", 45000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 45000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "barclays-wyndham-earner-business": {
-  "[\"standard\", 45000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 45000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "[\"standard\", 45000.0, null, 0, 3000.0, 3, [{\"cashBack\": null, \"merchant\": \"Hotels by Wyndham\", \"minSpend\": 500.0, \"note\": \"the spend must be at a specific merchant\", \"points\": 55000.0, \"spendBasis\": \"merchant\", \"windowMonths\": 6}], false, null]": "2026-10-29",
   "null": "2026-10-21"
  },
  "barclays-wyndham-earner-plus": {
-  "[\"standard\", 45000.0, null, 0, 1000.0, 3, [{\"cashBack\": null, \"merchant\": \"Hotels by Wyndham\", \"minSpend\": 500.0, \"note\": \"the spend must be at a specific merchant\", \"points\": 45000.0, \"spendBasis\": \"merchant\", \"windowMonths\": 6}], false, null]": "2026-10-29",
+  "[\"standard\", 45000.0, null, 0, 1000.0, 3, [{\"cashBack\": null, \"merchant\": \"Hotels by Wyndham\", \"minSpend\": 500.0, \"note\": \"the spend must be at a specific merchant\", \"points\": 45000.0, \"spendBasis\": \"merchant\", \"windowMonths\": 6}], false, null]": "2026-10-30",
   "[\"standard\", 45000.0, null, 0, 1000.0, 3, [{\"cashBack\": null, \"merchant\": \"Hotels by Wyndham\", \"minSpend\": 500.0, \"note\": \"the spend must be at a specific merchant\", \"points\": 55000.0, \"spendBasis\": \"merchant\", \"windowMonths\": 6}], false, null]": "2026-10-29",
   "null": "2026-10-21"
  },
  "barclays-wyndham-earner-premier": {
-  "[\"standard\", 90000.0, null, 0, 6000.0, 4, [{\"cashBack\": null, \"merchant\": \"Hotels by Wyndham\", \"minSpend\": 750.0, \"note\": \"the spend must be at a specific merchant\", \"points\": 30000.0, \"spendBasis\": \"merchant\", \"windowMonths\": 6}], false, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 6000.0, 4, [{\"cashBack\": null, \"merchant\": \"Hotels by Wyndham\", \"minSpend\": 750.0, \"note\": \"the spend must be at a specific merchant\", \"points\": 30000.0, \"spendBasis\": \"merchant\", \"windowMonths\": 6}], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "bilt-palladium": {
-  "[\"standard\", 50000.0, 300.0, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, 300.0, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-air-france-klm": {
-  "[\"standard\", 50000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-alaska": {
   "[\"standard\", 50000.0, null, 0, 1500.0, 3, [], false, null]": "2026-10-29",
-  "[\"standard\", 70000.0, null, 0, 2500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 70000.0, null, 0, 2500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-alaska-business": {
-  "[\"standard\", 70000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 70000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-allways-rewards": {
-  "[\"standard\", 30000.0, null, 0, 1500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 30000.0, null, 0, 1500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-atmos-summit": {
   "[\"standard\", 70000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
-  "[\"standard\", 80000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-bankamericard": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-bankamericard-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-business-customized-cash": {
-  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-business-platinum-plus": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-business-travel-rewards": {
-  "[\"standard\", 50000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-business-unlimited-cash": {
-  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-business-unlimited-cash-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-customized-cash": {
-  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-customized-cash-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-komen": {
-  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-norwegian-cruise": {
-  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-premium-rewards": {
-  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-premium-rewards-elite": {
-  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-royal-one": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-royal-one-plus": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-student-bankamericard": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-student-customized-cash": {
-  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-student-travel-rewards": {
-  "[\"standard\", 25000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 25000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-student-unlimited-cash": {
-  "[\"standard\", null, 250.0, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 250.0, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-travel-rewards": {
-  "[\"standard\", 25000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 25000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-travel-rewards-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "boa-unlimited-cash": {
-  "[\"standard\", null, 250.0, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 250.0, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "boa-unlimited-cash-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "capone-quicksilver": {
-  "[\"standard\", null, 200.0, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "capone-savor": {
-  "[\"standard\", null, 200.0, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "capone-spark-cash": {
-  "[\"standard\", null, 1000.0, 0, 10000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 1000.0, 0, 10000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "capone-spark-cash-plus": {
-  "[\"standard\", null, 2000.0, 0, 30000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 2000.0, 0, 30000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "capone-venture": {
-  "[\"standard\", 75000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "capone-venture-x": {
-  "[\"standard\", 75000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "capone-venture-x-business": {
   "[\"standard\", 150000.0, null, 0, 30000.0, 3, [], false, null]": "2026-10-19",
-  "[\"unparsed\", null, null, 0, 40.0, null, [], false, null]": "2026-10-29",
+  "[\"unparsed\", null, null, 0, 40.0, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "capone-ventureone": {
-  "[\"standard\", 20000.0, null, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-aer-lingus": {
-  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-aeroplan": {
-  "[\"standard\", 75000.0, null, 0, 4000.0, 3, [{\"cashBack\": null, \"merchant\": \"\", \"minSpend\": 20000.0, \"note\": \"spend is a total from account opening, not on top of the first tier's spend\", \"points\": 40000.0, \"spendBasis\": \"total\", \"windowMonths\": 12}], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 4000.0, 3, [{\"cashBack\": null, \"merchant\": \"\", \"minSpend\": 20000.0, \"note\": \"spend is a total from account opening, not on top of the first tier's spend\", \"points\": 40000.0, \"spendBasis\": \"total\", \"windowMonths\": 12}], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-amazon-prime": {
-  "[\"standard\", null, 150.0, 0, null, null, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 150.0, 0, null, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-amazon-visa": {
-  "[\"standard\", null, 50.0, 0, null, null, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 50.0, 0, null, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-british-airways": {
-  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-disney-inspire": {
-  "[\"standard\", null, 300.0, 0, null, null, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 300.0, 0, null, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-disney-premier": {
-  "[\"standard\", null, 300.0, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, null, null, [], false, null]": "2026-10-30",
+  "[\"standard\", null, 300.0, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-disney-visa": {
-  "[\"standard\", null, 100.0, 0, null, null, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 100.0, 0, null, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-doordash": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "chase-freedom-flex": {
-  "[\"standard\", 25000.0, null, 0, 500.0, 3, [], false, 250.0]": "2026-10-29",
+  "[\"standard\", 25000.0, null, 0, 500.0, 3, [], false, 250.0]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-freedom-rise": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "chase-freedom-unlimited": {
-  "[\"standard\", 20000.0, null, 0, 500.0, 3, [], false, 200.0]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 500.0, 3, [], false, 200.0]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-iberia": {
-  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-ihg-premier": {
-  "[\"standard\", 180000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29"
+  "[\"standard\", 180000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30"
  },
  "chase-ihg-premier-business": {
-  "[\"standard\", 190000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29"
+  "[\"standard\", 190000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30"
  },
  "chase-ihg-premier-select": {
-  "[\"standard\", 200000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29"
+  "[\"standard\", 200000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30"
  },
  "chase-ihg-traveler": {
-  "[\"standard\", 125000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-29"
+  "[\"standard\", 125000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-30"
  },
  "chase-ink-cash": {
-  "[\"standard\", 75000.0, null, 0, 6000.0, 3, [], false, 750.0]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 6000.0, 3, [], false, 750.0]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-ink-preferred": {
-  "[\"standard\", 100000.0, null, 0, 8000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 100000.0, null, 0, 8000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-ink-premier": {
-  "[\"standard\", null, 1000.0, 0, 10000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 1000.0, 0, 10000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-ink-unlimited": {
-  "[\"standard\", 75000.0, null, 0, 6000.0, 3, [], false, 750.0]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 6000.0, 3, [], false, 750.0]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-instacart": {
-  "[\"standard\", null, 50.0, 0, null, null, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 50.0, 0, null, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-marriott-bold": {
-  "[\"standard\", 45000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29"
+  "[\"standard\", 45000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30"
  },
  "chase-marriott-boundless": {
-  "[\"standard\", null, null, 3, 3000.0, 3, [], false, null]": "2026-10-29"
+  "[\"standard\", null, null, 3, 3000.0, 3, [], false, null]": "2026-10-30"
  },
  "chase-marriott-bountiful": {
-  "[\"standard\", 85000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 85000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-sapphire-preferred": {
   "[\"standard\", 60000.0, null, 0, null, null, [], false, null]": "2026-10-21",
-  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "[\"standard\", 75000.0, null, 0, null, null, [], false, null]": "2026-10-21"
  },
  "chase-sapphire-reserve": {
-  "[\"standard\", 100000.0, null, 0, 6000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 100000.0, null, 0, 6000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-sapphire-reserve-business": {
-  "[\"standard\", 200000.0, null, 0, 30000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 200000.0, null, 0, 30000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-slate": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "chase-slate-edge": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "chase-southwest-performance-business": {
-  "[\"standard\", 80000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-southwest-plus": {
   "[\"standard\", 50000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
-  "[\"standard\", 80000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-southwest-premier": {
   "[\"standard\", 55000.0, null, 0, 1500.0, 3, [], false, null]": "2026-10-29",
-  "[\"standard\", 85000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 85000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-southwest-premier-business": {
-  "[\"standard\", 60000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 60000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "[\"standard\", 80000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
   "null": "2026-10-21"
  },
  "chase-southwest-priority": {
   "[\"standard\", 60000.0, null, 0, 2000.0, 3, [], false, null]": "2026-10-29",
-  "[\"standard\", 90000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-united-business": {
-  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-united-club-business": {
-  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-united-club-infinite": {
-  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 90000.0, null, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-united-explorer": {
-  "[\"standard\", 70000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 70000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-united-gateway": {
-  "[\"standard\", 40000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 40000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-united-quest": {
-  "[\"standard\", 80000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-world-of-hyatt": {
-  "[\"standard\", 30000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 30000.0, null, 0, 3000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "chase-world-of-hyatt-business": {
-  "[\"standard\", 70000.0, null, 0, 7000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 70000.0, null, 0, 7000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-aadvantage-business": {
   "[\"standard\", 65000.0, null, 0, 4000.0, 4, [], false, null]": "2026-10-29",
-  "[\"standard\", 75000.0, null, 0, 5000.0, 5, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 5000.0, 5, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-aadvantage-executive": {
   "[\"standard\", 125000.0, null, 0, 15000.0, 5, [], false, null]": "2026-10-29",
-  "[\"standard\", 80000.0, null, 0, 8000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 8000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-aadvantage-globe": {
-  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-aadvantage-mileup": {
-  "[\"standard\", 15000.0, 100.0, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 15000.0, 100.0, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-aadvantage-platinum-select": {
-  "[\"standard\", 50000.0, null, 0, 2500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 50000.0, null, 0, 2500.0, 3, [], false, null]": "2026-10-30",
   "[\"standard\", 80000.0, null, 0, 3500.0, 4, [], false, null]": "2026-10-29",
   "null": "2026-10-21"
  },
  "citi-citi-att-pointsplus": {
-  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-double-cash": {
-  "[\"standard\", null, 200.0, 0, 1500.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 1500.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-strata": {
-  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-strata-elite": {
-  "[\"standard\", 75000.0, null, 0, 6000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 6000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "citi-strata-premier": {
-  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "discover-it-cash-back": {
   "[\"match\", null, null, 0, null, null, [], false, null]": "2026-10-19",
-  "[\"standard\", null, 200.0, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "discover-it-chrome": {
-  "[\"match\", null, null, 0, null, null, [], false, null]": "2026-10-29",
+  "[\"match\", null, null, 0, null, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "discover-it-miles": {
-  "[\"match\", null, null, 0, null, null, [], false, null]": "2026-10-29",
+  "[\"match\", null, null, 0, null, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "discover-it-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "discover-it-student-cash-back": {
-  "[\"standard\", null, 100.0, 0, 300.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 100.0, 0, 300.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "discover-it-student-chrome": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "fnbo-evergreen": {
-  "[\"standard\", 20000.0, null, 0, 1000.0, null, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 1000.0, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "fnbo-evergreen-business": {
-  "[\"standard\", 20000.0, null, 0, 3000.0, null, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 3000.0, null, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "fnbo-getaway": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "fnbo-greenselect": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "fnbo-visa-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "morganstanley-blue-cash-preferred": {
-  "[\"standard\", null, 250.0, 0, 3000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 250.0, 0, 3000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "morganstanley-platinum": {
-  "[\"standard\", 80000.0, null, 0, 12000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 12000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "schwab-platinum": {
-  "[\"standard\", 80000.0, null, 0, 12000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 80000.0, null, 0, 12000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "usbank-altitude-connect": {
-  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "usbank-altitude-go": {
-  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "usbank-altitude-go-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "usbank-amazon-business": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "usbank-business-altitude-connect": {
-  "[\"standard\", 75000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", 75000.0, null, 0, 6000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "usbank-business-essentials": {
-  "[\"standard\", null, 500.0, 0, 5000.0, 5, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 500.0, 0, 5000.0, 5, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "usbank-business-essentials-plus": {
-  "[\"standard\", null, 1000.0, 0, 15000.0, 5, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 1000.0, 0, 15000.0, 5, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "usbank-business-shield": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "usbank-cash-plus": {
-  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "usbank-cash-plus-secured": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "usbank-secured-visa": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "usbank-shield": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "usbank-smartly": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "usbank-triple-cash": {
-  "[\"standard\", null, 750.0, 0, 6000.0, 6, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 750.0, 0, 6000.0, 6, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "wellsfargo-active-cash": {
-  "[\"standard\", null, 100.0, 0, 500.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 100.0, 0, 500.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "wellsfargo-autograph": {
-  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 20000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "wellsfargo-autograph-journey": {
-  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 60000.0, null, 0, 4000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  },
  "wellsfargo-choice-privileges": {
-  "[\"standard\", 40000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", 40000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-30",
   "[\"standard\", 60000.0, null, 0, 1000.0, 3, [], false, null]": "2026-10-19",
   "null": "2026-10-21"
  },
  "wellsfargo-reflect": {
-  "null": "2026-10-29"
+  "null": "2026-10-30"
  },
  "wellsfargo-signify-business": {
-  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], false, null]": "2026-10-29",
+  "[\"standard\", null, 500.0, 0, 5000.0, 3, [], false, null]": "2026-10-30",
   "null": "2026-10-21"
  }
 }
