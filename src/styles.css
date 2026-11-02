@@ -184,8 +184,9 @@ tr.extra label { display: block; }
 .rankby label { display: block; margin: 4px 0; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 0.92rem; }
 .facts span { display: inline-flex; align-items: center; gap: 6px; }
-.ceiling, .nllnote { display: inline-flex; align-items: center; gap: 7px; font-size: 0.85rem; padding: 5px 10px; border-radius: 8px; margin-top: 2px; width: fit-content; }
-.ceiling { color: var(--warn-fg); background: var(--warn-bg); }
+.ceiling, .nllnote, .familynote { display: inline-flex; align-items: center; gap: 7px; font-size: 0.85rem; padding: 5px 10px; border-radius: 8px; margin-top: 2px; width: fit-content; }
+.ceiling, .familynote { color: var(--warn-fg); background: var(--warn-bg); }
+.ceiling svg, .nllnote svg, .familynote svg { flex-shrink: 0; }
 .nllnote { color: var(--danger-fg); background: var(--danger-bg); }
 .bestpersonal { border: 1px solid var(--line); border-radius: 12px; padding: 4px 16px 16px; margin: 24px 0; background: var(--soft); }
 .bestpersonal .results { padding-top: 4px; }

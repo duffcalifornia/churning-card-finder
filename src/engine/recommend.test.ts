@@ -162,6 +162,37 @@ describe("recommend: NLL cards", () => {
   });
 });
 
+describe("recommend: family rule warnings", () => {
+  const fam = (id: string, value: number, tier: number, extra: Partial<Card> = {}) =>
+    mk(id, value, { issuer: "amex", family: { id: "f", tier }, ...extra });
+
+  it("lists the lower family cards a higher card would block, best first", () => {
+    const c = [fam("top", 900, 3), fam("low", 300, 1), fam("mid", 500, 2), mk("other", 100)];
+    const r = recommend(profile([person()]), data(c));
+    const players = (id: string) => r.ranked.find((e) => e.cardId === id)!.players;
+    expect(players("top")).toEqual([{ name: "P1", blocksLower: [{ cardId: "mid", netValue: 500 }, { cardId: "low", netValue: 300 }] }]);
+    expect(players("mid")).toEqual([{ name: "P1", blocksLower: [{ cardId: "low", netValue: 300 }] }]);
+    expect(players("low")).toEqual([{ name: "P1" }]);
+    expect(players("other")).toEqual([{ name: "P1" }]);
+  });
+
+  it("leaves out lower cards the player could not get anyway: already blocked, or hidden by their answers", () => {
+    const c = [fam("top", 900, 3), fam("mid", 500, 2), fam("pricey", 400, 1, { annualFee: 500, welcomeBonus: { cashBack: 900 } })];
+    // P1 already had "mid", so it is NLL-only already; "pricey" is over the fee limit.
+    const p = person("P1", {}, { mid: { approved: { gt48: 1 } } });
+    const r = recommend(profile([p], { maxAnnualFee: 100 }), data(c.map((x) => x.id === "mid" ? { ...x, bonusRules: { onceInLifetime: true } } : x)));
+    expect(r.ranked.find((e) => e.cardId === "top")!.players).toEqual([{ name: "P1" }]);
+  });
+
+  it("is per player: a player who already had the lower card loses nothing", () => {
+    const c = [fam("top", 900, 2), fam("low", 300, 1, { bonusRules: { onceInLifetime: true } })];
+    const r = recommend(profile([person("P1"), person("P2", {}, { low: { approved: { gt48: 1 } } })]), data(c));
+    expect(r.ranked.find((e) => e.cardId === "top")!.players).toEqual([
+      { name: "P1", blocksLower: [{ cardId: "low", netValue: 300 }] }, { name: "P2" },
+    ]);
+  });
+});
+
 describe("recommend: several players", () => {
   it("merges the lists, labelling each card with the players who can apply", () => {
     const c = [mk("c1", 900), mk("x1", 800, { issuer: "chase" }), mk("c2", 700)];
@@ -278,6 +309,13 @@ describe("recommend: real data", () => {
     marriottMatrix: matrixJson as unknown as EngineData["marriottMatrix"],
   };
   const validate = new Ajv2020({ strict: false }).compile(resultsSchema);
+
+  it("warns on the Platinum about the Gold for someone who never had either", () => {
+    const r = recommend(profile([person()]), real, { perPlayer: 200 });
+    expect(validate(r)).toBe(true);
+    const plat = r.ranked.find((e) => e.cardId === "amex-platinum")!;
+    expect(plat.players[0]!.blocksLower?.map((b) => b.cardId)).toEqual(["amex-gold"]);
+  });
 
   it("produces schema-valid results for a new player", () => {
     const r = recommend(profile([person()], { maxAnnualFee: 700, spend3Months: 8000, spend6Months: 16000 }), real);

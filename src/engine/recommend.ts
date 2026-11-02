@@ -4,7 +4,7 @@ import { bonusValue, firstYearFee } from "./netValue";
 import { nllBlock } from "./nllBlock";
 import { targetsProgram } from "./targets";
 import { unlockStatus } from "./unlockStatus";
-import type { Card, EngineData, Player, Profile, ResultEntry, Results } from "./types";
+import type { BlockedLowerCard, Card, EngineData, Player, Profile, ResultEntry, Results } from "./types";
 
 export type RankBy = "net" | "raw";
 
@@ -17,6 +17,7 @@ interface Candidate {
   viaNllOnly: boolean;
   /** The card leads to a program the household is targeting. */
   targeted: boolean;
+  blocksLower: BlockedLowerCard[];
 }
 
 interface Listing {
@@ -27,6 +28,7 @@ interface Listing {
   viaNllOnly: boolean;
   backup: boolean;
   targeted: boolean;
+  blocksLower: BlockedLowerCard[];
 }
 
 const BEST_PERSONAL_COUNT = 3;
@@ -63,7 +65,19 @@ function candidatesFor(
       value: rankBy === "raw" ? bonus : net,
       viaNllOnly,
       targeted: targetsProgram(player, card, ctx),
+      blocksLower: [],
     });
+  }
+  // Family rule warning: getting a higher card in a family blocks the bonus on the lower ones (familyBlocked), so each
+  // card lists the lower family cards the player could earn a bonus on today, best first. Cards already NLL-only or
+  // hidden (by any rule, including the household's own answers) are not a loss, so they are left out.
+  for (const c of out) {
+    const family = c.card.family;
+    if (!family) continue;
+    c.blocksLower = out
+      .filter((o) => !o.viaNllOnly && o.card.family?.id === family.id && o.card.family.tier < family.tier)
+      .sort((a, b) => b.net - a.net || (a.card.id < b.card.id ? -1 : 1))
+      .map((o) => ({ cardId: o.card.id, netValue: o.net }));
   }
   return out.sort((a, b) => Number(b.targeted) - Number(a.targeted) || b.value - a.value || (a.card.id < b.card.id ? -1 : 1));
 }
@@ -113,6 +127,7 @@ export function recommend(
     const candidates = candidatesFor(player, data, ctx, rankBy, forceCashOutCurrencies);
     const listing = (c: Candidate, backup: boolean): Listing => ({
       cardId: c.card.id, bonus: c.bonus, net: c.net, value: c.value, viaNllOnly: c.viaNllOnly, backup, targeted: c.targeted,
+      blocksLower: c.blocksLower,
     });
     const top = candidates.slice(0, perPlayer);
     const list = top.map((c) => listing(c, false));
@@ -130,7 +145,12 @@ export function recommend(
       const cards = candidatesFor(relaxed, data, ctx, rankBy, forceCashOutCurrencies).filter((c) => c.card.kind === "personal").slice(0, BEST_PERSONAL_COUNT);
       bestPersonal.push({
         player: player.name,
-        cards: cards.map((c) => entryFor(c.card, [c.viaNllOnly ? { name: player.name, viaNllOnly: true } : { name: player.name }], c.bonus, c.net)),
+        cards: cards.map((c) => {
+          const label: ResultEntry["players"][number] = { name: player.name };
+          if (c.viaNllOnly) label.viaNllOnly = true;
+          if (c.blocksLower.length > 0) label.blocksLower = c.blocksLower;
+          return entryFor(c.card, [label], c.bonus, c.net);
+        }),
       });
     }
   }
@@ -143,6 +163,7 @@ export function recommend(
       const label: ResultEntry["players"][number] = { name: player.name };
       if (l.viaNllOnly) label.viaNllOnly = true;
       if (l.backup) label.backup = true;
+      if (l.blocksLower.length > 0) label.blocksLower = l.blocksLower;
       const seen = merged.get(l.cardId);
       if (!seen) merged.set(l.cardId, { bonus: l.bonus, net: l.net, value: l.value, targeted: l.targeted, players: [label] });
       else {

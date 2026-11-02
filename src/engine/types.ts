@@ -247,9 +247,15 @@ export interface ResultPlayerStanding {
   chaseBusinessOpen: number;
 }
 
+/** A lower card in the same family whose bonus the player could get now, and would lose by getting this card first. */
+export interface BlockedLowerCard {
+  cardId: string;
+  netValue: number;
+}
+
 export interface ResultEntry {
   cardId: string;
-  players: { name: string; viaNllOnly?: boolean; backup?: boolean }[];
+  players: { name: string; viaNllOnly?: boolean; backup?: boolean; blocksLower?: BlockedLowerCard[] }[];
   annualFee: number;
   firstYearFeeWaived?: boolean;
   minSpend?: { amount: number; months: number };

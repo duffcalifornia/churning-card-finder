@@ -119,6 +119,26 @@
         "type": "boolean",
         "default": false,
         "description": "For this player the card is shown only as a backup for an 'as high as' offer that may come in lower."
+       },
+       "blocksLower": {
+        "type": "array",
+        "description": "Lower cards in the same family whose bonus this player could get now and would lose by getting this card first (the family rule), best first.",
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "cardId",
+          "netValue"
+         ],
+         "properties": {
+          "cardId": {
+           "type": "string"
+          },
+          "netValue": {
+           "type": "number"
+          }
+         }
+        }
        }
       }
      }
