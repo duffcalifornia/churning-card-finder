@@ -9,6 +9,8 @@ const catalog = cardsJson as unknown as Card[];
 const currencies = currenciesJson as unknown as Currency[];
 const programs = programsJson as unknown as Program[];
 const text = (id: string) => describeBonus(catalog.find((c) => c.id === id)!, currencies, programs);
+/** A real card with its offer replaced, for wording tests that should not break when the live offer changes. */
+const textWith = (id: string, extra: Partial<Card>) => describeBonus({ ...catalog.find((c) => c.id === id)!, ...extra }, currencies, programs);
 
 describe("describeBonus", () => {
   it("names transferable points by their currency", () => {
@@ -31,10 +33,11 @@ describe("describeBonus", () => {
     expect(text("amex-gold")[0]).toBe("Up to 100,000 Amex Membership Rewards points");
   });
   it("puts Up to on a cash-only ceiling offer", () => {
-    expect(text("amex-blue-cash-everyday")).toEqual(["Up to $200 statement credit or cash back"]);
+    expect(textWith("amex-blue-cash-everyday", { welcomeBonus: { cashBack: 200, ceiling: true } }))
+      .toEqual(["Up to $200 statement credit or cash back"]);
   });
   it("shows cash and free nights", () => {
-    expect(text("amex-blue-business-cash")).toEqual(["$250 statement credit or cash back"]);
+    expect(textWith("amex-blue-business-cash", { welcomeBonus: { cashBack: 250 } })).toEqual(["$250 statement credit or cash back"]);
     expect(text("amex-hilton-surpass")).toEqual(["130,000 Hilton Honors points", "1 free night award"]);
     expect(text("chase-marriott-boundless")).toEqual(["3 free night awards"]);
   });
@@ -44,7 +47,15 @@ describe("describeBonus", () => {
     ]);
   });
   it("phrases a second tier that is spend at one merchant as exactly that", () => {
-    expect(text("barclays-wyndham-earner")).toEqual([
+    // The Wyndham Earner's own offer dropped this tier on 2026-11-01; the wording is checked on its earlier offer.
+    const earlier: Partial<Card> = {
+      welcomeBonus: {
+        points: 30000,
+        additionalTiers: [{ points: 45000, minSpend: 500, windowMonths: 6, spendBasis: "merchant", merchant: "Hotels by Wyndham" }],
+      },
+      typicalMinSpend: { amount: 1000, months: 3 },
+    };
+    expect(textWith("barclays-wyndham-earner", earlier)).toEqual([
       "Get 30,000 Wyndham Rewards points after spending $1,000 in 3 months, then get an additional 45,000 after spending $500 at Hotels by Wyndham in 6 months",
     ]);
   });

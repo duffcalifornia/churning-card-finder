@@ -93,8 +93,9 @@ describe("family rules that are hard exclusions (Capital One Venture)", () => {
   });
 
   it("leaves the business Venture X and Savor outside the family", () => {
-    expect(why(prior({ "capone-venture-x": old() }), "capone-venture-x-business")).toBeNull();
-    expect(why(prior({ "capone-venture-x": old() }), "capone-savor")).toBeNull();
+    // Not "family" is the rule under test; the card may still be hidden for other reasons (no bonus parsed, say).
+    expect(why(prior({ "capone-venture-x": old() }), "capone-venture-x-business")).not.toBe("family");
+    expect(why(prior({ "capone-venture-x": old() }), "capone-savor")).not.toBe("family");
   });
 });
 

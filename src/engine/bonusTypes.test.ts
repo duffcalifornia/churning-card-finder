@@ -34,8 +34,9 @@ function why(id: string, types: string[], p: Player = person(), opts: { excluded
 
 describe("unranked cards", () => {
   it("are hidden: the cards with no valuation and the Discover cash back match cards", () => {
+    // Discover it Cash Back left this list on 2026-11-01, when its match became a fixed $200 bonus.
     for (const id of ["barclays-breeze", "barclays-carnival", "barclays-emirates-premium", "barclays-emirates-rewards",
-                      "boa-allways-rewards", "boa-norwegian-cruise", "discover-it-cash-back", "discover-it-chrome", "discover-it-miles"]) {
+                      "boa-allways-rewards", "boa-norwegian-cruise", "discover-it-chrome", "discover-it-miles"]) {
       expect(why(id, []), id).toBe("unranked");
     }
   });
