@@ -2,6 +2,7 @@ What changed about how this site chooses and ranks cards, and the major site mil
 
 ## 2026-11-02
 - Updated the bonus offer for the following card(s): Venture X Business.
+- Updated the bonus offer for the following card(s): Lufthansa Miles & More World Elite Mastercard.
 
 ## 2026-10-30
 - Updated the bonus offer for the following card(s): Disney Premier Visa Card.

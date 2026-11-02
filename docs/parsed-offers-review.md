@@ -43,8 +43,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Southwest Rapid Rewards Premier Business Credit Card | 60,000 | - | - | $3,000 | 3 | - | - |  |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
-| Blue Cash Everyday Card | - | $150 | - | $2,000 | 6 | - | - |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | - |  |
+| Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | yes |  |
+| Blue Cash Preferred Card | - | $250 | - | $3,000 | 6 | - | - |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
 | Delta SkyMiles Gold American Express Card | 80,000 | - | - | $3,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $4,000 | 6 | - | yes |  |
@@ -116,7 +116,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Breeze Airways Card | 40,000 | - | - | $1,000 | 3 | - | - |  |
 | Emirates Skywards Premium World Elite Mastercard | 50,000 | - | - | $3,000 | 3 | - | - |  |
 | Emirates Skywards Rewards World Elite Mastercard | 40,000 | - | - | $3,000 | 3 | - | - |  |
-| Lufthansa Miles & More World Elite Mastercard | 70,000 | - | - | $4,000 | 3 | - | - |  |
+| Lufthansa Miles & More World Elite Mastercard | 50,000 | - | - | $3,000 | 3 | - | - |  |
 | AARP Essential Rewards Mastercard | - | $100 | - | $500 | 3 | - | - |  |
 | Carnival Rewards Mastercard | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | Discover it Cash Back Credit Card | - | $200 | - | $500 | 3 | - | - |  |

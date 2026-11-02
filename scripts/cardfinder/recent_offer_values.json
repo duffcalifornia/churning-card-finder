@@ -10,11 +10,11 @@
  "amex-blue-cash-everyday": {
   "[\"standard\", null, 150.0, 0, 2000.0, 6, [], false, null]": "2026-11-02",
   "[\"standard\", null, 200.0, 0, 2000.0, 6, [], false, null]": "2026-10-28",
-  "[\"standard\", null, 200.0, 0, 2000.0, 6, [], true, null]": "2026-10-29",
+  "[\"standard\", null, 200.0, 0, 2000.0, 6, [], true, null]": "2026-11-02",
   "null": "2026-10-21"
  },
  "amex-blue-cash-preferred": {
-  "[\"standard\", null, 250.0, 0, 3000.0, 6, [], false, null]": "2026-10-26",
+  "[\"standard\", null, 250.0, 0, 3000.0, 6, [], false, null]": "2026-11-02",
   "[\"standard\", null, 300.0, 0, 3000.0, 6, [], false, null]": "2026-11-02",
   "[\"standard\", null, 300.0, 0, 3000.0, 6, [], true, null]": "2026-11-01",
   "null": "2026-10-21"
@@ -141,6 +141,7 @@
   "null": "2026-10-21"
  },
  "barclays-lufthansa": {
+  "[\"standard\", 50000.0, null, 0, 3000.0, 3, [], false, null]": "2026-11-02",
   "[\"standard\", 70000.0, null, 0, 4000.0, 3, [], false, null]": "2026-11-02",
   "null": "2026-10-21"
  },
