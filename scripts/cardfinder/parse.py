@@ -14,13 +14,15 @@ import re
 from dataclasses import dataclass, field, asdict
 from typing import List, Optional
 
-_NUM = r"\d{1,3}(?:,\d{3})+"
+# "150,000", or Capital One's shorthand "150K" / "$40K" (2026-11: Venture X Business)
+_NUM = r"(?:\d{1,3}(?:,\d{3})+|\d+[Kk]\b)"
 _UNIT = r"(?:[A-Za-z]*[Pp]oints?|[Mm]iles|Avios)"
 _WORDS = r"(?:[A-Za-z-]+\s+)"
 
 
 def _n(s):
-    return float(s.replace(",", ""))
+    s = s.replace(",", "")
+    return float(s[:-1]) * 1000 if s[-1:] in "Kk" else float(s)
 
 
 def _months(amount, unit):
@@ -86,7 +88,8 @@ _WINDOW = [
     re.compile(r"within\s+(\d+)\s+(months?|days?)", re.I),
 ]
 _SECOND_TIER = re.compile(
-    rf"(?:Plus,?|and\s+also\s+earn|also\s+earn|then\s+earn)\s+({_NUM})\s+(?:[A-Za-z]+\s+){{0,3}}?{_UNIT}\s+after\s+(?:you\s+)?(?:spend|spending)\s+\$({_NUM}|\d+)"
+    rf"(?:Plus,?|and\s+also\s+earn|also\s+earn|then\s+earn)\s+(?:another\s+|an\s+additional\s+)?({_NUM})\s+(?:[A-Za-z]+\s+){{0,3}}?{_UNIT}\s+"
+    rf"(?:after|when)\s+(?:you\s+)?(?:spend|spending)\s+\$({_NUM}|\d+)"
     rf"(?P<tail>[^.]{{0,100}})", re.I)
 # "If you spend a total of $X within/in the first Y months, earn/get an additional Z <unit>": the spend clause comes
 # before the earn amount, and "a total of" marks the spend as cumulative from account opening, not on top of the
@@ -126,6 +129,10 @@ def parse_offer(raw):
         out.notes.append("first-year match of what is earned; no fixed bonus amount")
         return out
 
+    # "In your first 4 months: Earn 150K ... when you spend $40K, plus another 150K ... when you spend $120K" (Capital One):
+    # one window stated up front for every tier
+    lead_in = re.match(r"(?:In|Within)\s+(?:the\s+|your\s+)?first\s+(\d+)\s+(months?|days?)\s*:", text, re.I)
+
     # second tier (kept separately); the first tier's spend and window come from the text before it
     tier_match = _SECOND_TIER.search(text)
     total_match = _SECOND_TIER_TOTAL.search(text)
@@ -154,6 +161,9 @@ def parse_offer(raw):
             tier.basis = "total"
             tier.note = "spend is a total from account opening, not on top of the first tier's spend"
         out.additional_tiers.append(tier)
+    if lead_in:
+        for t in out.additional_tiers:
+            t.window_months = t.window_months or _months(lead_in.group(1), lead_in.group(2))
 
     # points
     struck = _STRUCK.search(primary)

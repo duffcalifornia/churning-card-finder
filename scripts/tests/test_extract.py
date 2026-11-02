@@ -83,6 +83,18 @@ class OfferTextIsClean(unittest.TestCase):
         self.assertNotIn("*", offer.text)
 
 
+class LeadInWindow(unittest.TestCase):
+    def test_a_window_stated_just_before_the_offer_is_kept_in_the_full_text(self):
+        o = extract_offer("Celebrate 3 years of Venture X Business with a limited-time offer. In your first 4 months: Earn 150K bonus "
+                          "miles when you spend $40K, plus another 150K miles when you spend $120K.")
+        self.assertEqual(o.text, "Earn 150K bonus miles when you spend $40K, plus another 150K miles when you spend $120K")
+        self.assertTrue(o.full_text.startswith("In your first 4 months: Earn 150K"))
+
+    def test_an_ordinary_offer_gets_no_lead_in(self):
+        o = extract_offer("Limited-time offer. Earn 75,000 points after you spend $5,000 in the first 3 months.")
+        self.assertTrue(o.full_text.startswith("Earn 75,000"))
+
+
 class OfferWithAbbreviationPeriods(unittest.TestCase):
     def test_finds_an_offer_whose_text_contains_us_periods(self):
         text = ("Earn two round-trip Delta Comfort Flight Certificates valid for travel to the U.S. 48, Puerto Rico, or the U.S. Virgin Islands, "

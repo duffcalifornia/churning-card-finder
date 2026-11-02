@@ -1788,22 +1788,30 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 150K bonus miles when you spend $40K, plus another 150K miles when you spend $120K",
-  "seenOn": "2026-11-01",
+  "seenOn": "2026-11-02",
   "parsed": {
-   "kind": "unparsed",
-   "points": null,
+   "kind": "standard",
+   "points": 150000.0,
    "cashBack": null,
    "freeNightAwards": 0,
-   "minSpend": 40.0,
-   "windowMonths": null,
-   "additionalTiers": [],
-   "ceiling": false,
-   "notes": [
-    "no bonus amount recognised; read the offer text"
+   "minSpend": 40000.0,
+   "windowMonths": 4,
+   "additionalTiers": [
+    {
+     "points": 150000.0,
+     "cashBack": null,
+     "minSpend": 120000.0,
+     "windowMonths": 4,
+     "note": "spend is a total from account opening, not on top of the first tier's spend",
+     "spendBasis": "total",
+     "merchant": ""
+    }
    ],
+   "ceiling": false,
+   "notes": [],
    "displayedAsCash": null
   },
-  "needsReview": true
+  "needsReview": false
  },
  {
   "cardId": "wellsfargo-active-cash",

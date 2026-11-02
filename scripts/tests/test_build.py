@@ -66,6 +66,29 @@ class BuildParsedOffers(unittest.TestCase):
         self.assertFalse(self.by_id([card("a")])["a"]["needsReview"])
 
 
+class UnreadableText(unittest.TestCase):
+    PREVIOUS = {"a": {"cardId": "a", "seenOn": "2026-10-19", "parsed": {
+        "kind": "standard", "points": 75000.0, "cashBack": None, "freeNightAwards": 0, "minSpend": 5000.0, "windowMonths": 3,
+        "additionalTiers": [], "ceiling": False, "notes": [], "displayedAsCash": None}}}
+    NEW_WORDING = {"a": {"text": "Earn lots of points when you spend a lot", "seen": "2026-11-01"}}
+
+    def test_keeps_the_last_offer_read_and_asks_for_review(self):
+        [r] = build_parsed_offers([card("a")], self.NEW_WORDING, previous=self.PREVIOUS)
+        self.assertEqual((r["parsed"]["kind"], r["parsed"]["points"], r["seenOn"]), ("standard", 75000.0, "2026-10-19"))
+        self.assertEqual(r["sourceText"], "Earn lots of points when you spend a lot")
+        self.assertTrue(r["needsReview"])
+        self.assertEqual(r["parsed"]["notes"], ["today's offer text could not be read; kept the offer last read on 2026-10-19"])
+
+    def test_the_note_is_not_repeated_on_later_runs(self):
+        [first] = build_parsed_offers([card("a")], self.NEW_WORDING, previous=self.PREVIOUS)
+        [second] = build_parsed_offers([card("a")], self.NEW_WORDING, previous={"a": first})
+        self.assertEqual(second["parsed"]["notes"], first["parsed"]["notes"])
+
+    def test_with_nothing_to_keep_it_stays_unparsed(self):
+        [r] = build_parsed_offers([card("a")], self.NEW_WORDING)
+        self.assertEqual(r["parsed"]["kind"], "unparsed")
+
+
 class OwnerFacts(unittest.TestCase):
     def build(self, cards, **kw):
         return {e["cardId"]: e for e in build_parsed_offers(cards, OFFERS, confirmed_none=set(), **kw)}

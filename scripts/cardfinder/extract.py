@@ -75,6 +75,11 @@ _ONGOING_BENEFIT = re.compile(
     re.I)
 
 
+# A window stated just before the offer sentence and shared by every tier in it: "In your first 4 months: Earn 150K bonus
+# miles when you spend $40K, plus another 150K miles when you spend $120K" (Capital One Venture X Business, 2026-11).
+_LEAD_IN_WINDOW = re.compile(r"(?:In|Within)\s+(?:the\s+|your\s+)?first\s+\d+\s+(?:months|days)\s*:\s*$", re.I)
+
+
 _SECOND_TIER_LEAD = re.compile(r"^(?:Plus,?|Also,?|Then,?|And\s+also)\b", re.I)
 
 
@@ -118,7 +123,9 @@ def extract_offer(text):
             struck = ("strike through" in lowered or bool(_ADJACENT_NUMBERS.search(found))
                       or ("old bonus" in lowered and "new bonus" in lowered))
             tail = _following_text(text[m.end():m.end() + 300])
-            return Offer(text=found, method=method, ceiling=ceiling, struck_through=struck, full_text=(found + tail).strip())
+            lead_in = _LEAD_IN_WINDOW.search(re.sub(r"\s+", " ", text[max(0, m.start() - 60):m.start()]))
+            head = lead_in.group(0).strip() + " " if lead_in else ""
+            return Offer(text=found, method=method, ceiling=ceiling, struck_through=struck, full_text=(head + found + tail).strip())
     return None
 
 

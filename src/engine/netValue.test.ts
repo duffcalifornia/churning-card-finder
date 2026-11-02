@@ -98,6 +98,6 @@ describe("value of real cards", () => {
         n++;
       }
     }
-    expect(n).toBe(126); // was 125 before the AT&T Points Plus Card was added, 2026-10-07 (124 before the JetBlue Business Card, 2026-10-07; 123 before the IHG One Rewards Premier Select Credit Card, 2026-10-01; 122 before Barclays Hawaiian Airlines, 2026-09-23)
+    expect(n).toBe(127); // was 126 before Discover it Cash Back got a fixed $200 bonus, 2026-11-01; 125 before the AT&T Points Plus Card was added, 2026-10-07 (124 before the JetBlue Business Card, 2026-10-07; 123 before the IHG One Rewards Premier Select Credit Card, 2026-10-01; 122 before Barclays Hawaiian Airlines, 2026-09-23)
   });
 });

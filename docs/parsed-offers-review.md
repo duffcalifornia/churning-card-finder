@@ -81,7 +81,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Savor Rewards | - | $200 | - | $500 | 3 | - | - |  |
 | Spark Cash Plus | - | $2,000 | - | $30,000 | 3 | - | - |  |
 | Spark Cash Select | - | $1,000 | - | $10,000 | 3 | - | - |  |
-| Venture X Business | - | - | - | $40 | - | - | - | REVIEW: no bonus amount recognised; read the offer text |
+| Venture X Business | 150,000 | - | - | $40,000 | 4 | 150,000 pts after $120,000 in 4 mo | - |  |
 | Wells Fargo Active Cash Card | - | $100 | - | $500 | 3 | - | - |  |
 | Wells Fargo Autograph Visa Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | Wells Fargo Autograph Journey Visa Card | 60,000 | - | - | $4,000 | 3 | - | - |  |

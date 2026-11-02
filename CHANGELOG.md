@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-11-02
+- Updated the bonus offer for the following card(s): Venture X Business.
+
 ## 2026-10-30
 - Updated the bonus offer for the following card(s): Disney Premier Visa Card.
 

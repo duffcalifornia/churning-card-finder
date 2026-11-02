@@ -2246,10 +2246,29 @@
   "recommendable": true,
   "annualFee": 395.0,
   "reportsToPersonal": false,
-  "unrankedReason": "no bonus amount recognised; read the offer text",
+  "currency": "capital-one-miles",
+  "bonusTypes": [
+   "transferable",
+   "cashback"
+  ],
+  "welcomeBonus": {
+   "points": 150000.0,
+   "additionalTiers": [
+    {
+     "points": 150000.0,
+     "minSpend": 120000.0,
+     "windowMonths": 4,
+     "spendBasis": "total"
+    }
+   ]
+  },
+  "typicalMinSpend": {
+   "amount": 40000.0,
+   "months": 4
+  },
   "unlocksTransfers": true,
   "sourceUrl": "https://www.capitalone.com/small-business/credit-cards/venture-x-business/",
-  "verifiedOn": "2026-11-01"
+  "verifiedOn": "2026-11-02"
  },
  {
   "id": "wellsfargo-active-cash",

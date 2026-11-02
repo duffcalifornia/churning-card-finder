@@ -239,6 +239,24 @@ class TieredOffers(unittest.TestCase):
         self.assertEqual(t.basis, "total")
 
 
+class ThousandsShorthand(unittest.TestCase):
+    """Capital One Venture X Business, 2026-11: "150K" and "$40K", with one window stated up front for both tiers."""
+    TEXT = "In your first 4 months: Earn 150K bonus miles when you spend $40K, plus another 150K miles when you spend $120K."
+
+    def test_both_tiers_and_the_shared_window(self):
+        p = parse_offer(self.TEXT)
+        self.assertEqual((p.kind, p.points, p.min_spend, p.window_months), ("standard", 150000, 40000, 4))
+        [t] = p.additional_tiers
+        self.assertEqual((t.points, t.min_spend, t.window_months, t.basis), (150000, 120000, 4, "total"))
+        self.assertEqual(p.notes, [])
+
+    def test_without_the_lead_in_the_window_is_noted_not_guessed(self):
+        p = parse_offer(self.TEXT.split(": ", 1)[1])
+        self.assertEqual((p.points, p.min_spend, p.window_months), (150000, 40000, None))
+        self.assertIsNone(p.additional_tiers[0].window_months)
+        self.assertTrue(any("window" in n for n in p.notes))
+
+
 class NoFixedAmount(unittest.TestCase):
     def test_first_year_match(self):
         p = check(self, "match all the cash back you earn at the end of your first year after you open your new Discover it Cash Back Card", kind="match", points=None, cash_back=None)

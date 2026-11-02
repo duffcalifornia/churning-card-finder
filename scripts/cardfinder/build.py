@@ -9,8 +9,11 @@ def _tier(t):
             "spendBasis": t.basis, "merchant": t.merchant}
 
 
+_KEPT_NOTE = "today's offer text could not be read; kept the offer last read on "
+
+
 def build_parsed_offers(cards, last_known_offers, confirmed_none=frozenset(), reviewed=frozenset(),
-                        cash_paid_as_points=None, stale_issuers=None, stale_since=None):
+                        cash_paid_as_points=None, stale_issuers=None, stale_since=None, previous=None):
     """One record per tracked card: its parsed welcome offer, or a note that it has none.
 
     A card with no recorded offer is recorded as having none only if the site owner confirmed that (confirmed_none);
@@ -18,7 +21,12 @@ def build_parsed_offers(cards, last_known_offers, confirmed_none=frozenset(), re
     for one without a bonus.
 
     Offers from an issuer in stale_issuers are marked stale, unless stale_since is given and the offer was read on or after it.
+
+    previous (the last build's records, by card id): when today's text yields no bonus at all but the last build had
+    one, that offer is kept and marked for review, so new wording the parser cannot read yet does not hide the card
+    (Capital One Venture X Business, 2026-11-01: "150K ... $40K" wiped its bonus).
     """
+    previous = previous or {}
     records = []
     cash_paid_as_points = cash_paid_as_points or {}
     stale_issuers = stale_issuers or {}
@@ -45,7 +53,14 @@ def build_parsed_offers(cards, last_known_offers, confirmed_none=frozenset(), re
             parsed.update(points=p.cash_back * per_dollar, currency=currency, displayedAsCash=p.cash_back, cashBack=None)
             parsed["notes"].append(f"advertised as ${p.cash_back:,.0f} cash back but paid as {currency} points")
         needs_review = p.kind == "unparsed" or any(m in n for n in p.notes for m in _REVIEW_MARKERS)
-        record.update({"hasWelcomeOffer": True, "sourceText": entry["text"], "seenOn": entry["seen"], "parsed": parsed})
+        seen = entry["seen"]
+        last = previous.get(card.id) or {}
+        if p.kind == "unparsed" and (last.get("parsed") or {}).get("kind") == "standard":
+            seen = last["seenOn"]
+            parsed = {**last["parsed"], "notes": [n for n in last["parsed"]["notes"] if not n.startswith(_KEPT_NOTE)]}
+            parsed["notes"].append(_KEPT_NOTE + seen)
+            needs_review = True
+        record.update({"hasWelcomeOffer": True, "sourceText": entry["text"], "seenOn": seen, "parsed": parsed})
         if entry.get("source"):
             # Set only when the hotel site's page supplied the offer (cardfinder.choose); absent means the issuer's own page.
             record.update(offerSource=entry["source"], offerSourceUrl=entry["sourceUrl"])

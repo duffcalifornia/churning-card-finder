@@ -26,11 +26,15 @@ def money(x):
 
 def main():
     offers = effective_offers(LAST_KNOWN_OFFERS, LAST_KNOWN_HOTEL_OFFERS, datetime.date.today())
+    path = os.path.join(ROOT, "data", "parsed-offers.json")
+    with open(path) as f:
+        previous = {r["cardId"]: r for r in json.load(f)}
     records = build_parsed_offers(CARDS, offers, confirmed_none=NO_OFFER_CONFIRMED, reviewed=REVIEWED_OK,
                                   cash_paid_as_points=CASH_PAID_AS_POINTS,
                                   stale_issuers={k: v.paused for k, v in ISSUERS.items() if v.paused},
-                                  stale_since="2026-09-21")  # Amex was re-read on this date
-    with open(os.path.join(ROOT, "data", "parsed-offers.json"), "w") as f:
+                                  stale_since="2026-09-21",  # Amex was re-read on this date
+                                  previous=previous)
+    with open(path, "w") as f:
         json.dump(records, f, indent=1)
     lines = ["# Parsed welcome offers (review)", "",
              "Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows marked REVIEW need a person to look.", "",
