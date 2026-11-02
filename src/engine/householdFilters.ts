@@ -1,9 +1,10 @@
 import type { Card, Currency, Household, Program } from "./types";
 
 /**
- * Spend the household can put on one card within a window of 3 to 6 months (the windows in the catalog):
+ * Spend the household can put on one card within a window of 3 months or more:
  * 3 months is spend3Months plus the supplemental spend; 6 months is spend6Months plus twice the supplemental spend;
- * windows between are interpolated linearly. Anything else is refused rather than guessed.
+ * windows between are interpolated linearly, and longer windows (a 12-month bonus tier) extend the 6-month pace
+ * (owner, 2026-11-02: $4,000 in 3 months is $16,000 in 12). Shorter windows are refused rather than guessed.
  *
  * spend3Months and supplementalSpend3Months left blank (null, unanswered) count as 0. spend6Months left blank is
  * instead treated as "double the 3-month answer" (owner, 2026-09-22), since a real 6-month total lower than the
@@ -11,12 +12,13 @@ import type { Card, Currency, Household, Program } from "./types";
  * household's real answer is genuinely 0 here, so 0 and null mean the same thing for this one field.
  */
 export function spendCapacity(household: Household, months: number): number {
-  if (!(months >= 3 && months <= 6)) throw new Error(`unsupported spend window: ${months} months (expected 3 to 6)`);
+  if (!(months >= 3)) throw new Error(`unsupported spend window: ${months} months (expected 3 or more)`);
   const spend3Months = household.spend3Months ?? 0;
   const supplemental = household.supplementalSpend3Months ?? 0;
   const spend6Months = household.spend6Months || spend3Months * 2;
   const at3 = spend3Months + supplemental;
   const at6 = spend6Months + 2 * supplemental;
+  if (months > 6) return (at6 * months) / 6;
   return at3 + ((at6 - at3) * (months - 3)) / 3;
 }
 

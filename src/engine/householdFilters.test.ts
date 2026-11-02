@@ -36,9 +36,13 @@ describe("spendCapacity", () => {
     expect(spendCapacity(h, 4)).toBeCloseTo(16000);
     expect(spendCapacity(h, 5)).toBeCloseTo(20000);
   });
-  it("refuses windows outside 3 to 6 months rather than guess", () => {
+  it("refuses windows under 3 months rather than guess", () => {
     expect(() => spendCapacity(h, 2)).toThrow(/window/);
-    expect(() => spendCapacity(h, 12)).toThrow(/window/);
+  });
+  it("extends the 6-month pace past 6 months (owner, 2026-11-02)", () => {
+    expect(spendCapacity(h, 12)).toBe(48000);
+    const only3 = household({ spend3Months: 4000, spend6Months: null, supplementalSpend3Months: 0 });
+    expect(spendCapacity(only3, 12)).toBe(16000); // $4,000 in 3 months is $16,000 in 12
   });
   it("assumes double the 3-month spend at 6 months when spend6Months was left blank (owner, 2026-09-22)", () => {
     const blank6 = household({ spend3Months: 3000, spend6Months: 0, supplementalSpend3Months: 0 });

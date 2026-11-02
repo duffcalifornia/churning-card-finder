@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { bonusValue, netValue } from "./netValue";
-import type { Card, Valuations } from "./types";
+import type { Card, Household, Valuations } from "./types";
 import cardsJson from "../../data/cards.json";
 import valuationsJson from "../../data/valuations.json";
 
@@ -31,6 +31,29 @@ describe("bonusValue", () => {
   it("adds extra tiers", () => {
     const c = card({ currency: "flat", welcomeBonus: { points: 10000, additionalTiers: [{ points: 5000 }, { cashBack: 25 }] } });
     expect(bonusValue(c, V, false)).toBe(200 + 100 + 25);
+  });
+  it("counts an extra tier only when the household's spending reaches it", () => {
+    const h = (spend3Months: number, spend6Months: number | null = null): Household => ({
+      maxAnnualFee: null, spend3Months, spend6Months, supplementalSpend3Months: null, bonusTypes: [], excludedPrograms: [],
+    });
+    const total = card({
+      currency: "flat", typicalMinSpend: { amount: 4000, months: 3 },
+      welcomeBonus: { points: 10000, additionalTiers: [{ points: 5000, minSpend: 20000, windowMonths: 12, spendBasis: "total" }] },
+    });
+    expect(bonusValue(total, V, false, h(4000))).toBe(200); // $16,000 in 12 months is short of $20,000
+    expect(bonusValue(total, V, false, h(5000))).toBe(300); // $20,000 in 12 months
+    expect(bonusValue(total, V, false)).toBe(300); // no household: every tier counts
+    const more = card({
+      currency: "flat", typicalMinSpend: { amount: 1000, months: 3 },
+      welcomeBonus: { points: 10000, additionalTiers: [{ points: 5000, minSpend: 1000, windowMonths: 6, spendBasis: "more" }] },
+    });
+    expect(bonusValue(more, V, false, h(1000, 1500))).toBe(200); // needs $2,000 in 6 months
+    expect(bonusValue(more, V, false, h(1000))).toBe(300);
+    const merchant = card({
+      currency: "flat",
+      welcomeBonus: { points: 10000, additionalTiers: [{ points: 5000, minSpend: 500, windowMonths: 6, spendBasis: "merchant", merchant: "Hotels by Wyndham" }] },
+    });
+    expect(bonusValue(merchant, V, false, h(0))).toBe(300);
   });
   it("refuses to value a card with no bonus or with points and no currency", () => {
     expect(() => bonusValue(card({}), V, false)).toThrow(/welcome bonus/);

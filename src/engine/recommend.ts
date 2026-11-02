@@ -54,7 +54,7 @@ function candidatesFor(
     const currency = currencyOf(card);
     const unlocked = currency !== undefined && !forceCashOutCurrencies.has(currency.id) &&
       (ctx.unlock.get(currency.id) === true || currency.unlockerCards.includes(card.id));
-    const bonus = bonusValue(card, data.valuations, unlocked);
+    const bonus = bonusValue(card, data.valuations, unlocked, ctx.household);
     const net = bonus - firstYearFee(card);
     out.push({
       card,

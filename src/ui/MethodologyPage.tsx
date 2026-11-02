@@ -24,7 +24,9 @@ export function MethodologyPage() {
       <h3>How a bonus is valued</h3>
       <p>
         A card's bonus value the number of points awarded multiplied by a cents-per-point value, plus any cash back or statement credit that doesn't require spending in a specific category, plus any
-        free night certificates, added together. Points are valued using{" "}
+        free night certificates, added together. When a bonus comes in tiers (for example, more points for spending more
+        within 12 months), a later tier only counts if your household's spending reaches it: the 6-month figure you
+        gave is extended at the same pace, so $4,000 in 3 months with the 6-month box left blank counts as $16,000 in 12. Points are valued using{" "}
         <a href={FM_RRV} target="_blank" rel="noreferrer">Frequent Miler's Reasonable Redemption Values</a>, which the site
         treats as the definitive source; free night certificates use Frequent Miler's own discounted values for them too.
       </p>
