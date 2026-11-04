@@ -43,8 +43,6 @@ FAMILIES = {
              "morganstanley-blue-cash-preferred": 2},
     "delta-personal": {"amex-delta-blue": 1, "amex-delta-options": 2, "amex-delta-gold": 3,
                        "amex-delta-platinum": 4, "amex-delta-reserve": 5},
-    "delta-business": {"amex-delta-gold-business": 1, "amex-delta-platinum-business": 2,
-                       "amex-delta-reserve-business": 3},
     "hilton": {"amex-hilton-surpass": 1, "amex-hilton-ascend": 2},
     "venture": {"capone-ventureone": 1, "capone-venture": 2, "capone-venture-x": 3},
 }

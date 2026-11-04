@@ -116,8 +116,10 @@ class Families(unittest.TestCase):
         self.assertEqual(tiers, [1, 2, 3, 4, 5])
         self.assertEqual({BY_ID[c]["family"]["id"] for c in ("amex-delta-blue", "amex-delta-reserve")}, {"delta-personal"})
 
-    def test_business_delta_is_its_own_family(self):
-        self.assertEqual(BY_ID["amex-delta-gold-business"]["family"], {"id": "delta-business", "tier": 1})
+    def test_business_delta_cards_have_no_family(self):
+        # The owner's 2026-09-20 note that they did was a mistake (owner, 2026-11-04).
+        for c in ("amex-delta-gold-business", "amex-delta-platinum-business", "amex-delta-reserve-business"):
+            self.assertNotIn("family", BY_ID[c])
 
     def test_same_tier_cards_share_a_tier(self):
         self.assertEqual(BY_ID["amex-platinum"]["family"], BY_ID["schwab-platinum"]["family"])

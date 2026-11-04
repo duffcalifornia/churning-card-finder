@@ -134,11 +134,12 @@ describe("Amex lifetime and family blocks are NLL blocks, not hard exclusions", 
     expect(nll(prior({ "morganstanley-blue-cash-preferred": old() }), "amex-blue-cash-preferred")).toBe("lifetime");
   });
 
-  it("covers the Blue Cash, Hilton and Delta business families", () => {
+  it("covers the Blue Cash and Hilton families, and not the Delta business cards (owner, 2026-11-04)", () => {
     expect(nll(prior({ "amex-blue-cash-preferred": old() }), "amex-blue-cash-everyday")).toBe("family");
     expect(nll(prior({ "amex-hilton-ascend": old() }), "amex-hilton-surpass")).toBe("family");
     expect(nll(prior({ "amex-hilton-surpass": old() }), "amex-hilton-aspire")).toBeNull();
-    expect(nll(prior({ "amex-delta-platinum-business": old() }), "amex-delta-gold-business")).toBe("family");
+    expect(nll(prior({ "amex-delta-platinum-business": old() }), "amex-delta-gold-business")).toBeNull();
+    expect(nll(prior({ "amex-delta-reserve-business": old() }), "amex-delta-platinum-business")).toBeNull();
     expect(nll(prior({ "amex-delta-reserve": old() }), "amex-delta-gold-business")).toBeNull();
   });
 

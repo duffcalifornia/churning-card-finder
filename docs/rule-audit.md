@@ -21,7 +21,7 @@ Reading notes: the wording below is paraphrased from the image. Rows marked (?) 
 | A8 | Amex | 1/5: at most 1 charge card approved in 5 days | confirmed | | user | 2026-09-20 |
 | A9 | Amex | 5 credit card limit | confirmed | | user | 2026-09-20 |
 | A10 | Amex | Once per lifetime welcome bonus per product | confirmed | Exception: some offers have no "once per lifetime" language ("NLL"), so the lifetime rule does not apply to that specific offer | user | 2026-09-20 |
-| A11 | Amex | Card-family rule (from Fall 2023): if you hold a higher card in a family you are ineligible for a lower one; business cards not affected | confirmed | Family rule also applies to the Delta business cards. Business cards otherwise not affected (Delta business is the exception).. Also applies to personal Hilton cards (see F7) | user | 2026-09-20 |
+| A11 | Amex | Card-family rule (from Fall 2023): if you hold a higher card in a family you are ineligible for a lower one; business cards not affected | confirmed | Business cards not affected, including the Delta business cards (owner, 2026-11-04: the 2026-09-20 note that Delta business was an exception was a mistake). Also applies to personal Hilton cards (see F7) | user | 2026-11-04 |
 | A12 | Barclays | 6/24: generally declined with 6 or more new accounts in 24 months | confirmed | Counts personal cards | user | 2026-09-20 |
 | A13 | Citi | 8/65: max 1 card per 8 days and 2 in 65 days | confirmed | Still applies to Citi (user 2026-09-21). | user | 2026-09-21 |
 | A14 | Citi | 6/6: too many inquiries in 6 months | confirmed | Inconsistently applied (soft signal, not a hard rule) | user | 2026-09-20 |
@@ -107,7 +107,7 @@ Source: https://m16p-churning.s3.us-east-2.amazonaws.com/Card+Recommendation+Flo
 | F4 | Chase | With less than 1 year of CC history, Chase usually will not approve any card except Freedom Student, unless you have loan history and/or a Chase bank account | confirmed | | user | 2026-09-20 |
 | F5 | Amex | 1/90 same-card rule (cannot get the same card again within 90 days) | confirmed | | user | 2026-09-20 |
 | F6 | Amex | Charge cards are exempt from the 5-credit-card limit | removed | Deleted: duplicate of G6 (5 credit and 10 charge card limits) | user | 2026-09-20 |
-| F7 | Amex | Family rules apply to: Platinum over Gold over Green; personal Delta; personal Marriott; Blue Cash. Flowchart says business cards and personal Hilton are not impacted (user says Delta business is affected, see A11). Amex personal cards are avoided until 5+/24 | confirmed | Superseded by Section J (exact family tiers from user). Hilton correction: only Surpass is blocked by Ascend; other Hilton cards have no family restriction | user | 2026-09-20 |
+| F7 | Amex | Family rules apply to: Platinum over Gold over Green; personal Delta; personal Marriott; Blue Cash. Flowchart says business cards and personal Hilton are not impacted (the user's 2026-09-20 note that Delta business is affected was withdrawn 2026-11-04, see A11). Amex personal cards are avoided until 5+/24 | confirmed | Superseded by Section J (exact family tiers from user). Hilton correction: only Surpass is blocked by Ascend; other Hilton cards have no family restriction | user | 2026-09-20 |
 | F8 | Amex | Targeted NLL offers and upgrade offers into cards you have held are recommended in the 5/24+ list | confirmed | Personal card upgrade offers do not count toward 5/24 | user | 2026-09-20 |
 | F9 | Barclays | 6/24 is described as "soft"; get wanted Barclays biz cards while under 5/24. Main options: JetBlue, Hawaiian, Wyndham | confirmed | | user | 2026-09-20 |
 | F10 | Barclays | If exactly 5/24: get 1 to 2 Barclays cards (same day if 2). At 6+/24 expect denial (maybe try at 6/24) | confirmed | | user | 2026-09-20 |
@@ -172,7 +172,7 @@ Engine implications:
 
 - Current list of cards open to new applicants: the flowchart's priority lists (Section C) predate June 2025 and were last updated 06/09/2025. Needs a current catalog before Section C can be audited.
 - B2/B3/B5 thresholds (75k+ / 70k+ figures) and the initial `burnWorthy` card list.
-- Amex family card order (low to high) per family: Platinum/Gold/Green, Delta, Marriott, Hilton, Blue Cash, Delta business (needed for F7/A11/G7).
+- Amex family card order (low to high) per family: Platinum/Gold/Green, Delta, Marriott, Hilton, Blue Cash (needed for F7/A11/G7).
 - Open decisions: Wells Fargo Signify account age value (A24), Cap1 business cards that do not report to personal (A21), Marriott table (F20 / E3), Section F and G rows not yet reviewed.
 
 
@@ -243,13 +243,12 @@ Tiers are listed lowest to highest (lowest tier first). A card is blocked by hav
 | Membership Rewards (personal) | Gold | Platinum, Morgan Stanley Platinum, Schwab Platinum | | | |
 | Cash (Blue Cash) | Blue Cash Everyday | Cash Magnet, Blue Cash Preferred, Morgan Stanley Blue Cash Preferred | | | |
 | Delta (personal) | Delta Blue | Delta Options | Delta Gold | Delta Platinum | Delta Reserve |
-| Delta (business) | Delta Gold Business | Delta Platinum Business | Delta Reserve Business | | |
 | Hilton | Hilton Surpass | Hilton Ascend | | | |
 
 Notes:
 - Hilton: the only restriction is that Surpass is blocked by having had Ascend. No other Hilton card has a family restriction (this supersedes the flowchart, which said Hilton was unaffected, and my earlier F7 note).
 - Marriott cards are handled by the matrix in Section H, not by this table.
-- Other Amex business cards are not affected by family rules (only the Delta business family above).
+- Amex business cards are not affected by family rules, the Delta business cards included (owner, 2026-11-04; a Delta business family was listed here until then by mistake).
 - Open questions to resolve before the engine encodes this: see below.
 
 | # | Question | Status |
