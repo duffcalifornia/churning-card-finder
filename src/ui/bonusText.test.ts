@@ -66,7 +66,7 @@ describe("describeBonus", () => {
   });
   it("gives friendly names to currencies that are not in the currency or program lists", () => {
     expect(text("boa-premium-rewards")).toEqual(["60,000 bank points"]);
-    expect(text("barclays-lufthansa")).toEqual(["70,000 Miles & More miles"]);
+    expect(textWith("barclays-lufthansa", { welcomeBonus: { points: 70000 } })).toEqual(["70,000 Miles & More miles"]);
   });
   it("describes every ranked card, and never says undefined or NaN", () => {
     for (const c of catalog.filter((c) => c.recommendable && !c.unrankedReason)) {
