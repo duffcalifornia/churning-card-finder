@@ -416,9 +416,7 @@ NO_OFFER_CONFIRMED = {c.id for c in CARDS if c.expected and not c.last_known_off
 # Rows the site owner checked (2026-09-20): old/new pairs where the second figure is the real offer.
 REVIEWED_OK = {"chase-sapphire-reserve-business", "chase-southwest-premier-business", "wellsfargo-choice-privileges",
                # Delta Business struck-through pairs: the second figure is the current bonus (site owner, 2026-09-21)
-               "amex-delta-gold-business", "amex-delta-platinum-business", "amex-delta-reserve-business",
-               # World of Hyatt: only the first part counts (30,000 after $3,000 in 3 months), per the bonus-value rules
-               "chase-world-of-hyatt"}
+               "amex-delta-gold-business", "amex-delta-platinum-business", "amex-delta-reserve-business"}
 
 # Advertised as cash back but paid as Ultimate Rewards points, 100 points per dollar (site owner, 2026-09-20).
 # Ultimate Rewards are worth 1.0 cent as cash and 1.5 cents for travel (data/valuations.json).
@@ -430,6 +428,7 @@ CASH_PAID_AS_POINTS = {cid: ("ultimate-rewards", 100) for cid in
 FREE_NIGHT_CERTIFICATE = {
     "chase-marriott-boundless": "marriott-50k",   # each award is worth up to 50,000 points (site owner)
     "amex-marriott-business": "marriott-50k",     # "redemption level up to 50,000 points" on the offer
+    "chase-world-of-hyatt": "hyatt-cat-1-4",      # "4 free nights at any Category 1-4 Hyatt hotel" (site owner, 2026-11-06)
     # Assumption, not yet confirmed by the owner: Hilton Free Night Rewards valued at Frequent Miler's Hilton certificate.
     "amex-hilton-honors": "hilton", "amex-hilton-surpass": "hilton", "amex-hilton-aspire": "hilton", "amex-hilton-business": "hilton",
 }

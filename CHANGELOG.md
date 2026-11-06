@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-11-06
+- Updated the bonus offer for the following card(s): World of Hyatt Credit Card.
+
 ## 2026-11-03
 - Updated the bonus offer for the following card(s): JetBlue Plus Card and JetBlue Premier Card.
 

@@ -74,7 +74,8 @@ _REDEMPTION_VALUE = re.compile(r"\s*(?:redemption\s+)?value\b", re.I)
 # just how the cash back is paid out, so counting both would double it.
 _CASH_AWARDED_AS_POINTS = re.compile(
     rf"\$(?:{_NUM}|\d+)\s+(?:in\s+)?cash\s*back,?\s+(?:awarded|paid|delivered|credited)\s+as\s+(?:{_NUM}|\d+)\s+(?:bonus\s+)?points", re.I)
-_FREE_NIGHT = re.compile(r"\b(\d+|an?|one|two|three|four|five)\s+Free\s+Night\s+(?:Award|Reward|Certificate)s?", re.I)
+# "3 Free Night Awards", "a Free Night Reward", or Hyatt's "4 free nights at any Category 1-4 Hyatt hotel" (2026-11-06)
+_FREE_NIGHT = re.compile(r"\b(\d+|an?|one|two|three|four|five)\s+Free\s+Nights?(?:\s+(?:Award|Reward|Certificate)s?|(?=\s+at\b))", re.I)
 _WORD_NUMBERS = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
 _SPEND = [
     re.compile(r"(?:after|when|once)\s+(?:you\s+)?(?:spend|spending|make|making|use\s+your\s+new\s+card\s+to\s+make)\s+(?:at\s+least\s+)?\$(" + _NUM + r"|\d+)", re.I),

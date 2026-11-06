@@ -335,23 +335,20 @@
   "issuer": "chase",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn up to 60,000 Bonus Points 30,000 Bonus Points after you spend $3,000 on purchases in your first 3 months of account opening",
-  "seenOn": "2026-11-04",
+  "sourceText": "Earn 4 free nights at any Category 1-4 Hyatt hotel after spending $5,000 within the first 3 months of account opening",
+  "seenOn": "2026-11-06",
   "parsed": {
    "kind": "standard",
-   "points": 30000.0,
+   "points": null,
    "cashBack": null,
-   "freeNightAwards": 0,
-   "minSpend": 3000.0,
+   "freeNightAwards": 4,
+   "minSpend": 5000.0,
    "windowMonths": 3,
    "additionalTiers": [],
    "ceiling": false,
-   "notes": [
-    "counted the first part only (the rest depends on further bonus spending)"
-   ],
+   "notes": [],
    "displayedAsCash": null
   },
-  "reviewedByOwner": true,
   "needsReview": false
  },
  {

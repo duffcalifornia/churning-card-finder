@@ -53,9 +53,10 @@ def build_parsed_offers(cards, last_known_offers, confirmed_none=frozenset(), re
             parsed.update(points=p.cash_back * per_dollar, currency=currency, displayedAsCash=p.cash_back, cashBack=None)
             parsed["notes"].append(f"advertised as ${p.cash_back:,.0f} cash back but paid as {currency} points")
         needs_review = p.kind == "unparsed" or any(m in n for n in p.notes for m in _REVIEW_MARKERS)
-        seen = entry["seen"]
+        seen, kept = entry["seen"], False
         last = previous.get(card.id) or {}
         if p.kind == "unparsed" and (last.get("parsed") or {}).get("kind") == "standard":
+            kept = True
             seen = last["seenOn"]
             parsed = {**last["parsed"], "notes": [n for n in last["parsed"]["notes"] if not n.startswith(_KEPT_NOTE)]}
             parsed["notes"].append(_KEPT_NOTE + seen)
@@ -64,7 +65,7 @@ def build_parsed_offers(cards, last_known_offers, confirmed_none=frozenset(), re
         if entry.get("source"):
             # Set only when the hotel site's page supplied the offer (cardfinder.choose); absent means the issuer's own page.
             record.update(offerSource=entry["source"], offerSourceUrl=entry["sourceUrl"])
-        if card.id in reviewed:
+        if card.id in reviewed and not kept:   # the owner reviewed an earlier wording, not one we could not read
             needs_review = False
             record["reviewedByOwner"] = True
         record["needsReview"] = needs_review

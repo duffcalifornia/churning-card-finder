@@ -166,6 +166,13 @@ class FreeNights(unittest.TestCase):
     def test_free_night_awards(self):
         check(self, "Earn 3 Free Night Awards after spending $3,000 on eligible purchases within 3 months of account opening", free_night_awards=3, points=None, min_spend=3000, window_months=3)
 
+    def test_free_nights_at_a_hotel_category(self):
+        check(self, "Earn 4 free nights at any Category 1-4 Hyatt hotel after spending $5,000 within the first 3 months of account opening",
+              free_night_awards=4, points=None, min_spend=5000, window_months=3)
+
+    def test_a_sentence_about_redeeming_free_nights_is_not_a_bonus(self):
+        self.assertEqual(parse_offer("Free nights can require up to 45,000 points per bedroom").free_night_awards, 0)
+
     def test_points_plus_a_free_night(self):
         check(self, "Earn 70,000 Hilton Honors Bonus Points + A Free Night Reward after you spend $2,000 in purchases in the first 6 months", points=70000, free_night_awards=1, min_spend=2000, window_months=6)
 

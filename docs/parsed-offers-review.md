@@ -18,7 +18,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | IHG One Rewards Premier Credit Card | 180,000 | - | - | $3,000 | 3 | - | - |  |
 | IHG One Rewards Premier Select Credit Card | 200,000 | - | - | $5,000 | 3 | - | - |  |
 | IHG One Rewards Credit Card | 125,000 | - | - | $2,000 | 3 | - | - |  |
-| World of Hyatt Credit Card | 30,000 | - | - | $3,000 | 3 | - | - | counted the first part only (the rest depends on further bonus spending) |
+| World of Hyatt Credit Card | - | - | 4 | $5,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Plus Credit Card | 80,000 | - | - | $1,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Premier Credit Card | 85,000 | - | - | $2,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Priority Credit Card | 90,000 | - | - | $3,000 | 3 | - | - |  |

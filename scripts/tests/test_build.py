@@ -84,6 +84,10 @@ class UnreadableText(unittest.TestCase):
         [second] = build_parsed_offers([card("a")], self.NEW_WORDING, previous={"a": first})
         self.assertEqual(second["parsed"]["notes"], first["parsed"]["notes"])
 
+    def test_an_owner_review_of_an_earlier_wording_does_not_clear_the_flag(self):
+        [r] = build_parsed_offers([card("a")], self.NEW_WORDING, previous=self.PREVIOUS, reviewed={"a"})
+        self.assertTrue(r["needsReview"])
+
     def test_with_nothing_to_keep_it_stays_unparsed(self):
         [r] = build_parsed_offers([card("a")], self.NEW_WORDING)
         self.assertEqual(r["parsed"]["kind"], "unparsed")
