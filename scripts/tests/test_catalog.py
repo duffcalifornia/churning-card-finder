@@ -2,7 +2,7 @@ import json
 import os
 import unittest
 
-from cardfinder.catalog import build_catalog
+from cardfinder.catalog import _welcome_bonus, build_catalog
 from cardfinder.registry import CARDS, LAST_KNOWN_FEES, UNVALUED, OWNER_FEES
 from cardfinder.value import bonus_value
 
@@ -287,20 +287,33 @@ class WelcomeBonuses(unittest.TestCase):
                 self.assertIn("unrankedReason", c, c["id"])
 
     def test_the_number_of_free_nights_is_kept_for_display(self):
-        self.assertEqual(BY_ID["amex-hilton-surpass"]["welcomeBonus"]["freeNights"], 1)
-        self.assertEqual(BY_ID["chase-marriott-boundless"]["welcomeBonus"]["freeNights"], 3)  # "Earn 3 Free Night Awards"
-        self.assertNotIn("freeNights", BY_ID["amex-platinum"]["welcomeBonus"])
+        # Checked on a fixed offer and against each card's own parsed offer, not on today's live offers, which change
+        # (Boundless went from 3 Free Night Awards to 200,000 points on 2026-11-06).
+        b = _welcome_bonus({"freeNightAwards": 3}, VALUATIONS["freeNightCertificates"], "chase-marriott-boundless")
+        self.assertEqual(b["freeNights"], 3)
+        self.assertNotIn("freeNights", _welcome_bonus({"points": 80000}, VALUATIONS["freeNightCertificates"], "amex-platinum"))
         for c in CATALOG:
             b = c.get("welcomeBonus", {})
             self.assertEqual("freeNights" in b, "otherValue" in b, c["id"])
+            if b:
+                self.assertEqual(b.get("freeNights", 0), OFFERS[c["id"]]["parsed"]["freeNightAwards"], c["id"])
 
     def test_extra_tiers_are_kept_for_the_engine(self):
         self.assertTrue(BY_ID["chase-aeroplan"]["welcomeBonus"]["additionalTiers"])
 
-    def test_spot_checks(self):
-        self.assertEqual(BY_ID["chase-world-of-hyatt"]["welcomeBonus"]["points"], 30000)
-        self.assertEqual(BY_ID["amex-delta-gold-business"]["welcomeBonus"]["points"], 90000)
-        self.assertEqual(BY_ID["amex-delta-gold-business"]["typicalMinSpend"], {"amount": 6000, "months": 6})
+    def test_the_bonus_and_minimum_spend_come_from_the_parsed_offer(self):
+        # Every card, against its own parsed offer, instead of pinned figures that break whenever an offer changes
+        # (Delta Gold Business went from 90,000 to "as high as" 85,000 on 2026-11-06).
+        for c in CATALOG:
+            b = c.get("welcomeBonus")
+            if not b:
+                continue
+            p = OFFERS[c["id"]]["parsed"]
+            self.assertEqual(b.get("points"), p["points"] or None, c["id"])
+            if p["minSpend"] and p["windowMonths"]:
+                self.assertEqual(c["typicalMinSpend"], {"amount": p["minSpend"], "months": p["windowMonths"]}, c["id"])
+            else:
+                self.assertNotIn("typicalMinSpend", c, c["id"])
 
 
 if __name__ == "__main__":

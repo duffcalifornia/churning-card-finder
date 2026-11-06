@@ -38,8 +38,10 @@ describe("describeBonus", () => {
   });
   it("shows cash and free nights", () => {
     expect(textWith("amex-blue-business-cash", { welcomeBonus: { cashBack: 250 } })).toEqual(["$250 statement credit or cash back"]);
-    expect(text("amex-hilton-surpass")).toEqual(["130,000 Hilton Honors points", "1 free night award"]);
-    expect(text("chase-marriott-boundless")).toEqual(["3 free night awards"]);
+    expect(textWith("amex-hilton-surpass", { welcomeBonus: { points: 130000, freeNights: 1, otherValue: 521 } }))
+      .toEqual(["130,000 Hilton Honors points", "1 free night award"]);
+    // Boundless's own offer became 200,000 points on 2026-11-06; the wording is checked on its earlier offer.
+    expect(textWith("chase-marriott-boundless", { welcomeBonus: { freeNights: 3, otherValue: 822 } })).toEqual(["3 free night awards"]);
   });
   it("phrases a cumulative second tier as a total, not as spend on top of the first (Aeroplan needs $20,000, not $24,000)", () => {
     expect(text("chase-aeroplan")).toEqual([
