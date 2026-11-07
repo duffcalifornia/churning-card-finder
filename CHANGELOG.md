@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-11-07
+- Updated the bonus offer for the following card(s): Amazon Visa Credit Card, Chase Freedom Flex, Delta SkyMiles Gold American Express Card, Delta SkyMiles Gold Business American Express Card, Delta SkyMiles Platinum American Express Card, Delta SkyMiles Platinum Business American Express Card, Delta SkyMiles Reserve American Express Card, Delta SkyMiles Reserve Business Card, Marriott Bonvoy Boundless Credit Card, Marriott Bonvoy Business Credit Card, and Prime Visa Credit Card.
+
 ## 2026-11-06
 - Updated the bonus offer for the following card(s): World of Hyatt Credit Card.
 

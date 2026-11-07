@@ -4,7 +4,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 
 | Card | Points | Cash | Free nights | Min spend | Months | Extra tiers | Ceiling | Notes |
 |---|---|---|---|---|---|---|---|---|
-| Chase Freedom Flex | 25,000 | - | - | $500 | 3 | - | - | advertised as $250 cash back but paid as ultimate-rewards points |
+| Chase Freedom Flex | 20,000 | - | - | $500 | 3 | - | - | advertised as $200 cash back but paid as ultimate-rewards points |
 | Chase Freedom Unlimited | 20,000 | - | - | $500 | 3 | - | - | advertised as $200 cash back but paid as ultimate-rewards points |
 | Chase Sapphire Preferred | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Chase Sapphire Reserve | 100,000 | - | - | $6,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
@@ -14,7 +14,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | United Club Infinite Card | 90,000 | - | - | $5,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
 | Marriott Bonvoy Bold Credit Card | 45,000 | - | - | $1,000 | 3 | - | - |  |
 | Marriott Bonvoy Bountiful Credit Card | 85,000 | - | - | $4,000 | 3 | - | - |  |
-| Marriott Bonvoy Boundless Credit Card | - | - | 3 | $3,000 | 3 | - | - |  |
+| Marriott Bonvoy Boundless Credit Card | 200,000 | - | - | $3,000 | 3 | - | - |  |
 | IHG One Rewards Premier Credit Card | 180,000 | - | - | $3,000 | 3 | - | - |  |
 | IHG One Rewards Premier Select Credit Card | 200,000 | - | - | $5,000 | 3 | - | - |  |
 | IHG One Rewards Credit Card | 125,000 | - | - | $2,000 | 3 | - | - |  |
@@ -27,10 +27,10 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Aer Lingus Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Iberia Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Disney Visa Card | - | $100 | - | - | - | - | - | awarded on approval, no spend requirement |
-| Disney Premier Visa Card | - | $300 | - | $500 | 3 | - | - |  |
+| Disney Premier Visa Card | - | $200 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Disney Inspire Visa Card | - | $300 | - | - | - | - | - | awarded on approval, no spend requirement |
-| Prime Visa Credit Card | - | $150 | - | - | - | - | - | awarded on approval, no spend requirement |
-| Amazon Visa Credit Card | - | $50 | - | - | - | - | - | awarded on approval, no spend requirement |
+| Prime Visa Credit Card | - | $200 | - | - | - | - | - | awarded on approval, no spend requirement |
+| Amazon Visa Credit Card | - | $60 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Instacart Mastercard | - | $50 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Sapphire Reserve for Business | 200,000 | - | - | $30,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 200,000; please check |
 | Ink Business Unlimited Credit Card | 75,000 | - | - | $6,000 | 3 | - | - | advertised as $750 cash back but paid as ultimate-rewards points |
@@ -44,11 +44,11 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
 | Blue Cash Everyday Card | - | $150 | - | $2,000 | 6 | - | - |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | - |  |
+| Blue Cash Preferred Card | - | $250 | - | $3,000 | 6 | - | - |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
-| Delta SkyMiles Gold American Express Card | 80,000 | - | - | $3,000 | 6 | - | yes |  |
-| Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $4,000 | 6 | - | yes |  |
-| Delta SkyMiles Reserve American Express Card | 50,000 | - | - | $10,000 | 6 | - | - |  |
+| Delta SkyMiles Gold American Express Card | 80,000 | - | - | $2,000 | 6 | - | yes |  |
+| Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $3,000 | 6 | - | yes |  |
+| Delta SkyMiles Reserve American Express Card | 125,000 | - | - | $5,000 | 6 | - | yes |  |
 | Hilton Honors American Express Card | 70,000 | - | 1 | $2,000 | 6 | - | - |  |
 | Hilton Honors American Express Surpass Card | 130,000 | - | 1 | $3,000 | 6 | - | - |  |
 | Hilton Honors American Express Aspire Card | 200,000 | - | - | $6,000 | 6 | - | - |  |
@@ -61,10 +61,10 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Blue Business Cash Card | - | $500 | - | $5,000 | 3 | - | yes |  |
 | Graphite Business Cash Unlimited Card | - | $2,000 | - | $50,000 | 6 | - | - |  |
 | Hilton Honors American Express Business Card | 150,000 | - | 1 | $8,000 | 6 | - | - |  |
-| Delta SkyMiles Gold Business American Express Card | 90,000 | - | - | $6,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 90,000; please check |
-| Delta SkyMiles Platinum Business American Express Card | 100,000 | - | - | $8,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 100,000; please check |
-| Delta SkyMiles Reserve Business Card | 200,000 | - | - | $20,000 | 6 | - | - | struck-through pair (old and new figures); used the second, 200,000; please check |
-| Marriott Bonvoy Business Credit Card | 100,000 | - | 1 | $8,000 | 6 | - | - |  |
+| Delta SkyMiles Gold Business American Express Card | 85,000 | - | - | $6,000 | 6 | - | yes |  |
+| Delta SkyMiles Platinum Business American Express Card | 100,000 | - | - | $10,000 | 6 | - | yes |  |
+| Delta SkyMiles Reserve Business Card | 125,000 | - | - | $15,000 | 6 | - | yes |  |
+| Marriott Bonvoy Business Credit Card | 75,000 | - | - | $6,000 | 6 | - | - |  |
 | Citi Strata Premier Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | Citi Strata Elite Card | 75,000 | - | - | $6,000 | 3 | - | - |  |
 | Citi Strata Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
