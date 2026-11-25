@@ -143,7 +143,7 @@ jobs:
       - name: Warn if an issuer was blocked, without failing the run
         # A circuit-breaker trip (an issuer answering with error or block pages) does not fail this job, so the stale
         # offers it leaves behind would otherwise go unnoticed for weeks (Bank of America, 2026-11-06 to 2026-11-12).
-        # Comments on issue #1 at most once a week per issuer so the email is a nudge, not daily noise.
+        # Comments on issue #1 at most once a week so the email is a nudge, not daily noise.
         if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0' && steps.refresh.outputs.exit_code == '0'
         env:
           GH_TOKEN: ${{ github.token }}
