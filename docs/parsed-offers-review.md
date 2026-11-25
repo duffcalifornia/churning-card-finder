@@ -27,7 +27,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Aer Lingus Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Iberia Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Disney Visa Card | - | $100 | - | - | - | - | - | awarded on approval, no spend requirement |
-| Disney Premier Visa Card | - | $300 | - | $500 | 3 | - | - |  |
+| Disney Premier Visa Card | - | $200 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Disney Inspire Visa Card | - | $300 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Prime Visa Credit Card | - | $200 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Amazon Visa Credit Card | - | $60 | - | - | - | - | - | awarded on approval, no spend requirement |
@@ -43,8 +43,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Southwest Rapid Rewards Premier Business Credit Card | 60,000 | - | - | $3,000 | 3 | - | - |  |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
-| Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | yes |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | - |  |
+| Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | - |  |
+| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | yes |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
 | Delta SkyMiles Gold American Express Card | 80,000 | - | - | $2,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $3,000 | 6 | - | yes |  |
@@ -68,7 +68,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Citi Strata Premier Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | Citi Strata Elite Card | 75,000 | - | - | $6,000 | 3 | - | - |  |
 | Citi Strata Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
-| Citi Double Cash Card | - | $200 | - | $1,500 | 6 | - | - |  |
+| Citi Double Cash Card | - | $200 | - | $500 | 3 | - | - |  |
 | Citi AAdvantage Platinum Select World Elite Mastercard | 50,000 | - | - | $2,500 | 3 | - | - |  |
 | Citi AAdvantage Executive World Elite Mastercard | 80,000 | - | - | $8,000 | 3 | - | - |  |
 | Citi AAdvantage Globe Mastercard | 60,000 | - | - | $4,000 | 3 | - | - |  |
@@ -93,10 +93,10 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Bank of America Premium Rewards Credit Card | 60,000 | - | - | $4,000 | 3 | - | - | STALE (issuer paused):  |
 | Bank of America Premium Rewards Elite Credit Card | 75,000 | - | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
 | Atmos Rewards Ascent Visa Signature Credit Card | 70,000 | - | - | $2,500 | 3 | - | - | STALE (issuer paused): also includes a companion fare, certificate or award (not valued) |
-| Business Advantage Unlimited Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
-| Business Advantage Customized Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
-| Business Advantage Travel Rewards World Mastercard | 50,000 | - | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
-| Alaska Airlines Visa Business Credit Card | 70,000 | - | - | $4,000 | 3 | - | - | STALE (issuer paused): also includes a companion fare, certificate or award (not valued) |
+| Business Advantage Unlimited Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - |  |
+| Business Advantage Customized Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - |  |
+| Business Advantage Travel Rewards World Mastercard | 50,000 | - | - | $5,000 | 3 | - | - |  |
+| Alaska Airlines Visa Business Credit Card | 90,000 | - | - | $6,000 | 3 | - | - |  |
 | U.S. Bank Altitude Connect Visa Signature Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | U.S. Bank Altitude Go Visa Signature Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | U.S. Bank Cash+ Visa Signature Card | - | $200 | - | $1,000 | 3 | - | - | a repeated amount was merged into one |

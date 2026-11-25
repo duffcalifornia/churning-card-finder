@@ -11,13 +11,13 @@
  },
  "amex-blue-cash-everyday": {
   "seen": "2026-11-25",
-  "text": "As High As $200 Cash Back 1 after you spend $2,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "full_text": "As High As $200 Cash Back 1 after you spend $2,000 in purchases on your new Card within the first 6 months of Card Membership. Welcome offers vary and you may not be eligible for an offer. \u2020 Apply, and if approved: Find out your offer amount Accept the Card with your offer Spend $2,000 in 6 months Receive the cash back"
+  "text": "Earn $200 Cash Back after you spend $2,000 in purchases on your new Card in the first 6 months of Card Membership",
+  "full_text": "Earn $200 Cash Back after you spend $2,000 in purchases on your new Card in the first 6 months of Card Membership. Cash Back is received as Reward Dollars that can be redeemed for a statement credit or for other select options \u2020 APPLY WITH CONFIDENCE Know if you\u2019re approved with no credit score impact Learn How your credit score may be impacted if you\u2019re approved and you accept this Card. Apply Now \u2666\ufe0e \u2021 \u2020 Offe"
  },
  "amex-blue-cash-preferred": {
   "seen": "2026-11-25",
-  "text": "Earn $300 Cash Back after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "full_text": "Earn $300 Cash Back after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership. Cash Back is received as Reward Dollars that can be redeemed for a statement credit or for other select options. \u2020 APPLY WITH CONFIDENCE Know if you\u2019re approved with no credit score impact Learn How your credit score may be impacted if you\u2019re approved and you accept this Card. Apply Now \u2666\ufe0e \u2021 \u2020 Off"
+  "text": "As High As $300 Cash Back 1 after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "full_text": "As High As $300 Cash Back 1 after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership. Welcome offers vary and you may not be eligible for an offer. \u2020 Apply, and if approved: Find out your offer amount Accept the Card with your offer Spend $3,000 in 6 months Receive the cash back"
  },
  "amex-business-gold": {
   "seen": "2026-11-25",
@@ -203,9 +203,9 @@
   "full_text": "Get 70,000 bonus points and a $99 Companion Fare (plus taxes and fees from $23) with this offer. To qualify, spend $2,500 or more on purchases within the first 90 days of opening your account. Annual $99 Companion Fare Get a $99 Companion Fare (plus taxes and fees from $23)"
  },
  "boa-alaska-business": {
-  "seen": "2026-11-04",
-  "text": "Get 70,000 bonus points and a $99 Companion Fare (plus taxes and fees from $23) after you make $4,000 or more in purchases within the first 90 days of opening your account",
-  "full_text": "Get 70,000 bonus points and a $99 Companion Fare (plus taxes and fees from $23) after you make $4,000 or more in purchases within the first 90 days of opening your account. This online only offer may not be available if you leave this page, if you visit a Bank of America financial center or call the bank. You can take advantage of this offer when you apply now. Solutions Careers About Contact Us BrokerCheck Form CRS Terms and Conditions Privacy Children's Privacy Res"
+  "seen": "2026-11-25",
+  "text": "Earn 90,000 bonus points after you make $6,000 or more in purchases within the first 90 days of opening your account",
+  "full_text": "Earn 90,000 bonus points after you make $6,000 or more in purchases within the first 90 days of opening your account. The best of both worlds With the oneworld\u00ae Alliance and Alaska\u2019s Global Partners, you have the freedom to travel to more than 900 destinations. Earn elite status faster Earn one status point for every $3 spent on all card purchases to reach reward tiers sooner. Earn more on dining Earn 2 points fo"
  },
  "boa-allways-rewards": {
   "seen": "2026-11-04",
@@ -218,17 +218,17 @@
   "full_text": "Earn 80,000 bonus points and a 25,000-point Global Companion Award after spending $4,000 or more on purchases within the first 90 days of opening your account. Globally inspired benefits Receive a 25,000-point Global Companion Award on every"
  },
  "boa-business-customized-cash": {
-  "seen": "2026-11-04",
+  "seen": "2026-11-25",
   "text": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening",
   "full_text": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening. This online only offer may not be available if you leave this page, if you visit a Bank of America financial center or call the bank. You can take advantage of this offer when you apply now. --> Select categories Select categories include gas stations and electric vehicle (EV) charging stations (d"
  },
  "boa-business-travel-rewards": {
-  "seen": "2026-11-04",
+  "seen": "2026-11-25",
   "text": "Earn 50,000 online bonus points after you make at least $5,000 in purchases in the first 90 days of your account opening, which can be redeemed for a $500 statement credit towards travel or dining purchases",
   "full_text": "Earn 50,000 online bonus points after you make at least $5,000 in purchases in the first 90 days of your account opening, which can be redeemed for a $500 statement credit towards travel or dining purchases. This online only offer may not be available if you leave this page, if you visit a Bank of America financial center or call the bank. You can take advantage of this offer when you apply now. --> Travel Rewards World Mastercard\u00ae credit card Change card Business Advantage Unlimited Cash Rewards Mast"
  },
  "boa-business-unlimited-cash": {
-  "seen": "2026-11-04",
+  "seen": "2026-11-25",
   "text": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening",
   "full_text": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening. This online only offer may not be available if you leave this page, if you visit a Bank of America financial center or call the bank. You can take advantage of this offer when you apply now. --> Unlimited Cash Rewards Mastercard\u00ae credit card Change card Business Advantage Unlimited Cash Rewards Ma"
  },
@@ -331,13 +331,13 @@
  },
  "chase-amazon-prime": {
   "seen": "2026-11-25",
-  "text": "get a $150 $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
-  "full_text": "get a $150 $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application."
+  "text": "get a $150 Strike through $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
+  "full_text": "get a $150 Strike through $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application."
  },
  "chase-amazon-visa": {
   "seen": "2026-11-25",
-  "text": "Get a $50 $60 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
-  "full_text": "Get a $50 $60 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application."
+  "text": "Get a $50 Strike through $60 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
+  "full_text": "Get a $50 Strike through $60 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application."
  },
  "chase-british-airways": {
   "seen": "2026-11-25",
@@ -351,8 +351,8 @@
  },
  "chase-disney-premier": {
   "seen": "2026-11-25",
-  "text": "Get a $200 Disney Gift Card eGift to use today upon approval + earn a $100 statement credit after you spend $500 on purchases in the first 3 months from account opening",
-  "full_text": "Get a $200 Disney Gift Card eGift to use today upon approval + earn a $100 statement credit after you spend $500 on purchases in the first 3 months from account opening."
+  "text": "Get a $200 Disney Gift Card eGift to use today upon approval",
+  "full_text": "Get a $200 Disney Gift Card eGift to use today upon approval."
  },
  "chase-disney-visa": {
   "seen": "2026-11-25",
@@ -533,8 +533,8 @@
  },
  "citi-double-cash": {
   "seen": "2026-11-25",
-  "text": "Earn $200 cash back bonus after $1,500 in purchases in the first 6 months of account opening",
-  "full_text": "Earn $200 cash back bonus after $1,500 in purchases in the first 6 months of account opening No Annual Fee"
+  "text": "Earn $200 cash back bonus after $500 in purchases in the first 3 months of account opening",
+  "full_text": "Earn $200 cash back bonus after $500 in purchases in the first 3 months of account opening No Annual Fee"
  },
  "citi-strata": {
   "seen": "2026-11-25",
@@ -622,8 +622,8 @@
  },
  "wellsfargo-autograph-journey": {
   "seen": "2026-11-25",
-  "text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 \u2013 that\u2019s $600 toward your next trip $95 Annual Fee Important credit terms Apply now Offers may differ from time to time and depend on the marketing channel",
-  "full_text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 \u2013 that\u2019s $600 toward your next trip $95 Annual Fee Important credit terms Apply now Offers may differ from time to time and depend on the marketing channel. You must select Apply now to take advantage of the offer(s). 5X points with hotels"
+  "text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 - that\u2019s $600 toward your next trip $95 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel",
+  "full_text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 - that\u2019s $600 toward your next trip $95 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel. You must select Apply now to take advantage of the offer(s). Earn unlimited points that go the extra mile 5X points with hotels"
  },
  "wellsfargo-choice-privileges": {
   "seen": "2026-11-25",

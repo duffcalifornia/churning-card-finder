@@ -670,11 +670,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 300.0
-  },
-  "typicalMinSpend": {
-   "amount": 500.0,
-   "months": 3
+   "cashBack": 200.0
   },
   "bonusRules": {
    "cooldownMonths": 24,
@@ -1148,8 +1144,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 200.0,
-   "ceiling": true
+   "cashBack": 200.0
   },
   "typicalMinSpend": {
    "amount": 2000.0,
@@ -1179,7 +1174,8 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 300.0
+   "cashBack": 300.0,
+   "ceiling": true
   },
   "typicalMinSpend": {
    "amount": 3000.0,
@@ -1877,8 +1873,8 @@
    "cashBack": 200.0
   },
   "typicalMinSpend": {
-   "amount": 1500.0,
-   "months": 6
+   "amount": 500.0,
+   "months": 3
   },
   "bonusRules": {
    "cooldownMonths": 48,
@@ -2556,7 +2552,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.bankofamerica.com/smallbusiness/credit-cards/products/unlimited-cash-rewards-business-credit-card/",
-  "verifiedOn": "2026-11-04"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "boa-business-customized-cash",
@@ -2578,7 +2574,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.bankofamerica.com/smallbusiness/credit-cards/products/cash-rewards-business-credit-card/",
-  "verifiedOn": "2026-11-04"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "boa-business-travel-rewards",
@@ -2600,7 +2596,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.bankofamerica.com/smallbusiness/credit-cards/products/travel-rewards-business-credit-card/",
-  "verifiedOn": "2026-11-04"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "boa-alaska-business",
@@ -2616,14 +2612,14 @@
    "airline"
   ],
   "welcomeBonus": {
-   "points": 70000.0
+   "points": 90000.0
   },
   "typicalMinSpend": {
-   "amount": 4000.0,
+   "amount": 6000.0,
    "months": 3
   },
   "sourceUrl": "https://www.bankofamerica.com/smallbusiness/credit-cards/products/alaska-airlines-business-credit-card/",
-  "verifiedOn": "2026-11-04"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "usbank-altitude-connect",

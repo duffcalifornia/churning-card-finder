@@ -535,18 +535,20 @@
   "issuer": "chase",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Get a $200 Disney Gift Card eGift to use today upon approval + earn a $100 statement credit after you spend $500 on purchases in the first 3 months from account opening",
+  "sourceText": "Get a $200 Disney Gift Card eGift to use today upon approval",
   "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
    "points": null,
-   "cashBack": 300.0,
+   "cashBack": 200.0,
    "freeNightAwards": 0,
-   "minSpend": 500.0,
-   "windowMonths": 3,
+   "minSpend": null,
+   "windowMonths": null,
    "additionalTiers": [],
    "ceiling": false,
-   "notes": [],
+   "notes": [
+    "awarded on approval, no spend requirement"
+   ],
    "displayedAsCash": null
   },
   "needsReview": false
@@ -581,7 +583,7 @@
   "issuer": "chase",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "get a $150 $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
+  "sourceText": "get a $150 Strike through $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
   "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
@@ -605,7 +607,7 @@
   "issuer": "chase",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Get a $50 $60 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
+  "sourceText": "Get a $50 Strike through $60 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
   "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
@@ -929,7 +931,7 @@
   "issuer": "amex",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "As High As $200 Cash Back 1 after you spend $2,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "sourceText": "Earn $200 Cash Back after you spend $2,000 in purchases on your new Card in the first 6 months of Card Membership",
   "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
@@ -939,7 +941,7 @@
    "minSpend": 2000.0,
    "windowMonths": 6,
    "additionalTiers": [],
-   "ceiling": true,
+   "ceiling": false,
    "notes": [],
    "displayedAsCash": null
   },
@@ -951,7 +953,7 @@
   "issuer": "amex",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn $300 Cash Back after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "sourceText": "As High As $300 Cash Back 1 after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
   "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
@@ -961,7 +963,7 @@
    "minSpend": 3000.0,
    "windowMonths": 6,
    "additionalTiers": [],
-   "ceiling": false,
+   "ceiling": true,
    "notes": [],
    "displayedAsCash": null
   },
@@ -1482,15 +1484,15 @@
   "issuer": "citi",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn $200 cash back bonus after $1,500 in purchases in the first 6 months of account opening",
+  "sourceText": "Earn $200 cash back bonus after $500 in purchases in the first 3 months of account opening",
   "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
    "points": null,
    "cashBack": 200.0,
    "freeNightAwards": 0,
-   "minSpend": 1500.0,
-   "windowMonths": 6,
+   "minSpend": 500.0,
+   "windowMonths": 3,
    "additionalTiers": [],
    "ceiling": false,
    "notes": [],
@@ -1844,7 +1846,7 @@
   "issuer": "wellsfargo",
   "cardKind": "personal",
   "hasWelcomeOffer": true,
-  "sourceText": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 \u2013 that\u2019s $600 toward your next trip $95 Annual Fee Important credit terms Apply now Offers may differ from time to time and depend on the marketing channel",
+  "sourceText": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 - that\u2019s $600 toward your next trip $95 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel",
   "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
@@ -2060,7 +2062,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening",
-  "seenOn": "2026-11-04",
+  "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
    "points": null,
@@ -2073,9 +2075,7 @@
    "notes": [],
    "displayedAsCash": null
   },
-  "needsReview": false,
-  "stale": true,
-  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
+  "needsReview": false
  },
  {
   "cardId": "boa-business-customized-cash",
@@ -2084,7 +2084,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Get a $500 cash rewards bonus after you make at least $5,000 in purchases within 90 days of your account opening",
-  "seenOn": "2026-11-04",
+  "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
    "points": null,
@@ -2097,9 +2097,7 @@
    "notes": [],
    "displayedAsCash": null
   },
-  "needsReview": false,
-  "stale": true,
-  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
+  "needsReview": false
  },
  {
   "cardId": "boa-business-travel-rewards",
@@ -2108,7 +2106,7 @@
   "cardKind": "business",
   "hasWelcomeOffer": true,
   "sourceText": "Earn 50,000 online bonus points after you make at least $5,000 in purchases in the first 90 days of your account opening, which can be redeemed for a $500 statement credit towards travel or dining purchases",
-  "seenOn": "2026-11-04",
+  "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
    "points": 50000.0,
@@ -2121,9 +2119,7 @@
    "notes": [],
    "displayedAsCash": null
   },
-  "needsReview": false,
-  "stale": true,
-  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
+  "needsReview": false
  },
  {
   "cardId": "boa-alaska-business",
@@ -2131,25 +2127,21 @@
   "issuer": "boa",
   "cardKind": "business",
   "hasWelcomeOffer": true,
-  "sourceText": "Get 70,000 bonus points and a $99 Companion Fare (plus taxes and fees from $23) after you make $4,000 or more in purchases within the first 90 days of opening your account",
-  "seenOn": "2026-11-04",
+  "sourceText": "Earn 90,000 bonus points after you make $6,000 or more in purchases within the first 90 days of opening your account",
+  "seenOn": "2026-11-25",
   "parsed": {
    "kind": "standard",
-   "points": 70000.0,
+   "points": 90000.0,
    "cashBack": null,
    "freeNightAwards": 0,
-   "minSpend": 4000.0,
+   "minSpend": 6000.0,
    "windowMonths": 3,
    "additionalTiers": [],
    "ceiling": false,
-   "notes": [
-    "also includes a companion fare, certificate or award (not valued)"
-   ],
+   "notes": [],
    "displayedAsCash": null
   },
-  "needsReview": false,
-  "stale": true,
-  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
+  "needsReview": false
  },
  {
   "cardId": "usbank-altitude-connect",
