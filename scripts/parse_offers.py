@@ -32,7 +32,7 @@ def main():
     records = build_parsed_offers(CARDS, offers, confirmed_none=NO_OFFER_CONFIRMED, reviewed=REVIEWED_OK,
                                   cash_paid_as_points=CASH_PAID_AS_POINTS,
                                   stale_issuers={k: v.paused for k, v in ISSUERS.items() if v.paused},
-                                  stale_since="2026-09-21",  # Amex was re-read on this date
+                                  stale_since="2026-11-06",  # offers read on or after this date are fresh again (Bank of America's block began on this date)
                                   previous=previous)
     with open(path, "w") as f:
         json.dump(records, f, indent=1)

@@ -90,13 +90,13 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Bank of America Customized Cash Rewards Credit Card | - | $200 | - | $1,000 | 3 | - | - |  |
 | Bank of America Unlimited Cash Rewards Credit Card | - | $250 | - | $1,000 | 3 | - | - |  |
 | Bank of America Travel Rewards Credit Card | 25,000 | - | - | $1,000 | 3 | - | - |  |
-| Bank of America Premium Rewards Credit Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
-| Bank of America Premium Rewards Elite Credit Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
-| Atmos Rewards Ascent Visa Signature Credit Card | 70,000 | - | - | $2,500 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
-| Business Advantage Unlimited Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - |  |
-| Business Advantage Customized Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - |  |
-| Business Advantage Travel Rewards World Mastercard | 50,000 | - | - | $5,000 | 3 | - | - |  |
-| Alaska Airlines Visa Business Credit Card | 70,000 | - | - | $4,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
+| Bank of America Premium Rewards Credit Card | 60,000 | - | - | $4,000 | 3 | - | - | STALE (issuer paused):  |
+| Bank of America Premium Rewards Elite Credit Card | 75,000 | - | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
+| Atmos Rewards Ascent Visa Signature Credit Card | 70,000 | - | - | $2,500 | 3 | - | - | STALE (issuer paused): also includes a companion fare, certificate or award (not valued) |
+| Business Advantage Unlimited Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
+| Business Advantage Customized Cash Rewards Mastercard | - | $500 | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
+| Business Advantage Travel Rewards World Mastercard | 50,000 | - | - | $5,000 | 3 | - | - | STALE (issuer paused):  |
+| Alaska Airlines Visa Business Credit Card | 70,000 | - | - | $4,000 | 3 | - | - | STALE (issuer paused): also includes a companion fare, certificate or award (not valued) |
 | U.S. Bank Altitude Connect Visa Signature Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | U.S. Bank Altitude Go Visa Signature Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
 | U.S. Bank Cash+ Visa Signature Card | - | $200 | - | $1,000 | 3 | - | - | a repeated amount was merged into one |
@@ -124,14 +124,14 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Discover it Miles Credit Card | - | - | - | - | - | - | - | first-year match of what is earned; no fixed bonus amount |
 | Discover it Student Cash Back Credit Card | - | $100 | - | $300 | 3 | - | - |  |
 | Bilt Palladium Card | 50,000 | $300 | - | $4,000 | 3 | - | - |  |
-| Atmos Rewards Summit Visa Infinite Credit Card | 80,000 | - | - | $4,000 | 3 | - | - | also includes a companion fare, certificate or award (not valued) |
-| Air France KLM Visa Signature Credit Card | 50,000 | - | - | $2,000 | 3 | - | - |  |
-| Allways Rewards Visa Card | 30,000 | - | - | $1,500 | 3 | - | - |  |
-| Norwegian Cruise Line World Mastercard | 20,000 | - | - | $1,000 | 3 | - | - |  |
-| Susan G. Komen Customized Cash Rewards Credit Card | - | $200 | - | $1,000 | 3 | - | - |  |
-| Customized Cash Rewards Credit Card for Students | - | $200 | - | $1,000 | 3 | - | - |  |
-| Unlimited Cash Rewards Credit Card for Students | - | $250 | - | $1,000 | 3 | - | - |  |
-| Travel Rewards Credit Card for Students | 25,000 | - | - | $1,000 | 3 | - | - |  |
+| Atmos Rewards Summit Visa Infinite Credit Card | 80,000 | - | - | $4,000 | 3 | - | - | STALE (issuer paused): also includes a companion fare, certificate or award (not valued) |
+| Air France KLM Visa Signature Credit Card | 50,000 | - | - | $2,000 | 3 | - | - | STALE (issuer paused):  |
+| Allways Rewards Visa Card | 30,000 | - | - | $1,500 | 3 | - | - | STALE (issuer paused):  |
+| Norwegian Cruise Line World Mastercard | 20,000 | - | - | $1,000 | 3 | - | - | STALE (issuer paused):  |
+| Susan G. Komen Customized Cash Rewards Credit Card | - | $200 | - | $1,000 | 3 | - | - | STALE (issuer paused):  |
+| Customized Cash Rewards Credit Card for Students | - | $200 | - | $1,000 | 3 | - | - | STALE (issuer paused):  |
+| Unlimited Cash Rewards Credit Card for Students | - | $250 | - | $1,000 | 3 | - | - | STALE (issuer paused):  |
+| Travel Rewards Credit Card for Students | 25,000 | - | - | $1,000 | 3 | - | - | STALE (issuer paused):  |
 | Business Essentials Visa Card | - | $500 | - | $5,000 | 5 | - | - | cash back that is awarded as points: counted once, as cash |
 | Business Essentials Plus Visa Signature Card | - | $1,000 | - | $15,000 | 5 | - | - | cash back that is awarded as points: counted once, as cash |
 | World of Hyatt Business Credit Card | 70,000 | - | - | $7,000 | 3 | - | - |  |

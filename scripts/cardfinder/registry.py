@@ -49,6 +49,11 @@ ISSUERS = {
         name="boa",
         sitemaps=["https://www.bankofamerica.com/content/sitemap_index.xml"],
         listing_pages=["https://www.bankofamerica.com/credit-cards/", "https://www.bankofamerica.com/smallbusiness/credit-cards/"],
+        # Paused 2026-11-12 (blocking began with the 2026-11-06 run): bankofamerica.com answers the headless browser with
+        # an "Access Denied" page, from GitHub's runners and from the owner's own machine alike, so every daily run hit
+        # three error pages and skipped the other 25 cards. Raw HTML does not carry the offer, so there is no plain-request
+        # fallback. Cards keep their last known offers, marked stale. Lift this only after a test read of three cards works.
+        paused="Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read.",
         render=True,
     ),
     "schwab": IssuerConfig(     # Amex-issued card hosted on schwab.com; nothing here is requested from americanexpress.com

@@ -140,6 +140,29 @@ jobs:
           } > comment.md
           gh issue comment 1 --repo ${{ github.repository }} --body-file comment.md
 
+      - name: Warn if an issuer was blocked, without failing the run
+        # A circuit-breaker trip (an issuer answering with error or block pages) does not fail this job, so the stale
+        # offers it leaves behind would otherwise go unnoticed for weeks (Bank of America, 2026-11-06 to 2026-11-12).
+        # Comments on issue #1 at most once a week per issuer so the email is a nudge, not daily noise.
+        if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0' && steps.refresh.outputs.exit_code == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if grep -q 'Stopped after repeated error pages' refresh.log; then
+            recent=$(gh issue view 1 --repo ${{ github.repository }} --json comments --jq '[.comments[] | select(.body | startswith("Issuer blocked")) | select(.createdAt > (now - 604800 | todate))] | length')
+            if [ "${recent:-0}" = "0" ]; then
+              {
+                echo "Issuer blocked: the run passed, but an issuer served error or block pages and its remaining cards were skipped, so they still show their last known offers."
+                echo '```'
+                grep -E 'Stopped after repeated error pages|flags:.*page_error' refresh.log | sort | uniq -c | head -40
+                echo '```'
+                echo "If it persists, set paused=... on that issuer in scripts/cardfinder/registry.py (offers are then marked stale on the site)."
+                echo "[Full run log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+              } > blocked.md
+              gh issue comment 1 --repo ${{ github.repository }} --body-file blocked.md
+            fi
+          fi
+
       - name: Commit the refreshed data, if anything changed
         if: github.event.inputs.dry_run != 'true' && steps.verify.outputs.test_exit_code == '0'
         run: |
