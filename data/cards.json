@@ -26,7 +26,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/cash-back-credit-cards/freedom/flex",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-freedom-rise",
@@ -71,7 +71,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/cash-back-credit-cards/freedom/unlimited",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-sapphire-preferred",
@@ -98,7 +98,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://creditcards.chase.com/rewards-credit-cards/sapphire/preferred",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-sapphire-reserve",
@@ -125,7 +125,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://creditcards.chase.com/rewards-credit-cards/sapphire/reserve",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-united-explorer",
@@ -154,7 +154,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/united/united-explorer",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-united-gateway",
@@ -182,7 +182,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/united/united-gateway",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-united-quest",
@@ -210,7 +210,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/united/united-quest",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-united-club-infinite",
@@ -238,7 +238,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/united/club-infinite",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-marriott-bold",
@@ -264,7 +264,7 @@
    "marriottMatrixKey": "chase-marriott-bold"
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/marriott-bonvoy/bold",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-marriott-bountiful",
@@ -290,7 +290,7 @@
    "marriottMatrixKey": "chase-marriott-bountiful"
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/marriott-bonvoy/bountiful",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-marriott-boundless",
@@ -306,7 +306,8 @@
    "hotel"
   ],
   "welcomeBonus": {
-   "points": 200000.0
+   "freeNights": 3,
+   "otherValue": 822
   },
   "typicalMinSpend": {
    "amount": 3000.0,
@@ -316,7 +317,7 @@
    "marriottMatrixKey": "chase-marriott-boundless"
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/marriott-bonvoy/boundless",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ihg-premier",
@@ -332,7 +333,7 @@
    "hotel"
   ],
   "welcomeBonus": {
-   "points": 180000.0
+   "points": 140000.0
   },
   "typicalMinSpend": {
    "amount": 3000.0,
@@ -345,7 +346,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/ihg-rewards-club/premier",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ihg-premier-select",
@@ -361,10 +362,10 @@
    "hotel"
   ],
   "welcomeBonus": {
-   "points": 200000.0
+   "points": 150000.0
   },
   "typicalMinSpend": {
-   "amount": 5000.0,
+   "amount": 4000.0,
    "months": 3
   },
   "bonusRules": {
@@ -374,7 +375,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/ihg-rewards-club/premier-select",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ihg-traveler",
@@ -390,7 +391,7 @@
    "hotel"
   ],
   "welcomeBonus": {
-   "points": 125000.0
+   "points": 80000.0
   },
   "typicalMinSpend": {
    "amount": 2000.0,
@@ -403,7 +404,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/ihg-rewards-club/one-rewards",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-world-of-hyatt",
@@ -432,7 +433,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/world-of-hyatt-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-southwest-plus",
@@ -461,7 +462,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/southwest/plus",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-southwest-premier",
@@ -490,7 +491,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/southwest/premier",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-southwest-priority",
@@ -519,7 +520,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/southwest/priority",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-aeroplan",
@@ -535,18 +536,10 @@
    "airline"
   ],
   "welcomeBonus": {
-   "points": 75000.0,
-   "additionalTiers": [
-    {
-     "points": 40000.0,
-     "minSpend": 20000.0,
-     "windowMonths": 12,
-     "spendBasis": "total"
-    }
-   ]
+   "points": 60000.0
   },
   "typicalMinSpend": {
-   "amount": 4000.0,
+   "amount": 3000.0,
    "months": 3
   },
   "bonusRules": {
@@ -555,7 +548,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/aircanada/aeroplan",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-british-airways",
@@ -583,7 +576,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/avios/british-airways",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-aer-lingus",
@@ -611,7 +604,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/avios/aer-lingus",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-iberia",
@@ -639,7 +632,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/travel-credit-cards/avios/iberia",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-disney-visa",
@@ -662,7 +655,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/rewards-credit-cards/disney/rewards",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-disney-premier",
@@ -677,7 +670,11 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 200.0
+   "cashBack": 300.0
+  },
+  "typicalMinSpend": {
+   "amount": 500.0,
+   "months": 3
   },
   "bonusRules": {
    "cooldownMonths": 24,
@@ -685,7 +682,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/rewards-credit-cards/disney/premier",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-disney-inspire",
@@ -708,7 +705,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/rewards-credit-cards/disney/inspire",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-amazon-prime",
@@ -731,7 +728,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/cash-back-credit-cards/amazon-prime-rewards",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-amazon-visa",
@@ -754,7 +751,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/cash-back-credit-cards/amazon-rewards",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-slate",
@@ -825,7 +822,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/cash-back-credit-cards/instacart",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-sapphire-reserve-business",
@@ -852,7 +849,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/sapphire/reserve",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ink-unlimited",
@@ -879,7 +876,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/ink/unlimited",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ink-premier",
@@ -904,7 +901,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/ink/premier",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ink-cash",
@@ -931,7 +928,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/ink/cash",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ink-preferred",
@@ -958,7 +955,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/ink/business-preferred",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-united-business",
@@ -986,7 +983,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/united/united-business-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-united-club-business",
@@ -1014,7 +1011,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/united/united-club-business",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ihg-premier-business",
@@ -1030,10 +1027,10 @@
    "hotel"
   ],
   "welcomeBonus": {
-   "points": 190000.0
+   "points": 150000.0
   },
   "typicalMinSpend": {
-   "amount": 5000.0,
+   "amount": 4000.0,
    "months": 3
   },
   "bonusRules": {
@@ -1042,7 +1039,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/IHG/business",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-southwest-premier-business",
@@ -1070,7 +1067,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/southwest/premier-business",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-gold",
@@ -1101,7 +1098,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/gold-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-platinum",
@@ -1136,7 +1133,7 @@
    ]
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/platinum/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-blue-cash-everyday",
@@ -1166,7 +1163,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-everyday/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-blue-cash-preferred",
@@ -1182,8 +1179,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 300.0,
-   "ceiling": true
+   "cashBack": 300.0
   },
   "typicalMinSpend": {
    "amount": 3000.0,
@@ -1200,7 +1196,7 @@
    ]
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-delta-blue",
@@ -1230,7 +1226,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-blue-american-express-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-delta-gold",
@@ -1262,7 +1258,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-gold-american-express-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-delta-platinum",
@@ -1293,7 +1289,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-platinum-american-express-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-delta-reserve",
@@ -1324,7 +1320,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-reserve-american-express-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-hilton-honors",
@@ -1352,7 +1348,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/hilton-honors/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-hilton-surpass",
@@ -1385,7 +1381,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/hilton-honors-surpass/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-hilton-aspire",
@@ -1411,7 +1407,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/hilton-honors-aspire/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-marriott-bevy",
@@ -1438,7 +1434,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/marriott-bonvoy-bevy/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-marriott-brilliant",
@@ -1465,7 +1461,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/card/marriott-bonvoy-brilliant/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-cash-magnet",
@@ -1509,7 +1505,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-gold-card-amex/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-business-platinum",
@@ -1536,7 +1532,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-platinum-credit-card-amex/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-business-green",
@@ -1562,7 +1558,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-business-green-card-amex/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-blue-business-plus",
@@ -1588,7 +1584,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/american-express-blue-business-plus-credit-card-amex/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-blue-business-cash",
@@ -1614,7 +1610,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/en-us/business/credit-cards/blue-business-cash/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-graphite",
@@ -1629,7 +1625,8 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 2000.0
+   "cashBack": 2000.0,
+   "ceiling": true
   },
   "typicalMinSpend": {
    "amount": 50000.0,
@@ -1639,7 +1636,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/graphite-business-cash-unlimited-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-hilton-business",
@@ -1667,7 +1664,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/hilton-honors/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-delta-gold-business",
@@ -1695,7 +1692,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/en-us/business/credit-cards/delta-skymiles-gold/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-delta-platinum-business",
@@ -1722,7 +1719,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/en-us/business/credit-cards/delta-skymiles-platinum/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-delta-reserve-business",
@@ -1749,7 +1746,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/en-us/business/credit-cards/delta-skymiles-reserve/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "amex-marriott-business",
@@ -1776,7 +1773,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.americanexpress.com/us/credit-cards/business/business-credit-cards/amex-marriott-bonvoy-business-credit-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-strata-premier",
@@ -1806,7 +1803,7 @@
    ]
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-strata-premier-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-strata-elite",
@@ -1833,7 +1830,7 @@
    "onceInLifetime": true
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-strata-elite-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-strata",
@@ -1862,7 +1859,7 @@
    ]
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-strata-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-double-cash",
@@ -1888,7 +1885,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-double-cash-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-aadvantage-platinum-select",
@@ -1917,7 +1914,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-aadvantage-platinum-select-world-elite-mastercard",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-aadvantage-executive",
@@ -1945,7 +1942,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-aadvantage-executive-world-legend-mastercard",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-aadvantage-globe",
@@ -1973,7 +1970,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-aadvantage-globe-mastercard",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-aadvantage-mileup",
@@ -2002,7 +1999,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.citi.com/credit-cards/aadvantage-mile-up-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-aadvantage-business",
@@ -2031,7 +2028,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-aadvantage-business-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-venture-x",
@@ -2063,7 +2060,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.capitalone.com/credit-cards/venture-x/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-venture",
@@ -2095,7 +2092,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.capitalone.com/credit-cards/venture/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-ventureone",
@@ -2127,7 +2124,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.capitalone.com/credit-cards/ventureone/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-quicksilver",
@@ -2153,7 +2150,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.capitalone.com/credit-cards/quicksilver/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-savor",
@@ -2179,7 +2176,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.capitalone.com/credit-cards/savor/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-spark-cash-plus",
@@ -2201,7 +2198,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.capitalone.com/small-business/credit-cards/spark-cash-plus/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-spark-cash",
@@ -2224,7 +2221,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.capitalone.com/small-business/credit-cards/spark-cash/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "capone-venture-x-business",
@@ -2256,7 +2253,7 @@
   },
   "unlocksTransfers": true,
   "sourceUrl": "https://www.capitalone.com/small-business/credit-cards/venture-x-business/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "wellsfargo-active-cash",
@@ -2278,7 +2275,7 @@
    "months": 3
   },
   "sourceUrl": "https://creditcards.wellsfargo.com/active-cash-credit-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "wellsfargo-autograph",
@@ -2301,7 +2298,7 @@
    "months": 3
   },
   "sourceUrl": "https://creditcards.wellsfargo.com/autograph-visa-credit-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "wellsfargo-autograph-journey",
@@ -2324,7 +2321,7 @@
    "months": 3
   },
   "sourceUrl": "https://creditcards.wellsfargo.com/autograph-journey-visa-credit-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "wellsfargo-reflect",
@@ -2358,7 +2355,7 @@
    "months": 3
   },
   "sourceUrl": "https://creditcards.wellsfargo.com/wells-fargo-choice-privileges-credit-cards/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "wellsfargo-signify-business",
@@ -2380,7 +2377,7 @@
    "months": 3
   },
   "sourceUrl": "https://creditcards.wellsfargo.com/business-credit-cards/signify-business-cash-credit-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "boa-customized-cash",
@@ -2648,7 +2645,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.usbank.com/credit-cards/altitude-connect-visa-signature-credit-card.html",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "usbank-altitude-go",
@@ -2670,7 +2667,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.usbank.com/credit-cards/altitude-go-visa-signature-credit-card.html",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "usbank-cash-plus",
@@ -2692,7 +2689,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.usbank.com/credit-cards/cash-plus-visa-signature-credit-card.html",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "usbank-smartly",
@@ -2737,7 +2734,7 @@
    "months": 6
   },
   "sourceUrl": "https://www.usbank.com/business-banking/business-credit-cards/business-altitude-connect-credit-card.html",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "usbank-triple-cash",
@@ -2759,7 +2756,7 @@
    "months": 6
   },
   "sourceUrl": "https://www.usbank.com/business-banking/business-credit-cards/business-triple-cash-back-credit-card.html",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "fnbo-getaway",
@@ -2785,7 +2782,7 @@
    "points": 20000.0
   },
   "sourceUrl": "https://www.fnbo.com/personal-banking/credit-cards/evergreen",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "fnbo-greenselect",
@@ -2822,7 +2819,7 @@
    "points": 20000.0
   },
   "sourceUrl": "https://www.fnbo.com/small-business/credit-cards/evergreen",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-jetblue",
@@ -2848,7 +2845,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/jetblue-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-jetblue-plus",
@@ -2874,7 +2871,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/jetblue-plus-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-jetblue-premier",
@@ -2900,7 +2897,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/jetblue-premier-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-hawaiian",
@@ -2934,7 +2931,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/credit-card/hawaiian-airlines/combo-app/hawaiian-hbl-boh-combo-app-alt-1/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-wyndham-earner",
@@ -2960,7 +2957,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/wyndham-rewards-earner-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-wyndham-earner-plus",
@@ -2996,7 +2993,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/wyndham-rewards-earner-plus-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-wyndham-earner-premier",
@@ -3031,7 +3028,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/wyndham-rewards-earner-premier-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-wyndham-earner-business",
@@ -3057,7 +3054,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/wyndham-rewards-earner-business-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-frontier",
@@ -3082,7 +3079,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/frontier-airlines-world-mastercard/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-breeze",
@@ -3104,7 +3101,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/breeze-airways/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-emirates-premium",
@@ -3126,7 +3123,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/emirates-skywards-premium-world-elite-mastercard/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-emirates-rewards",
@@ -3148,7 +3145,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/emirates-skywards-rewards-world-elite-mastercard/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-lufthansa",
@@ -3173,7 +3170,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/lufthansa-miles-more-world-elite-mastercard/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-aarp",
@@ -3198,7 +3195,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/aarp-essential-rewards-mastercard/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-carnival",
@@ -3220,7 +3217,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/carnival-rewards-mastercard/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "discover-it-cash-back",
@@ -3242,7 +3239,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.discover.com/credit-cards/cash-back/it-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "discover-it-chrome",
@@ -3254,7 +3251,7 @@
   "reportsToPersonal": true,
   "unrankedReason": "first-year match of what is earned; no fixed bonus amount",
   "sourceUrl": "https://www.discover.com/credit-cards/cash-back/chrome/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "discover-it-miles",
@@ -3266,7 +3263,7 @@
   "reportsToPersonal": true,
   "unrankedReason": "first-year match of what is earned; no fixed bonus amount",
   "sourceUrl": "https://www.discover.com/credit-cards/travel/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "discover-it-student-cash-back",
@@ -3288,7 +3285,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.discover.com/credit-cards/student-credit-card/it-card/",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "discover-it-student-chrome",
@@ -3333,7 +3330,7 @@
    "months": 3
   },
   "sourceUrl": "https://www.bilt.com/card/palladium",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "boa-atmos-summit",
@@ -3701,7 +3698,7 @@
    "months": 5
   },
   "sourceUrl": "https://www.usbank.com/business-banking/business-credit-cards/business-essentials-credit-card.html",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "usbank-business-essentials-plus",
@@ -3723,7 +3720,7 @@
    "months": 5
   },
   "sourceUrl": "https://www.usbank.com/business-banking/business-credit-cards/business-essentials-plus-credit-card.html",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "usbank-business-shield",
@@ -3806,7 +3803,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/world-of-hyatt/hyatt-business-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-southwest-performance-business",
@@ -3834,7 +3831,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://creditcards.chase.com/business-credit-cards/southwest/performance-business",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "schwab-platinum",
@@ -3868,7 +3865,7 @@
    ]
   },
   "sourceUrl": "https://www.schwab.com/credit-cards/platinum-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "morganstanley-blue-cash-preferred",
@@ -3901,7 +3898,7 @@
    ]
   },
   "sourceUrl": "https://us.etrade.com/l/morgan-stanley-blue-cash-preferred",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "morganstanley-platinum",
@@ -3935,7 +3932,7 @@
    ]
   },
   "sourceUrl": "https://us.etrade.com/l/morgan-stanley-platinum",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "barclays-jetblue-business",
@@ -3961,7 +3958,7 @@
    "blockedWhileHeld": true
   },
   "sourceUrl": "https://cards.barclaycardus.com/banking/cards/jetblue-business-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "citi-citi-att-pointsplus",
@@ -3987,7 +3984,7 @@
    "cooldownBasis": "bonus"
   },
   "sourceUrl": "https://www.citi.com/credit-cards/citi-att-pointsplus-credit-card",
-  "verifiedOn": "2026-11-10"
+  "verifiedOn": "2026-11-25"
  },
  {
   "id": "chase-ritz-carlton",

@@ -1,5 +1,8 @@
 What changed about how this site chooses and ranks cards, and the major site milestones. Newest first.
 
+## 2026-11-25
+- Updated the bonus offer for the following card(s): Air Canada Aeroplan Card, Blue Cash Preferred Card, Disney Premier Visa Card, Graphite Business Cash Unlimited Card, IHG One Rewards Business Credit Card, IHG One Rewards Credit Card, IHG One Rewards Premier Credit Card, IHG One Rewards Premier Select Credit Card, and Marriott Bonvoy Boundless Credit Card.
+
 ## 2026-11-07
 - Updated the bonus offer for the following card(s): Amazon Visa Credit Card, Chase Freedom Flex, Delta SkyMiles Gold American Express Card, Delta SkyMiles Gold Business American Express Card, Delta SkyMiles Platinum American Express Card, Delta SkyMiles Platinum Business American Express Card, Delta SkyMiles Reserve American Express Card, Delta SkyMiles Reserve Business Card, Marriott Bonvoy Boundless Credit Card, Marriott Bonvoy Business Credit Card, and Prime Visa Credit Card.
 

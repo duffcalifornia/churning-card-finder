@@ -14,20 +14,20 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | United Club Infinite Card | 90,000 | - | - | $5,000 | 3 | - | - | an authorized-user or employee-card bonus is excluded |
 | Marriott Bonvoy Bold Credit Card | 45,000 | - | - | $1,000 | 3 | - | - |  |
 | Marriott Bonvoy Bountiful Credit Card | 85,000 | - | - | $4,000 | 3 | - | - |  |
-| Marriott Bonvoy Boundless Credit Card | 200,000 | - | - | $3,000 | 3 | - | - |  |
-| IHG One Rewards Premier Credit Card | 180,000 | - | - | $3,000 | 3 | - | - |  |
-| IHG One Rewards Premier Select Credit Card | 200,000 | - | - | $5,000 | 3 | - | - |  |
-| IHG One Rewards Credit Card | 125,000 | - | - | $2,000 | 3 | - | - |  |
+| Marriott Bonvoy Boundless Credit Card | - | - | 3 | $3,000 | 3 | - | - |  |
+| IHG One Rewards Premier Credit Card | 140,000 | - | - | $3,000 | 3 | - | - |  |
+| IHG One Rewards Premier Select Credit Card | 150,000 | - | - | $4,000 | 3 | - | - |  |
+| IHG One Rewards Credit Card | 80,000 | - | - | $2,000 | 3 | - | - |  |
 | World of Hyatt Credit Card | - | - | 4 | $5,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Plus Credit Card | 80,000 | - | - | $1,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Premier Credit Card | 85,000 | - | - | $2,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Priority Credit Card | 90,000 | - | - | $3,000 | 3 | - | - |  |
-| Air Canada Aeroplan Card | 75,000 | - | - | $4,000 | 3 | 40,000 pts after $20,000 in 12 mo | - |  |
+| Air Canada Aeroplan Card | 60,000 | - | - | $3,000 | 3 | - | - |  |
 | British Airways Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Aer Lingus Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Iberia Visa Signature Card | 75,000 | - | - | $5,000 | 3 | - | - |  |
 | Disney Visa Card | - | $100 | - | - | - | - | - | awarded on approval, no spend requirement |
-| Disney Premier Visa Card | - | $200 | - | - | - | - | - | awarded on approval, no spend requirement |
+| Disney Premier Visa Card | - | $300 | - | $500 | 3 | - | - |  |
 | Disney Inspire Visa Card | - | $300 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Prime Visa Credit Card | - | $200 | - | - | - | - | - | awarded on approval, no spend requirement |
 | Amazon Visa Credit Card | - | $60 | - | - | - | - | - | awarded on approval, no spend requirement |
@@ -39,12 +39,12 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Ink Business Preferred Credit Card | 100,000 | - | - | $8,000 | 3 | - | - |  |
 | United Business Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
 | United Club Business Card | 90,000 | - | - | $5,000 | 3 | - | - |  |
-| IHG One Rewards Business Credit Card | 190,000 | - | - | $5,000 | 3 | - | - |  |
+| IHG One Rewards Business Credit Card | 150,000 | - | - | $4,000 | 3 | - | - |  |
 | Southwest Rapid Rewards Premier Business Credit Card | 60,000 | - | - | $3,000 | 3 | - | - |  |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
 | Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | yes |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | yes |  |
+| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | - |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
 | Delta SkyMiles Gold American Express Card | 80,000 | - | - | $2,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $3,000 | 6 | - | yes |  |
@@ -59,7 +59,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Business Green Rewards Card | 15,000 | - | - | $3,000 | 3 | - | - |  |
 | Blue Business Plus Credit Card | 50,000 | - | - | $5,000 | 3 | - | yes |  |
 | Blue Business Cash Card | - | $500 | - | $5,000 | 3 | - | yes |  |
-| Graphite Business Cash Unlimited Card | - | $2,000 | - | $50,000 | 6 | - | - |  |
+| Graphite Business Cash Unlimited Card | - | $2,000 | - | $50,000 | 6 | - | yes |  |
 | Hilton Honors American Express Business Card | 150,000 | - | 1 | $8,000 | 6 | - | - |  |
 | Delta SkyMiles Gold Business American Express Card | 85,000 | - | - | $6,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum Business American Express Card | 100,000 | - | - | $10,000 | 6 | - | yes |  |
