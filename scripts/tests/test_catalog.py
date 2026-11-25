@@ -54,7 +54,12 @@ class Shape(unittest.TestCase):
                     self.assertIn("typicalMinSpend", c, c["id"])
 
     def test_a_bonus_with_no_spend_requirement_has_no_min_spend(self):
-        self.assertNotIn("typicalMinSpend", BY_ID["chase-amazon-prime"])
+        # Checked on every card against its own parsed offer (test_the_bonus_and_minimum_spend_come_from_the_parsed_offer
+        # below), not on one named card whose live offer can change.
+        for c in CATALOG:
+            p = OFFERS.get(c["id"], {}).get("parsed", {})
+            if c.get("welcomeBonus") and not (p.get("minSpend") and p.get("windowMonths")):
+                self.assertNotIn("typicalMinSpend", c, c["id"])
 
     def test_fees_come_from_the_recorded_fees(self):
         for cid, fee in LAST_KNOWN_FEES.items():
@@ -74,9 +79,12 @@ class Flags(unittest.TestCase):
             self.assertFalse(BY_ID[cid]["reportsToPersonal"], cid)
 
     def test_first_year_fee_waived(self):
-        self.assertTrue(BY_ID["amex-blue-cash-preferred"]["firstYearFeeWaived"])
-        self.assertTrue(BY_ID["usbank-business-altitude-connect"]["firstYearFeeWaived"])
-        self.assertFalse(BY_ID["amex-platinum"].get("firstYearFeeWaived", False))
+        # The waiver is read from the issuer's page each run, so it is checked against the recorded waivers instead of
+        # naming cards whose waiver can start or stop.
+        from cardfinder.registry import LAST_KNOWN_FEE_WAIVED
+        for c in CATALOG:
+            expected = c["id"] in LAST_KNOWN_FEE_WAIVED or (c["id"] in OWNER_FEES and OWNER_FEES[c["id"]][1])
+            self.assertEqual(c.get("firstYearFeeWaived", False), bool(expected), c["id"])
 
     def test_charge_cards(self):
         for cid in ("amex-platinum", "amex-gold", "amex-business-platinum"):
@@ -253,9 +261,13 @@ class WelcomeBonuses(unittest.TestCase):
                 self.assertIn(c["currency"], list(VALUATIONS["values"]) + ["cash"], c["id"])
 
     def test_cash_paid_as_points_keep_the_displayed_figure(self):
-        b = BY_ID["chase-ink-cash"]["welcomeBonus"]
+        b = _welcome_bonus({"points": 75000, "displayedAsCash": 750}, VALUATIONS["freeNightCertificates"], "chase-ink-cash")
         self.assertEqual((b["points"], b["displayedAsCash"]), (75000, 750))
         self.assertNotIn("cashBack", b)
+        for c in CATALOG:
+            p = OFFERS.get(c["id"], {}).get("parsed", {})
+            if c.get("welcomeBonus") and p.get("displayedAsCash"):
+                self.assertEqual(c["welcomeBonus"]["displayedAsCash"], p["displayedAsCash"], c["id"])
 
     def test_stored_bonus_reproduces_the_value_module(self):
         for c in CATALOG:
@@ -274,7 +286,7 @@ class WelcomeBonuses(unittest.TestCase):
             self.assertAlmostEqual(actual, expected, places=6, msg=c["id"])
 
     def test_free_night_certificates_are_stored_as_other_value(self):
-        b = BY_ID["amex-hilton-surpass"]["welcomeBonus"]
+        b = _welcome_bonus({"freeNightAwards": 1}, VALUATIONS["freeNightCertificates"], "amex-hilton-surpass")
         self.assertEqual(b["otherValue"], VALUATIONS["freeNightCertificates"]["hilton"])
 
     def test_no_card_with_points_is_missing_a_currency_without_being_flagged(self):
@@ -299,7 +311,16 @@ class WelcomeBonuses(unittest.TestCase):
                 self.assertEqual(b.get("freeNights", 0), OFFERS[c["id"]]["parsed"]["freeNightAwards"], c["id"])
 
     def test_extra_tiers_are_kept_for_the_engine(self):
-        self.assertTrue(BY_ID["chase-aeroplan"]["welcomeBonus"]["additionalTiers"])
+        # A fixed offer, not today's Aeroplan page: Chase dropped Aeroplan's second spend tier on 2026-11-12, and the
+        # test that required it failed every daily run until then.
+        tier = {"points": 40000.0, "cashBack": None, "minSpend": 20000.0, "windowMonths": 12, "spendBasis": "total"}
+        b = _welcome_bonus({"points": 75000, "additionalTiers": [tier]}, VALUATIONS["freeNightCertificates"], "chase-aeroplan")
+        self.assertEqual(b["additionalTiers"], [{"points": 40000.0, "minSpend": 20000.0, "windowMonths": 12, "spendBasis": "total"}])
+        self.assertNotIn("additionalTiers", _welcome_bonus({"points": 60000}, VALUATIONS["freeNightCertificates"], "chase-aeroplan"))
+        for c in CATALOG:
+            p = OFFERS.get(c["id"], {}).get("parsed", {})
+            if c.get("welcomeBonus"):
+                self.assertEqual(len(c["welcomeBonus"].get("additionalTiers", [])), len(p.get("additionalTiers") or []), c["id"])
 
     def test_the_bonus_and_minimum_spend_come_from_the_parsed_offer(self):
         # Every card, against its own parsed offer, instead of pinned figures that break whenever an offer changes
