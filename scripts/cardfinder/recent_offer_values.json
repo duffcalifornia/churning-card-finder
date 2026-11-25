@@ -6,10 +6,12 @@
   "[\"standard\", 50000.0, null, 0, 5000.0, 3, [], true, null]": "2026-11-25"
  },
  "amex-blue-cash-everyday": {
+  "[\"standard\", null, 150.0, 0, 2000.0, 6, [], false, null]": "2026-11-25",
   "[\"standard\", null, 200.0, 0, 2000.0, 6, [], false, null]": "2026-11-25",
   "[\"standard\", null, 200.0, 0, 2000.0, 6, [], true, null]": "2026-11-25"
  },
  "amex-blue-cash-preferred": {
+  "[\"standard\", null, 250.0, 0, 3000.0, 6, [], false, null]": "2026-11-25",
   "[\"standard\", null, 300.0, 0, 3000.0, 6, [], false, null]": "2026-11-25",
   "[\"standard\", null, 300.0, 0, 3000.0, 6, [], true, null]": "2026-11-25"
  },

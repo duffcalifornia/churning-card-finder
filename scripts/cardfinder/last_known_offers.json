@@ -11,13 +11,13 @@
  },
  "amex-blue-cash-everyday": {
   "seen": "2026-11-25",
-  "text": "Earn $200 Cash Back after you spend $2,000 in purchases on your new Card in the first 6 months of Card Membership",
-  "full_text": "Earn $200 Cash Back after you spend $2,000 in purchases on your new Card in the first 6 months of Card Membership. Cash Back is received as Reward Dollars that can be redeemed for a statement credit or for other select options \u2020 APPLY WITH CONFIDENCE Know if you\u2019re approved with no credit score impact Learn How your credit score may be impacted if you\u2019re approved and you accept this Card. Apply Now \u2666\ufe0e \u2021 \u2020 Offe"
+  "text": "Earn $150 Cash Back after you spend $2,000 in purchases on your new Card in the first 6 months of Card Membership",
+  "full_text": "Earn $150 Cash Back after you spend $2,000 in purchases on your new Card in the first 6 months of Card Membership. Cash Back is received as Reward Dollars that can be redeemed for a statement credit or for other select options \u2020 APPLY WITH CONFIDENCE Know if you\u2019re approved with no credit score impact Learn How your credit score may be impacted if you\u2019re approved and you accept this Card. Apply Now \u2666\ufe0e \u2021 \u2020 Offe"
  },
  "amex-blue-cash-preferred": {
   "seen": "2026-11-25",
-  "text": "As High As $300 Cash Back 1 after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
-  "full_text": "As High As $300 Cash Back 1 after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership. Welcome offers vary and you may not be eligible for an offer. \u2020 Apply, and if approved: Find out your offer amount Accept the Card with your offer Spend $3,000 in 6 months Receive the cash back"
+  "text": "Earn $250 Cash Back after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership",
+  "full_text": "Earn $250 Cash Back after you spend $3,000 in purchases on your new Card within the first 6 months of Card Membership. Cash Back is received as Reward Dollars that can be redeemed for a statement credit or for other select options. \u2020 APPLY WITH CONFIDENCE Know if you\u2019re approved with no credit score impact Learn How your credit score may be impacted if you\u2019re approved and you accept this Card. Apply Now \u2666\ufe0e \u2021 \u2020 Off"
  },
  "amex-business-gold": {
   "seen": "2026-11-25",
@@ -331,8 +331,8 @@
  },
  "chase-amazon-prime": {
   "seen": "2026-11-25",
-  "text": "get a $150 Strike through $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
-  "full_text": "get a $150 Strike through $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application."
+  "text": "get a $150 $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application",
+  "full_text": "get a $150 $200 Amazon Gift Card instantly loaded into your Amazon account's Gift Card Balance on approval of your credit card application."
  },
  "chase-amazon-visa": {
   "seen": "2026-11-25",
@@ -533,8 +533,8 @@
  },
  "citi-double-cash": {
   "seen": "2026-11-25",
-  "text": "Earn $200 cash back bonus after $500 in purchases in the first 3 months of account opening",
-  "full_text": "Earn $200 cash back bonus after $500 in purchases in the first 3 months of account opening No Annual Fee"
+  "text": "Earn $200 cash back bonus after $1,500 in purchases in the first 6 months of account opening",
+  "full_text": "Earn $200 cash back bonus after $1,500 in purchases in the first 6 months of account opening No Annual Fee"
  },
  "citi-strata": {
   "seen": "2026-11-25",
@@ -544,7 +544,7 @@
  "citi-strata-elite": {
   "seen": "2026-11-25",
   "text": "Earn 75,000 bonus points after spending $6,000 in the first 3 months",
-  "full_text": "Earn 75,000 bonus points after spending $6,000 in the first 3 months. Offers may vary and this offer may not be available in other places where the card is offered. New account bonus offer is not available if you currently have or previously had a Citi Strata Elite \u00ae account. You also may not be eligible for the new account bonus offer based on a number of factors,"
+  "full_text": "Earn 75,000 bonus points after spending $6,000 in the first 3 monthsavel when booked on cititravel.com"
  },
  "citi-strata-premier": {
   "seen": "2026-11-25",
@@ -617,13 +617,13 @@
  },
  "wellsfargo-autograph": {
   "seen": "2026-11-25",
-  "text": "Earn 20,000 bonus points when you spend $1,000 in purchases in the first 3 months",
-  "full_text": "Earn 20,000 bonus points when you spend $1,000 in purchases in the first 3 months."
+  "text": "Earn 20,000 bonus points when you spend $1,000 in purchases in the first 3 months 1 \u2013 that\u2019s a $200 cash redemption value $0 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel",
+  "full_text": "Earn 20,000 bonus points when you spend $1,000 in purchases in the first 3 months 1 \u2013 that\u2019s a $200 cash redemption value $0 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel. You must select Apply now to take advantage of the offer(s). Earn unlimited 3X points for many ways to keep life in motion"
  },
  "wellsfargo-autograph-journey": {
   "seen": "2026-11-25",
-  "text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 - that\u2019s $600 toward your next trip $95 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel",
-  "full_text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 - that\u2019s $600 toward your next trip $95 Annual Fee Important Credit Terms Apply now Offers may differ from time to time and depend on the marketing channel. You must select Apply now to take advantage of the offer(s). Earn unlimited points that go the extra mile 5X points with hotels"
+  "text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 \u2013 that\u2019s $600 toward your next trip $95 Annual Fee Important credit terms Apply now Offers may differ from time to time and depend on the marketing channel",
+  "full_text": "Earn 60,000 bonus points when you spend $4,000 in purchases in the first 3 months 1 \u2013 that\u2019s $600 toward your next trip $95 Annual Fee Important credit terms Apply now Offers may differ from time to time and depend on the marketing channel. You must select Apply now to take advantage of the offer(s). 5X points with hotels"
  },
  "wellsfargo-choice-privileges": {
   "seen": "2026-11-25",
@@ -632,8 +632,8 @@
  },
  "wellsfargo-signify-business": {
   "seen": "2026-11-25",
-  "text": "EARN A $500 CASH REWARDS BONUS when you spend $5,000 in purchases for your business in the first 3 months",
-  "full_text": "EARN A $500 CASH REWARDS BONUS when you spend $5,000 in purchases for your business in the first 3 months."
+  "text": "Earn a $500 cash rewards bonus when you spend $5,000 in purchases for your business in the first 3 months",
+  "full_text": "Earn a $500 cash rewards bonus when you spend $5,000 in purchases for your business in the first 3 months."
  },
  "fnbo-evergreen": {
   "seen": "2026-11-25",

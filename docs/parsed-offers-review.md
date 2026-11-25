@@ -43,8 +43,8 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Southwest Rapid Rewards Premier Business Credit Card | 60,000 | - | - | $3,000 | 3 | - | - |  |
 | American Express Gold Card | 100,000 | - | - | $8,000 | 6 | - | yes |  |
 | Platinum Card | 175,000 | - | - | $12,000 | 6 | - | yes |  |
-| Blue Cash Everyday Card | - | $200 | - | $2,000 | 6 | - | - |  |
-| Blue Cash Preferred Card | - | $300 | - | $3,000 | 6 | - | yes |  |
+| Blue Cash Everyday Card | - | $150 | - | $2,000 | 6 | - | - |  |
+| Blue Cash Preferred Card | - | $250 | - | $3,000 | 6 | - | - |  |
 | Delta SkyMiles Blue American Express Card | 10,000 | - | - | $1,000 | 6 | - | - |  |
 | Delta SkyMiles Gold American Express Card | 80,000 | - | - | $2,000 | 6 | - | yes |  |
 | Delta SkyMiles Platinum American Express Card | 90,000 | - | - | $3,000 | 6 | - | yes |  |
@@ -68,7 +68,7 @@ Built by scripts/parse_offers.py from the offer texts read on issuer pages. Rows
 | Citi Strata Premier Card | 60,000 | - | - | $4,000 | 3 | - | - |  |
 | Citi Strata Elite Card | 75,000 | - | - | $6,000 | 3 | - | - |  |
 | Citi Strata Card | 20,000 | - | - | $1,000 | 3 | - | - |  |
-| Citi Double Cash Card | - | $200 | - | $500 | 3 | - | - |  |
+| Citi Double Cash Card | - | $200 | - | $1,500 | 6 | - | - |  |
 | Citi AAdvantage Platinum Select World Elite Mastercard | 50,000 | - | - | $2,500 | 3 | - | - |  |
 | Citi AAdvantage Executive World Elite Mastercard | 80,000 | - | - | $8,000 | 3 | - | - |  |
 | Citi AAdvantage Globe Mastercard | 60,000 | - | - | $4,000 | 3 | - | - |  |

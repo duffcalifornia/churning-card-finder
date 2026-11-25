@@ -1144,7 +1144,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 200.0
+   "cashBack": 150.0
   },
   "typicalMinSpend": {
    "amount": 2000.0,
@@ -1174,8 +1174,7 @@
    "cashback"
   ],
   "welcomeBonus": {
-   "cashBack": 300.0,
-   "ceiling": true
+   "cashBack": 250.0
   },
   "typicalMinSpend": {
    "amount": 3000.0,
@@ -1873,8 +1872,8 @@
    "cashBack": 200.0
   },
   "typicalMinSpend": {
-   "amount": 500.0,
-   "months": 3
+   "amount": 1500.0,
+   "months": 6
   },
   "bonusRules": {
    "cooldownMonths": 48,
