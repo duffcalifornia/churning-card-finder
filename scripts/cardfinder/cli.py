@@ -19,7 +19,7 @@ def split_paused(cards, issuers):
     active, paused = [], {}
     for c in cards:
         reason = issuers[c.issuer].paused
-        if reason:
+        if reason and c.id not in issuers[c.issuer].still_read:
             paused[c.issuer] = reason
         else:
             active.append(c)

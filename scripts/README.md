@@ -17,7 +17,27 @@ python3 -m unittest discover -s scripts/tests -t scripts      # 194 tests, no ne
 Exit code 0 if every expected card was found, 2 if any could not be. (`refresh_offers.py`, the daily job, is gentler:
 a card that is plainly gone does not fail it. See "When a card cannot be found" below.)
 
+### Bank of America and hand-entered offers
+
+BoA blocks the headless browser, so only the cards in its `still_read` list (`cardfinder/registry.py`) are read, with
+plain requests. For any other BoA card, put a change in `cardfinder/manual_offers.json`, keyed by card id:
+
+```json
+{
+  "boa-atmos-summit": {
+    "text": "Earn 100,000 bonus points after you make $6,000 or more in purchases within the first 90 days of opening your account",
+    "checkedOn": "2026-11-25",
+    "fee": 395
+  }
+}
+```
+
+(An example of the format, not a verified offer.) `text` is the offer as the issuer words it, `checkedOn` is the day you
+checked it, and `fee` is optional. Then run `python3 scripts/parse_offers.py`, `python3 scripts/build_cards.py` and the
+tests, and commit.
+
 ## Turning offers into numbers
+
 `python3 scripts/parse_offers.py` (no network) reads `cardfinder/last_known_offers.json` and writes `data/parsed-offers.json`
 (validated by `data/schema/parsed-offer.schema.json`) and `docs/parsed-offers-review.md`. The rules for what counts as a bonus are in
 `cardfinder/parse.py`. Rows the parser is unsure about are marked `needsReview`.

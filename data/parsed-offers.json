@@ -2001,7 +2001,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-premium-rewards-elite",
@@ -2025,7 +2025,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-alaska",
@@ -2051,7 +2051,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-business-unlimited-cash",
@@ -2075,7 +2075,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-business-customized-cash",
@@ -2099,7 +2099,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-business-travel-rewards",
@@ -2123,7 +2123,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-alaska-business",
@@ -2149,7 +2149,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "usbank-altitude-connect",
@@ -2865,7 +2865,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-air-france-klm",
@@ -2889,7 +2889,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-allways-rewards",
@@ -2913,7 +2913,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-royal-one",
@@ -2953,7 +2953,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-komen",
@@ -2977,7 +2977,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-bankamericard",
@@ -3009,7 +3009,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-student-unlimited-cash",
@@ -3033,7 +3033,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-student-travel-rewards",
@@ -3057,7 +3057,7 @@
   },
   "needsReview": false,
   "stale": true,
-  "staleReason": "Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read."
+  "staleReason": "Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand."
  },
  {
   "cardId": "boa-student-bankamericard",

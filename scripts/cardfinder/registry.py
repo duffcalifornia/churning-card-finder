@@ -49,12 +49,13 @@ ISSUERS = {
         name="boa",
         sitemaps=["https://www.bankofamerica.com/content/sitemap_index.xml"],
         listing_pages=["https://www.bankofamerica.com/credit-cards/", "https://www.bankofamerica.com/smallbusiness/credit-cards/"],
-        # Paused 2026-11-12 (blocking began with the 2026-11-06 run): bankofamerica.com answers the headless browser with
-        # an "Access Denied" page, from GitHub's runners and from the owner's own machine alike, so every daily run hit
-        # three error pages and skipped the other 25 cards. Raw HTML does not carry the offer, so there is no plain-request
-        # fallback. Cards keep their last known offers, marked stale. Lift this only after a test read of three cards works.
-        paused="Bank of America blocks our automated reads (Access Denied since 2026-11-06); offers shown are the last ones read.",
-        render=True,
+        # Partly paused 2026-11-25. Since the 2026-11-06 run bankofamerica.com has answered the headless browser with
+        # "Access Denied", so every run hit three error pages and skipped the other 25 cards. Plain requests with our own
+        # user agent are still answered, but only these business pages carry the whole offer without scripts; they are
+        # read that way (render=False). Every other BoA card is not requested: enter its changes by hand in
+        # manual_offers.json. Do not disguise the browser to get past the block.
+        paused="Bank of America blocks our automated reads of this card; the offer shown is the last one read or entered by hand.",
+        still_read=("boa-business-unlimited-cash", "boa-business-customized-cash", "boa-business-travel-rewards", "boa-alaska-business"),
     ),
     "schwab": IssuerConfig(     # Amex-issued card hosted on schwab.com; nothing here is requested from americanexpress.com
         name="schwab",
@@ -398,12 +399,29 @@ with open(os.path.join(os.path.dirname(__file__), "last_known_fees.json")) as _f
 with open(os.path.join(os.path.dirname(__file__), "last_known_fee_waived.json")) as _f:
     LAST_KNOWN_FEE_WAIVED = set(json.load(_f))
 
-CARDS = [dataclasses.replace(c, expected_fee=LAST_KNOWN_FEES.get(c.id)) for c in CARDS]
-
 
 # Offers last read successfully. Used only when a card's live page cannot be read; always flagged and dated.
 with open(os.path.join(os.path.dirname(__file__), "last_known_offers.json")) as _f:
     LAST_KNOWN_OFFERS = json.load(_f)
+
+
+
+def apply_manual_offers(offers, fees, manual):
+    """Overlay the owner's hand-entered offers (manual_offers.json, for cards we cannot read) on the last known ones.
+    An entry wins unless the stored offer was read after its checkedOn date."""
+    for cid, entry in manual.items():
+        if cid in offers and offers[cid]["seen"] > entry["checkedOn"]:
+            continue
+        offers[cid] = {"seen": entry["checkedOn"], "text": entry["text"]}
+        if "fee" in entry:
+            fees[cid] = float(entry["fee"])
+
+
+with open(os.path.join(os.path.dirname(__file__), "manual_offers.json")) as _f:
+    MANUAL_OFFERS = json.load(_f)
+apply_manual_offers(LAST_KNOWN_OFFERS, LAST_KNOWN_FEES, MANUAL_OFFERS)
+
+CARDS = [dataclasses.replace(c, expected_fee=LAST_KNOWN_FEES.get(c.id)) for c in CARDS]
 
 CARDS = [dataclasses.replace(c, last_known_offer=LAST_KNOWN_OFFERS[c.id]["text"], last_known_on=LAST_KNOWN_OFFERS[c.id]["seen"])
          if c.id in LAST_KNOWN_OFFERS else c for c in CARDS]

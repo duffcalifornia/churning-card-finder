@@ -116,6 +116,7 @@ def _look_for_new_cards(cards, results, http, rendered):
     # breaker's skip, or an error page, says the issuer was misbehaving today.
     troubled = {c.issuer for c in cards for r in results
                 if r.card_id == c.id and ("Stopped after repeated error pages" in r.note or "page_error" in r.flags)}
+    troubled |= {c.issuer for c in cards if ISSUERS[c.issuer].paused}   # a partly paused issuer's listings stay untouched
     issuers = {name: ISSUERS[name] for name in sorted({c.issuer for c in cards} - troubled)}
     if not issuers:
         return [], {}

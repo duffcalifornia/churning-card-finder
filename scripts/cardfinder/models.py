@@ -27,6 +27,7 @@ class IssuerConfig:
     variant_suffixes: List[str] = field(default_factory=list)  # path suffixes some pages also exist under
     render: bool = False                  # offers only appear after the page's scripts run
     paused: str = ""                      # non-empty = do not request this issuer's pages; the text says why
+    still_read: tuple = ()                # card ids still requested although the issuer is paused (their pages answer normally)
     fee_near_name: bool = False           # only accept a fee stated right after this card's own name (pages that list other cards' fees)
 
 
