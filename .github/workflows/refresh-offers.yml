@@ -172,7 +172,14 @@ jobs:
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add $files
             git commit -m "refresh_offers: daily data refresh"
-            git push
+            # Someone pushing to main while this run was in progress made the old bare "git push" fail the whole job
+            # (2026-11-25), though the data and tests were fine. Rebase onto whatever landed and try again.
+            for attempt in 1 2 3; do
+              git pull --rebase -q && git push && break
+              echo "push attempt $attempt failed; retrying"
+              sleep $((attempt * 5))
+            done
+            git status -sb | head -1 | grep -q ahead && { echo "Could not push the refreshed data"; exit 1; } || true
           fi
 
       - name: Ask about cards that could not be found
